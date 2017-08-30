@@ -1,6 +1,5 @@
 theme: jekyll-theme-cayman
 
 # Dependencies
-markdown:    kramdown
-highlighter: rouge
+markdown: kramdown
 
