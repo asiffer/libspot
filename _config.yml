@@ -1,4 +1,6 @@
+# site settings
 theme: jekyll-theme-cayman
+title: libspot
 
 # Dependencies
 markdown: kramdown
