@@ -1,6 +1,7 @@
 # site settings
 theme: jekyll-theme-cayman
 title: libspot
+description: BORN TO FLAG OUTLIERS
 
 # Dependencies
 markdown: kramdown
