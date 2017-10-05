@@ -1,8 +1,5 @@
 language:	cpp
 sudo:		false
-install:
-	- make
-	- python3-dev
 addons:
   	apt:
     	sources:
