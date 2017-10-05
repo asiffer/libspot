@@ -56,7 +56,7 @@ class DSpot : private Spot
 		Bounds getThresholds();
 
 		// bimodal test
-		double btest();
+		//double btest();
 
 		// drift
 		double getDrift();
