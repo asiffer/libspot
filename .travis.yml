@@ -1,12 +1,12 @@
-language:	cpp
-sudo:		false
+language:  cpp
+sudo:  false
 addons:
-  	apt:
-    	sources:
-    		- ubuntu-toolchain-r-test
-    	packages:
-    		- g++-5.3
-    		- python3-dev
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-5.3
+      - python3-dev
 
-script:		make
+script:  make
 
