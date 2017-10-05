@@ -8,7 +8,7 @@ INSTALL_LIB_DIR =
 ###
 
 # PYTHON : external header (Python.h)
-EXT_INC_DIR = /usr/include/python3.5m/
+EXT_INC_DIR = #/usr/include/python3.5m/
 
 
 
