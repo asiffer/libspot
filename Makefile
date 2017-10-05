@@ -47,7 +47,7 @@ endif
 EXPORT = export LD_LIBRARY_PATH=$(INSTALL_LIB_DIR)
 
 # compiler & flags
-CC = g++
+CC = g++-5
 CXXFLAGS = -std=c++14 -Wall -pedantic 
 
 
