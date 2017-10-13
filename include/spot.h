@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <Python.h>
+//#include <Python.h>
 #include <sstream>
 
 using namespace std;
@@ -36,6 +36,21 @@ class SpotStatus {
 		double t_down;
 		double z_up;
 		double z_down;
+		string str();
+};
+
+
+
+class SpotConfig {
+	public:
+		double q;
+		bool bounded;
+		int max_excess;
+		bool alert;
+		bool up;
+		bool down;
+		int n_init;
+		double level;
 		string str();
 };
 
@@ -121,7 +136,11 @@ public:
     Spot(	double q, vector<double> init_data, double level, 
     		bool up, bool down, bool alert, 
     		bool bounded, int max_excess);
+    Spot(SpotConfig conf);
     Spot copy() const;
+    
+    //NOT TODO COPY CONSTRUCTOR
+    //Spot(const Spot &);
 
 
 	bool operator==(const Spot &spot) const;
@@ -138,6 +157,9 @@ public:
 	// status of the algorithm
 	SpotStatus status();
 	string stringStatus();
+	
+	// config of the algorithm
+	SpotConfig config();
 	
 	// access functions
 	double getUpperThreshold();

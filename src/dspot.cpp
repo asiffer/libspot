@@ -62,6 +62,11 @@ DSpot::DSpot(int d, double q, vector<double> init_data, double level,
 }
 
 
+DSpot::DSpot(const DSpot & ds) : Spot(ds)
+{
+	this->depth = ds.depth;
+}
+
 
 bool DSpot::operator==(const DSpot &dspot) const
 {

@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 /**
 	@brief Default constructor
 	@return Spot object
@@ -18,11 +17,11 @@ using namespace std;
 Spot::Spot()
 {
     this->q = 1e-3;
-	this->bounded = false;
-    this->max_excess = -1;
+	this->bounded = true;
+    this->max_excess = 200;
     this->alert = true;
     this->up = true;
-    this->down = false;
+    this->down = true;
 	this->n_init = 1000;
 	this->level = 0.99;
 	
@@ -70,7 +69,6 @@ Spot::Spot(double q, int n_init) : Spot::Spot(q)
 */
 Spot::Spot(double q, vector<double> init_data) : Spot::Spot(q,(int)init_data.size())
 {
-	//this->n_init = init_data.size();
 	this->init_batch = init_data;
 	this->n = this->n_init;
 	this->calibrate();
@@ -187,6 +185,67 @@ Spot Spot::copy() const
 	spot.n = this->n;
 	return spot;
 }
+
+Spot::Spot(SpotConfig sc)
+{
+	this->q = sc.q;
+	this->bounded = sc.bounded;
+	this->max_excess = sc.max_excess;
+	this->alert = sc.alert;
+	this->up = sc.up;
+	this->down = sc.down;
+	this->n_init = sc.n_init;
+	this->level = sc.level;
+	
+	this->n = 0;
+    
+    this->Nt_up = 0;
+    this->Nt_down = 0;
+    
+    this->al_up = 0;
+    this->al_down = 0;
+    
+    if (up)
+    {
+    	this->upper_bound = GPDfit(max_excess);
+    }
+
+    if (down)
+    {
+		this->lower_bound = GPDfit(max_excess);
+    }
+    
+    this->init_batch = vector<double>(this->n_init);
+}
+
+//COPY CONSTRUCTOR
+/*
+Spot::Spot(const Spot & spot)
+{
+	this->q = spot.q;
+	this->n_init = spot.n_init;
+    this->alert = spot.alert;
+    this->up = spot.up;
+    this->down = spot.down;
+	this->level = spot.level;
+	this->bounded = spot.bounded;
+	this->max_excess = spot.max_excess;
+	this->init_batch = vector<double>(spot.n_init);
+	this->n = 0;
+	this->Nt_up = 0;
+    this->Nt_down = 0;
+    this->al_up = 0;
+    this->al_down = 0;
+    if (spot.up)
+    {
+    	this->upper_bound = GPDfit(spot.max_excess);
+    }
+
+    if (spot.down)
+    {
+		this->lower_bound = GPDfit(spot.max_excess);
+    }
+}*/
 
 
 /**
@@ -487,6 +546,46 @@ SpotStatus Spot::status()
 string Spot::stringStatus()
 {
 	return this->status().str();
+}
+
+
+/**
+	@brief Get the configuration of the Spot instance (to create a new instance for example)
+*/
+SpotConfig Spot::config()
+{
+	SpotConfig sc;
+	sc.q = this->q;
+	sc.bounded = this->bounded;
+	sc.max_excess = this->max_excess;
+	sc.alert = this->alert;
+	sc.up = this->up;
+	sc.down = this->down;
+	sc.n_init = this->n_init;
+	sc.level = this->level;
+	return sc;
+}
+
+
+/**
+	@brief Format the config to print it
+*/
+string SpotConfig::str()
+{
+	stringstream ss;
+	string h = "---- Spot config ----";
+	ss << '\t' << h << endl;
+	ss.precision(4);
+	ss << "\t" << "q" << "\t\t" << this->q << endl; 
+	ss << "\t" << "n_init" << "\t\t" << this->n_init << endl;
+	ss << "\t" << "level" << "\t\t" << this->level << endl; 
+	ss << "\t" << "up" << "\t\t" << this->up << endl; 
+	ss << "\t" << "down" << "\t\t" << this->down << endl; 
+	ss << "\t" << "alert" << "\t\t" << this->alert << endl; 
+	ss << "\t" << "bounded" << "\t\t" << this->bounded << endl; 
+	ss << "\t" << "max_excess" << "\t" << this->max_excess << endl; 
+	ss << endl;
+	return ss.str();
 }
 
 

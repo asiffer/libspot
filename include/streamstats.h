@@ -4,7 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <sstream>
-#include <Python.h>
+//#include <Python.h>
 
 
 using namespace std;
@@ -30,11 +30,12 @@ class StreamStats {
 		double get_s_star();
 		int size();
 		double B2();
+		double H2();
 		
 		int step(double x);
-		
 		bool operator<(StreamStats& other);
 		
+		vector<double> dump();
 		string stringStatus();
 
 };

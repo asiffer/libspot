@@ -2,7 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
-#include <Python.h>
+//#include <Python.h>
 
 using namespace std;
 
@@ -14,12 +14,15 @@ using namespace std;
 class StreamMean : public Ubend {
 	protected:
 		double m; // mean
-
+		
+		double hm; // sum 1/xi
+		
 	public:
 		StreamMean(int size = -1);
 		StreamMean(int size, vector<double> v);
 		StreamMean(const Ubend & other);
 		double mean();
+		double hmean();
 		int step(double x_n);
 		StreamMean operator+(const StreamMean& other) const;
 };

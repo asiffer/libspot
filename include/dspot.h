@@ -7,7 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <numeric>
-#include <Python.h>
+//#include <Python.h>
 #include <sstream>
 
 using namespace std;
@@ -41,6 +41,7 @@ class DSpot : private Spot
 		DSpot(int d, double q, vector<double> init_data, double level, 
     			bool up, bool down, bool alert, 
     			bool bounded, int max_excess, bool shuffle);
+    	DSpot(const DSpot & ds);
     	
     		
 		DSpot operator+(const DSpot & other) const;

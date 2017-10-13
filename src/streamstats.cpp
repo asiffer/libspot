@@ -54,6 +54,14 @@ double StreamStats::B2()
 	return(4*Vred/V);
 }
 
+
+
+double StreamStats::H2()
+{
+	return this->bootstrap.hmean();
+}
+
+
 double StreamStats::get_s_star()
 {
 	return this->s_star;
@@ -67,11 +75,13 @@ int StreamStats::step(double x_n)
 	
 	if (m2 > 0)
 	{
-		double s_star_old = this->s_star;
+		//double s_star_old = this->s_star;
 		double m3 = this->standard.M3();
 		double m1 = this->standard.mean();
-		double s_star_new = m1 + 0.5*m3/m2;
+		// double s_star_new = m1 + 0.5*m3/m2;
+		this->s_star = m1 + 0.5*m3/m2;
 		
+		/*
 		double r = (s_star_new-s_star_old)/s_star_old;
 		double coeff = 10.;
 		if ( std::abs(r)<coeff )
@@ -81,7 +91,7 @@ int StreamStats::step(double x_n)
 		else
 		{
 			this->s_star = s_star_old + coeff*(s_star_new-s_star_old)/std::abs(s_star_new-s_star_old);
-		}
+		}*/
 		
 		
 		this->bootstrap.step( std::abs(x_n - this->s_star) );
@@ -103,6 +113,12 @@ bool StreamStats::operator<(StreamStats& other)
 
 
 
+vector<double> StreamStats::dump()
+{
+	return this->standard;
+}
+
+
 string StreamStats::stringStatus()
 {
 	stringstream ss;
@@ -114,6 +130,7 @@ string StreamStats::stringStatus()
 	ss << '\t' << "s*" << '\t' << this->s_star << endl;
 	ss << '\t' << "Var|.|" << '\t' << this->bootstrap.var() << endl;
 	ss << '\t' << "B2" << '\t' << this->B2() << endl;
+	ss << '\t' << "H2" << '\t' << this->H2() << endl;
 	return ss.str();
 }
 

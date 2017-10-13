@@ -4,6 +4,7 @@
 StreamMean::StreamMean(int size) : Ubend(size)
 {
 	this->m = 0.0;
+	this->hm = 0.0;
 }
 
 StreamMean::StreamMean(int size, vector<double> v) : 
@@ -30,6 +31,9 @@ int StreamMean::step(double x_n)
 	double M = this->m;
 	double delta, delta_n;
 	
+	// harmonic mean
+	this->hm += 1./x_n;
+	
 	if (status <= 0)
 	{
 		delta = x_n - M;
@@ -42,6 +46,9 @@ int StreamMean::step(double x_n)
 		delta = x_n - x_1;
 		delta_n = delta/n;
 		this->m = this->m + delta_n;
+		
+		// harmonic mean
+		this->hm -= 1./x_1;
 	}
 	
 	
@@ -53,6 +60,13 @@ double StreamMean::mean()
 {
 	return(this->m);
 }
+
+
+double StreamMean::hmean()
+{
+	return(this->size()/this->hm);
+}
+
 
 
 
@@ -97,6 +111,9 @@ int StreamVar::step(double x_n)
 	double M = this->m;
 	double delta, delta_n;
 	
+	// harmonic mean
+	this->hm += 1./x_n;
+	
 	if (status <= 0)
 	{
 		delta = x_n - M;
@@ -104,6 +121,7 @@ int StreamVar::step(double x_n)
 	
 		this->m = M + delta_n;
 		this->m2 = this->m2 + (n-1.) * delta * delta_n;
+		
 	}
 	else
 	{
@@ -114,6 +132,9 @@ int StreamVar::step(double x_n)
 		this->m = this->m + delta_n;
 		double u = x_n - this->m;
 		this->m2 = this->m2 + delta * ( u + x_1 - M );
+		
+		// harmonic mean
+		this->hm -= 1./x_1;
 	}
 	
 	return status;
@@ -164,6 +185,9 @@ int StreamMoments::step(double x_n)
 	double M = this->m;
 	double delta, delta_n, delta_n2;
 	
+	// harmonic mean
+	this->hm += 1./x_n;
+	
 	if (status <= 0)
 	{
 		delta = x_n - M;
@@ -188,6 +212,9 @@ int StreamMoments::step(double x_n)
 
 		this->m3 = this->m3 - delta_n * ( 3. * this->m2 - n * delta_n2 ) + delta * ( pow(delta,2)+3*u*v ); 
 		this->m2 = this->m2 + delta * ( u + x_1 - M );
+		
+		// harmonic mean
+		this->hm -= 1./x_1;
 	}
 	
 	
