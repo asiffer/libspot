@@ -15,6 +15,7 @@
 * `StreamStats` (compute basic statistics over sliding window)
 
 ### INSTALL
+(ignore Python -> not working yet)
 **dependencies** : you need to set the path of the python header `Python.h` in the Makefile:
 ```
 # PYTHON : external header (Python.h)
