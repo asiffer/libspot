@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+#include <algorithm>
 //#include <Python.h>
 
 using namespace std;
