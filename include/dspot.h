@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <numeric>
+#include <random>
 //#include <Python.h>
 #include <sstream>
 
