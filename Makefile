@@ -3,8 +3,8 @@
 # @author = asr
 
 ### INSTALL DIRECTORIES
-INSTALL_HEAD_DIR =
-INSTALL_LIB_DIR =
+INSTALL_HEAD_DIR = /usr/include/libspot/
+INSTALL_LIB_DIR = /usr/lib/
 ###
 
 # PYTHON : external header (Python.h)
