@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-//#include <Python.h>
+#include <Python.h>
 #include <sstream>
 
 using namespace std;
@@ -126,9 +126,7 @@ protected:
 public:
 
 	// Constructors
-    Spot();
-    Spot(double q);
-    Spot(double q, int n_init);
+    Spot(double q = 1e-3, int n_init = 1000);
     Spot(double q, vector<double> init_data);
     Spot(	double q, int n_init, double level, 
     		bool up, bool down, bool alert, 
@@ -137,16 +135,10 @@ public:
     		bool up, bool down, bool alert, 
     		bool bounded, int max_excess);
     Spot(SpotConfig conf);
-    Spot copy() const;
-    
-    //NOT TODO COPY CONSTRUCTOR
-    //Spot(const Spot &);
-
 
 	bool operator==(const Spot &spot) const;
 	Spot operator+(const Spot &spot) const;
 	
-	//Spot addWithDrift(const Spot &other, double my_drift, double other_drift) const;
 	
 	// SPOT iteration
 	int step(double v);
@@ -159,7 +151,7 @@ public:
 	string stringStatus();
 	
 	// config of the algorithm
-	SpotConfig config();
+	SpotConfig config() const;
 	
 	// access functions
 	double getUpperThreshold();

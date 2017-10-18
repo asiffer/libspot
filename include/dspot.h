@@ -7,7 +7,6 @@
 #include <vector>
 #include <iostream>
 #include <numeric>
-#include <random>
 //#include <Python.h>
 #include <sstream>
 
@@ -17,7 +16,6 @@ using namespace std;
 
 class DSpot : private Spot
 {
-	friend class MMSpot;
     protected:
         // Additional attributes
         int depth;
@@ -30,22 +28,12 @@ class DSpot : private Spot
 		double computeDrift();
 		
     public:
-        // constructors
-        DSpot(int d = 10);
-		DSpot(int d, double q);
-		DSpot(int d, double q, int n_init, double level, 
-				bool up, bool down, bool alert, 
-				bool bounded, int max_excess);
-		
-		// constructor with initial data
-		DSpot(int d, double q, vector<double> init_data, bool shuffle);
-		DSpot(int d, double q, vector<double> init_data, double level, 
-    			bool up, bool down, bool alert, 
-    			bool bounded, int max_excess, bool shuffle);
+        // constructors (use the Spot constructor syntax)
+        template<typename... Args> DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
     	DSpot(const DSpot & ds);
     	
     		
-		DSpot operator+(const DSpot & other) const;
+		//DSpot operator+(const DSpot & other) const;
 		bool operator==(const DSpot & other) const;
 		bool operator<(const DSpot & other) const;
 		
@@ -56,9 +44,6 @@ class DSpot : private Spot
 		double getUpperThreshold();
 		double getLowerThreshold();
 		Bounds getThresholds();
-
-		// bimodal test
-		//double btest();
 
 		// drift
 		double getDrift();

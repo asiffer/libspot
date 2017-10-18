@@ -12,17 +12,19 @@ using namespace std;
 
 /**
 	@brief Default constructor
+	@param[in] q Probability of abnormal events
+	@param[in] n_init Size of initial batch to perform calibration
 	@return Spot object
 */
-Spot::Spot()
+Spot::Spot(double q, int n_init)
 {
-    this->q = 1e-3;
+	this->q = q;
 	this->bounded = true;
     this->max_excess = 200;
     this->alert = true;
     this->up = true;
     this->down = true;
-	this->n_init = 1000;
+	this->n_init = n_init;
 	this->level = 0.99;
 	
     this->n = 0;
@@ -34,30 +36,6 @@ Spot::Spot()
     this->al_down = 0;
     
     this->init_batch = vector<double>(this->n_init);
-}
-
-/**
-	@brief Default constructor with risk parametrization (q)
-	@param[in] q Probability of abnormal events
-	@return Spot object
-*/
-Spot::Spot(double q) : Spot::Spot()
-{
-    this->q = q;
-}
-
-
-
-
-/**
-	@brief Constructor with risk parametrization (q) and initial batch size
-	@param[in] q Probability of abnormal events
-	@param[in] n_init Size of initial batch to perform calibration
-	@return Spot object
-*/
-Spot::Spot(double q, int n_init) : Spot::Spot(q)
-{
-	this->n_init = n_init;
 }
 
 
@@ -73,12 +51,6 @@ Spot::Spot(double q, vector<double> init_data) : Spot::Spot(q,(int)init_data.siz
 	this->n = this->n_init;
 	this->calibrate();
 }
-
-
-
-
-
-
 
 
 /**
@@ -169,23 +141,8 @@ Spot::Spot(double q, vector<double> init_data, double level,
 
 /**
 	@brief create a Spot object with the same configuration
-	@return bool Spot
+	@return Spot object
 */
-Spot Spot::copy() const
-{
-	Spot spot(this->q);
-	spot.n_init = this->n_init;
-    spot.alert = this->alert;
-    spot.up = this->up;
-    spot.down = this->down;
-	spot.level = this->level;
-	spot.bounded = this->bounded;
-	spot.max_excess = this->max_excess;
-	spot.init_batch = vector<double>(this->n_init);
-	spot.n = this->n;
-	return spot;
-}
-
 Spot::Spot(SpotConfig sc)
 {
 	this->q = sc.q;
@@ -218,35 +175,6 @@ Spot::Spot(SpotConfig sc)
     this->init_batch = vector<double>(this->n_init);
 }
 
-//COPY CONSTRUCTOR
-/*
-Spot::Spot(const Spot & spot)
-{
-	this->q = spot.q;
-	this->n_init = spot.n_init;
-    this->alert = spot.alert;
-    this->up = spot.up;
-    this->down = spot.down;
-	this->level = spot.level;
-	this->bounded = spot.bounded;
-	this->max_excess = spot.max_excess;
-	this->init_batch = vector<double>(spot.n_init);
-	this->n = 0;
-	this->Nt_up = 0;
-    this->Nt_down = 0;
-    this->al_up = 0;
-    this->al_down = 0;
-    if (spot.up)
-    {
-    	this->upper_bound = GPDfit(spot.max_excess);
-    }
-
-    if (spot.down)
-    {
-		this->lower_bound = GPDfit(spot.max_excess);
-    }
-}*/
-
 
 /**
 	@brief Spot configuration comparison
@@ -277,7 +205,7 @@ Spot Spot::operator+(const Spot &spot) const
 	    
 	if ( this->operator==(spot) )
 	{
-		Spot spotsum = spot.copy();
+		Spot spotsum(spot.config());
 		spotsum.t_down = this->t_down;
 		spotsum.z_down = this->z_down;
 		spotsum.lower_bound = this->lower_bound;
@@ -440,7 +368,6 @@ void Spot::calibrate()
         this->t_up = this->init_batch[rank_up];
         
 
-		//cout << this->init_batch[this->n_init-1] << endl;
         // Initialization of the upper excesses
         for(int i = rank_up+1; i < this->n_init; i++)
         {
@@ -552,7 +479,7 @@ string Spot::stringStatus()
 /**
 	@brief Get the configuration of the Spot instance (to create a new instance for example)
 */
-SpotConfig Spot::config()
+SpotConfig Spot::config() const
 {
 	SpotConfig sc;
 	sc.q = this->q;
