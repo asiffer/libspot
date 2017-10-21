@@ -1,6 +1,7 @@
 language:  cpp
 sudo:  true
 before_install:
+  - sudo apt-get upgrade
   - sudo apt-get install g++-5
   - sudo apt-get install python3-dev
 
