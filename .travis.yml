@@ -10,5 +10,7 @@ addons:
       - python3
       - python3-dev 
 
-script:  make
+script:
+  - make
+  - make test
 
