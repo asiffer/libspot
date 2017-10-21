@@ -1,11 +1,8 @@
 language:  cpp
 sudo:  false
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-5
+before_install:
+  - sudo apt-get install g++-5
+  - sudo apt-get install python3-dev
 
 script:  make
 
