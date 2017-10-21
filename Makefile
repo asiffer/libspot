@@ -8,7 +8,7 @@ INSTALL_LIB_DIR = /usr/lib/
 ###
 
 # PYTHON : external header (Python.h)
-EXT_INC_DIR = /usr/include/python3.4m/ -I /usr/include/python3.4/ -I /usr/include/python3/
+EXT_INC_DIR = /usr/include/python3.4m/ #-I /usr/include/python3.4/ -I /usr/include/python3/
 
 
 
