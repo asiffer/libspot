@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: required
 language: cpp
 addons:
   apt:
@@ -12,6 +12,6 @@ addons:
 
 script:
   - make
-  - make install
+  - sudo make install
   - make test
 
