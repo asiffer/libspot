@@ -18,9 +18,8 @@ email: alban.siffer@irisa.fr
 description: > # this means to ignore newlines until "baseurl:"
   BORN TO FLAG OUTLIERS
 baseurl: ""
-url: "http://localhost:4000/"
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://github.com/asiffer/libspot"
+github_username:  asiffer
 
 # Build settings
 markdown: kramdown
