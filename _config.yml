@@ -17,8 +17,8 @@ title: libspot
 email: alban.siffer@irisa.fr
 description: > # this means to ignore newlines until "baseurl:"
   BORN TO FLAG OUTLIERS
-baseurl: ""
-url: "https://github.com/asiffer/libspot"
+baseurl: "https://asiffer.github.io/libspot"
+url: "http://github.com/asiffer/libspot"
 github_username:  asiffer
 
 # Build settings
