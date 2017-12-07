@@ -1,66 +1,19 @@
-<!DOCTYPE html>
-<html>
-<link href="/css/syntax.css" rel="stylesheet">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: home
+title: Home
+permalink: /home/
+tag: "BORN TO FLAG OUTLIERS"
+---
 
-	<title>libspot</title>
-
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="canonical" href="https://asiffer.github.io/libspot/">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
-</head> 
-
-
-<body>
-	<aside>
-	<div class="container">
-		<fixt><a href="https://asiffer.github.io/libspot/">libspot</a></fixt>
-		<nav>
-			<ul>
-				 
-				<li><a href="">Home</a></li>
-				  
-				<li><a href="tuto/">Tutorial</a></li>
-				  
-				<li><a href="download/">Download</a></li>
-				  
-				<li><a href="about/">About</a></li>
-				         
-			</ul>
-			</li>
-			</ul>
-		</nav>
-	</div>
-</aside>
-
+**libspot** is a C++ library for anomaly detection in streaming data
 <!-- 
-<header>
-	<h1>BORN TO FLAG OUTLIERS
-</h1>
-</header>
+Its core algorithm, **SPOT**, uses incoming data to compute smart thresholds with the statistical guarantees you want.
 -->
 
-	<header>
-		<h1>born to frag outliers</h1>
-	</header>
-	<main>
-		<center>
-		<article>
-			<center>
-<p>
-<strong>libspot</strong> is a C++ library for anomaly detection in streaming data
-</p>
+&nbsp;
+&nbsp;
+&nbsp;
 
-<p>
-&nbsp;
-&nbsp;
-&nbsp;
-</p>
 
 <style type="text/css">
     td {
@@ -70,30 +23,36 @@
 </style>
 
 
-
 <table align="center" width="100%" style="margin: auto auto;">
-	<tr align="CENTER">
-		<td width="50%"><i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i></td>
-		<td width="50%"><i class="fa fa-superscript fa-2x" aria-hidden="true"></i></td>
-   </tr>
-   <tr align="CENTER">
-		<td width="50%"><homecat>Online detection</homecat></td>
-		<td width="50%"><homecat>Statistical guarantees</homecat></td>
-   </tr>
-   <tr align="CENTER">
-		<td width="50%">Able to process<br />one million data a second</td>
-		<td width="50%">Use Extreme Value Theory to<br />perform probabilistic tresholding</td>
-   </tr>
+	<TR ALIGN="CENTER">
+		<TD width="50%"><i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i></TD>
+		<TD width="50%"><i class="fa fa-superscript fa-2x" aria-hidden="true"></i></TD>
+   </TR>
+   <TR ALIGN="CENTER">
+		<TD width="50%"><homecat>Online detection</homecat></TD>
+		<TD width="50%"><homecat>Statistical guarantees</homecat></TD>
+   </TR>
+   <TR ALIGN="CENTER">
+		<TD width="50%">Able to process<br>one million data a second</TD>
+		<TD width="50%">Use Extreme Value Theory to<br>perform probabilistic tresholding</TD>
+   </TR>
 </table>
-
-</center>
-
-		</article>
-		</center>
-	</main>
-</body>
-<footer>
-	<p>By Alban Siffer</p>
-</footer>
-
-</html>
+<!--
+<table align="center" width="100%" style="margin: auto auto;">
+	<TR ALIGN="CENTER">
+		<TD width="33%"><i class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i></TD>
+		<TD width="33%"><i class="fa fa-superscript fa-2x" aria-hidden="true"></i></TD>
+		<TD width="33%"><i class="fa fa-leaf fa-2x" aria-hidden="true"></i></TD>
+   </TR>
+   <TR ALIGN="CENTER">
+      <TD width="33%"><homecat>Online detection</homecat></TD>
+      <TD width="33%"><homecat>Statistical guarantees</homecat></TD>
+      <TD width="33%"><homecat>Lightweight</homecat></TD>
+   </TR>
+   <TR ALIGN="CENTER">
+      <TD width="33%">Able to process one million data a second</TD>
+      <TD width="33%">Use Extreme Value Theory to perform probabilistic tresholding</TD>
+      <TD width="33%">Low CPU usage and memory required</TD>
+   </TR>
+</table>
+-->
