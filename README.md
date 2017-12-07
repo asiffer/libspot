@@ -1,1 +1,1 @@
-https://github.com/asiffer/libspot/
+https://asiffer.github.io/libspot/
