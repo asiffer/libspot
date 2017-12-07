@@ -1,7 +1,7 @@
 ---
 layout: tuto
 title: Tutorial
-permalink: /tuto
+permalink: /tuto/
 ---
 
 <a name="intro"></a>

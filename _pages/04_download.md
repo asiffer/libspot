@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Download
-permalink: /download
+permalink: /download/
 ---
 
 The code is available on github. You can either clone the repository
