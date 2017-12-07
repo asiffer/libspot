@@ -550,17 +550,26 @@ class StreamStats(_object):
     def merge(self, S):
         return _libspot.StreamStats_merge(self, S)
 
+    def get_s_star(self):
+        return _libspot.StreamStats_get_s_star(self)
+
     def size(self):
         return _libspot.StreamStats_size(self)
 
-    def bimodalTest(self):
-        return _libspot.StreamStats_bimodalTest(self)
+    def B2(self):
+        return _libspot.StreamStats_B2(self)
+
+    def H2(self):
+        return _libspot.StreamStats_H2(self)
 
     def step(self, x):
         return _libspot.StreamStats_step(self, x)
 
     def __lt__(self, other):
         return _libspot.StreamStats___lt__(self, other)
+
+    def dump(self):
+        return _libspot.StreamStats_dump(self)
 
     def stringStatus(self):
         return _libspot.StreamStats_stringStatus(self)
@@ -607,10 +616,40 @@ class Bounds(_object):
 Bounds_swigregister = _libspot.Bounds_swigregister
 Bounds_swigregister(Bounds)
 
+class BrentResults(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, BrentResults, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, BrentResults, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["xmin"] = _libspot.BrentResults_xmin_set
+    __swig_getmethods__["xmin"] = _libspot.BrentResults_xmin_get
+    if _newclass:
+        xmin = _swig_property(_libspot.BrentResults_xmin_get, _libspot.BrentResults_xmin_set)
+    __swig_setmethods__["fmin"] = _libspot.BrentResults_fmin_set
+    __swig_getmethods__["fmin"] = _libspot.BrentResults_fmin_get
+    if _newclass:
+        fmin = _swig_property(_libspot.BrentResults_fmin_get, _libspot.BrentResults_fmin_set)
+
+    def __init__(self):
+        this = _libspot.new_BrentResults()
+        try:
+            self.this.append(this)
+        except Exception:
+            self.this = this
+    __swig_destroy__ = _libspot.delete_BrentResults
+    __del__ = lambda self: None
+BrentResults_swigregister = _libspot.BrentResults_swigregister
+BrentResults_swigregister(BrentResults)
+
 
 def brent(found, a, b, f, epsilon=1e-6, delta=1e-8):
     return _libspot.brent(found, a, b, f, epsilon, delta)
 brent = _libspot.brent
+
+def brent2(found, a, b, f, epsilon=1e-6, delta=1e-8):
+    return _libspot.brent2(found, a, b, f, epsilon, delta)
+brent2 = _libspot.brent2
 class GPDinfo(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, GPDinfo, name, value)
@@ -775,6 +814,59 @@ class SpotStatus(_object):
 SpotStatus_swigregister = _libspot.SpotStatus_swigregister
 SpotStatus_swigregister(SpotStatus)
 
+class SpotConfig(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SpotConfig, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SpotConfig, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["q"] = _libspot.SpotConfig_q_set
+    __swig_getmethods__["q"] = _libspot.SpotConfig_q_get
+    if _newclass:
+        q = _swig_property(_libspot.SpotConfig_q_get, _libspot.SpotConfig_q_set)
+    __swig_setmethods__["bounded"] = _libspot.SpotConfig_bounded_set
+    __swig_getmethods__["bounded"] = _libspot.SpotConfig_bounded_get
+    if _newclass:
+        bounded = _swig_property(_libspot.SpotConfig_bounded_get, _libspot.SpotConfig_bounded_set)
+    __swig_setmethods__["max_excess"] = _libspot.SpotConfig_max_excess_set
+    __swig_getmethods__["max_excess"] = _libspot.SpotConfig_max_excess_get
+    if _newclass:
+        max_excess = _swig_property(_libspot.SpotConfig_max_excess_get, _libspot.SpotConfig_max_excess_set)
+    __swig_setmethods__["alert"] = _libspot.SpotConfig_alert_set
+    __swig_getmethods__["alert"] = _libspot.SpotConfig_alert_get
+    if _newclass:
+        alert = _swig_property(_libspot.SpotConfig_alert_get, _libspot.SpotConfig_alert_set)
+    __swig_setmethods__["up"] = _libspot.SpotConfig_up_set
+    __swig_getmethods__["up"] = _libspot.SpotConfig_up_get
+    if _newclass:
+        up = _swig_property(_libspot.SpotConfig_up_get, _libspot.SpotConfig_up_set)
+    __swig_setmethods__["down"] = _libspot.SpotConfig_down_set
+    __swig_getmethods__["down"] = _libspot.SpotConfig_down_get
+    if _newclass:
+        down = _swig_property(_libspot.SpotConfig_down_get, _libspot.SpotConfig_down_set)
+    __swig_setmethods__["n_init"] = _libspot.SpotConfig_n_init_set
+    __swig_getmethods__["n_init"] = _libspot.SpotConfig_n_init_get
+    if _newclass:
+        n_init = _swig_property(_libspot.SpotConfig_n_init_get, _libspot.SpotConfig_n_init_set)
+    __swig_setmethods__["level"] = _libspot.SpotConfig_level_set
+    __swig_getmethods__["level"] = _libspot.SpotConfig_level_get
+    if _newclass:
+        level = _swig_property(_libspot.SpotConfig_level_get, _libspot.SpotConfig_level_set)
+
+    def str(self):
+        return _libspot.SpotConfig_str(self)
+
+    def __init__(self):
+        this = _libspot.new_SpotConfig()
+        try:
+            self.this.append(this)
+        except Exception:
+            self.this = this
+    __swig_destroy__ = _libspot.delete_SpotConfig
+    __del__ = lambda self: None
+SpotConfig_swigregister = _libspot.SpotConfig_swigregister
+SpotConfig_swigregister(SpotConfig)
+
 class Spot(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Spot, name, value)
@@ -788,9 +880,6 @@ class Spot(_object):
             self.this.append(this)
         except Exception:
             self.this = this
-
-    def copy(self):
-        return _libspot.Spot_copy(self)
 
     def __eq__(self, spot):
         return _libspot.Spot___eq__(self, spot)
@@ -809,6 +898,9 @@ class Spot(_object):
 
     def stringStatus(self):
         return _libspot.Spot_stringStatus(self)
+
+    def config(self):
+        return _libspot.Spot_config(self)
 
     def getUpperThreshold(self):
         return _libspot.Spot_getUpperThreshold(self)
@@ -836,15 +928,12 @@ class DSpot(_object):
     __getattr__ = lambda self, name: _swig_getattr(self, DSpot, name)
     __repr__ = _swig_repr
 
-    def __init__(self, *args):
-        this = _libspot.new_DSpot(*args)
+    def __init__(self, ds):
+        this = _libspot.new_DSpot(ds)
         try:
             self.this.append(this)
         except Exception:
             self.this = this
-
-    def __add__(self, other):
-        return _libspot.DSpot___add__(self, other)
 
     def __eq__(self, other):
         return _libspot.DSpot___eq__(self, other)
@@ -864,9 +953,6 @@ class DSpot(_object):
     def getThresholds(self):
         return _libspot.DSpot_getThresholds(self)
 
-    def btest(self):
-        return _libspot.DSpot_btest(self)
-
     def getDrift(self):
         return _libspot.DSpot_getDrift(self)
 
@@ -879,37 +965,6 @@ class DSpot(_object):
     __del__ = lambda self: None
 DSpot_swigregister = _libspot.DSpot_swigregister
 DSpot_swigregister(DSpot)
-
-class MMSpot(DSpotVector):
-    __swig_setmethods__ = {}
-    for _s in [DSpotVector]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, MMSpot, name, value)
-    __swig_getmethods__ = {}
-    for _s in [DSpotVector]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, MMSpot, name)
-    __repr__ = _swig_repr
-
-    def __init__(self, *args):
-        this = _libspot.new_MMSpot(*args)
-        try:
-            self.this.append(this)
-        except Exception:
-            self.this = this
-
-    def stringStatus(self):
-        return _libspot.MMSpot_stringStatus(self)
-
-    def stringStatusWithStats(self):
-        return _libspot.MMSpot_stringStatusWithStats(self)
-
-    def step(self, x):
-        return _libspot.MMSpot_step(self, x)
-    __swig_destroy__ = _libspot.delete_MMSpot
-    __del__ = lambda self: None
-MMSpot_swigregister = _libspot.MMSpot_swigregister
-MMSpot_swigregister(MMSpot)
 
 # This file is compatible with both classic and new-style classes.
 

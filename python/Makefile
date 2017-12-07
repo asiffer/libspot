@@ -8,7 +8,7 @@ CXXFLAGS = -std=c++14 -Wall -pedantic -I/usr/include/python3.5m/ -I $(INC_DIR)
 
 
 
-FILES = $(shell ls $(INC_DIR))#streamstats.h ubend.h brent.h gpdfit.h bounds.h spot.h dspot.h mmspot.h
+FILES = $(shell ls $(INC_DIR))#streamstats.h ubend.h brent.h gpdfit.h bounds.h spot.h dspot.h 
 DEPS = $(foreach n,$(FILES),$(INC_DIR)$(n))
 SRCS = $($(foreach n,$(FILES),$(SRC_DIR)$(n)):.h=.cpp)
 OBJS = $(FILES:.h=.o) libspot_wrap.o

@@ -3010,35 +3010,36 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_Bounds swig_types[0]
-#define SWIGTYPE_p_DSpot swig_types[1]
-#define SWIGTYPE_p_GPDfit swig_types[2]
-#define SWIGTYPE_p_GPDinfo swig_types[3]
-#define SWIGTYPE_p_MMSpot swig_types[4]
+#define SWIGTYPE_p_BrentResults swig_types[1]
+#define SWIGTYPE_p_DSpot swig_types[2]
+#define SWIGTYPE_p_GPDfit swig_types[3]
+#define SWIGTYPE_p_GPDinfo swig_types[4]
 #define SWIGTYPE_p_Spot swig_types[5]
-#define SWIGTYPE_p_SpotInfo swig_types[6]
-#define SWIGTYPE_p_SpotStatus swig_types[7]
-#define SWIGTYPE_p_StreamStats swig_types[8]
-#define SWIGTYPE_p_Ubend swig_types[9]
-#define SWIGTYPE_p_allocator_type swig_types[10]
-#define SWIGTYPE_p_bool swig_types[11]
-#define SWIGTYPE_p_char swig_types[12]
-#define SWIGTYPE_p_difference_type swig_types[13]
-#define SWIGTYPE_p_first_type swig_types[14]
-#define SWIGTYPE_p_functionT_double_fdoubleF_t swig_types[15]
-#define SWIGTYPE_p_p_PyObject swig_types[16]
-#define SWIGTYPE_p_second_type swig_types[17]
-#define SWIGTYPE_p_size_type swig_types[18]
-#define SWIGTYPE_p_std__allocatorT_Bounds_t swig_types[19]
-#define SWIGTYPE_p_std__allocatorT_DSpot_t swig_types[20]
-#define SWIGTYPE_p_std__allocatorT_double_t swig_types[21]
-#define SWIGTYPE_p_std__invalid_argument swig_types[22]
-#define SWIGTYPE_p_std__vectorT_Bounds_std__allocatorT_Bounds_t_t swig_types[23]
-#define SWIGTYPE_p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t swig_types[24]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[25]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[26]
-#define SWIGTYPE_p_value_type swig_types[27]
-static swig_type_info *swig_types[29];
-static swig_module_info swig_module = {swig_types, 28, 0, 0, 0, 0};
+#define SWIGTYPE_p_SpotConfig swig_types[6]
+#define SWIGTYPE_p_SpotInfo swig_types[7]
+#define SWIGTYPE_p_SpotStatus swig_types[8]
+#define SWIGTYPE_p_StreamStats swig_types[9]
+#define SWIGTYPE_p_Ubend swig_types[10]
+#define SWIGTYPE_p_allocator_type swig_types[11]
+#define SWIGTYPE_p_bool swig_types[12]
+#define SWIGTYPE_p_char swig_types[13]
+#define SWIGTYPE_p_difference_type swig_types[14]
+#define SWIGTYPE_p_first_type swig_types[15]
+#define SWIGTYPE_p_functionT_double_fdoubleF_t swig_types[16]
+#define SWIGTYPE_p_p_PyObject swig_types[17]
+#define SWIGTYPE_p_second_type swig_types[18]
+#define SWIGTYPE_p_size_type swig_types[19]
+#define SWIGTYPE_p_std__allocatorT_Bounds_t swig_types[20]
+#define SWIGTYPE_p_std__allocatorT_DSpot_t swig_types[21]
+#define SWIGTYPE_p_std__allocatorT_double_t swig_types[22]
+#define SWIGTYPE_p_std__invalid_argument swig_types[23]
+#define SWIGTYPE_p_std__vectorT_Bounds_std__allocatorT_Bounds_t_t swig_types[24]
+#define SWIGTYPE_p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t swig_types[25]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[26]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[27]
+#define SWIGTYPE_p_value_type swig_types[28]
+static swig_type_info *swig_types[30];
+static swig_module_info swig_module = {swig_types, 29, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -3150,7 +3151,6 @@ namespace swig {
 #include "gpdfit.h"
 #include "spot.h"
 #include "dspot.h"
-#include "mmspot.h"
 
 
 #include <string>
@@ -10605,7 +10605,7 @@ SWIGINTERN PyObject *_wrap_DSpotVector_pop(PyObject *SWIGUNUSEDPARM(self), PyObj
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< DSpot >::value_type result;
+  SwigValueWrapper< DSpot > result;
   
   if (!PyArg_ParseTuple(args,(char *)"O:DSpotVector_pop",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t, 0 |  0 );
@@ -12154,6 +12154,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_StreamStats_get_s_star(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  StreamStats *arg1 = (StreamStats *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StreamStats_get_s_star",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_StreamStats, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StreamStats_get_s_star" "', argument " "1"" of type '" "StreamStats *""'"); 
+  }
+  arg1 = reinterpret_cast< StreamStats * >(argp1);
+  result = (double)(arg1)->get_s_star();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_StreamStats_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   StreamStats *arg1 = (StreamStats *) 0 ;
@@ -12176,7 +12198,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_StreamStats_bimodalTest(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_StreamStats_B2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   StreamStats *arg1 = (StreamStats *) 0 ;
   void *argp1 = 0 ;
@@ -12184,13 +12206,35 @@ SWIGINTERN PyObject *_wrap_StreamStats_bimodalTest(PyObject *SWIGUNUSEDPARM(self
   PyObject * obj0 = 0 ;
   double result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:StreamStats_bimodalTest",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:StreamStats_B2",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_StreamStats, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StreamStats_bimodalTest" "', argument " "1"" of type '" "StreamStats *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StreamStats_B2" "', argument " "1"" of type '" "StreamStats *""'"); 
   }
   arg1 = reinterpret_cast< StreamStats * >(argp1);
-  result = (double)(arg1)->bimodalTest();
+  result = (double)(arg1)->B2();
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_StreamStats_H2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  StreamStats *arg1 = (StreamStats *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StreamStats_H2",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_StreamStats, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StreamStats_H2" "', argument " "1"" of type '" "StreamStats *""'"); 
+  }
+  arg1 = reinterpret_cast< StreamStats * >(argp1);
+  result = (double)(arg1)->H2();
   resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
@@ -12257,6 +12301,28 @@ SWIGINTERN PyObject *_wrap_StreamStats___lt__(PyObject *SWIGUNUSEDPARM(self), Py
   arg2 = reinterpret_cast< StreamStats * >(argp2);
   result = (bool)(arg1)->operator <(*arg2);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_StreamStats_dump(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  StreamStats *arg1 = (StreamStats *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  std::vector< double > result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:StreamStats_dump",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_StreamStats, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "StreamStats_dump" "', argument " "1"" of type '" "StreamStats *""'"); 
+  }
+  arg1 = reinterpret_cast< StreamStats * >(argp1);
+  result = (arg1)->dump();
+  resultobj = swig::from(static_cast< std::vector< double,std::allocator< double > > >(result));
   return resultobj;
 fail:
   return NULL;
@@ -12693,6 +12759,151 @@ SWIGINTERN PyObject *Bounds_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_BrentResults_xmin_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BrentResults *arg1 = (BrentResults *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:BrentResults_xmin_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BrentResults, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BrentResults_xmin_set" "', argument " "1"" of type '" "BrentResults *""'"); 
+  }
+  arg1 = reinterpret_cast< BrentResults * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BrentResults_xmin_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->xmin = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BrentResults_xmin_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BrentResults *arg1 = (BrentResults *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BrentResults_xmin_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BrentResults, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BrentResults_xmin_get" "', argument " "1"" of type '" "BrentResults *""'"); 
+  }
+  arg1 = reinterpret_cast< BrentResults * >(argp1);
+  result = (double) ((arg1)->xmin);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BrentResults_fmin_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BrentResults *arg1 = (BrentResults *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:BrentResults_fmin_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BrentResults, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BrentResults_fmin_set" "', argument " "1"" of type '" "BrentResults *""'"); 
+  }
+  arg1 = reinterpret_cast< BrentResults * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "BrentResults_fmin_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->fmin = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BrentResults_fmin_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BrentResults *arg1 = (BrentResults *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:BrentResults_fmin_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BrentResults, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BrentResults_fmin_get" "', argument " "1"" of type '" "BrentResults *""'"); 
+  }
+  arg1 = reinterpret_cast< BrentResults * >(argp1);
+  result = (double) ((arg1)->fmin);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_BrentResults(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BrentResults *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_BrentResults")) SWIG_fail;
+  result = (BrentResults *)new BrentResults();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_BrentResults, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_BrentResults(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  BrentResults *arg1 = (BrentResults *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_BrentResults",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_BrentResults, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_BrentResults" "', argument " "1"" of type '" "BrentResults *""'"); 
+  }
+  arg1 = reinterpret_cast< BrentResults * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *BrentResults_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_BrentResults, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_brent__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   bool *arg1 = (bool *) 0 ;
@@ -13003,6 +13214,320 @@ fail:
     "    brent(bool *,double,double,function< double (double) >,double,double)\n"
     "    brent(bool *,double,double,function< double (double) >,double)\n"
     "    brent(bool *,double,double,function< double (double) >)\n");
+  return 0;
+}
+
+
+SWIGINTERN PyObject *_wrap_brent2__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  bool *arg1 = (bool *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  function< double (double) > arg4 ;
+  double arg5 ;
+  double arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  PyObject * obj5 = 0 ;
+  BrentResults result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:brent2",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_bool, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "brent2" "', argument " "1"" of type '" "bool *""'"); 
+  }
+  arg1 = reinterpret_cast< bool * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "brent2" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "brent2" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_functionT_double_fdoubleF_t,  0  | 0);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "brent2" "', argument " "4"" of type '" "function< double (double) >""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "brent2" "', argument " "4"" of type '" "function< double (double) >""'");
+    } else {
+      function< double (double) > * temp = reinterpret_cast< function< double (double) > * >(argp4);
+      arg4 = *temp;
+      if (SWIG_IsNewObj(res4)) delete temp;
+    }
+  }
+  ecode5 = SWIG_AsVal_double(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "brent2" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  ecode6 = SWIG_AsVal_double(obj5, &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "brent2" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  result = brent2(arg1,arg2,arg3,arg4,arg5,arg6);
+  resultobj = SWIG_NewPointerObj((new BrentResults(static_cast< const BrentResults& >(result))), SWIGTYPE_p_BrentResults, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_brent2__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  bool *arg1 = (bool *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  function< double (double) > arg4 ;
+  double arg5 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  PyObject * obj4 = 0 ;
+  BrentResults result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOOO:brent2",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_bool, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "brent2" "', argument " "1"" of type '" "bool *""'"); 
+  }
+  arg1 = reinterpret_cast< bool * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "brent2" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "brent2" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_functionT_double_fdoubleF_t,  0  | 0);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "brent2" "', argument " "4"" of type '" "function< double (double) >""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "brent2" "', argument " "4"" of type '" "function< double (double) >""'");
+    } else {
+      function< double (double) > * temp = reinterpret_cast< function< double (double) > * >(argp4);
+      arg4 = *temp;
+      if (SWIG_IsNewObj(res4)) delete temp;
+    }
+  }
+  ecode5 = SWIG_AsVal_double(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "brent2" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  result = brent2(arg1,arg2,arg3,arg4,arg5);
+  resultobj = SWIG_NewPointerObj((new BrentResults(static_cast< const BrentResults& >(result))), SWIGTYPE_p_BrentResults, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_brent2__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  bool *arg1 = (bool *) 0 ;
+  double arg2 ;
+  double arg3 ;
+  function< double (double) > arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  void *argp4 ;
+  int res4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  BrentResults result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:brent2",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_bool, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "brent2" "', argument " "1"" of type '" "bool *""'"); 
+  }
+  arg1 = reinterpret_cast< bool * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "brent2" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  ecode3 = SWIG_AsVal_double(obj2, &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "brent2" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_functionT_double_fdoubleF_t,  0  | 0);
+    if (!SWIG_IsOK(res4)) {
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "brent2" "', argument " "4"" of type '" "function< double (double) >""'"); 
+    }  
+    if (!argp4) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "brent2" "', argument " "4"" of type '" "function< double (double) >""'");
+    } else {
+      function< double (double) > * temp = reinterpret_cast< function< double (double) > * >(argp4);
+      arg4 = *temp;
+      if (SWIG_IsNewObj(res4)) delete temp;
+    }
+  }
+  result = brent2(arg1,arg2,arg3,arg4);
+  resultobj = SWIG_NewPointerObj((new BrentResults(static_cast< const BrentResults& >(result))), SWIGTYPE_p_BrentResults, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_brent2(PyObject *self, PyObject *args) {
+  Py_ssize_t argc;
+  PyObject *argv[7] = {
+    0
+  };
+  Py_ssize_t ii;
+  
+  if (!PyTuple_Check(args)) SWIG_fail;
+  argc = args ? PyObject_Length(args) : 0;
+  for (ii = 0; (ii < 6) && (ii < argc); ii++) {
+    argv[ii] = PyTuple_GET_ITEM(args,ii);
+  }
+  if (argc == 4) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_bool, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_functionT_double_fdoubleF_t, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            return _wrap_brent2__SWIG_2(self, args);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_bool, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_functionT_double_fdoubleF_t, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            {
+              int res = SWIG_AsVal_double(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              return _wrap_brent2__SWIG_1(self, args);
+            }
+          }
+        }
+      }
+    }
+  }
+  if (argc == 6) {
+    int _v;
+    void *vptr = 0;
+    int res = SWIG_ConvertPtr(argv[0], &vptr, SWIGTYPE_p_bool, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      {
+        int res = SWIG_AsVal_double(argv[1], NULL);
+        _v = SWIG_CheckState(res);
+      }
+      if (_v) {
+        {
+          int res = SWIG_AsVal_double(argv[2], NULL);
+          _v = SWIG_CheckState(res);
+        }
+        if (_v) {
+          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_functionT_double_fdoubleF_t, 0);
+          _v = SWIG_CheckState(res);
+          if (_v) {
+            {
+              int res = SWIG_AsVal_double(argv[4], NULL);
+              _v = SWIG_CheckState(res);
+            }
+            if (_v) {
+              {
+                int res = SWIG_AsVal_double(argv[5], NULL);
+                _v = SWIG_CheckState(res);
+              }
+              if (_v) {
+                return _wrap_brent2__SWIG_0(self, args);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+fail:
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'brent2'.\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    brent2(bool *,double,double,function< double (double) >,double,double)\n"
+    "    brent2(bool *,double,double,function< double (double) >,double)\n"
+    "    brent2(bool *,double,double,function< double (double) >)\n");
   return 0;
 }
 
@@ -14305,12 +14830,509 @@ SWIGINTERN PyObject *SpotStatus_swigregister(PyObject *SWIGUNUSEDPARM(self), PyO
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_SpotConfig_q_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_q_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_q_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_q_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->q = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_q_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_q_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_q_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (double) ((arg1)->q);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_bounded_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_bounded_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_bounded_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_bounded_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->bounded = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_bounded_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_bounded_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_bounded_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (bool) ((arg1)->bounded);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_max_excess_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_max_excess_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_max_excess_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_max_excess_set" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  if (arg1) (arg1)->max_excess = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_max_excess_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_max_excess_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_max_excess_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (int) ((arg1)->max_excess);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_alert_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_alert_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_alert_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_alert_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->alert = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_alert_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_alert_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_alert_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (bool) ((arg1)->alert);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_up_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_up_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_up_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_up_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->up = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_up_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_up_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_up_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (bool) ((arg1)->up);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_down_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  bool arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  bool val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_down_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_down_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_bool(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_down_set" "', argument " "2"" of type '" "bool""'");
+  } 
+  arg2 = static_cast< bool >(val2);
+  if (arg1) (arg1)->down = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_down_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  bool result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_down_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_down_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (bool) ((arg1)->down);
+  resultobj = SWIG_From_bool(static_cast< bool >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_n_init_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_n_init_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_n_init_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_n_init_set" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  if (arg1) (arg1)->n_init = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_n_init_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_n_init_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_n_init_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (int) ((arg1)->n_init);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_level_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:SpotConfig_level_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_level_set" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SpotConfig_level_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->level = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_level_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_level_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_level_get" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (double) ((arg1)->level);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_SpotConfig_str(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  std::string result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:SpotConfig_str",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SpotConfig_str" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  result = (arg1)->str();
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_SpotConfig(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_SpotConfig")) SWIG_fail;
+  result = (SpotConfig *)new SpotConfig();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_SpotConfig, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_SpotConfig(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig *arg1 = (SpotConfig *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_SpotConfig",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_SpotConfig, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_SpotConfig" "', argument " "1"" of type '" "SpotConfig *""'"); 
+  }
+  arg1 = reinterpret_cast< SpotConfig * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *SpotConfig_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_SpotConfig, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_new_Spot__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
+  double arg1 ;
+  int arg2 ;
+  double val1 ;
+  int ecode1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
   Spot *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_Spot")) SWIG_fail;
-  result = (Spot *)new Spot();
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_Spot",&obj0,&obj1)) SWIG_fail;
+  ecode1 = SWIG_AsVal_double(obj0, &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Spot" "', argument " "1"" of type '" "double""'");
+  } 
+  arg1 = static_cast< double >(val1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Spot" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  result = (Spot *)new Spot(arg1,arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Spot, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -14342,28 +15364,10 @@ fail:
 
 SWIGINTERN PyObject *_wrap_new_Spot__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  double arg1 ;
-  int arg2 ;
-  double val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
   Spot *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_Spot",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_double(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_Spot" "', argument " "1"" of type '" "double""'");
-  } 
-  arg1 = static_cast< double >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_Spot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  result = (Spot *)new Spot(arg1,arg2);
+  if (!PyArg_ParseTuple(args,(char *)":new_Spot")) SWIG_fail;
+  result = (Spot *)new Spot();
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Spot, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
@@ -14576,6 +15580,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_new_Spot__SWIG_6(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  SpotConfig arg1 ;
+  void *argp1 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Spot *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:new_Spot",&obj0)) SWIG_fail;
+  {
+    res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_SpotConfig,  0  | 0);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_Spot" "', argument " "1"" of type '" "SpotConfig""'"); 
+    }  
+    if (!argp1) {
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_Spot" "', argument " "1"" of type '" "SpotConfig""'");
+    } else {
+      SpotConfig * temp = reinterpret_cast< SpotConfig * >(argp1);
+      arg1 = *temp;
+      if (SWIG_IsNewObj(res1)) delete temp;
+    }
+  }
+  result = (Spot *)new Spot(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Spot, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_new_Spot(PyObject *self, PyObject *args) {
   Py_ssize_t argc;
   PyObject *argv[9] = {
@@ -14589,7 +15623,15 @@ SWIGINTERN PyObject *_wrap_new_Spot(PyObject *self, PyObject *args) {
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 0) {
-    return _wrap_new_Spot__SWIG_0(self, args);
+    return _wrap_new_Spot__SWIG_2(self, args);
+  }
+  if (argc == 1) {
+    int _v;
+    int res = SWIG_ConvertPtr(argv[0], 0, SWIGTYPE_p_SpotConfig, 0);
+    _v = SWIG_CheckState(res);
+    if (_v) {
+      return _wrap_new_Spot__SWIG_6(self, args);
+    }
   }
   if (argc == 1) {
     int _v;
@@ -14613,7 +15655,7 @@ SWIGINTERN PyObject *_wrap_new_Spot(PyObject *self, PyObject *args) {
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_new_Spot__SWIG_2(self, args);
+        return _wrap_new_Spot__SWIG_0(self, args);
       }
     }
   }
@@ -14737,35 +15779,14 @@ SWIGINTERN PyObject *_wrap_new_Spot(PyObject *self, PyObject *args) {
 fail:
   SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_Spot'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    Spot::Spot()\n"
-    "    Spot::Spot(double)\n"
     "    Spot::Spot(double,int)\n"
+    "    Spot::Spot(double)\n"
+    "    Spot::Spot()\n"
     "    Spot::Spot(double,std::vector< double >)\n"
     "    Spot::Spot(double,int,double,bool,bool,bool,bool,int)\n"
-    "    Spot::Spot(double,std::vector< double >,double,bool,bool,bool,bool,int)\n");
+    "    Spot::Spot(double,std::vector< double >,double,bool,bool,bool,bool,int)\n"
+    "    Spot::Spot(SpotConfig)\n");
   return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_Spot_copy(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  Spot *arg1 = (Spot *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  Spot result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:Spot_copy",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Spot, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Spot_copy" "', argument " "1"" of type '" "Spot const *""'"); 
-  }
-  arg1 = reinterpret_cast< Spot * >(argp1);
-  result = ((Spot const *)arg1)->copy();
-  resultobj = SWIG_NewPointerObj((new Spot(static_cast< const Spot& >(result))), SWIGTYPE_p_Spot, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
 }
 
 
@@ -14933,6 +15954,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_Spot_config(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  Spot *arg1 = (Spot *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  SpotConfig result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:Spot_config",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_Spot, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Spot_config" "', argument " "1"" of type '" "Spot const *""'"); 
+  }
+  arg1 = reinterpret_cast< Spot * >(argp1);
+  result = ((Spot const *)arg1)->config();
+  resultobj = SWIG_NewPointerObj((new SpotConfig(static_cast< const SpotConfig& >(result))), SWIGTYPE_p_SpotConfig, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_Spot_getUpperThreshold(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   Spot *arg1 = (Spot *) 0 ;
@@ -15071,551 +16114,25 @@ SWIGINTERN PyObject *Spot_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject 
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_new_DSpot__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_DSpot(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  int arg1 ;
-  int val1 ;
-  int ecode1 = 0 ;
+  DSpot *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
   PyObject * obj0 = 0 ;
   DSpot *result = 0 ;
   
   if (!PyArg_ParseTuple(args,(char *)"O:new_DSpot",&obj0)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_DSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  result = (DSpot *)new DSpot(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_DSpot__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  DSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_DSpot")) SWIG_fail;
-  result = (DSpot *)new DSpot();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_DSpot__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  double arg2 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  DSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_DSpot",&obj0,&obj1)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_DSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_DSpot" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  result = (DSpot *)new DSpot(arg1,arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_DSpot__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  double arg2 ;
-  int arg3 ;
-  double arg4 ;
-  bool arg5 ;
-  bool arg6 ;
-  bool arg7 ;
-  bool arg8 ;
-  int arg9 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  int val3 ;
-  int ecode3 = 0 ;
-  double val4 ;
-  int ecode4 = 0 ;
-  bool val5 ;
-  int ecode5 = 0 ;
-  bool val6 ;
-  int ecode6 = 0 ;
-  bool val7 ;
-  int ecode7 = 0 ;
-  bool val8 ;
-  int ecode8 = 0 ;
-  int val9 ;
-  int ecode9 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  PyObject * obj8 = 0 ;
-  DSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOO:new_DSpot",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_DSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_DSpot" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  ecode3 = SWIG_AsVal_int(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_DSpot" "', argument " "3"" of type '" "int""'");
-  } 
-  arg3 = static_cast< int >(val3);
-  ecode4 = SWIG_AsVal_double(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_DSpot" "', argument " "4"" of type '" "double""'");
-  } 
-  arg4 = static_cast< double >(val4);
-  ecode5 = SWIG_AsVal_bool(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_DSpot" "', argument " "5"" of type '" "bool""'");
-  } 
-  arg5 = static_cast< bool >(val5);
-  ecode6 = SWIG_AsVal_bool(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_DSpot" "', argument " "6"" of type '" "bool""'");
-  } 
-  arg6 = static_cast< bool >(val6);
-  ecode7 = SWIG_AsVal_bool(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_DSpot" "', argument " "7"" of type '" "bool""'");
-  } 
-  arg7 = static_cast< bool >(val7);
-  ecode8 = SWIG_AsVal_bool(obj7, &val8);
-  if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_DSpot" "', argument " "8"" of type '" "bool""'");
-  } 
-  arg8 = static_cast< bool >(val8);
-  ecode9 = SWIG_AsVal_int(obj8, &val9);
-  if (!SWIG_IsOK(ecode9)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "new_DSpot" "', argument " "9"" of type '" "int""'");
-  } 
-  arg9 = static_cast< int >(val9);
-  result = (DSpot *)new DSpot(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_DSpot__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  double arg2 ;
-  std::vector< double > arg3 ;
-  bool arg4 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  bool val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  DSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:new_DSpot",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_DSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_DSpot" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  {
-    std::vector< double,std::allocator< double > > *ptr = (std::vector< double,std::allocator< double > > *)0;
-    int res = swig::asptr(obj2, &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_DSpot" "', argument " "3"" of type '" "std::vector< double >""'"); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  ecode4 = SWIG_AsVal_bool(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_DSpot" "', argument " "4"" of type '" "bool""'");
-  } 
-  arg4 = static_cast< bool >(val4);
-  result = (DSpot *)new DSpot(arg1,arg2,arg3,arg4);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_DSpot__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  double arg2 ;
-  std::vector< double > arg3 ;
-  double arg4 ;
-  bool arg5 ;
-  bool arg6 ;
-  bool arg7 ;
-  bool arg8 ;
-  int arg9 ;
-  bool arg10 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  double val4 ;
-  int ecode4 = 0 ;
-  bool val5 ;
-  int ecode5 = 0 ;
-  bool val6 ;
-  int ecode6 = 0 ;
-  bool val7 ;
-  int ecode7 = 0 ;
-  bool val8 ;
-  int ecode8 = 0 ;
-  int val9 ;
-  int ecode9 = 0 ;
-  bool val10 ;
-  int ecode10 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  PyObject * obj8 = 0 ;
-  PyObject * obj9 = 0 ;
-  DSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOOO:new_DSpot",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8,&obj9)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_DSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_DSpot" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  {
-    std::vector< double,std::allocator< double > > *ptr = (std::vector< double,std::allocator< double > > *)0;
-    int res = swig::asptr(obj2, &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_DSpot" "', argument " "3"" of type '" "std::vector< double >""'"); 
-    }
-    arg3 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  ecode4 = SWIG_AsVal_double(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_DSpot" "', argument " "4"" of type '" "double""'");
-  } 
-  arg4 = static_cast< double >(val4);
-  ecode5 = SWIG_AsVal_bool(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_DSpot" "', argument " "5"" of type '" "bool""'");
-  } 
-  arg5 = static_cast< bool >(val5);
-  ecode6 = SWIG_AsVal_bool(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_DSpot" "', argument " "6"" of type '" "bool""'");
-  } 
-  arg6 = static_cast< bool >(val6);
-  ecode7 = SWIG_AsVal_bool(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_DSpot" "', argument " "7"" of type '" "bool""'");
-  } 
-  arg7 = static_cast< bool >(val7);
-  ecode8 = SWIG_AsVal_bool(obj7, &val8);
-  if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_DSpot" "', argument " "8"" of type '" "bool""'");
-  } 
-  arg8 = static_cast< bool >(val8);
-  ecode9 = SWIG_AsVal_int(obj8, &val9);
-  if (!SWIG_IsOK(ecode9)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "new_DSpot" "', argument " "9"" of type '" "int""'");
-  } 
-  arg9 = static_cast< int >(val9);
-  ecode10 = SWIG_AsVal_bool(obj9, &val10);
-  if (!SWIG_IsOK(ecode10)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "new_DSpot" "', argument " "10"" of type '" "bool""'");
-  } 
-  arg10 = static_cast< bool >(val10);
-  result = (DSpot *)new DSpot(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_DSpot(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[11] = {
-    0
-  };
-  Py_ssize_t ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 10) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_DSpot__SWIG_1(self, args);
-  }
-  if (argc == 1) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      return _wrap_new_DSpot__SWIG_0(self, args);
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        return _wrap_new_DSpot__SWIG_2(self, args);
-      }
-    }
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        int res = swig::asptr(argv[2], (std::vector< double,std::allocator< double > >**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_bool(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_new_DSpot__SWIG_4(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 9) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_int(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_double(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_bool(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_bool(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                {
-                  int res = SWIG_AsVal_bool(argv[6], NULL);
-                  _v = SWIG_CheckState(res);
-                }
-                if (_v) {
-                  {
-                    int res = SWIG_AsVal_bool(argv[7], NULL);
-                    _v = SWIG_CheckState(res);
-                  }
-                  if (_v) {
-                    {
-                      int res = SWIG_AsVal_int(argv[8], NULL);
-                      _v = SWIG_CheckState(res);
-                    }
-                    if (_v) {
-                      return _wrap_new_DSpot__SWIG_3(self, args);
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 10) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_double(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        int res = swig::asptr(argv[2], (std::vector< double,std::allocator< double > >**)(0));
-        _v = SWIG_CheckState(res);
-        if (_v) {
-          {
-            int res = SWIG_AsVal_double(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_bool(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_bool(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                {
-                  int res = SWIG_AsVal_bool(argv[6], NULL);
-                  _v = SWIG_CheckState(res);
-                }
-                if (_v) {
-                  {
-                    int res = SWIG_AsVal_bool(argv[7], NULL);
-                    _v = SWIG_CheckState(res);
-                  }
-                  if (_v) {
-                    {
-                      int res = SWIG_AsVal_int(argv[8], NULL);
-                      _v = SWIG_CheckState(res);
-                    }
-                    if (_v) {
-                      {
-                        int res = SWIG_AsVal_bool(argv[9], NULL);
-                        _v = SWIG_CheckState(res);
-                      }
-                      if (_v) {
-                        return _wrap_new_DSpot__SWIG_5(self, args);
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_DSpot'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    DSpot::DSpot(int)\n"
-    "    DSpot::DSpot()\n"
-    "    DSpot::DSpot(int,double)\n"
-    "    DSpot::DSpot(int,double,int,double,bool,bool,bool,bool,int)\n"
-    "    DSpot::DSpot(int,double,std::vector< double >,bool)\n"
-    "    DSpot::DSpot(int,double,std::vector< double >,double,bool,bool,bool,bool,int,bool)\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_DSpot___add__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  DSpot *arg1 = (DSpot *) 0 ;
-  DSpot *arg2 = 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  DSpot result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:DSpot___add__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DSpot, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &argp1, SWIGTYPE_p_DSpot,  0  | 0);
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DSpot___add__" "', argument " "1"" of type '" "DSpot const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_DSpot" "', argument " "1"" of type '" "DSpot const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_DSpot" "', argument " "1"" of type '" "DSpot const &""'"); 
   }
   arg1 = reinterpret_cast< DSpot * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_DSpot,  0  | 0);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "DSpot___add__" "', argument " "2"" of type '" "DSpot const &""'"); 
-  }
-  if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "DSpot___add__" "', argument " "2"" of type '" "DSpot const &""'"); 
-  }
-  arg2 = reinterpret_cast< DSpot * >(argp2);
-  result = ((DSpot const *)arg1)->operator +((DSpot const &)*arg2);
-  resultobj = SWIG_NewPointerObj((new DSpot(static_cast< const DSpot& >(result))), SWIGTYPE_p_DSpot, SWIG_POINTER_OWN |  0 );
+  result = (DSpot *)new DSpot((DSpot const &)*arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_DSpot, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -15787,28 +16304,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_DSpot_btest(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  DSpot *arg1 = (DSpot *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  double result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:DSpot_btest",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_DSpot, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "DSpot_btest" "', argument " "1"" of type '" "DSpot *""'"); 
-  }
-  arg1 = reinterpret_cast< DSpot * >(argp1);
-  result = (double)(arg1)->btest();
-  resultobj = SWIG_From_double(static_cast< double >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_DSpot_getDrift(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   DSpot *arg1 = (DSpot *) 0 ;
@@ -15900,824 +16395,6 @@ SWIGINTERN PyObject *DSpot_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
   SWIG_TypeNewClientData(SWIGTYPE_p_DSpot, SWIG_NewClientData(obj));
-  return SWIG_Py_Void();
-}
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)":new_MMSpot")) SWIG_fail;
-  result = (MMSpot *)new MMSpot();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  double arg3 ;
-  int arg4 ;
-  double arg5 ;
-  bool arg6 ;
-  bool arg7 ;
-  int arg8 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  bool val6 ;
-  int ecode6 = 0 ;
-  bool val7 ;
-  int ecode7 = 0 ;
-  int val8 ;
-  int ecode8 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOO:new_MMSpot",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MMSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_MMSpot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MMSpot" "', argument " "3"" of type '" "double""'");
-  } 
-  arg3 = static_cast< double >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MMSpot" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_MMSpot" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_bool(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_MMSpot" "', argument " "6"" of type '" "bool""'");
-  } 
-  arg6 = static_cast< bool >(val6);
-  ecode7 = SWIG_AsVal_bool(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_MMSpot" "', argument " "7"" of type '" "bool""'");
-  } 
-  arg7 = static_cast< bool >(val7);
-  ecode8 = SWIG_AsVal_int(obj7, &val8);
-  if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_MMSpot" "', argument " "8"" of type '" "int""'");
-  } 
-  arg8 = static_cast< int >(val8);
-  result = (MMSpot *)new MMSpot(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  double arg3 ;
-  int arg4 ;
-  double arg5 ;
-  bool arg6 ;
-  bool arg7 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  bool val6 ;
-  int ecode6 = 0 ;
-  bool val7 ;
-  int ecode7 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOO:new_MMSpot",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MMSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_MMSpot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MMSpot" "', argument " "3"" of type '" "double""'");
-  } 
-  arg3 = static_cast< double >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MMSpot" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_MMSpot" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_bool(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_MMSpot" "', argument " "6"" of type '" "bool""'");
-  } 
-  arg6 = static_cast< bool >(val6);
-  ecode7 = SWIG_AsVal_bool(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_MMSpot" "', argument " "7"" of type '" "bool""'");
-  } 
-  arg7 = static_cast< bool >(val7);
-  result = (MMSpot *)new MMSpot(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  double arg3 ;
-  int arg4 ;
-  double arg5 ;
-  bool arg6 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  bool val6 ;
-  int ecode6 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOO:new_MMSpot",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MMSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_MMSpot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MMSpot" "', argument " "3"" of type '" "double""'");
-  } 
-  arg3 = static_cast< double >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MMSpot" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_MMSpot" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_bool(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_MMSpot" "', argument " "6"" of type '" "bool""'");
-  } 
-  arg6 = static_cast< bool >(val6);
-  result = (MMSpot *)new MMSpot(arg1,arg2,arg3,arg4,arg5,arg6);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_4(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  double arg3 ;
-  int arg4 ;
-  double arg5 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOO:new_MMSpot",&obj0,&obj1,&obj2,&obj3,&obj4)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MMSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_MMSpot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MMSpot" "', argument " "3"" of type '" "double""'");
-  } 
-  arg3 = static_cast< double >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MMSpot" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_MMSpot" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  result = (MMSpot *)new MMSpot(arg1,arg2,arg3,arg4,arg5);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_5(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  int arg2 ;
-  double arg3 ;
-  int arg4 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:new_MMSpot",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(obj0, &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_MMSpot" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_MMSpot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MMSpot" "', argument " "3"" of type '" "double""'");
-  } 
-  arg3 = static_cast< double >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MMSpot" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  result = (MMSpot *)new MMSpot(arg1,arg2,arg3,arg4);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot__SWIG_6(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  std::vector< double > arg1 ;
-  int arg2 ;
-  double arg3 ;
-  int arg4 ;
-  double arg5 ;
-  bool arg6 ;
-  bool arg7 ;
-  int arg8 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  double val3 ;
-  int ecode3 = 0 ;
-  int val4 ;
-  int ecode4 = 0 ;
-  double val5 ;
-  int ecode5 = 0 ;
-  bool val6 ;
-  int ecode6 = 0 ;
-  bool val7 ;
-  int ecode7 = 0 ;
-  int val8 ;
-  int ecode8 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  PyObject * obj2 = 0 ;
-  PyObject * obj3 = 0 ;
-  PyObject * obj4 = 0 ;
-  PyObject * obj5 = 0 ;
-  PyObject * obj6 = 0 ;
-  PyObject * obj7 = 0 ;
-  MMSpot *result = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOO:new_MMSpot",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7)) SWIG_fail;
-  {
-    std::vector< double,std::allocator< double > > *ptr = (std::vector< double,std::allocator< double > > *)0;
-    int res = swig::asptr(obj0, &ptr);
-    if (!SWIG_IsOK(res) || !ptr) {
-      SWIG_exception_fail(SWIG_ArgError((ptr ? res : SWIG_TypeError)), "in method '" "new_MMSpot" "', argument " "1"" of type '" "std::vector< double >""'"); 
-    }
-    arg1 = *ptr;
-    if (SWIG_IsNewObj(res)) delete ptr;
-  }
-  ecode2 = SWIG_AsVal_int(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "new_MMSpot" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = static_cast< int >(val2);
-  ecode3 = SWIG_AsVal_double(obj2, &val3);
-  if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "new_MMSpot" "', argument " "3"" of type '" "double""'");
-  } 
-  arg3 = static_cast< double >(val3);
-  ecode4 = SWIG_AsVal_int(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "new_MMSpot" "', argument " "4"" of type '" "int""'");
-  } 
-  arg4 = static_cast< int >(val4);
-  ecode5 = SWIG_AsVal_double(obj4, &val5);
-  if (!SWIG_IsOK(ecode5)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "new_MMSpot" "', argument " "5"" of type '" "double""'");
-  } 
-  arg5 = static_cast< double >(val5);
-  ecode6 = SWIG_AsVal_bool(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "new_MMSpot" "', argument " "6"" of type '" "bool""'");
-  } 
-  arg6 = static_cast< bool >(val6);
-  ecode7 = SWIG_AsVal_bool(obj6, &val7);
-  if (!SWIG_IsOK(ecode7)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "new_MMSpot" "', argument " "7"" of type '" "bool""'");
-  } 
-  arg7 = static_cast< bool >(val7);
-  ecode8 = SWIG_AsVal_int(obj7, &val8);
-  if (!SWIG_IsOK(ecode8)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "new_MMSpot" "', argument " "8"" of type '" "int""'");
-  } 
-  arg8 = static_cast< int >(val8);
-  result = (MMSpot *)new MMSpot(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_MMSpot, SWIG_POINTER_NEW |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_new_MMSpot(PyObject *self, PyObject *args) {
-  Py_ssize_t argc;
-  PyObject *argv[9] = {
-    0
-  };
-  Py_ssize_t ii;
-  
-  if (!PyTuple_Check(args)) SWIG_fail;
-  argc = args ? PyObject_Length(args) : 0;
-  for (ii = 0; (ii < 8) && (ii < argc); ii++) {
-    argv[ii] = PyTuple_GET_ITEM(args,ii);
-  }
-  if (argc == 0) {
-    return _wrap_new_MMSpot__SWIG_0(self, args);
-  }
-  if (argc == 4) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            return _wrap_new_MMSpot__SWIG_5(self, args);
-          }
-        }
-      }
-    }
-  }
-  if (argc == 5) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              return _wrap_new_MMSpot__SWIG_4(self, args);
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 6) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_bool(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                return _wrap_new_MMSpot__SWIG_3(self, args);
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 7) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_bool(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                {
-                  int res = SWIG_AsVal_bool(argv[6], NULL);
-                  _v = SWIG_CheckState(res);
-                }
-                if (_v) {
-                  return _wrap_new_MMSpot__SWIG_2(self, args);
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 8) {
-    int _v;
-    {
-      int res = SWIG_AsVal_int(argv[0], NULL);
-      _v = SWIG_CheckState(res);
-    }
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_bool(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                {
-                  int res = SWIG_AsVal_bool(argv[6], NULL);
-                  _v = SWIG_CheckState(res);
-                }
-                if (_v) {
-                  {
-                    int res = SWIG_AsVal_int(argv[7], NULL);
-                    _v = SWIG_CheckState(res);
-                  }
-                  if (_v) {
-                    return _wrap_new_MMSpot__SWIG_1(self, args);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  if (argc == 8) {
-    int _v;
-    int res = swig::asptr(argv[0], (std::vector< double,std::allocator< double > >**)(0));
-    _v = SWIG_CheckState(res);
-    if (_v) {
-      {
-        int res = SWIG_AsVal_int(argv[1], NULL);
-        _v = SWIG_CheckState(res);
-      }
-      if (_v) {
-        {
-          int res = SWIG_AsVal_double(argv[2], NULL);
-          _v = SWIG_CheckState(res);
-        }
-        if (_v) {
-          {
-            int res = SWIG_AsVal_int(argv[3], NULL);
-            _v = SWIG_CheckState(res);
-          }
-          if (_v) {
-            {
-              int res = SWIG_AsVal_double(argv[4], NULL);
-              _v = SWIG_CheckState(res);
-            }
-            if (_v) {
-              {
-                int res = SWIG_AsVal_bool(argv[5], NULL);
-                _v = SWIG_CheckState(res);
-              }
-              if (_v) {
-                {
-                  int res = SWIG_AsVal_bool(argv[6], NULL);
-                  _v = SWIG_CheckState(res);
-                }
-                if (_v) {
-                  {
-                    int res = SWIG_AsVal_int(argv[7], NULL);
-                    _v = SWIG_CheckState(res);
-                  }
-                  if (_v) {
-                    return _wrap_new_MMSpot__SWIG_6(self, args);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_MMSpot'.\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    MMSpot::MMSpot()\n"
-    "    MMSpot::MMSpot(int,int,double,int,double,bool,bool,int)\n"
-    "    MMSpot::MMSpot(int,int,double,int,double,bool,bool)\n"
-    "    MMSpot::MMSpot(int,int,double,int,double,bool)\n"
-    "    MMSpot::MMSpot(int,int,double,int,double)\n"
-    "    MMSpot::MMSpot(int,int,double,int)\n"
-    "    MMSpot::MMSpot(std::vector< double >,int,double,int,double,bool,bool,int)\n");
-  return 0;
-}
-
-
-SWIGINTERN PyObject *_wrap_MMSpot_stringStatus(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MMSpot *arg1 = (MMSpot *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:MMSpot_stringStatus",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MMSpot, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MMSpot_stringStatus" "', argument " "1"" of type '" "MMSpot *""'"); 
-  }
-  arg1 = reinterpret_cast< MMSpot * >(argp1);
-  result = (arg1)->stringStatus();
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_MMSpot_stringStatusWithStats(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MMSpot *arg1 = (MMSpot *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  std::string result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:MMSpot_stringStatusWithStats",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MMSpot, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MMSpot_stringStatusWithStats" "', argument " "1"" of type '" "MMSpot *""'"); 
-  }
-  arg1 = reinterpret_cast< MMSpot * >(argp1);
-  result = (arg1)->stringStatusWithStats();
-  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_MMSpot_step(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MMSpot *arg1 = (MMSpot *) 0 ;
-  double arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  double val2 ;
-  int ecode2 = 0 ;
-  PyObject * obj0 = 0 ;
-  PyObject * obj1 = 0 ;
-  int result;
-  
-  if (!PyArg_ParseTuple(args,(char *)"OO:MMSpot_step",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MMSpot, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "MMSpot_step" "', argument " "1"" of type '" "MMSpot *""'"); 
-  }
-  arg1 = reinterpret_cast< MMSpot * >(argp1);
-  ecode2 = SWIG_AsVal_double(obj1, &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "MMSpot_step" "', argument " "2"" of type '" "double""'");
-  } 
-  arg2 = static_cast< double >(val2);
-  result = (int)(arg1)->step(arg2);
-  resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_delete_MMSpot(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  MMSpot *arg1 = (MMSpot *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject * obj0 = 0 ;
-  
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_MMSpot",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_MMSpot, SWIG_POINTER_DISOWN |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_MMSpot" "', argument " "1"" of type '" "MMSpot *""'"); 
-  }
-  arg1 = reinterpret_cast< MMSpot * >(argp1);
-  delete arg1;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *MMSpot_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *obj;
-  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_MMSpot, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -16854,10 +16531,13 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Ubend_swigregister", Ubend_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_StreamStats", _wrap_new_StreamStats, METH_VARARGS, NULL},
 	 { (char *)"StreamStats_merge", _wrap_StreamStats_merge, METH_VARARGS, NULL},
+	 { (char *)"StreamStats_get_s_star", _wrap_StreamStats_get_s_star, METH_VARARGS, NULL},
 	 { (char *)"StreamStats_size", _wrap_StreamStats_size, METH_VARARGS, NULL},
-	 { (char *)"StreamStats_bimodalTest", _wrap_StreamStats_bimodalTest, METH_VARARGS, NULL},
+	 { (char *)"StreamStats_B2", _wrap_StreamStats_B2, METH_VARARGS, NULL},
+	 { (char *)"StreamStats_H2", _wrap_StreamStats_H2, METH_VARARGS, NULL},
 	 { (char *)"StreamStats_step", _wrap_StreamStats_step, METH_VARARGS, NULL},
 	 { (char *)"StreamStats___lt__", _wrap_StreamStats___lt__, METH_VARARGS, NULL},
+	 { (char *)"StreamStats_dump", _wrap_StreamStats_dump, METH_VARARGS, NULL},
 	 { (char *)"StreamStats_stringStatus", _wrap_StreamStats_stringStatus, METH_VARARGS, NULL},
 	 { (char *)"delete_StreamStats", _wrap_delete_StreamStats, METH_VARARGS, NULL},
 	 { (char *)"StreamStats_swigregister", StreamStats_swigregister, METH_VARARGS, NULL},
@@ -16872,7 +16552,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Bounds___lt__", _wrap_Bounds___lt__, METH_VARARGS, NULL},
 	 { (char *)"Bounds___gt__", _wrap_Bounds___gt__, METH_VARARGS, NULL},
 	 { (char *)"Bounds_swigregister", Bounds_swigregister, METH_VARARGS, NULL},
+	 { (char *)"BrentResults_xmin_set", _wrap_BrentResults_xmin_set, METH_VARARGS, NULL},
+	 { (char *)"BrentResults_xmin_get", _wrap_BrentResults_xmin_get, METH_VARARGS, NULL},
+	 { (char *)"BrentResults_fmin_set", _wrap_BrentResults_fmin_set, METH_VARARGS, NULL},
+	 { (char *)"BrentResults_fmin_get", _wrap_BrentResults_fmin_get, METH_VARARGS, NULL},
+	 { (char *)"new_BrentResults", _wrap_new_BrentResults, METH_VARARGS, NULL},
+	 { (char *)"delete_BrentResults", _wrap_delete_BrentResults, METH_VARARGS, NULL},
+	 { (char *)"BrentResults_swigregister", BrentResults_swigregister, METH_VARARGS, NULL},
 	 { (char *)"brent", _wrap_brent, METH_VARARGS, NULL},
+	 { (char *)"brent2", _wrap_brent2, METH_VARARGS, NULL},
 	 { (char *)"GPDinfo_gamma_set", _wrap_GPDinfo_gamma_set, METH_VARARGS, NULL},
 	 { (char *)"GPDinfo_gamma_get", _wrap_GPDinfo_gamma_get, METH_VARARGS, NULL},
 	 { (char *)"GPDinfo_sigma_set", _wrap_GPDinfo_sigma_set, METH_VARARGS, NULL},
@@ -16927,14 +16615,34 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_SpotStatus", _wrap_new_SpotStatus, METH_VARARGS, NULL},
 	 { (char *)"delete_SpotStatus", _wrap_delete_SpotStatus, METH_VARARGS, NULL},
 	 { (char *)"SpotStatus_swigregister", SpotStatus_swigregister, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_q_set", _wrap_SpotConfig_q_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_q_get", _wrap_SpotConfig_q_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_bounded_set", _wrap_SpotConfig_bounded_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_bounded_get", _wrap_SpotConfig_bounded_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_max_excess_set", _wrap_SpotConfig_max_excess_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_max_excess_get", _wrap_SpotConfig_max_excess_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_alert_set", _wrap_SpotConfig_alert_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_alert_get", _wrap_SpotConfig_alert_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_up_set", _wrap_SpotConfig_up_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_up_get", _wrap_SpotConfig_up_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_down_set", _wrap_SpotConfig_down_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_down_get", _wrap_SpotConfig_down_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_n_init_set", _wrap_SpotConfig_n_init_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_n_init_get", _wrap_SpotConfig_n_init_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_level_set", _wrap_SpotConfig_level_set, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_level_get", _wrap_SpotConfig_level_get, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_str", _wrap_SpotConfig_str, METH_VARARGS, NULL},
+	 { (char *)"new_SpotConfig", _wrap_new_SpotConfig, METH_VARARGS, NULL},
+	 { (char *)"delete_SpotConfig", _wrap_delete_SpotConfig, METH_VARARGS, NULL},
+	 { (char *)"SpotConfig_swigregister", SpotConfig_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_Spot", _wrap_new_Spot, METH_VARARGS, NULL},
-	 { (char *)"Spot_copy", _wrap_Spot_copy, METH_VARARGS, NULL},
 	 { (char *)"Spot___eq__", _wrap_Spot___eq__, METH_VARARGS, NULL},
 	 { (char *)"Spot___add__", _wrap_Spot___add__, METH_VARARGS, NULL},
 	 { (char *)"Spot_step", _wrap_Spot_step, METH_VARARGS, NULL},
 	 { (char *)"Spot_calibrate", _wrap_Spot_calibrate, METH_VARARGS, NULL},
 	 { (char *)"Spot_status", _wrap_Spot_status, METH_VARARGS, NULL},
 	 { (char *)"Spot_stringStatus", _wrap_Spot_stringStatus, METH_VARARGS, NULL},
+	 { (char *)"Spot_config", _wrap_Spot_config, METH_VARARGS, NULL},
 	 { (char *)"Spot_getUpperThreshold", _wrap_Spot_getUpperThreshold, METH_VARARGS, NULL},
 	 { (char *)"Spot_getLowerThreshold", _wrap_Spot_getLowerThreshold, METH_VARARGS, NULL},
 	 { (char *)"Spot_getThresholds", _wrap_Spot_getThresholds, METH_VARARGS, NULL},
@@ -16943,34 +16651,23 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"delete_Spot", _wrap_delete_Spot, METH_VARARGS, NULL},
 	 { (char *)"Spot_swigregister", Spot_swigregister, METH_VARARGS, NULL},
 	 { (char *)"new_DSpot", _wrap_new_DSpot, METH_VARARGS, NULL},
-	 { (char *)"DSpot___add__", _wrap_DSpot___add__, METH_VARARGS, NULL},
 	 { (char *)"DSpot___eq__", _wrap_DSpot___eq__, METH_VARARGS, NULL},
 	 { (char *)"DSpot___lt__", _wrap_DSpot___lt__, METH_VARARGS, NULL},
 	 { (char *)"DSpot_step", _wrap_DSpot_step, METH_VARARGS, NULL},
 	 { (char *)"DSpot_getUpperThreshold", _wrap_DSpot_getUpperThreshold, METH_VARARGS, NULL},
 	 { (char *)"DSpot_getLowerThreshold", _wrap_DSpot_getLowerThreshold, METH_VARARGS, NULL},
 	 { (char *)"DSpot_getThresholds", _wrap_DSpot_getThresholds, METH_VARARGS, NULL},
-	 { (char *)"DSpot_btest", _wrap_DSpot_btest, METH_VARARGS, NULL},
 	 { (char *)"DSpot_getDrift", _wrap_DSpot_getDrift, METH_VARARGS, NULL},
 	 { (char *)"DSpot_status", _wrap_DSpot_status, METH_VARARGS, NULL},
 	 { (char *)"DSpot_stringStatus", _wrap_DSpot_stringStatus, METH_VARARGS, NULL},
 	 { (char *)"delete_DSpot", _wrap_delete_DSpot, METH_VARARGS, NULL},
 	 { (char *)"DSpot_swigregister", DSpot_swigregister, METH_VARARGS, NULL},
-	 { (char *)"new_MMSpot", _wrap_new_MMSpot, METH_VARARGS, NULL},
-	 { (char *)"MMSpot_stringStatus", _wrap_MMSpot_stringStatus, METH_VARARGS, NULL},
-	 { (char *)"MMSpot_stringStatusWithStats", _wrap_MMSpot_stringStatusWithStats, METH_VARARGS, NULL},
-	 { (char *)"MMSpot_step", _wrap_MMSpot_step, METH_VARARGS, NULL},
-	 { (char *)"delete_MMSpot", _wrap_delete_MMSpot, METH_VARARGS, NULL},
-	 { (char *)"MMSpot_swigregister", MMSpot_swigregister, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_MMSpotTo_p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::vector< DSpot,std::allocator< DSpot > > *)  ((MMSpot *) x));
-}
 static void *_p_UbendTo_p_std__vectorT_double_std__allocatorT_double_t_t(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::vector< double,std::allocator< double > > *)  ((Ubend *) x));
 }
@@ -16978,11 +16675,12 @@ static void *_p_DSpotTo_p_Spot(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Spot *)  ((DSpot *) x));
 }
 static swig_type_info _swigt__p_Bounds = {"_p_Bounds", "std::vector< Bounds >::value_type *|Bounds *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_BrentResults = {"_p_BrentResults", "BrentResults *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_DSpot = {"_p_DSpot", "std::vector< DSpot >::value_type *|DSpot *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GPDfit = {"_p_GPDfit", "GPDfit *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GPDinfo = {"_p_GPDinfo", "GPDinfo *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_MMSpot = {"_p_MMSpot", "MMSpot *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Spot = {"_p_Spot", "Spot *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_SpotConfig = {"_p_SpotConfig", "SpotConfig *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SpotInfo = {"_p_SpotInfo", "SpotInfo *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SpotStatus = {"_p_SpotStatus", "SpotStatus *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_StreamStats = {"_p_StreamStats", "StreamStats *", 0, 0, (void*)0, 0};
@@ -17008,11 +16706,12 @@ static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Bounds,
+  &_swigt__p_BrentResults,
   &_swigt__p_DSpot,
   &_swigt__p_GPDfit,
   &_swigt__p_GPDinfo,
-  &_swigt__p_MMSpot,
   &_swigt__p_Spot,
+  &_swigt__p_SpotConfig,
   &_swigt__p_SpotInfo,
   &_swigt__p_SpotStatus,
   &_swigt__p_StreamStats,
@@ -17038,11 +16737,12 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_Bounds[] = {  {&_swigt__p_Bounds, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_BrentResults[] = {  {&_swigt__p_BrentResults, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_DSpot[] = {  {&_swigt__p_DSpot, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GPDfit[] = {  {&_swigt__p_GPDfit, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GPDinfo[] = {  {&_swigt__p_GPDinfo, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_MMSpot[] = {  {&_swigt__p_MMSpot, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Spot[] = {  {&_swigt__p_DSpot, _p_DSpotTo_p_Spot, 0, 0},  {&_swigt__p_Spot, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_SpotConfig[] = {  {&_swigt__p_SpotConfig, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SpotInfo[] = {  {&_swigt__p_SpotInfo, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SpotStatus[] = {  {&_swigt__p_SpotStatus, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_StreamStats[] = {  {&_swigt__p_StreamStats, 0, 0, 0},{0, 0, 0, 0}};
@@ -17061,18 +16761,19 @@ static swig_cast_info _swigc__p_std__allocatorT_DSpot_t[] = {  {&_swigt__p_std__
 static swig_cast_info _swigc__p_std__allocatorT_double_t[] = {  {&_swigt__p_std__allocatorT_double_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__invalid_argument[] = {  {&_swigt__p_std__invalid_argument, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_Bounds_std__allocatorT_Bounds_t_t[] = {  {&_swigt__p_std__vectorT_Bounds_std__allocatorT_Bounds_t_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t[] = {  {&_swigt__p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t, 0, 0, 0},  {&_swigt__p_MMSpot, _p_MMSpotTo_p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t[] = {  {&_swigt__p_std__vectorT_DSpot_std__allocatorT_DSpot_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_double_std__allocatorT_double_t_t[] = {  {&_swigt__p_Ubend, _p_UbendTo_p_std__vectorT_double_std__allocatorT_double_t_t, 0, 0},  {&_swigt__p_std__vectorT_double_std__allocatorT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__SwigPyIterator[] = {  {&_swigt__p_swig__SwigPyIterator, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Bounds,
+  _swigc__p_BrentResults,
   _swigc__p_DSpot,
   _swigc__p_GPDfit,
   _swigc__p_GPDinfo,
-  _swigc__p_MMSpot,
   _swigc__p_Spot,
+  _swigc__p_SpotConfig,
   _swigc__p_SpotInfo,
   _swigc__p_SpotStatus,
   _swigc__p_StreamStats,

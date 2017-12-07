@@ -8,7 +8,7 @@ INSTALL_LIB_DIR = /usr/lib/
 ###
 
 # PYTHON : external header (Python.h)
-EXT_INC_DIR = /usr/include/python3.4m/ #-I /usr/include/python3.4/ -I /usr/include/python3/
+EXT_INC_DIR = -I /usr/include/python3.4m/ -I /usr/include/python3.5m/ #-I /usr/include/python3/
 
 
 
@@ -79,7 +79,7 @@ $(TARGET): $(OBJS)
 
 # build source files
 %.o: $(SRC_DIR)%.cpp
-	$(CC) $(CXXFLAGS) -I $(EXT_INC_DIR) -I $(INC_DIR) -c $< -o $(OBJ_DIR)$@ -fPIC
+	$(CC) $(CXXFLAGS) $(EXT_INC_DIR) -I $(INC_DIR) -c $< -o $(OBJ_DIR)$@ -fPIC
 
 # install
 install:
@@ -99,7 +99,7 @@ endif
 # test spot on a gaussian white noise
 testspot:
 	@echo -- Building test -- 
-	$(CC) $(CXXFLAGS) -I $(EXT_INC_DIR) -I $(INSTALL_HEAD_DIR) -L $(INSTALL_LIB_DIR) $(TEST_DIR)testspot.cpp -lspot -o $(TEST_DIR)testspot
+	$(CC) $(CXXFLAGS) $(EXT_INC_DIR) -I $(INSTALL_HEAD_DIR) -L $(INSTALL_LIB_DIR) $(TEST_DIR)testspot.cpp -lspot -o $(TEST_DIR)testspot
 	@echo
 	@echo -- Testing --
 	$(EXPORT); $(TEST_DIR)testspot

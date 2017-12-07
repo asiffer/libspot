@@ -9,7 +9,6 @@
 #include "gpdfit.h"
 #include "spot.h"
 #include "dspot.h"
-#include "mmspot.h"
 %}
 
 /* Let's just grab the original header file here */
@@ -31,6 +30,5 @@ namespace std {
 %include "gpdfit.h"
 %include "spot.h"
 %include "dspot.h"
-%include "mmspot.h"
 
 
