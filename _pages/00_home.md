@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-permalink: /home/
+permalink: {{ site.baseurl }}/home
 tag: "BORN TO FLAG OUTLIERS"
 ---
 
