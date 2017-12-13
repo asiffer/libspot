@@ -1,0 +1,15 @@
+Source: libspot
+Priority: extra
+Maintainer: asr <asr@unknown>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+Section: libs
+Homepage: <insert the upstream URL, if relevant>
+
+
+Package: libspot-dev
+Section: libdevel
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A C++ library to flag outliers in streaming data
+ <insert long description, indented with spaces>

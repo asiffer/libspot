@@ -25,7 +25,7 @@ Spot::Spot(double q, int n_init)
     this->up = true;
     this->down = true;
 	this->n_init = n_init;
-	this->level = 0.99;
+	this->level = 0.98;
 	
     this->n = 0;
     
@@ -36,6 +36,16 @@ Spot::Spot(double q, int n_init)
     this->al_down = 0;
     
     this->init_batch = vector<double>(this->n_init);
+    
+    if (up)
+    {
+    	this->upper_bound = GPDfit(max_excess);
+    }
+
+    if (down)
+    {
+		this->lower_bound = GPDfit(max_excess);
+    }
 }
 
 
@@ -494,9 +504,7 @@ SpotConfig Spot::config() const
 }
 
 
-/**
-	@brief Format the config to print it
-*/
+
 string SpotConfig::str()
 {
 	stringstream ss;

@@ -7,10 +7,6 @@ Bounds::Bounds(double d, double u)
 	this->down = d;
 }
 
-Bounds::~Bounds()
-{
-
-}
 
 bool Bounds::operator<(Bounds const& other) const
 {

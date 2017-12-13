@@ -6,14 +6,45 @@ using namespace std;
 
 Bounds operator+(Bounds B, double b);
 
-/**
-	@brief copy constructor (copy only the parameters)
-	@return DSpot object
-*/
-DSpot::DSpot(const DSpot & ds) : Spot(ds.config())
+
+
+DSpot::DSpot(int d, double q, int n_init) : Spot(q,n_init)
 {
-	this->depth = ds.depth;
+	this->depth = d;
+	this->model = StreamMean(d);
 }
+
+
+DSpot::DSpot(int d, double q, vector<double> init_data) : DSpot(d,q,(int)(init_data.size()-d))
+{
+	for(auto & x : init_data)
+	{
+		this->DSpot::step(x);
+	}
+}
+
+
+DSpot::DSpot(int d, double q, int n_init, double level, 
+			bool up, bool down, bool alert, 
+			bool bounded, int max_excess) : 
+			Spot(q, n_init, level, up, down, alert, bounded, max_excess)
+{
+	this->model = StreamMean(d);
+	this->depth = d;
+}
+
+
+DSpot::DSpot(int d, double q, vector<double> init_data, double level, 
+			bool up, bool down, bool alert, 
+			bool bounded, int max_excess) : 
+			DSpot(d, q, (int)init_data.size(), level, up, down, alert, bounded, max_excess)
+{
+	for(auto & x : init_data)
+	{
+		this->step(x);
+	}
+}
+
 
 /**
 	@brief Test if the configurations are the same
