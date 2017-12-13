@@ -88,7 +88,7 @@ install:
 	
 	@echo "Installing the shared library ("$(TARGET)")"
 	@install -t $(INSTALL_LIB_DIR) $(LIB_DIR)/*.so
-	@echo "Installing the headers
+	@echo "Installing the headers"
 	@install -t $(INSTALL_HEAD_DIR) $(INC_DIR)/*.h
 	@echo "[done]"
 
