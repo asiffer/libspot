@@ -103,51 +103,6 @@ According to the state of the algorithm or the detected event, this method retur
 ### EXAMPLE
 
 Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.
-
-<!---
-```cpp
-// main.cpp
-#include "spot.h"
-#include <random>
-#include <iostream>
-#include <algorithm>
-#include <vector>
-#include <math.h>
-
-using namespace std;
-
-vector<double> gaussian_white_noise(double mu, double sigma, int N)
-{
-	vector<double> v(N);
-	random_device rd;
-	default_random_engine gen(rd());
-	normal_distribution<double> gaussian(mu,sigma);
-
-	for (int i = 0; i < N; i++)
-	{
-		v[i] = gaussian(gen);
-	}
-	return v;
-}
-
-int main(int argc, const char * argv[])
-{
-	int N = 10000;
-	vector<double> data = gaussian_white_noise(0,1,N);
-	Spot S;
-	int output;
-	for(auto & x : data)
-	{
-		output = S.step(x);
-		if (abs(output) == 1)
-		{
-			cout << "Alarm!" << endl;
-		}
-	}
-	return 0;
-}
-```
--->
-<script src="https://gist.github.com/asiffer/42d77da0c8775e1ede92bf66f7c3602a.js"></script>
+{% gist 42d77da0c8775e1ede92bf66f7c3602a %}
 
 
