@@ -13,11 +13,11 @@ or download the last version archive <a href="https://github.com/asiffer/libspot
 
 ### Ubuntu
 For Ubuntu users, the following ppa can be added to you system:
-```bash
+```sh
 	sudo add-apt-repository ppa:asiffer/libspot
 	sudo apt-get update	
 ```
 Then you can easily install the `libspot-dev` package 
-```bash
+```sh
 	sudo apt install libspot-dev 
 ```
