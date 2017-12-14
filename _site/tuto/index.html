@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/css/syntax.css" rel="stylesheet">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Tutorial</title>
+
+	<link rel="stylesheet" href="/libspot/css/main.css">
+	<link rel="canonical" href="https://asiffer.github.io/libspot/libspot/tuto/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/libspot/css/font-awesome/css/font-awesome.min.css">
+</head> 
+
+
+<body>
+	<aside>
+	<div class="container">
+		<fixt><a href="/libspot/">libspot</a></fixt>
+		<nav>
+			<ul>
+				 
+				<li><a href="/libspot/index.html">Home</a></li>
+				  
+				<li><a href="/libspot/tuto/">Tutorial</a></li>
+				  
+				<li><a href="/libspot/download/">Download</a></li>
+				  
+				<li><a href="/libspot/about/">About</a></li>
+				       
+			</ul>
+			</li>
+			</ul>
+		</nav>
+	</div>
+</aside>
+
+<!-- 
+<header>
+	<h1>BORN TO FLAG OUTLIERS
+</h1>
+</header>
+-->
+
+	<header>
+		<h1>Tutorial</h1>
+	</header>
+	<main>
+		<div class="row">
+			<div class="left">
+				<p><a name="intro"></a>
+<a name="buildspot"></a></p>
+<h3 id="introduction">INTRODUCTION</h3>
+<p><strong>libspot</strong> is based on the core algorithm <strong>SPOT</strong> which detects anomalies. This algorithm is a part of the main object <code class="highlighter-rouge">Spot</code>.</p>
+
+<h3 id="construct-a-spot-object">CONSTRUCT A SPOT OBJECT</h3>
+
+<p>Here is the full constructor of the <code class="highlighter-rouge">SPOT</code> object:</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+
+<p>The main parameter is <code class="highlighter-rouge">q</code>. It defines the probability of an abnormal event. For example, if <code class="highlighter-rouge">q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code class="highlighter-rouge">q</code> as abnormal.</p>
+
+<p>The parameters <code class="highlighter-rouge">n_init</code> and <code class="highlighter-rouge">level</code> are involved in the calibration step of the algorithm. <code class="highlighter-rouge">n_init</code> is the number of data required to calibrate and <code class="highlighter-rouge">level</code> is the proportion of these initial data not involved in the tail distribution fit. For example, let us use <code class="highlighter-rouge">n_init = 1000</code> and <code class="highlighter-rouge">level = 0.99</code>. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first fit.</p>
+
+<div class="alert">
+In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code> to have enough data for the fit (at least 10). Furthermore, the <code>level</code> must be high enough to reduce the bias of the algorithm. We may advice to have the <code>level</code> as close to 1 as possible.
+</div>
+
+<p>The booleans <code class="highlighter-rouge">up</code> and <code class="highlighter-rouge">down</code> define whether the algorithm computes upper/lower thresholds or not.</p>
+
+<p>The boolean <code class="highlighter-rouge">alert = true</code> enables alert triggering. If <code class="highlighter-rouge">alert = false</code>, it means that all the data (even those out of the bounds) will be taken into account.</p>
+
+<p>The boolean <code class="highlighter-rouge">bounded = true</code> enables the memory bounding. The bound is given by <code class="highlighter-rouge">max_excess</code> which is the maximum number of data stored to perform the tail fit.
+<a name="buildotherspot"></a></p>
+<div class="tip">
+	If the memory is not bounded, the algorithm will store more and more data to perform the tail fit. However, the computation time will cause more problems than the memory growth because the tail fit complexity depends on this number of stored data.
+</div>
+
+<h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
+<p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="highlighter-rouge">n_init</code> (the number of data to calibrate), the user can provide an initial batch of data <code class="highlighter-rouge">init_data</code>. This batch will directly be used to perform the calibration.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+
+<p>Finally, shorter constructors can also be used:</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
+	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span></code></pre></figure>
+
+<p>The default values of the parameters are the following:
+<a name="runspot"></a></p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>		<span class="n">down</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>		<span class="n">alert</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">;</span>		<span class="n">bounded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>		<span class="n">max_excess</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span></code></pre></figure>
+
+<h3 id="run-spot">RUN SPOT</h3>
+
+<p>Once a <code class="highlighter-rouge">SPOT</code> object is created you can feed it with data through the <code class="highlighter-rouge">step</code> method.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span></code></pre></figure>
+
+<p>According to the state of the algorithm or the detected event, this method returns a corresponding integer.</p>
+<center>
+<table align="center" width="40%" style="margin: auto auto;">
+   <tr align="CENTER">
+		<td width="20%"><h3>Code</h3></td>
+		<td width="80%"><h3>Meaning</h3></td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">0</td>
+		<td width="80%">Normal data</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">-1/1</td>
+		<td width="80%">Down/Up alert</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">-2/2</td>
+		<td width="80%">Down/Up excess</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">3</td>
+		<td width="80%">Data for inital batch</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">4</td>
+		<td width="80%">Calibration step</td>
+   </tr>
+</table>
+</center>
+
+<h3 id="example">EXAMPLE</h3>
+
+<p>Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// main.cpp
+</span><span class="cp">#include "spot.h"
+#include &lt;random&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;math.h&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="kt">double</span> <span class="n">mu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sigma</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+	<span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
+	<span class="n">default_random_engine</span> <span class="n">gen</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
+	<span class="n">normal_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">);</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+	<span class="n">Spot</span> <span class="n">S</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">output</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">data</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">output</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Alarm!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+			</div>
+			<div class="right" align="left">
+				<p><a href="#intro">Introduction</a></p>
+				<p><a href="#buildspot">Construct a Spot object</a></p>
+				<p><a href="#buildotherspot">Other constructors</a></p>
+				<p><a href="#runspot">Run Spot</a></p>
+			</div>
+		</div>
+	</main>
+</body>
+<footer>
+	<p>by asr</p>
+</footer>
+
+</html>
+  
+
+<!--
+<div class="float-left-area">
+<!--
+<div class="inner-left" align="justify">
+--
+	<p><a name="intro"></a>
+<a name="buildspot"></a></p>
+<h3 id="introduction">INTRODUCTION</h3>
+<p><strong>libspot</strong> is based on the core algorithm <strong>SPOT</strong> which detects anomalies. This algorithm is a part of the main object <code class="highlighter-rouge">Spot</code>.</p>
+
+<h3 id="construct-a-spot-object">CONSTRUCT A SPOT OBJECT</h3>
+
+<p>Here is the full constructor of the <code class="highlighter-rouge">SPOT</code> object:</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+
+<p>The main parameter is <code class="highlighter-rouge">q</code>. It defines the probability of an abnormal event. For example, if <code class="highlighter-rouge">q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code class="highlighter-rouge">q</code> as abnormal.</p>
+
+<p>The parameters <code class="highlighter-rouge">n_init</code> and <code class="highlighter-rouge">level</code> are involved in the calibration step of the algorithm. <code class="highlighter-rouge">n_init</code> is the number of data required to calibrate and <code class="highlighter-rouge">level</code> is the proportion of these initial data not involved in the tail distribution fit. For example, let us use <code class="highlighter-rouge">n_init = 1000</code> and <code class="highlighter-rouge">level = 0.99</code>. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first fit.</p>
+
+<div class="alert">
+In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code> to have enough data for the fit (at least 10). Furthermore, the <code>level</code> must be high enough to reduce the bias of the algorithm. We may advice to have the <code>level</code> as close to 1 as possible.
+</div>
+
+<p>The booleans <code class="highlighter-rouge">up</code> and <code class="highlighter-rouge">down</code> define whether the algorithm computes upper/lower thresholds or not.</p>
+
+<p>The boolean <code class="highlighter-rouge">alert = true</code> enables alert triggering. If <code class="highlighter-rouge">alert = false</code>, it means that all the data (even those out of the bounds) will be taken into account.</p>
+
+<p>The boolean <code class="highlighter-rouge">bounded = true</code> enables the memory bounding. The bound is given by <code class="highlighter-rouge">max_excess</code> which is the maximum number of data stored to perform the tail fit.
+<a name="buildotherspot"></a></p>
+<div class="tip">
+	If the memory is not bounded, the algorithm will store more and more data to perform the tail fit. However, the computation time will cause more problems than the memory growth because the tail fit complexity depends on this number of stored data.
+</div>
+
+<h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
+<p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="highlighter-rouge">n_init</code> (the number of data to calibrate), the user can provide an initial batch of data <code class="highlighter-rouge">init_data</code>. This batch will directly be used to perform the calibration.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+
+<p>Finally, shorter constructors can also be used:</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
+	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span></code></pre></figure>
+
+<p>The default values of the parameters are the following:
+<a name="runspot"></a></p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>		<span class="n">down</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>		<span class="n">alert</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">;</span>		<span class="n">bounded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+	<span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>		<span class="n">max_excess</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span></code></pre></figure>
+
+<h3 id="run-spot">RUN SPOT</h3>
+
+<p>Once a <code class="highlighter-rouge">SPOT</code> object is created you can feed it with data through the <code class="highlighter-rouge">step</code> method.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span></code></pre></figure>
+
+<p>According to the state of the algorithm or the detected event, this method returns a corresponding integer.</p>
+<center>
+<table align="center" width="40%" style="margin: auto auto;">
+   <tr align="CENTER">
+		<td width="20%"><h3>Code</h3></td>
+		<td width="80%"><h3>Meaning</h3></td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">0</td>
+		<td width="80%">Normal data</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">-1/1</td>
+		<td width="80%">Down/Up alert</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">-2/2</td>
+		<td width="80%">Down/Up excess</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">3</td>
+		<td width="80%">Data for inital batch</td>
+   </tr>
+   <tr align="CENTER">
+		<td width="20%">4</td>
+		<td width="80%">Calibration step</td>
+   </tr>
+</table>
+</center>
+
+<h3 id="example">EXAMPLE</h3>
+
+<p>Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.</p>
+
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// main.cpp
+</span><span class="cp">#include "spot.h"
+#include &lt;random&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;math.h&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="kt">double</span> <span class="n">mu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sigma</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+	<span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
+	<span class="n">default_random_engine</span> <span class="n">gen</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
+	<span class="n">normal_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">);</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
+	<span class="n">Spot</span> <span class="n">S</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">output</span><span class="p">;</span>
+	<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">data</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">output</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Alarm!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+
+
+<!--</div>--
+</div>
+
+<div class="float-right-area">
+<!-- <div class="inner-right" align="left"> --
+
+<p><a href="#intro">Introduction</a></p>
+<p><a href="#buildspot">Construct a SPOT object</a></p>
+<p><a href="#buildotherspot">Other constructors</a></p>
+
+<!-- </div> --
+</div>
+
+<div class="clear-floated"></div>
+-->
+

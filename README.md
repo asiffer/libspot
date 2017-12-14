@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # libspot
 
 ## INTRODUCTION
@@ -41,3 +42,6 @@ After that, you can test the `SPOT` algorithm with `make test`.
 
 ## LICENSE
 see LICENSE file
+=======
+https://asiffer.github.io/libspot/
+>>>>>>> 21300c049d4ee441ced8e945253e015e6b376e33
