@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # libspot
 
 ## INTRODUCTION
@@ -6,6 +5,7 @@
 
 *Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly Detection in Streams with Extreme Value Theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075). ACM.*
 
+Github pages : https://asiffer.github.io/libspot/
 
 ## CONTENT
 
@@ -18,12 +18,9 @@
 * `StreamStats` (compute basic statistics over sliding window)
 
 ## INSTALL
-
-(ignore Python -> not working yet)
-**dependencies** : you need to set the path of the python header `Python.h` in the Makefile:
 ```
-# PYTHON : external header (Python.h)
-EXT_INC_DIR = /usr/include/python3.5m/
+$ make
+$ sudo make install
 ```
 
 In order to build the library (`lib/libspot.so`), use `make` in the main directory.
@@ -37,7 +34,6 @@ After that, you can test the `SPOT` algorithm with `make test`.
 
 ## NEXT
 * `python3` wrapper with swig
-* jekyll web page with documentation
 
 
 ## LICENSE
