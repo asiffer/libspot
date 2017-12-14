@@ -6,9 +6,6 @@
 DESTDIR =
 ###
 
-
-VERSION = 1.0
-
 # Current directory
 CURDIR = $(realpath .)
 
@@ -63,7 +60,7 @@ all: checkdir $(TARGET)
 # create lib/ and build/ directories
 checkdir:
 	@echo
-	@echo "==== libspot-dev" $(VERSION) "===="
+	@echo "==== libspot-dev ===="
 	@echo
 	@echo "Checking the library directory ("$(LIB_DIR)")"
 	@mkdir -p $(LIB_DIR)
