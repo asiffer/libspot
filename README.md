@@ -7,7 +7,7 @@
 
 Github pages : https://asiffer.github.io/libspot/
 
-## WTF
+## INTRODUCTION2
 test
 ### main algorithms
 * `SPOT` algorithm (detect anomalies in stationary data streams)
