@@ -36,9 +36,15 @@ INSTALL_LIB_DIR = $(DESTDIR)/usr/lib
 EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
 
 # compiler & flags
-CC = @g++-5
+CC = @g++
 CXXFLAGS = -std=c++14 -Wall -pedantic 
-
+CCVERSION = $(shell g++ --version | grep ^g++ | sed 's/^.* //g' | awk -F '[.]' '{print $1"."$2}')
+CCVERSIONOK = $(shell echo "$(CCVERSION)>=4.8" | bc) 
+$(info $(CCVERSION))
+ifeq "$(CCVERSIONOK)" "0"
+	@echo "g++ (>=4.8) required"
+	@exit 1
+endif
 
 # all the files (header, sources, build)
 FILES = streammoments.h streamstats.h bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h

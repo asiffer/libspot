@@ -5,9 +5,9 @@ Version: 1.0
 Auto-Built-Package: debug-symbols
 Architecture: amd64
 Maintainer: Alban Siffer <alban.siffer@irisa.fr>
-Installed-Size: 59
+Installed-Size: 53
 Depends: libspot-dev (= 1.0)
 Section: debug
 Priority: extra
 Description: Debug symbols for libspot-dev
-Build-Ids: ef91b4e0f4a789c95dd4c93cd8c3f70e8c711c86 ef91b4e0f4a789c95dd4c93cd8c3f70e8c711c86
+Build-Ids: 57769ef5e4f01e6efaf7a3b8f71f7a25760b197c 57769ef5e4f01e6efaf7a3b8f71f7a25760b197c

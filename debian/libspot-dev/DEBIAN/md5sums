@@ -14,7 +14,7 @@ da1a1f4e1a653f28c7b2256b50c145ca  usr/include/libspot/spot.h
 39fb8a8ca06f0dcd31e073c75c27c527  usr/include/libspot/streammoments.h
 081a5481c343bccb54c61b66352a7308  usr/include/libspot/streamstats.h
 b7bbed55247de41f36c624f3b10792d7  usr/include/libspot/ubend.h
-6b9275042247cd8a2bddf3775bb11859  usr/lib/*.so/libspot.so
-6b9275042247cd8a2bddf3775bb11859  usr/lib/libspot.so
+6f2913c79efae70d2024b4768ee93e7a  usr/lib/*.so/libspot.so
+6f2913c79efae70d2024b4768ee93e7a  usr/lib/libspot.so
 d12da1402b28483bae3015bf5722d688  usr/share/doc/libspot-dev/changelog.gz
 c430693f737a8b57daa1effcad49d7c0  usr/share/doc/libspot-dev/copyright
