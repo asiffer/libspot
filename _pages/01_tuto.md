@@ -14,9 +14,9 @@ permalink: /tuto/
 Here is the full constructor of the `SPOT` object:
 
 {% highlight cpp %}
-Spot( 	double q, int n_init, double level, 
-    	bool up, bool down, bool alert, 
-    	bool bounded, int max_excess);
+	Spot(double q, int n_init, double level, 
+	     bool up, bool down, bool alert, 
+	     bool bounded, int max_excess);
 {% endhighlight %}
 
 The main parameter is `q`. It defines the probability of an abnormal event. For example, if `q = 0.001`, it means that the algorithm will consider events with a probability lower than `q` as abnormal.
@@ -42,9 +42,9 @@ The boolean `bounded = true` enables the memory bounding. The bound is given by 
 **libspot** provides other constructors. For instance rather than specifying `n_init` (the number of data to calibrate), the user can provide an initial batch of data `init_data`. This batch will directly be used to perform the calibration.
 
 {% highlight cpp %}
-	Spot( 	double q, vector<double> init_data, double level, 
-    	bool up, bool down, bool alert, 
-    	bool bounded, int max_excess);
+	Spot(double q, vector<double> init_data, double level, 
+	     bool up, bool down, bool alert, 
+	     bool bounded, int max_excess);
 {% endhighlight %}
 
 Finally, shorter constructors can also be used:

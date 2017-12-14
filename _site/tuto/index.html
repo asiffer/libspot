@@ -9,28 +9,28 @@
 
 	<title>Tutorial</title>
 
-	<link rel="stylesheet" href="/libspot/css/main.css">
-	<link rel="canonical" href="https://asiffer.github.io/libspot/libspot/tuto/">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="canonical" href="https://asiffer.github.io/libspot/tuto/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/libspot/css/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
 </head> 
 
 
 <body>
 	<aside>
 	<div class="container">
-		<fixt><a href="/libspot/">libspot</a></fixt>
+		<fixt><a href="/">libspot</a></fixt>
 		<nav>
 			<ul>
 				 
-				<li><a href="/libspot/index.html">Home</a></li>
+				<li><a href="/index.html">Home</a></li>
 				  
-				<li><a href="/libspot/tuto/">Tutorial</a></li>
+				<li><a href="/tuto/">Tutorial</a></li>
 				  
-				<li><a href="/libspot/download/">Download</a></li>
+				<li><a href="/download/">Download</a></li>
 				  
-				<li><a href="/libspot/about/">About</a></li>
+				<li><a href="/about/">About</a></li>
 				       
 			</ul>
 			</li>
@@ -61,9 +61,9 @@
 
 <p>Here is the full constructor of the <code class="highlighter-rouge">SPOT</code> object:</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
 
 <p>The main parameter is <code class="highlighter-rouge">q</code>. It defines the probability of an abnormal event. For example, if <code class="highlighter-rouge">q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code class="highlighter-rouge">q</code> as abnormal.</p>
 
@@ -86,9 +86,9 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
 <p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="highlighter-rouge">n_init</code> (the number of data to calibrate), the user can provide an initial batch of data <code class="highlighter-rouge">init_data</code>. This batch will directly be used to perform the calibration.</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
 
 <p>Finally, shorter constructors can also be used:</p>
 
@@ -216,9 +216,9 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 
 <p>Here is the full constructor of the <code class="highlighter-rouge">SPOT</code> object:</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
 
 <p>The main parameter is <code class="highlighter-rouge">q</code>. It defines the probability of an abnormal event. For example, if <code class="highlighter-rouge">q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code class="highlighter-rouge">q</code> as abnormal.</p>
 
@@ -241,9 +241,9 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
 <p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="highlighter-rouge">n_init</code> (the number of data to calibrate), the user can provide an initial batch of data <code class="highlighter-rouge">init_data</code>. This batch will directly be used to perform the calibration.</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span> 	<span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-    	<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
 
 <p>Finally, shorter constructors can also be used:</p>
 
