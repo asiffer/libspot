@@ -99,7 +99,7 @@ According to the state of the algorithm or the detected event, this method retur
 </table>
 </center>
 
-
+<a name="example"></a>
 ### EXAMPLE
 
 Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.
