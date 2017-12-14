@@ -1,0 +1,13 @@
+Package: libspot-dev-dbgsym
+Package-Type: ddeb
+Source: libspot
+Version: 1.0
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Alban Siffer <alban.siffer@irisa.fr>
+Installed-Size: 59
+Depends: libspot-dev (= 1.0)
+Section: debug
+Priority: extra
+Description: Debug symbols for libspot-dev
+Build-Ids: ef91b4e0f4a789c95dd4c93cd8c3f70e8c711c86 ef91b4e0f4a789c95dd4c93cd8c3f70e8c711c86

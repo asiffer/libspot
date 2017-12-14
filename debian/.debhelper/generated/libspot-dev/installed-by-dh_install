@@ -1,0 +1,9 @@
+./debian/libspot-dev/usr/lib/libspot.so
+./debian/libspot-dev/usr/include/libspot/bounds.h
+./debian/libspot-dev/usr/include/libspot/brent.h
+./debian/libspot-dev/usr/include/libspot/dspot.h
+./debian/libspot-dev/usr/include/libspot/gpdfit.h
+./debian/libspot-dev/usr/include/libspot/spot.h
+./debian/libspot-dev/usr/include/libspot/streammoments.h
+./debian/libspot-dev/usr/include/libspot/streamstats.h
+./debian/libspot-dev/usr/include/libspot/ubend.h
