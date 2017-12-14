@@ -20,6 +20,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "https://asiffer.github.io/libspot"
 url: "https://asiffer.github.io/libspot"
 github_username: asiffer
+gems: [jekyll-gist]
 
 # Build settings
 markdown: kramdown

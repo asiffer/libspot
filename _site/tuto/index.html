@@ -143,47 +143,52 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="example">EXAMPLE</h3>
 
 <p>Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// main.cpp
-</span><span class="cp">#include "spot.h"
-#include &lt;random&gt;
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-#include &lt;math.h&gt;
-</span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="kt">double</span> <span class="n">mu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sigma</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-	<span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
-	<span class="n">default_random_engine</span> <span class="n">gen</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
-	<span class="n">normal_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">);</span>
+<!---
+```cpp
+// main.cpp
+#include "spot.h"
+#include <random>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <math.h>
 
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">v</span><span class="p">;</span>
-<span class="p">}</span>
+using namespace std;
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
-	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
-	<span class="n">Spot</span> <span class="n">S</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">output</span><span class="p">;</span>
-	<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">data</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">output</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Alarm!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+vector<double> gaussian_white_noise(double mu, double sigma, int N)
+{
+	vector<double> v(N);
+	random_device rd;
+	default_random_engine gen(rd());
+	normal_distribution<double> gaussian(mu,sigma);
+
+	for (int i = 0; i < N; i++)
+	{
+		v[i] = gaussian(gen);
+	}
+	return v;
+}
+
+int main(int argc, const char * argv[])
+{
+	int N = 10000;
+	vector<double> data = gaussian_white_noise(0,1,N);
+	Spot S;
+	int output;
+	for(auto & x : data)
+	{
+		output = S.step(x);
+		if (abs(output) == 1)
+		{
+			cout << "Alarm!" << endl;
+		}
+	}
+	return 0;
+}
+```
+-->
+<script src="https://gist.github.com/42d77da0c8775e1ede92bf66f7c3602a.js"> </script>
 
 
 			</div>
@@ -300,47 +305,52 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="example">EXAMPLE</h3>
 
 <p>Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.</p>
-<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// main.cpp
-</span><span class="cp">#include "spot.h"
-#include &lt;random&gt;
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-#include &lt;math.h&gt;
-</span>
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="kt">double</span> <span class="n">mu</span><span class="p">,</span> <span class="kt">double</span> <span class="n">sigma</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
-	<span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span>
-	<span class="n">default_random_engine</span> <span class="n">gen</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
-	<span class="n">normal_distribution</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">);</span>
+<!---
+```cpp
+// main.cpp
+#include "spot.h"
+#include <random>
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <math.h>
 
-	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">gen</span><span class="p">);</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="n">v</span><span class="p">;</span>
-<span class="p">}</span>
+using namespace std;
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-	<span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
-	<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">gaussian_white_noise</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
-	<span class="n">Spot</span> <span class="n">S</span><span class="p">;</span>
-	<span class="kt">int</span> <span class="n">output</span><span class="p">;</span>
-	<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="o">:</span> <span class="n">data</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="n">output</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Alarm!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
+vector<double> gaussian_white_noise(double mu, double sigma, int N)
+{
+	vector<double> v(N);
+	random_device rd;
+	default_random_engine gen(rd());
+	normal_distribution<double> gaussian(mu,sigma);
+
+	for (int i = 0; i < N; i++)
+	{
+		v[i] = gaussian(gen);
+	}
+	return v;
+}
+
+int main(int argc, const char * argv[])
+{
+	int N = 10000;
+	vector<double> data = gaussian_white_noise(0,1,N);
+	Spot S;
+	int output;
+	for(auto & x : data)
+	{
+		output = S.step(x);
+		if (abs(output) == 1)
+		{
+			cout << "Alarm!" << endl;
+		}
+	}
+	return 0;
+}
+```
+-->
+<script src="https://gist.github.com/42d77da0c8775e1ede92bf66f7c3602a.js"> </script>
 
 
 

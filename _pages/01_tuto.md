@@ -103,6 +103,8 @@ According to the state of the algorithm or the detected event, this method retur
 ### EXAMPLE
 
 Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.
+
+<!---
 ```cpp
 // main.cpp
 #include "spot.h"
@@ -145,6 +147,7 @@ int main(int argc, const char * argv[])
 	return 0;
 }
 ```
-
+-->
+{% gist 42d77da0c8775e1ede92bf66f7c3602a %}
 
 
