@@ -61,9 +61,10 @@
 
 <p>Here is the full constructor of the <code class="highlighter-rouge">SPOT</code> object:</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
-	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+		<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+		<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
+</code></pre></div>
 
 <p>The main parameter is <code class="highlighter-rouge">q</code>. It defines the probability of an abnormal event. For example, if <code class="highlighter-rouge">q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code class="highlighter-rouge">q</code> as abnormal.</p>
 
@@ -86,29 +87,28 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
 <p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="highlighter-rouge">n_init</code> (the number of data to calibrate), the user can provide an initial batch of data <code class="highlighter-rouge">init_data</code>. This batch will directly be used to perform the calibration.</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
 	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
-
+	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
+</code></pre></div>
 <p>Finally, shorter constructors can also be used:</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
-	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span></code></pre></figure>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
+	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span>
+</code></pre></div>
 
 <p>The default values of the parameters are the following:
 <a name="runspot"></a></p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>		<span class="n">down</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>		<span class="n">down</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 	<span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>		<span class="n">alert</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 	<span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">;</span>		<span class="n">bounded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-	<span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>		<span class="n">max_excess</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span></code></pre></figure>
+	<span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>		<span class="n">max_excess</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+</code></pre></div>
 
 <h3 id="run-spot">RUN SPOT</h3>
 
 <p>Once a <code class="highlighter-rouge">SPOT</code> object is created you can feed it with data through the <code class="highlighter-rouge">step</code> method.</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span></code></pre></figure>
-
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div>
 <p>According to the state of the algorithm or the detected event, this method returns a corresponding integer.</p>
 <center>
 <table align="center" width="40%" style="margin: auto auto;">
@@ -142,8 +142,7 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="example">EXAMPLE</h3>
 
 <p>Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// main.cpp
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// main.cpp
 </span><span class="cp">#include "spot.h"
 #include &lt;random&gt;
 #include &lt;iostream&gt;
@@ -182,7 +181,8 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 		<span class="p">}</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+</code></pre></div>
 
 
 			</div>
@@ -216,9 +216,10 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 
 <p>Here is the full constructor of the <code class="highlighter-rouge">SPOT</code> object:</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
-	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+		<span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
+		<span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
+</code></pre></div>
 
 <p>The main parameter is <code class="highlighter-rouge">q</code>. It defines the probability of an abnormal event. For example, if <code class="highlighter-rouge">q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code class="highlighter-rouge">q</code> as abnormal.</p>
 
@@ -241,29 +242,28 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
 <p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="highlighter-rouge">n_init</code> (the number of data to calibrate), the user can provide an initial batch of data <code class="highlighter-rouge">init_data</code>. This batch will directly be used to perform the calibration.</p>
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> 
 	     <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> 
-	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span></code></pre></figure>
-
+	     <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
+</code></pre></div>
 <p>Finally, shorter constructors can also be used:</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
-	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span></code></pre></figure>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
+	<span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span>
+</code></pre></div>
 
 <p>The default values of the parameters are the following:
 <a name="runspot"></a></p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>		<span class="n">down</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>		<span class="n">down</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 	<span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>		<span class="n">alert</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 	<span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">;</span>		<span class="n">bounded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-	<span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>		<span class="n">max_excess</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span></code></pre></figure>
+	<span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>		<span class="n">max_excess</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+</code></pre></div>
 
 <h3 id="run-spot">RUN SPOT</h3>
 
 <p>Once a <code class="highlighter-rouge">SPOT</code> object is created you can feed it with data through the <code class="highlighter-rouge">step</code> method.</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp">	<span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span></code></pre></figure>
-
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code>	<span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div>
 <p>According to the state of the algorithm or the detected event, this method returns a corresponding integer.</p>
 <center>
 <table align="center" width="40%" style="margin: auto auto;">
@@ -297,8 +297,7 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 <h3 id="example">EXAMPLE</h3>
 
 <p>Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.</p>
-
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="c1">// main.cpp
+<div class="language-cpp highlighter-rouge"><pre class="highlight"><code><span class="c1">// main.cpp
 </span><span class="cp">#include "spot.h"
 #include &lt;random&gt;
 #include &lt;iostream&gt;
@@ -337,7 +336,8 @@ In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code>
 		<span class="p">}</span>
 	<span class="p">}</span>
 	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

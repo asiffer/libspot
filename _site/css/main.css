@@ -13,6 +13,11 @@ oceanic: #1B4B5A
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+pre,
+code {
+  width: auto;
+  font-family: "Ubuntu Mono"; }
+
 body {
   margin: 0;
   color: #0F1F38;
@@ -93,6 +98,13 @@ time {
   font-size: 90%;
   line-height: 1.5;
   background-color: #fff; }
+
+.codeblock {
+  font-family: "Ubuntu Mono";
+  background-color: #E7EDF4;
+  padding-left: 50px;
+  border: thin solid #FF9D94;
+  overflow: hidden; }
 
 /* Aside */
 aside {
@@ -269,7 +281,7 @@ sidebar {
   background-color: #D6EDFF;
   border: thin solid #5590BA;
   overflow: hidden;
-  font-size: 13px; }
+  font-size: 14px; }
 
 .alert {
   padding: 5px;
@@ -277,7 +289,7 @@ sidebar {
   background-color: #FFD9D6;
   border: thin solid #FF9D94;
   overflow: hidden;
-  font-size: 13px; }
+  font-size: 14px; }
 
 .highlight .hll {
   background-color: #ffffcc; }

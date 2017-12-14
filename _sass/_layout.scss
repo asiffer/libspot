@@ -81,7 +81,18 @@ time {
 	background-color: #fff;
 }
 
+
+.codeblock {
+	font-family: "Ubuntu Mono";
+	background-color : $light;
+	padding-left: 50px;
+	border: thin solid $mediumred; 
+	overflow: hidden;
+}
+
 /* Aside */
+
+
 
 aside {
 	position: fixed;
@@ -279,7 +290,7 @@ sidebar {
 	background-color: $lightblue; 
 	border: thin solid $mediumblue; 
 	overflow: hidden;
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .alert {
@@ -288,6 +299,6 @@ sidebar {
 	background-color: $lightred; 
 	border: thin solid $mediumred; 
 	overflow: hidden;
-	font-size: 13px;
+	font-size: 14px;
 }
 
