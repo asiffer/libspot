@@ -7,8 +7,7 @@
 
 Github pages : https://asiffer.github.io/libspot/
 
-## INTRODUCTION2
-test
+## DETAILS
 ### main algorithms
 * `SPOT` algorithm (detect anomalies in stationary data streams)
 * `DSPOT` algorithm (detect anomalies in drifting data streams)
