@@ -25,7 +25,7 @@ $ sudo make install
 In order to build the library (`lib/libspot.so`), use `make` in the main directory.
 To install the library on your system you can either move by yourself the library file and the headers to the right folder or set the paths in the installation step:
 ```
-make install INSTALL_HEAD_DIR=... INSTALL_LIB_DIR=...
+$ make install INSTALL_HEAD_DIR=... INSTALL_LIB_DIR=...
 ```
 The default paths are `/usr/include/` for the headers and `/usr/lib/` for the library.
 After that, you can test the `SPOT` algorithm with `make test`.
@@ -37,6 +37,3 @@ After that, you can test the `SPOT` algorithm with `make test`.
 
 ## LICENSE
 see LICENSE file
-=======
-https://asiffer.github.io/libspot/
->>>>>>> 21300c049d4ee441ced8e945253e015e6b376e33
