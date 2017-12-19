@@ -20,18 +20,19 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "https://asiffer.github.io/libspot"
 url: "https://asiffer.github.io/libspot"
 github_username: asiffer
-gems: [jekyll-gist]
+gems: [jekyll-gist, liquid]
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 theme: minima
 
+
 plugins_dir:
   - jekyll-feed
 sass:
   sass_dir: _sass
-include: ['_includes','_layouts','_pages']
+include: ['_includes','_layouts','_pages','_fonts']
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
