@@ -10,6 +10,7 @@ Homepage: <insert the upstream URL, if relevant>
 Package: libspot-dev
 Section: libdevel
 Architecture: any
+Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data
  <insert long description, indented with spaces>
