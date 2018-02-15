@@ -26,7 +26,7 @@ using namespace std;
 
 /*!
  *	\struct GPDinfo
- *  \brief The GPDinfo structure.
+ *  	\brief The GPDinfo structure.
  *	\details This structure gathers the information about a GPD fit (parameters + log-likelihood)
  */
 struct GPDinfo {
@@ -51,24 +51,24 @@ struct GPDinfo {
 class GPDfit : public Ubend {
     private:
         // Methods (root search)
-		/*!
-			\brief Auxiliary function to compute the likelihood
-			\param[in] x the antecedent
-			\return v(x) 
-		*/
+	/*!
+		\brief Auxiliary function to compute the likelihood
+		\param[in] x the antecedent
+		\return v(x) 
+	*/
         double grimshaw_v(double x);
         
-		/*!
-			\brief simplified log-likelihood function
-			\param[in] x_star the antecedent
-			\return GPDinfo object gathering gamma, sigma and the likelihood 
-		*/
+	/*!
+		\brief simplified log-likelihood function
+		\param[in] x_star the antecedent
+		\return GPDinfo object gathering gamma, sigma and the likelihood 
+	*/
         GPDinfo log_likelihood(double x_star);
         
 
-		/*!
-			\brief Return the roots of the auxiliary function w
-		*/
+	/*!
+		\brief Return the roots of the auxiliary function w
+	*/
         vector<double> roots();
 
     public:
@@ -81,32 +81,31 @@ class GPDfit : public Ubend {
         GPDfit(int capacity = -1);
         
         /*!
-			\brief Get the minimum value of stored data
-		*/
+		\brief Get the minimum value of stored data
+	*/
         double min();
         
         /*!
-			\brief Get the maximum value of stored data
-		*/
+		\brief Get the maximum value of stored data
+	*/
         double max();
         
         /*!
-			\brief Get the mean of stored data
-		*/
+		\brief Get the mean of stored data
+	*/
         double mean();
         
-		/*!
-			\brief Auxiliary function to compute the likelihood
-			\param[in] x the antecedent
-			\return w(x) = u(x)v(x) - 1 
-		*/
-		
+	/*!
+		\brief Auxiliary function to compute the likelihood
+		\param[in] x the antecedent
+		\return w(x) = u(x)v(x) - 1 
+	*/
         double grimshaw_w(double x);
         
-		/*!
-			\brief Perform a GPD fit of the stored excesses
-			\return GPDinfo object gathering gamma, sigma and the likelihood 
-		*/
+	/*!
+		\brief Perform a GPD fit of the stored excesses
+		\return GPDinfo object gathering gamma, sigma and the likelihood 
+	*/
         GPDinfo fit();
 
 };

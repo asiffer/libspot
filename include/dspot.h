@@ -10,13 +10,76 @@
 
 #include "spot.h"
 #include "ubend.h"
-#include "streamstats.h"
+//#include "streamstats.h"
 #include <vector>
 #include <iostream>
 #include <numeric>
 #include <sstream>
 
 using namespace std;
+
+
+
+
+#ifndef STREAMMEAN_H
+#define STREAMMEAN_H
+
+/**
+ *  \class StreamMean
+ *	\brief Compute the mean over streaming data (window)
+ *	\details The harmonic mean has also been added but it is not used
+ */
+class StreamMean : public Ubend {
+	protected:
+		double m; /*!< the classic mean */
+		
+	public:
+		/*!
+			\brief Basic constructor
+			\param[in] size The window size where the mean is computed (-1 for infinite window)
+			\return A StreamMean object
+		*/
+		StreamMean(int size = -1);
+		
+		/*!
+			\brief Basic constructor with a first batch of data
+			\param[in] size The window size where the mean is computed (-1 for infinite window)
+			\param[in] v An initial batch of data
+			\return A StreamMean object
+		*/
+		StreamMean(int size, vector<double> v);
+		
+		/*!
+			\brief Constructor from a Ubend object
+			\param[in] other External Ubend object
+			\return A StreamMean object
+		*/
+		StreamMean(const Ubend & other);
+		
+		/*!
+			\brief Return the mean within the window
+		*/
+		double mean();
+		
+		
+		/*!
+			\brief Update the mean with a new incoming data
+			\param[in] x_n New incoming data
+			\return The state of the Ubend container (see the Ubend class)
+		*/
+		int step(double x_n);
+		
+		/*!
+			\brief The sum operator (merge the Ubend)
+			\param[in] other Another StreamMean object
+			\return A new StreamMean instance
+		*/		
+		StreamMean operator+(const StreamMean& other) const;
+};
+
+#endif // STREAMMEAN_H
+
+
 
 
 #ifndef DSPOT_H

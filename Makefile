@@ -47,7 +47,8 @@ ifeq "$(CCVERSIONOK)" "0"
 endif
 
 # all the files (header, sources, build)
-FILES = streammoments.h streamstats.h bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h
+#removed : streammoments.h streamstats.h 
+FILES = bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h
 DEPS = $(foreach n,$(FILES),$(INC_DIR)/$(n))
 SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
 OBJS = $(FILES:.h=.o)
