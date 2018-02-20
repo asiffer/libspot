@@ -119,13 +119,10 @@ header {
 
 pre, code  {
 	font-size: 1.1em;
-	color: $color3;
+	color: $color4;
 	white-space: pre-wrap;
 }
 
-pre {
-	width: 85%;
-}
 
 
 @media (max-width: 768px)
@@ -177,11 +174,11 @@ pre {
 		font-size: 1em;
 	}
 	
-	/*
+	
 	pre  {
 		font-size: 0.9em;
-		width: 70%;
-	}*/
+		width: 80%;
+	}
 	
 	
 }

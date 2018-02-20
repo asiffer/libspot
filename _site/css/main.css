@@ -132,11 +132,8 @@ header {
 
 pre, code {
   font-size: 1.1em;
-  color: #1B4B5A;
+  color: #337BAE;
   white-space: pre-wrap; }
-
-pre {
-  width: 85%; }
 
 @media (max-width: 768px) {
   #page {
@@ -177,11 +174,9 @@ pre {
     margin: auto 5%;
     font-size: 1em; }
 
-  /*
-  pre  {
-  	font-size: 0.9em;
-  	width: 70%;
-  }*/ }
+  pre {
+    font-size: 0.9em;
+    width: 80%; } }
 /*
 pre, code {
 	
@@ -483,10 +478,15 @@ pre .il {
 
 /* Literal.Number.Integer.Long */
 /*.highlight pre .hll { background-color: #ffffcc }*/
-.highlight {
-  width: 100%; }
+.highlight pre {
+  width: 100%;
+  margin: 0 auto;
+  font: normal 1.1em "Ubuntu Mono";
+  white-space: pre-wrap;
+  color: #337BAE;
+  background: #f8f8f8; }
 
-/*.highlight pre  { width: 100%; font: normal 1.1em $font4; white-space: pre-wrap; color: $color4; background: #f8f8f8; } /* -> REAL BACKGROUND */
+/* -> REAL BACKGROUND */
 /*.highlight pre .c { color: #408080; font-style: italic } /* Comment */
 .highlight pre .err {
   border: 1px solid #FF0000; }
