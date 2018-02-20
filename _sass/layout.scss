@@ -117,6 +117,16 @@ header {
 }
 
 
+pre, code  {
+	font-size: 1.1em;
+	color: $color3;
+	white-space: pre-wrap;
+}
+
+pre {
+	width: 85%;
+}
+
 
 @media (max-width: 768px)
 {
@@ -130,6 +140,7 @@ header {
 		margin: 0 auto;
 		width: 100%;
 		padding: 2em 0;
+		overflow: hidden;
 	}
 	
 	h1 {
@@ -153,7 +164,7 @@ header {
 		margin: 0 auto;
 		display: flex;
 		a {
-			width: 25%;
+			width: 24%;
 			float: center;
 			margin: 0 auto;
 			display: inline-block;
@@ -164,8 +175,14 @@ header {
 		width: 90%;
 		margin: auto 5%;
 		font-size: 1em;
-		/*padding: auto 5em;*/
 	}
+	
+	/*
+	pre  {
+		font-size: 0.9em;
+		width: 70%;
+	}*/
+	
 	
 }
 	
@@ -195,219 +212,13 @@ time {
 }
 
 
-.codeblock {
-	font-family: "Ubuntu Mono";
-	background-color : $light;
-	padding-left: 50px;
-	border: thin solid $mediumred; 
-	overflow: hidden;
-}
 */
-/* Aside */
-
-
-/*
-aside {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background: #fff;
-	width: 100%;
-	z-index: 2;
-	border-bottom: 1px solid lighten($light, 30%);
-	box-shadow: 0px 1px 1px RGBA(4, 25, 54, .1);
-	fixt {
-		float: left;
-		margin: 0 auto;
-		font-family: 'Muli', sans serif;
-		font-weight: bold;
-		font-size: 30px;
-		color: $main;
-		a:link {
-			color: $main;
-			text-decoration: none;
-		}
-		a:hover {
-			color: $red;
-			text-decoration: none;
-		}
-	}
-	
-	nav {
-		float: right;
-		max-width: $content-width;
-		margin: 0 auto;
-		ul {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			li {
-				float: left;
-				position: relative;
-				a {
-					text-decoration: none;
-					display: block;
-					padding: 15px;
-					font-family: 'Muli', sans-serif;
-					line-height: 20px;
-					margin-bottom: -1px;
-					box-shadow: 0;
-					color: $main;
-					&:hover,
-					&:active {
-						background: $header;
-						text-decoration: none;
-						color: $red;
-					}
-				}
-			}
-		}
-		&:after {
-			content: '';
-			display: table;
-			clear: both;
-		}
-	}
-}
-*/
-/*
-* {
-    box-sizing: border-box;
-}
-.left {
-    width: 75%;
-    float: left;
-    padding-right: 15px;
-}
-.right {
-	position: sticky;
-    top: 50px;
-    float: left;
-    width: 25%;
-    border-left: 1px solid;
-	border-left-color: $blue;
-	padding-left: 0px;
-	a {
-		text-decoration: none;
-		display: block;
-		padding: 5px;
-		padding-left: 10px;
-		font-family: 'Muli', sans-serif;
-		line-height: 20px;
-		margin-bottom: -20px;
-		box-shadow: 0;
-		color: $main;
-		&:hover,
-		&:active {
-			background: $header;
-			text-decoration: none;
-			color: $red;
-		}
-	}
-}*/
-/*
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-[class*="col-"] {
-    float: left;
-    padding: 15px;
-}*/
-
-/*
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
-}*/
-/*Base Mobile Layout*/
-
 
 footer {
 	text-align: center;
 	padding: 2em;
 }
 
-/* left menu */
-
-/*
-page-wrap { 
-  float: left;
-  width: 70%; 
-  position: relative; 
-}
-
-sidebar { 
-  float: right;
-  width: 20%; 
-  position: fixed;
-  margin: 0px 30px;
-}*/
-
-/* other sidebar */
-/*
-.float-left-area  {
-		  width: 75%;
-		  float: left;
-		  }
-
-.float-right-area {
-		  float: left;
-		  width: 25%;
-		  position: fixed;
-		  }
-
-.inner-left	  {
-		  padding: 0px 5px 5px 5px;
-		  margin-right: 10px;
-		  min-height: 60px;
-		  }
-
-.inner-right	  {
-		  padding: 0px 5px 5px 5px;
-		  min-height: 80px;
-		  position: fixed;
-		  border-left: solid $blue;
-		  a {
-					text-decoration: none;
-					display: block;
-					padding: 15px 15px;
-					font-family: 'Muli', sans-serif;
-					line-height: 15px;
-					margin-bottom: 15px;
-					box-shadow: 0;
-					color: $main;
-					&:hover,
-					&:active {
-						background: $header;
-						text-decoration: none;
-						color: $red;
-					}
-				}
-		  }
-
-.clear-floated	  { clear: both; height: 1px; font-size: 1px; line-height: 1px; padding: 0; margin: 0; }
-*/
-
-
-/* tip/alert block */
-/*
-.tip {
-	padding: 0.5em;
-	background-color: $color3; 
-	border: thin solid $mediumblue;
-	font: normal 1em font2;
-	
-}*/
 
 .alert {
 	background-color: $color1; 
@@ -415,5 +226,8 @@ sidebar {
 	color: $color2;
 	font: normal 1em $font1, sans serif;
 	padding: 0.5em 1em;
+	pre, code  {
+		color: $color2;
+	}
 }
 

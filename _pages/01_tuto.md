@@ -52,9 +52,14 @@ Spot(double q, vector<double> init_data);
 The default values of the parameters are the following:
 <a name="runspot"></a>
 {% highlight c++ %}
-q = 1e-3;		up = true;		bounded = true;
-n_init = 1000;		down = true;		max_excess = 200;
-level = 0.99;		alert = true;
+q = 1e-3;
+n_init = 1000;
+level = 0.99;
+up = true;
+down = true;
+alert = true;
+bounded = true;
+max_excess = 200;
 {% endhighlight %}
 
 
