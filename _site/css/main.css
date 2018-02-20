@@ -113,6 +113,14 @@ main {
   font: normal 1.1em "Open Sans", sans serif;
   text-align: justify; }
 
+main .block {
+  float: left;
+  margin: 0 auto;
+  width: 50%;
+  display: block;
+  text-align: left;
+  white-space: pre-wrap; }
+
 .bash {
   color: #FFFFFF;
   background-color: #0F1F38;
@@ -164,7 +172,7 @@ pre, code {
     margin: 0 auto;
     display: flex; }
     .tab a {
-      width: 24%;
+      max-width: 23%;
       float: center;
       margin: 0 auto;
       display: inline-block; }
@@ -173,6 +181,11 @@ pre, code {
     width: 90%;
     margin: auto 5%;
     font-size: 1em; }
+
+  main .block {
+    float: left;
+    width: 100%;
+    /*text-align: center;*/ }
 
   pre {
     font-size: 0.9em;

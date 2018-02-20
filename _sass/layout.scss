@@ -96,6 +96,15 @@ main {
 	
 }
 
+main .block {
+	float: left;
+	margin: 0 auto;
+	width: 50%;
+	display: block;
+	text-align: left;
+	white-space: pre-wrap;
+}
+
 .bash {
 	color: #FFFFFF;
 	background-color: $color1;
@@ -161,7 +170,7 @@ pre, code  {
 		margin: 0 auto;
 		display: flex;
 		a {
-			width: 24%;
+			max-width: 23%;
 			float: center;
 			margin: 0 auto;
 			display: inline-block;
@@ -174,6 +183,11 @@ pre, code  {
 		font-size: 1em;
 	}
 	
+	main .block {
+		float: left;
+		width: 100%;
+		/*text-align: center;*/
+	}
 	
 	pre  {
 		font-size: 0.9em;
