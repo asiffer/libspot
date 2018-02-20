@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/css/syntax.css" rel="stylesheet">
-<head>
+	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,73 +9,56 @@
 
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="canonical" href="http://localhost:4000/download/">
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head> 
 
-
-<body>
-	<aside>
-	<div class="container">
-		<fixt><a href="/">libspot</a></fixt>
-		<nav>
-			<ul>
-				 
-				<li><a href="/index.html">Home</a></li>
-				  
-				<li><a href="/tuto/">Tutorial</a></li>
-				  
-				<li><a href="/download/">Download</a></li>
-				  
-				<li><a href="/about/">About</a></li>
-				           
-			</ul>
-			</li>
-			</ul>
-		</nav>
+	<div id="page">
+		<div class="topbar">
+	<div class="title">
+		<a href="/">libspot</a>
 	</div>
-</aside>
 
-<!-- 
-<header>
-	<h1>BORN TO FLAG OUTLIERS
-</h1>
-</header>
--->
-
-	<header>
-		<h1>Download</h1>
-	</header>
-	<main>
-		<article>
-			<!--
-<h2>Download</h2>
--->   
-<h3 id="git">Git</h3>
-<p>The code is available on github. You can either clone the repository</p>
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>	git clone https://github.com/asiffer/libspot.git
-</code></pre>
+	<div class="tab">
+	 
+		<a href="/index.html">Home</a>
+	  
+		<a href="/tuto/">Tutorial</a>
+	  
+		<a href="/download/">Download</a>
+	  
+		<a href="/about/">About</a>
+	         
+	</div>
+	
 </div>
+
+
+		<header>
+			<h1>Download</h1>
+		</header>
+		<body>
+			<main><h3 id="git">Git</h3>
+<p>The code is available on github. You can either clone the repository</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://github.com/asiffer/libspot.git</code></pre></figure>
+
 <p>or download the last version archive <a href="https://github.com/asiffer/libspot/archive/master.zip">here</a></p>
 
 <h3 id="ubuntu">Ubuntu</h3>
 <p>For Ubuntu users, the following ppa can be added to you system:</p>
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>	sudo add-apt-repository ppa:asiffer/libspot
-	sudo apt-get update	
-</code></pre>
-</div>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>add-apt-repository ppa:asiffer/libspot
+<span class="nb">sudo </span>apt-get update	</code></pre></figure>
+
 <p>Then you can easily install the <code class="highlighter-rouge">libspot-dev</code> package</p>
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>	sudo apt install libspot-dev 
-</code></pre>
-</div>
 
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">sudo </span>apt <span class="nb">install </span>libspot-dev </code></pre></figure>
 
-		</article>
-	</main>
-</body>
-<footer>
-	<p>by asr</p>
-</footer>
-
+</main>
+		</body>
+	</div>
 </html>

@@ -28,26 +28,4 @@
 </html>
   
 
-<!--
-<div class="float-left-area">
-<!--
-<div class="inner-left" align="justify">
---
-	{{ content }}
-
-<!--</div>--
-</div>
-
-<div class="float-right-area">
-<!-- <div class="inner-right" align="left"> --
-
-<p><a href="#intro">Introduction</a></p>
-<p><a href="#buildspot">Construct a SPOT object</a></p>
-<p><a href="#buildotherspot">Other constructors</a></p>
-
-<!-- </div> --
-</div>
-
-<div class="clear-floated"></div>
--->
 

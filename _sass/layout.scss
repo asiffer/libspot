@@ -1,71 +1,183 @@
-body {
+#page {
+	margin: 0 auto;
+	width: 60%;
+}
+
+.topbar {
+	float: left;
+	width: 100%;
+	background: #FFFFFF;
+	margin: 0 auto;
+}
+
+.topbar .title {
+	float: left;
 	margin: 0;
-	color: $font-color;
-	font-family: $font-style;
-	text-align: justify;
-	font-size: 1.1em;
-	line-height: 1.6;
-	-webkit-font-smoothing: antialiased;
-}
-h1,
-h2,
-h3 {
+	font-family: $font3, sans serif;
 	font-weight: bold;
-	color: $main;
-	font-family: $font-title;
-	line-height: 1.5;
-}
-h1 {
-	color: $main;
-	font-family: 'Oswald';
-	font-weight: normal;
-	font-size: 3.5em;
-	color: $red;
-	text-transform: uppercase;
-	a,
-	a:visited {
+	font-size: 2em;
+	color: $color1;
+	a:link {
+		color: $color1;
 		text-decoration: none;
-		color: $main;
+	}
+	a:hover {
+		color: $color2;
+		text-decoration: none;
 	}
 }
+
+.topbar .tab {
+	float: right;
+	margin: 0 auto;
+	a {
+		float: left;
+		text-decoration: none;
+		padding: 1em 1em;
+		background: #FFFFFF;
+		font-family: $font3, sans-serif;
+		display: block;
+		color: $color1;
+		text-align: center;
+		&:hover,
+		&:active {
+			background: $color1;
+			text-decoration: none;
+			color: $color2;
+		}
+	}
+}
+
+
+body {
+	float: left;
+	background-color: #FFFFFF;
+	color: $color1;
+	font: normal 100% $font1;
+	margin: 0 auto;
+	width: 100%;
+}
+h1 {
+	color: $color2;
+	font: normal 4em $font2;
+	text-transform: uppercase;
+	text-decoration: none;
+}
 h2 {
-	font-size: 2em;
-	font-family: $font-style;
-	color: $blue;
+	font: 2em;
+	font: normal 2.5em $font2;
+	color: $color3;
 }
-homecat,
-homecat {
-	color: $main;
-	font-family: 'Oswald';
-	font-weight: normal;
-	font-size: 25px;
+h3 {
+	color: $color1;
+	font: bold 1.5em $font1, sans serif;
+	line-height: 1em;
 }
-a,
+
+a {
+	color: $color3;
+}
 a:visited {
-	color: $link-color;
+	color: $color2;
 	text-decoration: underline;
 	font-weight: bold;
 }
 a:hover {
-	color: $link-hover-color;
+	color: $color2;
 	text-decoration: underline;
 }
-header {
-	background: $header;
-	/*background-image: url("test.pdf");*/
-	padding: 0px 15px;
-	text-align: center;
-	margin: 50px 0 0;
-	height: 50vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+
 main {
-	padding: 0 15px;
-	max-width: $content-width;
+	float: left;
 	margin: 0 auto;
+	width: 100%;
+	font: normal 1.1em $font1, sans serif;
+	text-align: justify;
+	
 }
+
+.bash {
+	color: #FFFFFF;
+	background-color: $color1;
+	font: normal 1em $font4; 
+	padding: 0.5em 1em;
+	display: block;
+	&:before {
+    		content: '>';
+	}
+}
+
+header {
+	float: left;
+	background: $color1;
+	padding: 3em 0;
+	text-align: center;
+	margin: 0 -33.33%;
+	width: 166.66%;
+}
+
+
+
+@media (max-width: 768px)
+{
+	#page {
+		margin: 0 auto;
+		width: 100%;
+	}
+
+
+	header {
+		margin: 0 auto;
+		width: 100%;
+		padding: 2em 0;
+	}
+	
+	h1 {
+		font-size: 3em;
+	}
+	
+	.topbar {
+		text-align: center;
+	}
+	
+	.topbar .title {
+		float: left;
+		text-align: center;
+		width: 100%;
+		margin: 0.25em auto;
+	}
+	
+	.tab {
+		float: left;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		a {
+			width: 25%;
+			float: center;
+			margin: 0 auto;
+			display: inline-block;
+		}
+	}
+	
+	main {
+		width: 90%;
+		margin: auto 5%;
+		font-size: 1em;
+		/*padding: auto 5em;*/
+	}
+	
+}
+	
+
+/*
+pre, code {
+	
+}*/
+
+
+
+/*
 time {
 	color: #898989;
 }
@@ -90,11 +202,11 @@ time {
 	border: thin solid $mediumred; 
 	overflow: hidden;
 }
-
+*/
 /* Aside */
 
 
-
+/*
 aside {
 	position: fixed;
 	top: 0;
@@ -157,7 +269,8 @@ aside {
 		}
 	}
 }
-
+*/
+/*
 * {
     box-sizing: border-box;
 }
@@ -180,7 +293,7 @@ aside {
 		padding: 5px;
 		padding-left: 10px;
 		font-family: 'Muli', sans-serif;
-		/*line-height: 20px;*/
+		line-height: 20px;
 		margin-bottom: -20px;
 		box-shadow: 0;
 		color: $main;
@@ -191,7 +304,7 @@ aside {
 			color: $red;
 		}
 	}
-}
+}*/
 /*
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -209,17 +322,19 @@ aside {
     float: left;
     padding: 15px;
 }*/
+
+/*
 .row::after {
     content: "";
     clear: both;
     display: table;
-}
+}*/
 /*Base Mobile Layout*/
 
 
 footer {
 	text-align: center;
-	padding: 40px;
+	padding: 2em;
 }
 
 /* left menu */
@@ -285,21 +400,20 @@ sidebar {
 
 
 /* tip/alert block */
+/*
 .tip {
-	padding: 5px; 
-	margin: 0.50em 0; 
-	background-color: $lightblue; 
-	border: thin solid $mediumblue; 
-	overflow: hidden;
-	font-size: 14px;
-}
+	padding: 0.5em;
+	background-color: $color3; 
+	border: thin solid $mediumblue;
+	font: normal 1em font2;
+	
+}*/
 
 .alert {
-	padding: 5px; 
-	margin: 0.50em 0; 
-	background-color: $lightred; 
-	border: thin solid $mediumred; 
-	overflow: hidden;
-	font-size: 14px;
+	background-color: $color1; 
+	border: thin solid $color2; 
+	color: $color2;
+	font: normal 1em $font1, sans serif;
+	padding: 0.5em 1em;
 }
 

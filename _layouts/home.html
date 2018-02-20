@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
-<link href="/css/syntax.css" rel="stylesheet">
-{% include head.html %}
-
-<body>
-	{% include header.html %}
-	<header>
-		<h1>born to frag outliers</h1>
-	</header>
-	<main>
-		<center>
-		<article>
-			{{ content }}
-		</article>
-		</center>
-	</main>
-</body>
-{% include footer.html %}
+	{% include head.html %}
+	<div id="page">
+		{% include topbar.html %}
+		<header>
+			<h1>BORN TO FRAG OUTLIERS</h1>
+		</header>
+		<body>
+			<main style="text-align: center;">
+				{{ content }}
+			</main>
+		</body>
+	</div>
 </html>
