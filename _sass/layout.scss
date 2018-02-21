@@ -13,9 +13,8 @@
 .topbar .title {
 	float: left;
 	margin: 0;
-	font-family: $font3, sans serif;
+	font: normal 2em $font3, sans serif;
 	font-weight: bold;
-	font-size: 2em;
 	color: $color1;
 	a:link {
 		color: $color1;
@@ -35,7 +34,7 @@
 		text-decoration: none;
 		padding: 1em 1em;
 		background: #FFFFFF;
-		font-family: $font3, sans-serif;
+		font: normal 1em $font3, sans-serif;
 		display: block;
 		color: $color1;
 		text-align: center;
@@ -132,6 +131,32 @@ pre, code  {
 	white-space: pre-wrap;
 }
 
+footer {
+	text-align: center;
+	padding: 2em;
+}
+
+
+.alert {
+	background-color: $color1; 
+	border: thin solid $color2; 
+	color: $color2;
+	font: normal 1em $font1, sans serif;
+	padding: 0.5em 1em;
+	pre, code  {
+		color: $color2;
+	}
+}
+
+
+@media (min-width: 1440px)
+{
+	main {
+		width: 70%;
+		margin: auto 15%;
+	}
+	
+}
 
 
 @media (max-width: 768px)
@@ -164,13 +189,14 @@ pre, code  {
 		margin: 0.25em auto;
 	}
 	
-	.tab {
+	.topbar .tab {
 		float: left;
 		width: 100%;
 		margin: 0 auto;
 		display: flex;
 		a {
-			max-width: 23%;
+			font-size: 1em;
+			width: 23%;
 			float: center;
 			margin: 0 auto;
 			display: inline-block;
@@ -186,7 +212,6 @@ pre, code  {
 	main .block {
 		float: left;
 		width: 100%;
-		/*text-align: center;*/
 	}
 	
 	pre  {
@@ -198,47 +223,15 @@ pre, code  {
 }
 	
 
-/*
-pre, code {
-	
-}*/
-
-
-
-/*
-time {
-	color: #898989;
-}
-.container {
-	max-width: $content-width;
-	margin: 0 auto;
-}
-.highlight {
-	margin: 0;
-	padding: 0;
-	font-family: $font-style;
-	font-size: 90%;
-	line-height: 1.5;
-	background-color: #fff;
-}
-
-
-*/
-
-footer {
-	text-align: center;
-	padding: 2em;
-}
-
-
-.alert {
-	background-color: $color1; 
-	border: thin solid $color2; 
-	color: $color2;
-	font: normal 1em $font1, sans serif;
-	padding: 0.5em 1em;
-	pre, code  {
-		color: $color2;
+@media (max-width: 600px)
+{
+	.topbar .tab {
+		a {
+			font-size: 0.8em;
+		}
+		
 	}
 }
+
+
 

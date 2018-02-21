@@ -42,9 +42,8 @@ $header: $main;*/
 .topbar .title {
   float: left;
   margin: 0;
-  font-family: "Muli", sans serif;
+  font: normal 2em "Muli", sans serif;
   font-weight: bold;
-  font-size: 2em;
   color: #0F1F38; }
   .topbar .title a:link {
     color: #0F1F38;
@@ -61,7 +60,7 @@ $header: $main;*/
     text-decoration: none;
     padding: 1em 1em;
     background: #FFFFFF;
-    font-family: "Muli", sans-serif;
+    font: normal 1em "Muli", sans-serif;
     display: block;
     color: #0F1F38;
     text-align: center; }
@@ -143,6 +142,23 @@ pre, code {
   color: #337BAE;
   white-space: pre-wrap; }
 
+footer {
+  text-align: center;
+  padding: 2em; }
+
+.alert {
+  background-color: #0F1F38;
+  border: thin solid #F55449;
+  color: #F55449;
+  font: normal 1em "Open Sans", sans serif;
+  padding: 0.5em 1em; }
+  .alert pre, .alert code {
+    color: #F55449; }
+
+@media (min-width: 1440px) {
+  main {
+    width: 70%;
+    margin: auto 15%; } }
 @media (max-width: 768px) {
   #page {
     margin: 0 auto;
@@ -166,13 +182,14 @@ pre, code {
     width: 100%;
     margin: 0.25em auto; }
 
-  .tab {
+  .topbar .tab {
     float: left;
     width: 100%;
     margin: 0 auto;
     display: flex; }
-    .tab a {
-      max-width: 23%;
+    .topbar .tab a {
+      font-size: 1em;
+      width: 23%;
       float: center;
       margin: 0 auto;
       display: inline-block; }
@@ -184,48 +201,14 @@ pre, code {
 
   main .block {
     float: left;
-    width: 100%;
-    /*text-align: center;*/ }
+    width: 100%; }
 
   pre {
     font-size: 0.9em;
     width: 80%; } }
-/*
-pre, code {
-	
-}*/
-/*
-time {
-	color: #898989;
-}
-.container {
-	max-width: $content-width;
-	margin: 0 auto;
-}
-.highlight {
-	margin: 0;
-	padding: 0;
-	font-family: $font-style;
-	font-size: 90%;
-	line-height: 1.5;
-	background-color: #fff;
-}
-
-
-*/
-footer {
-  text-align: center;
-  padding: 2em; }
-
-.alert {
-  background-color: #0F1F38;
-  border: thin solid #F55449;
-  color: #F55449;
-  font: normal 1em "Open Sans", sans serif;
-  padding: 0.5em 1em; }
-  .alert pre, .alert code {
-    color: #F55449; }
-
+@media (max-width: 600px) {
+  .topbar .tab a {
+    font-size: 0.8em; } }
 /*pre .hll { background-color: #ffffcc }*/
 /*pre  { background: #f0f0f0; }*/
 /*pre .c { color: #60a0b0; font-style: italic } /* Comment */
