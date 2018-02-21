@@ -210,7 +210,7 @@ footer {
     font-size: 1em;
     width: 80%;
     margin: auto 0; } }
-@media (max-width: 340px) {
+@media (max-width: 400px) {
   .topbar .tab a {
     font-size: 0.8em; }
 
@@ -481,11 +481,17 @@ pre .il {
 
 /* Literal.Number.Integer.Long */
 /*.highlight pre .hll { background-color: #ffffcc }*/
-.highlight .lineno {
-  padding: 0; }
-
+/*.highlight .lineno { padding: 0;}*/
 /*.highlight pre code { display: block; white-space: pre; overflow-x: auto; word-wrap: normal; padding: 0; }*/
-/*.highlight pre  { width: 100%; margin: 0 auto; font: normal 1.1em $font4; white-space: pre-wrap; color: $color4; background: #FFFFFF; } /* -> REAL BACKGROUND */
+.highlight pre {
+  width: 100%;
+  margin: 0 auto;
+  font: normal 1.1em "Ubuntu Mono";
+  white-space: pre-wrap;
+  color: #337BAE;
+  background: #FFFFFF; }
+
+/* -> REAL BACKGROUND */
 /*.highlight pre .c { color: #408080; font-style: italic } /* Comment */
 .highlight pre .err {
   border: 1px solid #FF0000; }
