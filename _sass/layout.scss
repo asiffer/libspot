@@ -131,6 +131,12 @@ pre, code  {
 	white-space: pre-wrap;
 }
 
+pre {
+	margin: auto 0 auto 15%;
+}
+
+
+
 footer {
 	text-align: center;
 	padding: 2em;
@@ -214,22 +220,29 @@ footer {
 		width: 100%;
 	}
 	
-	pre  {
-		font-size: 0.9em;
+	pre {
+		font-size: 1em;
 		width: 80%;
+		margin: auto 0;
 	}
 	
 	
 }
 	
 
-@media (max-width: 600px)
+@media (max-width: 340px)
 {
 	.topbar .tab {
 		a {
 			font-size: 0.8em;
 		}
 		
+	}
+	
+	
+	
+	pre {
+		font-size: 0.9em;
 	}
 }
 
