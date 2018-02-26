@@ -135,7 +135,13 @@ header {
   padding: 3em 0;
   text-align: center;
   margin: 0 -33.33%;
-  width: 166.66%; }
+  width: 166.66%;
+  max-height: 11em; }
+
+header img {
+  float: left;
+  height: 15em;
+  margin: -14em -0.5em; }
 
 pre, code {
   font-size: 1.1em;
@@ -143,11 +149,14 @@ pre, code {
   white-space: pre-wrap; }
 
 pre {
-  margin: auto 0 auto 15%; }
+  margin-left: 15%; }
 
 footer {
+  width: 100%;
+  float: left;
   text-align: center;
-  padding: 2em; }
+  padding-top: 1.5em;
+  padding-bottom: 1em; }
 
 .alert {
   background-color: #0F1F38;
@@ -158,7 +167,7 @@ footer {
   .alert pre, .alert code {
     color: #F55449; }
 
-@media (min-width: 1440px) {
+@media (min-width: 1920px) {
   main {
     width: 70%;
     margin: auto 15%; } }
@@ -172,6 +181,10 @@ footer {
     width: 100%;
     padding: 2em 0;
     overflow: hidden; }
+
+  header img {
+    height: 12em;
+    margin-top: -11em; }
 
   h1 {
     font-size: 3em; }
@@ -213,6 +226,9 @@ footer {
 @media (max-width: 400px) {
   .topbar .tab a {
     font-size: 0.8em; }
+
+  header img {
+    height: 0; }
 
   pre {
     font-size: 0.9em; } }

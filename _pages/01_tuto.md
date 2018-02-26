@@ -1,5 +1,5 @@
 ---
-layout: tuto
+layout: default
 title: Tutorial
 permalink: tuto/
 ---
