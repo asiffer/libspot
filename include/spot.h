@@ -3,7 +3,6 @@
 	\brief Implement the Spot algorithm
 	\details It flags outliers in streaming data
 	\author asr
-	\version 1.0
 */
 
 
@@ -22,6 +21,24 @@ using namespace std;
 
 #ifndef SPOT_H
 #define SPOT_H
+
+
+/** 
+ * 	\enum SPOTEVENT
+ * 	\brief events returned by the (D)SPOT algorithm
+ *
+ * 	The previous integer values we used are kept
+ */
+enum SPOTEVENT: int {
+	NORMAL = 0,
+	ALERT_UP = 1,
+	ALERT_DOWN = -1,
+	EXCESS_UP = 2,
+	EXCESS_DOWN = -2,
+	INIT_BATCH = 3,
+	CALIBRATION = 4
+};
+
 
 /**
  *  \class SpotStatus
@@ -233,7 +250,17 @@ class Spot
 			\retval	3 to initial batch
 			\retval	4 calibration step
 		*/
+		/*
 		int step(double v);
+		*/
+
+
+		/**
+			\brief Spot iteration (experimental)
+			\param[in] v input data
+			\return The nature of the input data
+		*/
+		SPOTEVENT step(double v);
 	
 
 		/**

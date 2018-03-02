@@ -30,15 +30,30 @@ StreamMean::StreamMean(const Ubend & other) : Ubend(other)
 }
 
 
-int StreamMean::step(double x_n)
+UBENDSTATUS StreamMean::step(double x_n)
 {
-	int status = this->push(x_n);
+	UBENDSTATUS status = this->push(x_n);
 	int n = this->size();
 	
 	double M = this->m;
 	double delta, delta_n;
 	
 	
+	if (status == UBENDSTATUS::CRUISING)
+	{
+		double x_1 = this->last_erased_data;
+		delta = x_n - x_1;
+		delta_n = delta/n;
+		this->m = this->m + delta_n;
+	}
+	else
+	{
+		delta = x_n - M;
+		delta_n = delta/n;
+		this->m = M + delta_n;
+	}
+	
+	/*
 	if (status <= 0)
 	{
 		delta = x_n - M;
@@ -51,7 +66,7 @@ int StreamMean::step(double x_n)
 		delta = x_n - x_1;
 		delta_n = delta/n;
 		this->m = this->m + delta_n;
-	}
+	}*/
 	
 	
 	return status;
@@ -146,6 +161,7 @@ bool DSpot::operator<(const DSpot & other) const
 				3: to initial batch
 				4: calibration step
 */
+/* deprecated (old version)
 int DSpot::step(double x)
 {
 	int res = 0;
@@ -162,6 +178,45 @@ int DSpot::step(double x)
 		res = this->Spot::step(x - this->drift);
 		
 		if (res*res != 1) // not an alarm
+		{
+			filled = this->model.step(x); // add data to the window
+			this->drift = this->model.mean();
+		}
+	}
+	else // if the DSpot window is not filled yet
+	{
+		filled = this->model.step(x);
+	}
+	
+	if (filled == 0) // if the window has just been filled
+	{
+		this->drift = this->model.mean();
+	}
+	
+	return(res);
+}
+*/
+
+
+/**
+EXPERIMENTAL
+*/
+SPOTEVENT DSpot::step(double x)
+{
+	SPOTEVENT res;
+	int filled = -1;
+	
+	if (this->depth == 0) // SPOT case (no drift computation)
+	{
+		return this->Spot::step(x);
+	}
+	else if ( this->model.isFilled() ) // if the DSpot window is filled
+	{
+
+		// remove the current drift and send it to the spot instance
+		res = this->Spot::step(x - this->drift);
+		
+		if ( (res != SPOTEVENT::ALERT_UP) && (res != SPOTEVENT::ALERT_DOWN)) // not an alarm
 		{
 			filled = this->model.step(x); // add data to the window
 			this->drift = this->model.mean();
@@ -247,9 +302,9 @@ string DSpot::stringStatus()
 {
 	stringstream ss;
 	string h = "----- DSpot status ----";
-	ss << '\t' << h << endl;
-	ss << '\t' << std::left << "drift = " << setw(h.length()-8) << this->drift << endl;
-	ss << '\t' << setw(h.length()) << "" << endl;
+	ss << h << endl;
+	ss << std::left << "drift = " << setw(h.length()-8) << this->drift << endl;
+	ss << setw(h.length()) << "" << endl;
 	ss << this->DSpot::status().str();
 	return ss.str();
 }

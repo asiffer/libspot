@@ -7,7 +7,7 @@ DESTDIR =
 ###
 
 
-VERSION = 1.0
+VERSION = 1.1
 
 # Current directory
 CURDIR = $(realpath .)
@@ -103,6 +103,7 @@ install:
 # test spot on a gaussian white noise
 test_spot:
 	@echo
+	@echo "[Testing SPOT]"
 	@echo "Building test ..."
 	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
 	@echo "Running test ..."
@@ -110,6 +111,7 @@ test_spot:
 	
 test_dspot:
 	@echo
+	@echo "[Testing DSPOT]"
 	@echo "Building test ..."
 	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_dspot $(TEST_DIR)/test_dspot.cpp -lspot 
 	@echo "Running test ..."

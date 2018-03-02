@@ -54,6 +54,7 @@ int Ubend::getCapacity()
 }
 
 
+/*
 int Ubend::push(double x)
 {
 	int s = this->size();
@@ -81,7 +82,37 @@ int Ubend::push(double x)
 		return(1);
 	}
 	
+}*/
+
+UBENDSTATUS Ubend::push(double x)
+{
+	int s = this->size();
+
+	if ( this->capacity == -1 ) // infinite capacity
+	{
+		this->push_back(x);
+		return(UBENDSTATUS::INFINITE);
+	}
+	else if ( s < this->capacity-1 )
+	{
+		this->push_back(x);
+		return(UBENDSTATUS::NOT_FILLED);
+	}
+	else if ( s == this->capacity-1 )
+	{
+		this->push_back(x);
+		return(UBENDSTATUS::JUST_FILLED);
+	}
+	else
+	{
+		this->last_erased_data = this->operator[](this->cursor);
+		this->operator[](this->cursor) = x;
+		this->cursor = (this->cursor + 1) % this->capacity;
+		return(UBENDSTATUS::CRUISING);
+	}
+	
 }
+
 
 int Ubend::getCursor()
 {

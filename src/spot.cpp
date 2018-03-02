@@ -251,6 +251,7 @@ Spot Spot::operator+(const Spot &spot) const
 				3: to initial batch
 				4: calibration step
 */
+/*
 int Spot::step(double v)
 {
 
@@ -318,7 +319,81 @@ int Spot::step(double v)
         
         return(0);
     }
+}*/
+
+
+/** EXPERIMENTAL
+
+*/
+SPOTEVENT Spot::step(double v)
+{
+
+    (this->n)++;
+    if (this->n < this->n_init)
+    {
+        this->init_batch[this->n-1] = v;
+        return(SPOTEVENT::INIT_BATCH);
+    }
+    else if (this->n == this->n_init)
+    {
+    	this->init_batch[this->n-1] = v;
+        this->calibrate();
+        return(SPOTEVENT::CALIBRATION);
+    }
+    else
+    {
+        if (this->up) // up check
+        {
+
+            if (this->alert && v>this->z_up) // check alert
+            {
+		this->n--;
+		this->al_up++;
+		return(SPOTEVENT::ALERT_UP);
+            }
+            else if (v>this->t_up) // check update
+            {
+            	// increment Nt_up
+		this->Nt_up++;
+				
+                // push value
+                this->upper_bound.push( v - (this->t_up) );
+                
+                // fit
+                this->fitup();
+                
+		return(SPOTEVENT::EXCESS_UP);
+            }
+
+        }
+
+        if (this->down) // down check
+        {
+            if (this->alert && v<this->z_down) // check alert
+            {
+            	this->n--;
+            	this->al_down++;
+                return(SPOTEVENT::ALERT_DOWN);
+            }
+            else if (v<this->t_down) // check update
+            {
+            	// increment Nt_down
+            	this->Nt_down++;
+
+                // push value
+                this->lower_bound.push(-(v-this->t_down));
+                
+                // update
+                this->fitdown();
+		return(SPOTEVENT::EXCESS_DOWN);
+            }
+
+        }
+        
+        return(SPOTEVENT::NORMAL);
+    }
 }
+
 
 
 /**
@@ -509,16 +584,16 @@ string SpotConfig::str()
 {
 	stringstream ss;
 	string h = "---- Spot config ----";
-	ss << '\t' << h << endl;
+	ss << h << endl;
 	ss.precision(4);
-	ss << "\t" << "q" << "\t\t" << this->q << endl; 
-	ss << "\t" << "n_init" << "\t\t" << this->n_init << endl;
-	ss << "\t" << "level" << "\t\t" << this->level << endl; 
-	ss << "\t" << "up" << "\t\t" << this->up << endl; 
-	ss << "\t" << "down" << "\t\t" << this->down << endl; 
-	ss << "\t" << "alert" << "\t\t" << this->alert << endl; 
-	ss << "\t" << "bounded" << "\t\t" << this->bounded << endl; 
-	ss << "\t" << "max_excess" << "\t" << this->max_excess << endl; 
+	ss << "q" << "\t\t" << this->q << endl; 
+	ss << "n_init" << "\t\t" << this->n_init << endl;
+	ss << "level" << "\t\t" << this->level << endl; 
+	ss << "up" << "\t\t" << this->up << endl; 
+	ss << "down" << "\t\t" << this->down << endl; 
+	ss << "alert" << "\t\t" << this->alert << endl; 
+	ss << "bounded" << "\t\t" << this->bounded << endl; 
+	ss << "max_excess" << "\t" << this->max_excess << endl; 
 	ss << endl;
 	return ss.str();
 }
@@ -531,17 +606,17 @@ string SpotStatus::str()
 {
 	stringstream ss;
 	string h = "----- Spot status -----";
-	ss << '\t' << h << endl;
-	ss << '\t' << std::left << "n = " << setw(h.length()-4) << this->n << endl;
-	ss << '\t' << setw(h.length()) << "" << endl;
-	ss << "\t" << "info" << "\t" << "up" << "\t" << "down" << endl; 
-	ss << '\t' << setfill('-') << setw(h.length()) << "" << endl;
+	ss << h << endl;
+	ss << std::left << "n = " << setw(h.length()-4) << this->n << endl;
+	ss << setw(h.length()) << "" << endl;
+	ss << "info" << "\t" << "up" << "\t" << "down" << endl; 
+	ss << setfill('-') << setw(h.length()) << "" << endl;
 	ss.precision(4);
-	ss << "\t" << "Nt" << "\t" << this->Nt_up << "\t" << this->Nt_down << endl; 
-	ss << "\t" << "ex" << "\t" << this->ex_up << "\t" << this->ex_down << endl; 
-	ss << "\t" << "al" << "\t" << this->al_up << "\t" << this->al_down << endl; 
-	ss << "\t" << "t" << "\t" << this->t_up << "\t" << this->t_down << endl; 
-	ss << "\t" << "z" << "\t" << this->z_up << "\t" << this->z_down << endl; 
+	ss << "Nt" << "\t" << this->Nt_up << "\t" << this->Nt_down << endl; 
+	ss << "ex" << "\t" << this->ex_up << "\t" << this->ex_down << endl; 
+	ss << "al" << "\t" << this->al_up << "\t" << this->al_down << endl; 
+	ss << "t" << "\t" << this->t_up << "\t" << this->t_down << endl; 
+	ss << "z" << "\t" << this->z_up << "\t" << this->z_down << endl; 
 	ss << endl;
 	return ss.str();
 }

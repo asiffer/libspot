@@ -2,7 +2,6 @@
 	\file bounds.h
 	\brief A basic structure to manipulate bounds
 	\author asr
-	\version 1.0
 */
 
 #include <vector>
@@ -19,7 +18,7 @@ using namespace std;
  *	\brief A structure which embeds upper and lower thresholds
  *	\details Some basic methods are also implemented
  *	------|------------|-------
- *		 down		   up
+ * 	    down	   up
  */
 class Bounds {
 	public:

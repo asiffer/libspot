@@ -2,7 +2,6 @@
  * \file brent.h
  * \brief Brent's method implementation 
  * \author asr
- * \version 1.0
  *
  * \see https://en.wikipedia.org/wiki/Brent%27s_method
  *

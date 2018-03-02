@@ -3,14 +3,12 @@
 	\brief Implement the DSpot algorithm
 	\details It flags outliers in streaming data (with drift!)
 	\author asr
-	\version 1.0
 */
 
 
 
 #include "spot.h"
 #include "ubend.h"
-//#include "streamstats.h"
 #include <vector>
 #include <iostream>
 #include <numeric>
@@ -67,7 +65,8 @@ class StreamMean : public Ubend {
 			\param[in] x_n New incoming data
 			\return The state of the Ubend container (see the Ubend class)
 		*/
-		int step(double x_n);
+		//int step(double x_n);
+		UBENDSTATUS step(double x_n);
 		
 		/*!
 			\brief The sum operator (merge the Ubend)
@@ -98,15 +97,15 @@ class DSpot : public Spot
         int depth;			/*!< the depth of the moving average */
         double drift;		/*!< the local drift */
     
-		StreamMean model;	/*!< A buffer to compute the local drift */
-		
-		// method
-		
-		/**
-			\brief Compute and return the local drift
-			\details the attribute "drift" is updated
-		*/
-		double computeDrift();
+	StreamMean model;	/*!< A buffer to compute the local drift */
+	
+	// method
+	
+	/**
+		\brief Compute and return the local drift
+		\details the attribute "drift" is updated
+	*/
+	double computeDrift();
 		
     public:
         // constructors (use the Spot constructor syntax)
@@ -158,7 +157,7 @@ class DSpot : public Spot
 			\param[in] max_excess Maximum number of storable excesses (for bounded mode) 
 			\return Spot object
 		*/
-        DSpot(	int d, double q, vector<double> init_data, double level, 
+        	DSpot(	int d, double q, vector<double> init_data, double level, 
 				bool up, bool down, bool alert, bool bounded, int max_excess); 
         
 		/**
@@ -170,7 +169,7 @@ class DSpot : public Spot
         //template<typename... Args> 
         //DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
         
-        /**
+        	/**
 			\brief copy constructor (copy only the parameters)
 			\return DSpot object
 		*/
@@ -207,7 +206,16 @@ class DSpot : public Spot
 			\retval	3 to initial batch
 			\retval	4 calibration step
 		*/
-		int step(double x);
+		/*
+		int step(double x);*/
+		
+		
+		/**
+			\brief Spot iteration
+			\param[in] v input data
+			\return The nature of the input data
+		*/
+		SPOTEVENT step(double x);
 
 		// access functions
 		

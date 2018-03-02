@@ -3,7 +3,6 @@
 	\brief A "ubend" container class.
 	\details This is a kind of circular vector.
 	\author asr
-	\version 1.0
 */
 
 #ifndef UBEND_H
@@ -16,8 +15,22 @@
 using namespace std;
 
 
+/** 
+ * 	\enum UBENDSTATUS
+ * 	\brief Status of the Ubend container
+ *
+ * 	The previous integer values we used are kept
+ */
+enum UBENDSTATUS: int {
+	CRUISING = 1,
+	JUST_FILLED = 0,
+	NOT_FILLED = -1,
+	INFINITE = -2
+};
+
+
 /**
- *  \class Ubend
+ *  	\class Ubend
  *	\brief This container is a kind of circular vector. 
  *	\details First it is empty. 
  *	Then we feed it with data until its max capacity is reached (transitory state).
@@ -77,9 +90,8 @@ class Ubend : public std::vector<double>
 			\retval 0	The Ubend is just filled
 			\retval 1	Cruising case
 		*/
-		int push(double x);
-
-		
+		//int push(double x);
+		UBENDSTATUS push(double x);
 		
 };
 

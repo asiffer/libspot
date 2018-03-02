@@ -3,20 +3,82 @@
 	\brief Implement the DSpot algorithm
 	\details It flags outliers in streaming data (with drift!)
 	\author asr
-	\version 1.0
 */
 
 
 
 #include "spot.h"
 #include "ubend.h"
-#include "streamstats.h"
 #include <vector>
 #include <iostream>
 #include <numeric>
 #include <sstream>
 
 using namespace std;
+
+
+
+
+#ifndef STREAMMEAN_H
+#define STREAMMEAN_H
+
+/**
+ *  \class StreamMean
+ *	\brief Compute the mean over streaming data (window)
+ *	\details The harmonic mean has also been added but it is not used
+ */
+class StreamMean : public Ubend {
+	protected:
+		double m; /*!< the classic mean */
+		
+	public:
+		/*!
+			\brief Basic constructor
+			\param[in] size The window size where the mean is computed (-1 for infinite window)
+			\return A StreamMean object
+		*/
+		StreamMean(int size = -1);
+		
+		/*!
+			\brief Basic constructor with a first batch of data
+			\param[in] size The window size where the mean is computed (-1 for infinite window)
+			\param[in] v An initial batch of data
+			\return A StreamMean object
+		*/
+		StreamMean(int size, vector<double> v);
+		
+		/*!
+			\brief Constructor from a Ubend object
+			\param[in] other External Ubend object
+			\return A StreamMean object
+		*/
+		StreamMean(const Ubend & other);
+		
+		/*!
+			\brief Return the mean within the window
+		*/
+		double mean();
+		
+		
+		/*!
+			\brief Update the mean with a new incoming data
+			\param[in] x_n New incoming data
+			\return The state of the Ubend container (see the Ubend class)
+		*/
+		//int step(double x_n);
+		UBENDSTATUS step(double x_n);
+		
+		/*!
+			\brief The sum operator (merge the Ubend)
+			\param[in] other Another StreamMean object
+			\return A new StreamMean instance
+		*/		
+		StreamMean operator+(const StreamMean& other) const;
+};
+
+#endif // STREAMMEAN_H
+
+
 
 
 #ifndef DSPOT_H
@@ -35,15 +97,15 @@ class DSpot : public Spot
         int depth;			/*!< the depth of the moving average */
         double drift;		/*!< the local drift */
     
-		StreamMean model;	/*!< A buffer to compute the local drift */
-		
-		// method
-		
-		/**
-			\brief Compute and return the local drift
-			\details the attribute "drift" is updated
-		*/
-		double computeDrift();
+	StreamMean model;	/*!< A buffer to compute the local drift */
+	
+	// method
+	
+	/**
+		\brief Compute and return the local drift
+		\details the attribute "drift" is updated
+	*/
+	double computeDrift();
 		
     public:
         // constructors (use the Spot constructor syntax)
@@ -95,7 +157,7 @@ class DSpot : public Spot
 			\param[in] max_excess Maximum number of storable excesses (for bounded mode) 
 			\return Spot object
 		*/
-        DSpot(	int d, double q, vector<double> init_data, double level, 
+        	DSpot(	int d, double q, vector<double> init_data, double level, 
 				bool up, bool down, bool alert, bool bounded, int max_excess); 
         
 		/**
@@ -107,7 +169,7 @@ class DSpot : public Spot
         //template<typename... Args> 
         //DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
         
-        /**
+        	/**
 			\brief copy constructor (copy only the parameters)
 			\return DSpot object
 		*/
@@ -144,7 +206,16 @@ class DSpot : public Spot
 			\retval	3 to initial batch
 			\retval	4 calibration step
 		*/
-		int step(double x);
+		/*
+		int step(double x);*/
+		
+		
+		/**
+			\brief Spot iteration
+			\param[in] v input data
+			\return The nature of the input data
+		*/
+		SPOTEVENT step(double x);
 
 		// access functions
 		
