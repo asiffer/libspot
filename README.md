@@ -17,11 +17,18 @@ Github pages : https://asiffer.github.io/libspot/
 * `StreamStats` (compute basic statistics over sliding window)
 
 ## INSTALL
+The most simple way to install the library is to add my ppa and let your package manager do the job:
+```
+$ add-apt-repository ppa:asiffer/libspot
+$ apt-get update
+$ apt-get install libspot-dev
+```
+
+Otherwise, you can clone the repository and install it manually:
 ```
 $ make
 $ sudo make install
 ```
-
 In order to build the library (`lib/libspot.so`), use `make` in the main directory.
 To install the library on your system you can either move by yourself the library file and the headers to the right folder or set the paths in the installation step:
 ```
@@ -32,7 +39,7 @@ After that, you can test the `SPOT` algorithm with `make test`.
 
 
 ## NEXT
-* `python3` wrapper with swig
+* `python3` wrapper with swig (it is curently available through the `python3-libspot` package)
 
 
 ## LICENSE
