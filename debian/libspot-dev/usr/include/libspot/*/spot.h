@@ -23,6 +23,8 @@ using namespace std;
 #define SPOT_H
 
 
+
+
 /** 
  * 	\enum SPOTEVENT
  * 	\brief events returned by the (D)SPOT algorithm
@@ -67,7 +69,7 @@ class SpotStatus {
 
 
 /**
- *  \class SpotConfig
+ *  	\class SpotConfig
  *	\brief This structure gathers the configuration of a Spot object (aims to build similar instance)
  */
 class SpotConfig {
@@ -90,7 +92,7 @@ class SpotConfig {
 
 
 /**
- *  \class Spot
+ *  	\class Spot
  *	\brief Embed the Spot algorithm to flag outliers in streaming data
  *	\details This object computes probabilistic upper and lower bounds (as desired) according to the incoming data and 
  *	the main parameter q
@@ -231,7 +233,8 @@ class Spot
 			\brief Merge 2 Spot instances
 			\param[in] spot Spot instance
 			\return Spot
-			\details Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the lower_bound of Spot_1 and the upper_bound of Spot_2.
+			\details Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. 
+			This function takes the lower_bound of Spot_1 and the upper_bound of Spot_2.
 		*/
 		Spot operator+(const Spot &spot) const;
 	
@@ -256,7 +259,7 @@ class Spot
 
 
 		/**
-			\brief Spot iteration (experimental)
+			\brief Spot iteration
 			\param[in] v input data
 			\return The nature of the input data
 		*/
@@ -309,4 +312,6 @@ class Spot
 		double getLower_t();
 };
 
+
 #endif // SPOT_H
+

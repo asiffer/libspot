@@ -11,4 +11,4 @@ Section: debug
 Priority: extra
 Multi-Arch: same
 Description: Debug symbols for libspot-dev
-Build-Ids: 4132f0a4daa12e419b9da7576f95256281437c0e 4132f0a4daa12e419b9da7576f95256281437c0e
+Build-Ids: e5979c90568d068a69d2cb8ffb189e8b3299e5f1 e5979c90568d068a69d2cb8ffb189e8b3299e5f1

@@ -20,32 +20,39 @@ Spot::Spot(double q, int n_init)
 {
 	this->q = q;
 	this->bounded = true;
-    this->max_excess = 200;
-    this->alert = true;
-    this->up = true;
-    this->down = true;
+	this->max_excess = 200;
+	this->alert = true;
+	this->up = true;
+	this->down = true;
 	this->n_init = n_init;
 	this->level = 0.98;
 	
-    this->n = 0;
-    
-    this->Nt_up = 0;
-    this->Nt_down = 0;
-    
-    this->al_up = 0;
-    this->al_down = 0;
-    
-    this->init_batch = vector<double>(this->n_init);
-    
-    if (up)
-    {
-    	this->upper_bound = GPDfit(max_excess);
-    }
+	this->n = 0;
+	
+	this->Nt_up = 0;
+	this->Nt_down = 0;
+	
+	this->al_up = 0;
+	this->al_down = 0;
+	
+	this->t_up = 0.0; 
+	this->t_down = 0.0; 
+	
+	this->z_up = 0.0; 	
+	this->z_down = 0.0; 
+	
+	this->init_batch = vector<double>(this->n_init);
+	
+	if (up)
+	{
+		this->upper_bound = GPDfit(max_excess);
+	}
 
-    if (down)
-    {
+	if (down)
+	{
 		this->lower_bound = GPDfit(max_excess);
-    }
+	}
+		
 }
 
 
@@ -84,16 +91,22 @@ Spot::Spot(double q, int n_init, double level,
 		max_excess = -1;
 	}
 	
-    this->q = q;
-    this->alert = alert;
-    this->up = up;
-    this->down = down;
-    this->n = 0;
-    this->al_up = 0;
-    this->al_down = 0;
-    this->Nt_up = 0;
-    this->Nt_down = 0;
+	this->q = q;
+	this->alert = alert;
+	this->up = up;
+	this->down = down;
+	this->n = 0;
+	this->al_up = 0;
+	this->al_down = 0;
+	this->Nt_up = 0;
+	this->Nt_down = 0;
 	this->level = level;
+	
+	this->t_up = 0.0; 
+	this->t_down = 0.0; 
+	
+	this->z_up = 0.0; 	
+	this->z_down = 0.0; 
 	
 	if (n_init > 0)
 	{
@@ -107,19 +120,20 @@ Spot::Spot(double q, int n_init, double level,
 	this->init_batch = vector<double>(this->n_init);
 
 
-    this->bounded = bounded;
-    this->max_excess = max_excess;
+	this->bounded = bounded;
+	this->max_excess = max_excess;
 
 
-    if (up)
-    {
-    	this->upper_bound = GPDfit(max_excess);
-    }
+	if (up)
+	{
+		this->upper_bound = GPDfit(max_excess);
+	}
 
-    if (down)
-    {
+	if (down)
+	{
 		this->lower_bound = GPDfit(max_excess);
-    }
+	}
+	
 
 }
 
@@ -165,24 +179,30 @@ Spot::Spot(SpotConfig sc)
 	this->level = sc.level;
 	
 	this->n = 0;
-    
-    this->Nt_up = 0;
-    this->Nt_down = 0;
-    
-    this->al_up = 0;
-    this->al_down = 0;
-    
-    if (up)
-    {
-    	this->upper_bound = GPDfit(max_excess);
-    }
+	
+	this->Nt_up = 0;
+	this->Nt_down = 0;
+	
+	this->al_up = 0;
+	this->al_down = 0;
+	
+	this->t_up = 0.0; 
+	this->t_down = 0.0; 
+	
+	this->z_up = 0.0; 	
+	this->z_down = 0.0; 
+	
+	if (up)
+	{
+		this->upper_bound = GPDfit(max_excess);
+	}
 
-    if (down)
-    {
+	if (down)
+	{
 		this->lower_bound = GPDfit(max_excess);
-    }
-    
-    this->init_batch = vector<double>(this->n_init);
+	}
+	
+	this->init_batch = vector<double>(this->n_init);
 }
 
 
@@ -194,7 +214,7 @@ Spot::Spot(SpotConfig sc)
 */
 bool Spot::operator==(const Spot &spot) const
 {
-	    
+		
 	bool valid = this->q == spot.q;
 	valid &= this->bounded == spot.bounded;
 	valid &= this->max_excess == spot.max_excess;
@@ -212,7 +232,7 @@ bool Spot::operator==(const Spot &spot) const
 */
 Spot Spot::operator+(const Spot &spot) const
 {
-	    
+		
 	if ( this->operator==(spot) )
 	{
 		Spot spotsum(spot.config());
@@ -255,70 +275,70 @@ Spot Spot::operator+(const Spot &spot) const
 int Spot::step(double v)
 {
 
-    (this->n)++;
-    if (this->n < this->n_init)
-    {
-        this->init_batch[this->n-1] = v;
-        return(3);
-    }
-    else if (this->n == this->n_init)
-    {
-    	this->init_batch[this->n-1] = v;
-        this->calibrate();
-        return(4);
-    }
-    else
-    {
-        if (this->up) // up check
-        {
+	(this->n)++;
+	if (this->n < this->n_init)
+	{
+		this->init_batch[this->n-1] = v;
+		return(3);
+	}
+	else if (this->n == this->n_init)
+	{
+		this->init_batch[this->n-1] = v;
+		this->calibrate();
+		return(4);
+	}
+	else
+	{
+		if (this->up) // up check
+		{
 
-            if (this->alert && v>this->z_up) // check alert
-            {
+			if (this->alert && v>this->z_up) // check alert
+			{
 				this->n--;
 				this->al_up++;
-                return(1);
-            }
-            else if (v>this->t_up) // check update
-            {
-            	// increment Nt_up
+				return(1);
+			}
+			else if (v>this->t_up) // check update
+			{
+				// increment Nt_up
 				this->Nt_up++;
 				
-                // push value
-                this->upper_bound.push( v - (this->t_up) );
-                
-                // fit
-                this->fitup();
-                
+				// push value
+				this->upper_bound.push( v - (this->t_up) );
+				
+				// fit
+				this->fitup();
+				
 				return(2);
-            }
+			}
 
-        }
+		}
 
-        if (this->down) // down check
-        {
-            if (this->alert && v<this->z_down) // check alert
-            {
-            	this->n--;
-            	this->al_down++;
-                return(-1);
-            }
-            else if (v<this->t_down) // check update
-            {
-            	// increment Nt_down
-            	this->Nt_down++;
+		if (this->down) // down check
+		{
+			if (this->alert && v<this->z_down) // check alert
+			{
+				this->n--;
+				this->al_down++;
+				return(-1);
+			}
+			else if (v<this->t_down) // check update
+			{
+				// increment Nt_down
+				this->Nt_down++;
 
-                // push value
-                this->lower_bound.push(-(v-this->t_down));
-                
-                // update
-                this->fitdown();
+				// push value
+				this->lower_bound.push(-(v-this->t_down));
+				
+				// update
+				this->fitdown();
 				return(-2);
-            }
+			}
 
-        }
-        
-        return(0);
-    }
+		}
+		
+		return(0);
+	}
 }*/
 
 
@@ -328,70 +348,70 @@ int Spot::step(double v)
 SPOTEVENT Spot::step(double v)
 {
 
-    (this->n)++;
-    if (this->n < this->n_init)
-    {
-        this->init_batch[this->n-1] = v;
-        return(SPOTEVENT::INIT_BATCH);
-    }
-    else if (this->n == this->n_init)
-    {
-    	this->init_batch[this->n-1] = v;
-        this->calibrate();
-        return(SPOTEVENT::CALIBRATION);
-    }
-    else
-    {
-        if (this->up) // up check
-        {
+	(this->n)++;
+	if (this->n < this->n_init)
+	{
+		this->init_batch[this->n-1] = v;
+		return(SPOTEVENT::INIT_BATCH);
+	}
+	else if (this->n == this->n_init)
+	{
+		this->init_batch[this->n-1] = v;
+		this->calibrate();
+		return(SPOTEVENT::CALIBRATION);
+	}
+	else
+	{
+		if (this->up) // up check
+		{
 
-            if (this->alert && v>this->z_up) // check alert
-            {
+			if (this->alert && v>this->z_up) // check alert
+			{
 		this->n--;
 		this->al_up++;
 		return(SPOTEVENT::ALERT_UP);
-            }
-            else if (v>this->t_up) // check update
-            {
-            	// increment Nt_up
+			}
+			else if (v>this->t_up) // check update
+			{
+				// increment Nt_up
 		this->Nt_up++;
 				
-                // push value
-                this->upper_bound.push( v - (this->t_up) );
-                
-                // fit
-                this->fitup();
-                
+				// push value
+				this->upper_bound.push( v - (this->t_up) );
+				
+				// fit
+				this->fitup();
+				
 		return(SPOTEVENT::EXCESS_UP);
-            }
+			}
 
-        }
+		}
 
-        if (this->down) // down check
-        {
-            if (this->alert && v<this->z_down) // check alert
-            {
-            	this->n--;
-            	this->al_down++;
-                return(SPOTEVENT::ALERT_DOWN);
-            }
-            else if (v<this->t_down) // check update
-            {
-            	// increment Nt_down
-            	this->Nt_down++;
+		if (this->down) // down check
+		{
+			if (this->alert && v<this->z_down) // check alert
+			{
+				this->n--;
+				this->al_down++;
+				return(SPOTEVENT::ALERT_DOWN);
+			}
+			else if (v<this->t_down) // check update
+			{
+				// increment Nt_down
+				this->Nt_down++;
 
-                // push value
-                this->lower_bound.push(-(v-this->t_down));
-                
-                // update
-                this->fitdown();
-		return(SPOTEVENT::EXCESS_DOWN);
-            }
+				// push value
+				this->lower_bound.push(-(v-this->t_down));
+				
+				// update
+				this->fitdown();
+				return(SPOTEVENT::EXCESS_DOWN);
+			}
 
-        }
-        
-        return(SPOTEVENT::NORMAL);
-    }
+		}
+		
+		return(SPOTEVENT::NORMAL);
+	}
 }
 
 
@@ -401,7 +421,7 @@ SPOTEVENT Spot::step(double v)
 */
 void Spot::fitup()
 {
-    this->z_up = this->threshold(this->upper_bound.fit(),this->t_up,this->Nt_up);
+	this->z_up = this->threshold(this->upper_bound.fit(),this->t_up,this->Nt_up);
 }
 
 /**
@@ -409,7 +429,7 @@ void Spot::fitup()
 */
 void Spot::fitdown()
 {
-    this->z_down = - this->threshold(this->lower_bound.fit(),-this->t_down,this->Nt_down);
+	this->z_down = - this->threshold(this->lower_bound.fit(),-this->t_down,this->Nt_down);
 }
 
 
@@ -422,17 +442,17 @@ void Spot::fitdown()
 */
 double Spot::threshold(GPDinfo g, double t, int Nt)
 {
-    double z;
-    double r = (this->q)*(this->n)/Nt;
-    if (g.gamma == 0.0)
-    {
-        z = t - g.sigma * log(r);
-    }
-    else
-    {
-        z = t + (g.sigma/g.gamma) * ( pow(r,-g.gamma) - 1 );
-    }
-    return(z);
+	double z;
+	double r = (this->q)*(this->n)/Nt;
+	if (g.gamma == 0.0)
+	{
+		z = t - g.sigma * log(r);
+	}
+	else
+	{
+		z = t + (g.sigma/g.gamma) * ( pow(r,-g.gamma) - 1 );
+	}
+	return(z);
 }
 
 
@@ -443,44 +463,44 @@ double Spot::threshold(GPDinfo g, double t, int Nt)
 void Spot::calibrate()
 {
 	// we sort the initial batch to retrieve the quantiles
-    sort(this->init_batch.begin(),this->init_batch.end());
+	sort(this->init_batch.begin(),this->init_batch.end());
 
-    if (this->up) // if upper thresholding
-    {
-    	// get the quantile
-        int rank_up = (int)(this->n_init * this->level);
-        int Nt = (this->n_init)-rank_up;
-        this->t_up = this->init_batch[rank_up];
-        
+	if (this->up) // if upper thresholding
+	{
+		// get the quantile
+		int rank_up = (int)(this->n_init * this->level);
+		int Nt = (this->n_init)-rank_up;
+		this->t_up = this->init_batch[rank_up];
+		
 
-        // Initialization of the upper excesses
-        for(int i = rank_up+1; i < this->n_init; i++)
-        {
-            this->upper_bound.push( this->init_batch[i] - (this->t_up) );
-        }
+		// Initialization of the upper excesses
+		for(int i = rank_up+1; i < this->n_init; i++)
+		{
+			this->upper_bound.push( this->init_batch[i] - (this->t_up) );
+		}
 		
 		this->Nt_up = this->upper_bound.size();
-        GPDinfo info_up = this->upper_bound.fit();
-        this->z_up = this->threshold(info_up,this->t_up,Nt);
+		GPDinfo info_up = this->upper_bound.fit();
+		this->z_up = this->threshold(info_up,this->t_up,Nt);
 
-    }
+	}
 
-    if (this->down) // if lower thresholding
-    {
-    	// get the quantile
-        int rank_down = (int)(this->n_init * (1 - this->level));
-        this->t_down = this->init_batch[rank_down];
+	if (this->down) // if lower thresholding
+	{
+		// get the quantile
+		int rank_down = (int)(this->n_init * (1 - this->level));
+		this->t_down = this->init_batch[rank_down];
 		
-        // Initialization of the lower excesses
-        for(int i = 0; i < rank_down; i++)
-        {
-            this->lower_bound.push(- ( this->init_batch[i]-this->t_down) );
-        }
-        
-        this->Nt_down = this->lower_bound.size();
-        GPDinfo info_down = this->lower_bound.fit();
-        this->z_down = - this->threshold(info_down,- this->t_down,rank_down);
-    }
+		// Initialization of the lower excesses
+		for(int i = 0; i < rank_down; i++)
+		{
+			this->lower_bound.push(- ( this->init_batch[i]-this->t_down) );
+		}
+		
+		this->Nt_down = this->lower_bound.size();
+		GPDinfo info_down = this->lower_bound.fit();
+		this->z_down = - this->threshold(info_down,- this->t_down,rank_down);
+	}
    
 }
 
@@ -614,7 +634,7 @@ string SpotStatus::str()
 	ss.precision(4);
 	ss << "Nt" << "\t" << this->Nt_up << "\t" << this->Nt_down << endl; 
 	ss << "ex" << "\t" << this->ex_up << "\t" << this->ex_down << endl; 
-	ss << "al" << "\t" << this->al_up << "\t" << this->al_down << endl; 
+	ss << "al" << "\t" << this->al_up << "\t" << this->al_down << endl;
 	ss << "t" << "\t" << this->t_up << "\t" << this->t_down << endl; 
 	ss << "z" << "\t" << this->z_up << "\t" << this->z_down << endl; 
 	ss << endl;

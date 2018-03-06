@@ -50,8 +50,8 @@ endif
 #removed : streammoments.h streamstats.h 
 FILES = bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h
 DEPS = $(foreach n,$(FILES),$(INC_DIR)/$(n))
-SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
-OBJS = $(FILES:.h=.o)
+SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n)) $(SRC_DIR)/interface.cpp
+OBJS = $(FILES:.h=.o) interface.o
 
 
 # library file

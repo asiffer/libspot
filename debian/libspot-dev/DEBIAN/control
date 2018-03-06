@@ -3,7 +3,7 @@ Source: libspot
 Version: 1.1
 Architecture: amd64
 Maintainer: Alban Siffer <alban.siffer@irisa.fr>
-Installed-Size: 290
+Installed-Size: 298
 Depends: libc6 (>= 2.4), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2)
 Section: libdevel
 Priority: extra
