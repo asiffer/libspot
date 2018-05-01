@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_spot_config" kind="class" language="C++" prot="public">
+    <compoundname>SpotConfig</compoundname>
+    <includes refid="spot_8h" local="no">spot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_spot_config_1a7ee99a047b82a8b410c4ef955380a744" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SpotConfig::q</definition>
+        <argsstring></argsstring>
+        <name>q</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the main parameter ( P(X&gt;z_q) &lt; q ) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="97" column="1" bodyfile="include/spot.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a8bb40e4243c870bfff84f1527f1c46ec" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SpotConfig::bounded</definition>
+        <argsstring></argsstring>
+        <name>bounded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>if true, the number of stored will be bounded by max_excess </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="100" column="1" bodyfile="include/spot.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a30dc2e363b4d159ffc5284ae68b0249d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotConfig::max_excess</definition>
+        <argsstring></argsstring>
+        <name>max_excess</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Maximum number of stored excesses (bounded mode) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="103" column="1" bodyfile="include/spot.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a4897ee87a1636d3d77c0119da3ae6d5a" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SpotConfig::alert</definition>
+        <argsstring></argsstring>
+        <name>alert</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>if true, the algorithm triggers alarms (the outlier is not taking into account in the model) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="106" column="1" bodyfile="include/spot.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a32af7aaf538dbff2e334503e90b7d40b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SpotConfig::up</definition>
+        <argsstring></argsstring>
+        <name>up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>if true, compute upper threshold </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="109" column="1" bodyfile="include/spot.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a7ac9922eacecba72e8ce759c57e92161" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SpotConfig::down</definition>
+        <argsstring></argsstring>
+        <name>down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>if true, compute lower threshold </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="112" column="1" bodyfile="include/spot.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a63952c8f78443b980944f633dbee084e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotConfig::n_init</definition>
+        <argsstring></argsstring>
+        <name>n_init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of observation to perform calibration </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="115" column="1" bodyfile="include/spot.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_config_1a98127d55b01429059cca41f46ffbf4ff" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SpotConfig::level</definition>
+        <argsstring></argsstring>
+        <name>level</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>level of the update threshold (0&lt;l&lt;1) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="118" column="1" bodyfile="include/spot.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_spot_config_1af1b8a8b7cfdfca8c7f456fcf5c1ebe85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string SpotConfig::str</definition>
+        <argsstring>()</argsstring>
+        <name>str</name>
+        <briefdescription>
+<para>Format the config to print it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="123" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This structure gathers the configuration of a <ref refid="class_spot" kindref="compound">Spot</ref> object (aims to build similar instance) </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/spot.h" line="94" column="1" bodyfile="include/spot.h" bodystart="94" bodyend="124"/>
+    <listofallmembers>
+      <member refid="class_spot_config_1a4897ee87a1636d3d77c0119da3ae6d5a" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>alert</name></member>
+      <member refid="class_spot_config_1a8bb40e4243c870bfff84f1527f1c46ec" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>bounded</name></member>
+      <member refid="class_spot_config_1a7ac9922eacecba72e8ce759c57e92161" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>down</name></member>
+      <member refid="class_spot_config_1a98127d55b01429059cca41f46ffbf4ff" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>level</name></member>
+      <member refid="class_spot_config_1a30dc2e363b4d159ffc5284ae68b0249d" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>max_excess</name></member>
+      <member refid="class_spot_config_1a63952c8f78443b980944f633dbee084e" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>n_init</name></member>
+      <member refid="class_spot_config_1a7ee99a047b82a8b410c4ef955380a744" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>q</name></member>
+      <member refid="class_spot_config_1af1b8a8b7cfdfca8c7f456fcf5c1ebe85" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>str</name></member>
+      <member refid="class_spot_config_1a32af7aaf538dbff2e334503e90b7d40b" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -23,23 +23,24 @@ using namespace std;
 #define STREAMMEAN_H
 
 /**
- *  \class StreamMean
+ *  	\class StreamMean
  *	\brief Compute the mean over streaming data (window)
  *	\details The harmonic mean has also been added but it is not used
  */
 class StreamMean : public Ubend {
 	protected:
-		double m; /*!< the classic mean */
+		/** the classic mean */
+		double m; 
 		
 	public:
-		/*!
+		/**
 			\brief Basic constructor
 			\param[in] size The window size where the mean is computed (-1 for infinite window)
 			\return A StreamMean object
 		*/
 		StreamMean(int size = -1);
 		
-		/*!
+		/**
 			\brief Basic constructor with a first batch of data
 			\param[in] size The window size where the mean is computed (-1 for infinite window)
 			\param[in] v An initial batch of data
@@ -47,28 +48,27 @@ class StreamMean : public Ubend {
 		*/
 		StreamMean(int size, vector<double> v);
 		
-		/*!
+		/**
 			\brief Constructor from a Ubend object
 			\param[in] other External Ubend object
 			\return A StreamMean object
 		*/
 		StreamMean(const Ubend & other);
 		
-		/*!
+		/**
 			\brief Return the mean within the window
 		*/
 		double mean();
 		
 		
-		/*!
+		/**
 			\brief Update the mean with a new incoming data
 			\param[in] x_n New incoming data
 			\return The state of the Ubend container (see the Ubend class)
 		*/
-		//int step(double x_n);
 		UBENDSTATUS step(double x_n);
 		
-		/*!
+		/**
 			\brief The sum operator (merge the Ubend)
 			\param[in] other Another StreamMean object
 			\return A new StreamMean instance
@@ -93,11 +93,14 @@ class DSpot : public Spot
 {
     protected:
         // Additional attributes
+        /** the depth of the moving average */
+        int depth;		
         
-        int depth;			/*!< the depth of the moving average */
-        double drift;		/*!< the local drift */
-    
-	StreamMean model;	/*!< A buffer to compute the local drift */
+        /** the local drift */	
+        double drift;	
+ 
+	/** A buffer to compute the local drift */   
+	StreamMean model;
 	
 	// method
 	
@@ -166,14 +169,10 @@ class DSpot : public Spot
 			\param[in] args Spot arguments (see Spot class)
 			\return DSpot object
 		*/
-        //template<typename... Args> 
-        //DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
+        	template<typename... Args> 
+        	DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
         
-        	/**
-			\brief copy constructor (copy only the parameters)
-			\return DSpot object
-		*/
-    	//DSpot(const DSpot & ds);
+
     	
     		
 		/**
@@ -240,6 +239,12 @@ class DSpot : public Spot
 			\brief Return the local drift
 		*/
 		double getDrift();
+
+		/**
+			@brief Return the current state of the DSpot instance through a single line string
+		*/
+		// overload log
+		string log(int log_level);
 
 		// overload status
 		

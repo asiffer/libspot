@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_ubend" kind="class" language="C++" prot="public">
+    <compoundname>Ubend</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::vector&lt; double &gt;</basecompoundref>
+    <derivedcompoundref refid="class_g_p_dfit" prot="public" virt="non-virtual">GPDfit</derivedcompoundref>
+    <derivedcompoundref refid="class_stream_mean" prot="public" virt="non-virtual">StreamMean</derivedcompoundref>
+    <includes refid="ubend_8h" local="no">ubend.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_ubend_1a82b8a2847f23eafca91a44747af8918c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Ubend::cursor</definition>
+        <argsstring></argsstring>
+        <name>cursor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>position of the next block to fill </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="43" column="1" bodyfile="include/ubend.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Ubend::capacity</definition>
+        <argsstring></argsstring>
+        <name>capacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>maximum size of the container </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="46" column="1" bodyfile="include/ubend.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ubend_1afb79ffb4bb8a4c0036ef99a2d38c171f" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Ubend::last_erased_data</definition>
+        <argsstring></argsstring>
+        <name>last_erased_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>last value erased (replaced by a new one) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="49" column="1" bodyfile="include/ubend.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ubend_1a5d5883f26399bb7cf357551fb247827e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Ubend::Ubend</definition>
+        <argsstring>(int N=-1)</argsstring>
+        <name>Ubend</name>
+        <param>
+          <type>int</type>
+          <declname>N</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+<para>Basic <ref refid="class_ubend" kindref="compound">Ubend</ref> constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum size of the container (capacity) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a <ref refid="class_ubend" kindref="compound">Ubend</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="57" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ubend_1a3ce0b5a4f7f60a6273594c370803bd84" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_ubend" kindref="compound">Ubend</ref></type>
+        <definition>Ubend Ubend::merge</definition>
+        <argsstring>(const Ubend &amp;U) const</argsstring>
+        <name>merge</name>
+        <param>
+          <type>const <ref refid="class_ubend" kindref="compound">Ubend</ref> &amp;</type>
+          <declname>U</declname>
+        </param>
+        <briefdescription>
+<para>Merge two <ref refid="class_ubend" kindref="compound">Ubend</ref> instances (take half data in each instance) </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A new <ref refid="class_ubend" kindref="compound">Ubend</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="63" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ubend_1ae821aee3b90148e3dc8b77970a697947" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Ubend::getCursor</definition>
+        <argsstring>()</argsstring>
+        <name>getCursor</name>
+        <briefdescription>
+<para>Get the value of the cursor, so the next block to fill. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the current cursor </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="69" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ubend_1ad7b783a532d3123794e4010be9ee8442" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Ubend::getLastErasedData</definition>
+        <argsstring>()</argsstring>
+        <name>getLastErasedData</name>
+        <briefdescription>
+<para>Get the value of the last erased data. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the last erased data </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ubend_1af481e49255fa61cee741420321891deb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Ubend::getCapacity</definition>
+        <argsstring>()</argsstring>
+        <name>getCapacity</name>
+        <briefdescription>
+<para>Get the capacity of the container (its max size) </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the capacity </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="81" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ubend_1adae407b77285bfeefb0d3b0d2de7b854" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Ubend::isFilled</definition>
+        <argsstring>()</argsstring>
+        <name>isFilled</name>
+        <briefdescription>
+<para>Get the fill state of the container. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the capacity is reached (False otherwise) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="87" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ubend_1a14d9844228e9a33fd3565b280e946f28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="ubend_8h_1a7b281aeecd70ca8ebfa9874e42d1f04d" kindref="member">UBENDSTATUS</ref></type>
+        <definition>UBENDSTATUS Ubend::push</definition>
+        <argsstring>(double x)</argsstring>
+        <name>push</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Feed the container with a new value. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new value to store </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the state of the container</para></simplesect>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>-1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_ubend" kindref="compound">Ubend</ref> is not filled yet </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_ubend" kindref="compound">Ubend</ref> is just filled </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Cruising case </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ubend.h" line="99" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This container is a kind of circular vector. </para>    </briefdescription>
+    <detaileddescription>
+<para>First it is empty. Then we feed it with data until its max capacity is reached (transitory state). When it is full, the earlier data erase the older one (cruise state). </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="33">
+        <label>std::vector&lt; double &gt;</label>
+      </node>
+      <node id="32">
+        <label>Ubend</label>
+        <link refid="class_ubend"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>StreamMean</label>
+        <link refid="class_stream_mean"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>GPDfit</label>
+        <link refid="class_g_p_dfit"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="37">
+        <label>std::vector&lt; double &gt;</label>
+      </node>
+      <node id="36">
+        <label>Ubend</label>
+        <link refid="class_ubend"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/ubend.h" line="40" column="1" bodyfile="include/ubend.h" bodystart="39" bodyend="101"/>
+    <listofallmembers>
+      <member refid="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" virt="non-virtual"><scope>Ubend</scope><name>capacity</name></member>
+      <member refid="class_ubend_1a82b8a2847f23eafca91a44747af8918c" prot="protected" virt="non-virtual"><scope>Ubend</scope><name>cursor</name></member>
+      <member refid="class_ubend_1af481e49255fa61cee741420321891deb" prot="public" virt="non-virtual"><scope>Ubend</scope><name>getCapacity</name></member>
+      <member refid="class_ubend_1ae821aee3b90148e3dc8b77970a697947" prot="public" virt="non-virtual"><scope>Ubend</scope><name>getCursor</name></member>
+      <member refid="class_ubend_1ad7b783a532d3123794e4010be9ee8442" prot="public" virt="non-virtual"><scope>Ubend</scope><name>getLastErasedData</name></member>
+      <member refid="class_ubend_1adae407b77285bfeefb0d3b0d2de7b854" prot="public" virt="non-virtual"><scope>Ubend</scope><name>isFilled</name></member>
+      <member refid="class_ubend_1afb79ffb4bb8a4c0036ef99a2d38c171f" prot="protected" virt="non-virtual"><scope>Ubend</scope><name>last_erased_data</name></member>
+      <member refid="class_ubend_1a3ce0b5a4f7f60a6273594c370803bd84" prot="public" virt="non-virtual"><scope>Ubend</scope><name>merge</name></member>
+      <member refid="class_ubend_1a14d9844228e9a33fd3565b280e946f28" prot="public" virt="non-virtual"><scope>Ubend</scope><name>push</name></member>
+      <member refid="class_ubend_1a5d5883f26399bb7cf357551fb247827e" prot="public" virt="non-virtual"><scope>Ubend</scope><name>Ubend</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

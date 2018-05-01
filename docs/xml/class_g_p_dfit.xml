@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_g_p_dfit" kind="class" language="C++" prot="public">
+    <compoundname>GPDfit</compoundname>
+    <basecompoundref refid="class_ubend" prot="public" virt="non-virtual">Ubend</basecompoundref>
+    <includes refid="gpdfit_8h" local="no">gpdfit.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_g_p_dfit_1a7ae78e41277746f4b91e25886bb51095" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GPDfit::gamma</definition>
+        <argsstring></argsstring>
+        <name>gamma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="36" column="1" bodyfile="include/gpdfit.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_p_dfit_1abdfbde745f7c33c070a0bd61e4a15b87" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GPDfit::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="37" column="1" bodyfile="include/gpdfit.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_p_dfit_1aade38288a1d0c44054a7c4dfabc627fc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double GPDfit::llhood</definition>
+        <argsstring></argsstring>
+        <name>llhood</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="38" column="1" bodyfile="include/gpdfit.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_g_p_dfit_1a358fe05cd2668b974834fc5ae9541473" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::grimshaw_v</definition>
+        <argsstring>(double x)</argsstring>
+        <name>grimshaw_v</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Auxiliary function to compute the likelihood. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antecedent </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>v(x) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="45" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1ac4e7ec86e02deb86b8728288db2189c2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::log_likelihood</definition>
+        <argsstring>(double x_star, double *gamma, double *sigma)</argsstring>
+        <name>log_likelihood</name>
+        <param>
+          <type>double</type>
+          <declname>x_star</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>gamma</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>sigma</declname>
+        </param>
+        <briefdescription>
+<para>simplified log-likelihood function </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">x_star</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antecedent </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">gamma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the computed gamma parameter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the computed sigma parameter </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the log-likelihood </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="54" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1a787e109ecf2a9093e682281d0d86ceea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; GPDfit::roots</definition>
+        <argsstring>()</argsstring>
+        <name>roots</name>
+        <briefdescription>
+<para>Return the roots of the auxiliary function w. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="61" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_g_p_dfit_1a95240458028fe50632b2b776068f4519" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GPDfit::GPDfit</definition>
+        <argsstring>(int capacity=-1)</argsstring>
+        <name>GPDfit</name>
+        <param>
+          <type>int</type>
+          <declname>capacity</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">capacity</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum number of values to store </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_g_p_dfit" kindref="compound">GPDfit</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="70" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1a54d29d3eef44e36cc491924b6e43ffbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::min</definition>
+        <argsstring>()</argsstring>
+        <name>min</name>
+        <briefdescription>
+<para>Get the minimum value of stored data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="75" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1aec42abc9a889e5db99a06c64d8eea4a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::max</definition>
+        <argsstring>()</argsstring>
+        <name>max</name>
+        <briefdescription>
+<para>Get the maximum value of stored data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="80" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1a00b6178330208de4d31b2125174ba19f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::mean</definition>
+        <argsstring>()</argsstring>
+        <name>mean</name>
+        <briefdescription>
+<para>Get the mean of stored data. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="85" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1ae4df0020fd3c23f199b2c36b87863bad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::grimshaw_w</definition>
+        <argsstring>(double x)</argsstring>
+        <name>grimshaw_w</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Auxiliary function to compute the likelihood. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the antecedent </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>w(x) = u(x)v(x) - 1 </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="92" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1a82cefaa05050d06f055240411acd53b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void GPDfit::fit</definition>
+        <argsstring>()</argsstring>
+        <name>fit</name>
+        <briefdescription>
+<para>Perform a GPD fit of the stored excesses. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>GPDinfo object gathering gamma, sigma and the likelihood </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="98" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1a899dc0ae0ff27c94bc9ccad0a6128d37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::probability</definition>
+        <argsstring>(double z, double t, int n, int Nt)</argsstring>
+        <name>probability</name>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>Nt</declname>
+        </param>
+        <briefdescription>
+<para>Given some extra parameters, compute the probability 1-F(z) </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired quantile </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Intermediate threshold </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total number of observations </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total number of observations above t </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="107" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_p_dfit_1a89c9ad66339442f1d418a56e7fdbf966" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double GPDfit::quantile</definition>
+        <argsstring>(double q, double t, int n, int Nt)</argsstring>
+        <name>quantile</name>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>Nt</declname>
+        </param>
+        <briefdescription>
+<para>Given some extra parameters, compute the quantile z such that F(z) = 1-q. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired probability </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Intermediate threshold </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total number of observations </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total number of observations above t </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/gpdfit.h" line="116" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class implement the Generalized Pareto Distribution fit given some data. </para>    </briefdescription>
+    <detaileddescription>
+<para>This class is based on the <ref refid="class_ubend" kindref="compound">Ubend</ref> structure. It performs maximum likelihood estimation of the GPD parameters with the Grimshaw&apos;s trick </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>std::vector&lt; double &gt;</label>
+      </node>
+      <node id="11">
+        <label>Ubend</label>
+        <link refid="class_ubend"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>GPDfit</label>
+        <link refid="class_g_p_dfit"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>std::vector&lt; double &gt;</label>
+      </node>
+      <node id="14">
+        <label>Ubend</label>
+        <link refid="class_ubend"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>GPDfit</label>
+        <link refid="class_g_p_dfit"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/gpdfit.h" line="34" column="1" bodyfile="include/gpdfit.h" bodystart="34" bodyend="118"/>
+    <listofallmembers>
+      <member refid="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" virt="non-virtual"><scope>GPDfit</scope><name>capacity</name></member>
+      <member refid="class_ubend_1a82b8a2847f23eafca91a44747af8918c" prot="protected" virt="non-virtual"><scope>GPDfit</scope><name>cursor</name></member>
+      <member refid="class_g_p_dfit_1a82cefaa05050d06f055240411acd53b7" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>fit</name></member>
+      <member refid="class_g_p_dfit_1a7ae78e41277746f4b91e25886bb51095" prot="private" virt="non-virtual"><scope>GPDfit</scope><name>gamma</name></member>
+      <member refid="class_ubend_1af481e49255fa61cee741420321891deb" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>getCapacity</name></member>
+      <member refid="class_ubend_1ae821aee3b90148e3dc8b77970a697947" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>getCursor</name></member>
+      <member refid="class_ubend_1ad7b783a532d3123794e4010be9ee8442" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>getLastErasedData</name></member>
+      <member refid="class_g_p_dfit_1a95240458028fe50632b2b776068f4519" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>GPDfit</name></member>
+      <member refid="class_g_p_dfit_1a358fe05cd2668b974834fc5ae9541473" prot="private" virt="non-virtual"><scope>GPDfit</scope><name>grimshaw_v</name></member>
+      <member refid="class_g_p_dfit_1ae4df0020fd3c23f199b2c36b87863bad" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>grimshaw_w</name></member>
+      <member refid="class_ubend_1adae407b77285bfeefb0d3b0d2de7b854" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>isFilled</name></member>
+      <member refid="class_ubend_1afb79ffb4bb8a4c0036ef99a2d38c171f" prot="protected" virt="non-virtual"><scope>GPDfit</scope><name>last_erased_data</name></member>
+      <member refid="class_g_p_dfit_1aade38288a1d0c44054a7c4dfabc627fc" prot="private" virt="non-virtual"><scope>GPDfit</scope><name>llhood</name></member>
+      <member refid="class_g_p_dfit_1ac4e7ec86e02deb86b8728288db2189c2" prot="private" virt="non-virtual"><scope>GPDfit</scope><name>log_likelihood</name></member>
+      <member refid="class_g_p_dfit_1aec42abc9a889e5db99a06c64d8eea4a4" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>max</name></member>
+      <member refid="class_g_p_dfit_1a00b6178330208de4d31b2125174ba19f" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>mean</name></member>
+      <member refid="class_ubend_1a3ce0b5a4f7f60a6273594c370803bd84" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>merge</name></member>
+      <member refid="class_g_p_dfit_1a54d29d3eef44e36cc491924b6e43ffbc" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>min</name></member>
+      <member refid="class_g_p_dfit_1a899dc0ae0ff27c94bc9ccad0a6128d37" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>probability</name></member>
+      <member refid="class_ubend_1a14d9844228e9a33fd3565b280e946f28" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>push</name></member>
+      <member refid="class_g_p_dfit_1a89c9ad66339442f1d418a56e7fdbf966" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>quantile</name></member>
+      <member refid="class_g_p_dfit_1a787e109ecf2a9093e682281d0d86ceea" prot="private" virt="non-virtual"><scope>GPDfit</scope><name>roots</name></member>
+      <member refid="class_g_p_dfit_1abdfbde745f7c33c070a0bd61e4a15b87" prot="private" virt="non-virtual"><scope>GPDfit</scope><name>sigma</name></member>
+      <member refid="class_ubend_1a5d5883f26399bb7cf357551fb247827e" prot="public" virt="non-virtual"><scope>GPDfit</scope><name>Ubend</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

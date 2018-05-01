@@ -39,9 +39,14 @@ enum UBENDSTATUS: int {
 class Ubend : public std::vector<double>
 {
 	protected:
-		int cursor; /*!< position of the next block to fill */
-		int capacity; /*!< maximum size of the container */
-		double last_erased_data; /**< last value erased (replaced by a new one) */
+		/** position of the next block to fill */
+		int cursor; 			
+		
+		/** maximum size of the container */
+		int capacity; 			
+		
+		/** last value erased (replaced by a new one) */
+		double last_erased_data; 	
 		
 	public:
 		/**
@@ -83,7 +88,7 @@ class Ubend : public std::vector<double>
 		
 		/**
 			\brief Feed the container with a new value
-			\param[in] A new value to store
+			\param[in] x new value to store
 			\return the state of the container
 			
 			\retval -1	The Ubend is not filled yet

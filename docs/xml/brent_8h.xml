@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="brent_8h" kind="file" language="C++">
+    <compoundname>brent.h</compoundname>
+    <includes local="no">functional</includes>
+    <includes local="no">cmath</includes>
+    <includedby refid="gpdfit_8h" local="yes">include/gpdfit.h</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>functional</label>
+      </node>
+      <node id="7">
+        <label>cmath</label>
+      </node>
+      <node id="5">
+        <label>include/brent.h</label>
+        <link refid="brent_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="11">
+        <label>include/dspot.h</label>
+        <link refid="dspot_8h"/>
+      </node>
+      <node id="9">
+        <label>include/gpdfit.h</label>
+        <link refid="gpdfit_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>include/spot.h</label>
+        <link refid="spot_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>include/brent.h</label>
+        <link refid="brent_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="brent_8h_1a872edd0c230c0cd5b69588218acffdff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double brent</definition>
+        <argsstring>(bool *found, double a, double b, function&lt; double(double)&gt; f, double epsilon=1e-6, double delta=1e-8)</argsstring>
+        <name>brent</name>
+        <param>
+          <type>bool *</type>
+          <declname>found</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>function&lt; double(double)&gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>epsilon</declname>
+          <defval>1e-6</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta</declname>
+          <defval>1e-8</defval>
+        </param>
+        <briefdescription>
+<para>Root search of a scalar function with the Brent&apos;s method. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">found</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to retrieve the success of the method </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>left bound of the interval </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>right bound of the interval </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function of interest </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">epsilon</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>extra parameter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">delta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>extra parameter </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>root </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/brent.h" line="30" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Brent&apos;s method implementation. </para>    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>asr</para></simplesect>
+<simplesect kind="see"><para><ulink url="https://en.wikipedia.org/wiki/Brent%27s_method">https://en.wikipedia.org/wiki/Brent%27s_method</ulink> </para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="11"><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>BRENT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BRENT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="brent_8h_1a872edd0c230c0cd5b69588218acffdff" kindref="member">brent</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>*<sp/>found,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">function</highlight><highlight class="normal">&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)&gt;<sp/>f,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epsilon<sp/>=<sp/>1e-6,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta<sp/>=<sp/>1e-8);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BRENT_H</highlight></codeline>
+    </programlisting>
+    <location file="include/brent.h"/>
+  </compounddef>
+</doxygen>

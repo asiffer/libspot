@@ -1,0 +1,812 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_d_spot" kind="class" language="C++" prot="public">
+    <compoundname>DSpot</compoundname>
+    <basecompoundref refid="class_spot" prot="public" virt="non-virtual">Spot</basecompoundref>
+    <includes refid="dspot_8h" local="no">dspot.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_d_spot_1aaba032f9f6008ff6a489a555d6115e1a" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int DSpot::depth</definition>
+        <argsstring></argsstring>
+        <name>depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the depth of the moving average </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="97" column="1" bodyfile="include/dspot.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_spot_1a6771eb0d0cfaa7030a5b3e4e7ce0fa16" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double DSpot::drift</definition>
+        <argsstring></argsstring>
+        <name>drift</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the local drift </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="100" column="1" bodyfile="include/dspot.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_d_spot_1adca0ca159e28aead09b619071ae321b9" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_stream_mean" kindref="compound">StreamMean</ref></type>
+        <definition>StreamMean DSpot::model</definition>
+        <argsstring></argsstring>
+        <name>model</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A buffer to compute the local drift </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="103" column="1" bodyfile="include/dspot.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_d_spot_1a2b4cf7d2ced0f7cbc7203d02b8a5bd8e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::computeDrift</definition>
+        <argsstring>()</argsstring>
+        <name>computeDrift</name>
+        <briefdescription>
+<para>Compute and return the local drift. </para>        </briefdescription>
+        <detaileddescription>
+<para>the attribute &quot;drift&quot; is updated </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="111" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_d_spot_1afbddfe8831a800dbb79fad7e447a6fbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DSpot::DSpot</definition>
+        <argsstring>(int d=10, double q=1e-3, int n_init=1000)</argsstring>
+        <name>DSpot</name>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+          <defval>10</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+          <defval>1e-3</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n_init</declname>
+          <defval>1000</defval>
+        </param>
+        <briefdescription>
+<para>Default constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Depth of the moving average </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Probability of abnormal events </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">n_init</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of initial batch to perform calibration </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_spot" kindref="compound">Spot</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="123" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a9d7bb79088e06fefe0aacfb3445977bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DSpot::DSpot</definition>
+        <argsstring>(int d, double q, vector&lt; double &gt; init_data)</argsstring>
+        <name>DSpot</name>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>init_data</declname>
+        </param>
+        <briefdescription>
+<para>Constructor with risk parametrization (q) and initial batch. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Depth of the moving average </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Probability of abnormal events </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">init_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial batch to perform calibration </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_spot" kindref="compound">Spot</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="132" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a2a65b9ed0b2ce8ad0eabd62a8e060feb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DSpot::DSpot</definition>
+        <argsstring>(int d, double q, int n_init, double level, bool up, bool down, bool alert, bool bounded, int max_excess)</argsstring>
+        <name>DSpot</name>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n_init</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>up</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>down</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>alert</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>bounded</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_excess</declname>
+        </param>
+        <briefdescription>
+<para>Full parametrizable constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Depth of the moving average </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Probability of abnormal events </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">n_init</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of initial observations to perform calibration </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Quantile level to discriminate the excesses from the normal data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">up</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Compute upper threshold </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">down</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Compute lower threshold </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">alert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Trigger alert </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bounded</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bounded mode </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">max_excess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum number of storable excesses (for bounded mode) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_spot" kindref="compound">Spot</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="147" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1aec88700b166d31b870c1be6a981a71e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DSpot::DSpot</definition>
+        <argsstring>(int d, double q, vector&lt; double &gt; init_data, double level, bool up, bool down, bool alert, bool bounded, int max_excess)</argsstring>
+        <name>DSpot</name>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>init_data</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>up</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>down</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>alert</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>bounded</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_excess</declname>
+        </param>
+        <briefdescription>
+<para>Full parametrizable constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Depth of the moving average </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">q</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Probability of abnormal events </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">init_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial batch to perform calibration </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Quantile level to discriminate the excesses from the normal data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">up</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Compute upper threshold </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">down</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Compute lower threshold </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">alert</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Trigger alert </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bounded</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bounded mode </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">max_excess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum number of storable excesses (for bounded mode) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_spot" kindref="compound">Spot</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="163" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a173699824dd7097cb6d130884c02ca96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>DSpot::DSpot</definition>
+        <argsstring>(int d=10, Args &amp;... args)</argsstring>
+        <name>DSpot</name>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+          <defval>10</defval>
+        </param>
+        <param>
+          <type>Args &amp;...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Default constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The depth of the local model </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_spot" kindref="compound">Spot</ref> arguments (see <ref refid="class_spot" kindref="compound">Spot</ref> class) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="class_d_spot" kindref="compound">DSpot</ref> object </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="173" column="1" bodyfile="include/dspot.h" bodystart="173" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1ac291df649386a59c870a6e003fad1a41" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DSpot::operator==</definition>
+        <argsstring>(const DSpot &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="class_d_spot" kindref="compound">DSpot</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_d_spot" kindref="compound">DSpot</ref> configuration comparison. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_d_spot" kindref="compound">DSpot</ref> instance </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>both instances have the same configuration </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>instances have not the same configuration </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="184" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a26d1930a7d8a60e5f357385785bad54d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DSpot::operator&lt;</definition>
+        <argsstring>(const DSpot &amp;other) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="class_d_spot" kindref="compound">DSpot</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_d_spot" kindref="compound">DSpot</ref> bounds comparison. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_d_spot" kindref="compound">DSpot</ref> instance </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>true</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if this-&gt;z_up + this-&gt;drift &lt; other.z_down + other.drift </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>false</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>otherwise </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="192" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1af770f74c4abf19a7422c22f1e7bdaa7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="spot_8h_1af3bf0aa2c34c1aef1f8221de0466f17e" kindref="member">SPOTEVENT</ref></type>
+        <definition>SPOTEVENT DSpot::step</definition>
+        <argsstring>(double x)</argsstring>
+        <name>step</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="class_spot" kindref="compound">Spot</ref> iteration. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input data </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The nature of the input data </para></simplesect>
+<parameterlist kind="retval"><parameteritem>
+<parameternamelist>
+<parametername>0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Normal data </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Up alert </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>-1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Down alert </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Up excess </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>-2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Down excess </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to initial batch </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>calibration step <ref refid="class_spot" kindref="compound">Spot</ref> iteration </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input data </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The nature of the input data </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="217" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a030e7a856188aff7a766d1bc733a03f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::getUpperThreshold</definition>
+        <argsstring>()</argsstring>
+        <name>getUpperThreshold</name>
+        <briefdescription>
+<para>Return the absolute upper threshold (with the drift) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="224" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1aacf1f3be69b6196a68898214aeba28b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::getLowerThreshold</definition>
+        <argsstring>()</argsstring>
+        <name>getLowerThreshold</name>
+        <briefdescription>
+<para>Return the absolute lower threshold (with the drift) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="229" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a792ca50d53eb54c0da19981377773d68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_bounds" kindref="compound">Bounds</ref></type>
+        <definition>Bounds DSpot::getThresholds</definition>
+        <argsstring>()</argsstring>
+        <name>getThresholds</name>
+        <briefdescription>
+<para>Return the absolute thresholds (with the drift) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="234" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a156bd055a06629e026e1b15d3b08fa06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::getDrift</definition>
+        <argsstring>()</argsstring>
+        <name>getDrift</name>
+        <briefdescription>
+<para>Return the local drift. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="241" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a4669907e0a7975f5e156de46e10cdd4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string DSpot::log</definition>
+        <argsstring>(int log_level)</argsstring>
+        <name>log</name>
+        <param>
+          <type>int</type>
+          <declname>log_level</declname>
+        </param>
+        <briefdescription>
+<para>Return the current state of the <ref refid="class_d_spot" kindref="compound">DSpot</ref> instance through a single line string. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="247" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a097cd010a6027a8653adb1490070f594" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_spot_status" kindref="compound">SpotStatus</ref></type>
+        <definition>SpotStatus DSpot::status</definition>
+        <argsstring>()</argsstring>
+        <name>status</name>
+        <briefdescription>
+<para>Get the internal state of the <ref refid="class_d_spot" kindref="compound">DSpot</ref> instance. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="254" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1ae5ae568aebc2fd8adbc5412dc863c277" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string DSpot::stringStatus</definition>
+        <argsstring>()</argsstring>
+        <name>stringStatus</name>
+        <briefdescription>
+<para>Format the config to print it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/dspot.h" line="259" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Embed the <ref refid="class_d_spot" kindref="compound">DSpot</ref> algorithm to flag outliers in streaming and drifting data. </para>    </briefdescription>
+    <detaileddescription>
+<para>This object computes probabilistic upper and lower bounds (as desired) according to the incoming data, the main parameter q and the local drift (a moving average with a given depth) </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Spot</label>
+        <link refid="class_spot"/>
+      </node>
+      <node id="2">
+        <label>DSpot</label>
+        <link refid="class_d_spot"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>std::vector&lt; double &gt;</label>
+      </node>
+      <node id="7">
+        <label>Ubend</label>
+        <link refid="class_ubend"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Spot</label>
+        <link refid="class_spot"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>upper_bound</edgelabel>
+          <edgelabel>lower_bound</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>StreamMean</label>
+        <link refid="class_stream_mean"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>GPDfit</label>
+        <link refid="class_g_p_dfit"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>DSpot</label>
+        <link refid="class_d_spot"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>model</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/dspot.h" line="93" column="1" bodyfile="include/dspot.h" bodystart="92" bodyend="260"/>
+    <listofallmembers>
+      <member refid="class_spot_1ae6139cf212ca89128d772a69440784c9" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>al_down</name></member>
+      <member refid="class_spot_1a50e56c8fcf35e3b98ae6b7e84dbb5bf9" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>al_up</name></member>
+      <member refid="class_spot_1a76101429c1e291171b81cb5844407e20" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>alert</name></member>
+      <member refid="class_spot_1ab50a7aa6de09a3774c9c41de7825b685" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>bounded</name></member>
+      <member refid="class_spot_1a1647c2952c5c6cd9d8d4849b5beda8ce" prot="public" virt="non-virtual"><scope>DSpot</scope><name>calibrate</name></member>
+      <member refid="class_d_spot_1a2b4cf7d2ced0f7cbc7203d02b8a5bd8e" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>computeDrift</name></member>
+      <member refid="class_spot_1a92cc75d19b5f85a004c70d012a30c281" prot="public" virt="non-virtual"><scope>DSpot</scope><name>config</name></member>
+      <member refid="class_d_spot_1aaba032f9f6008ff6a489a555d6115e1a" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>depth</name></member>
+      <member refid="class_spot_1ab72120f32002ab2c9ddf010bba49b9ed" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>down</name></member>
+      <member refid="class_spot_1a83d6de0b67cce07d72b9ce963be7757b" prot="public" virt="non-virtual"><scope>DSpot</scope><name>down_probability</name></member>
+      <member refid="class_d_spot_1a6771eb0d0cfaa7030a5b3e4e7ce0fa16" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>drift</name></member>
+      <member refid="class_d_spot_1afbddfe8831a800dbb79fad7e447a6fbb" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
+      <member refid="class_d_spot_1a9d7bb79088e06fefe0aacfb3445977bb" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
+      <member refid="class_d_spot_1a2a65b9ed0b2ce8ad0eabd62a8e060feb" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
+      <member refid="class_d_spot_1aec88700b166d31b870c1be6a981a71e1" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
+      <member refid="class_d_spot_1a173699824dd7097cb6d130884c02ca96" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
+      <member refid="class_spot_1ac1684b552b97b216831fa8a018606c59" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>fitdown</name></member>
+      <member refid="class_spot_1ab2ee61794881d4faa87b7a9422b68e3d" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>fitup</name></member>
+      <member refid="class_d_spot_1a156bd055a06629e026e1b15d3b08fa06" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getDrift</name></member>
+      <member refid="class_spot_1afe9718f788af6165d7722f554aa1bbb1" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getLower_t</name></member>
+      <member refid="class_d_spot_1aacf1f3be69b6196a68898214aeba28b5" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getLowerThreshold</name></member>
+      <member refid="class_d_spot_1a792ca50d53eb54c0da19981377773d68" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getThresholds</name></member>
+      <member refid="class_spot_1a94d7dfde5506c2874ca28104f760932b" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getUpper_t</name></member>
+      <member refid="class_d_spot_1a030e7a856188aff7a766d1bc733a03f3" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getUpperThreshold</name></member>
+      <member refid="class_spot_1a201aad21506428e8b77181c569590c89" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>init_batch</name></member>
+      <member refid="class_spot_1a194a7efe5da7c5d5d0e4bc8447f98ca5" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>level</name></member>
+      <member refid="class_d_spot_1a4669907e0a7975f5e156de46e10cdd4d" prot="public" virt="non-virtual"><scope>DSpot</scope><name>log</name></member>
+      <member refid="class_spot_1a2729436f8049869b303f5b01c09cbf48" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>lower_bound</name></member>
+      <member refid="class_spot_1aeee3f83b725c5356325af55a9157ee8a" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>max_excess</name></member>
+      <member refid="class_d_spot_1adca0ca159e28aead09b619071ae321b9" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>model</name></member>
+      <member refid="class_spot_1a4bf16ea24b5075f495804cd1df275490" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>n</name></member>
+      <member refid="class_spot_1a33b25257619ba047f2f9ec7435a18708" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>n_init</name></member>
+      <member refid="class_spot_1aaa8b824d16c4ae08fffd16ba2ae744b8" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>Nt_down</name></member>
+      <member refid="class_spot_1a988361ccafb438ad4a0bdde5c0d7ead6" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>Nt_up</name></member>
+      <member refid="class_spot_1a2fb5bfd52a8c54ec2356e6bab9f0be1e" prot="public" virt="non-virtual"><scope>DSpot</scope><name>operator+</name></member>
+      <member refid="class_d_spot_1a26d1930a7d8a60e5f357385785bad54d" prot="public" virt="non-virtual"><scope>DSpot</scope><name>operator&lt;</name></member>
+      <member refid="class_d_spot_1ac291df649386a59c870a6e003fad1a41" prot="public" virt="non-virtual"><scope>DSpot</scope><name>operator==</name></member>
+      <member refid="class_spot_1a1da0219dbf03892e9d14274f1fa297e2" prot="public" virt="non-virtual" ambiguityscope="Spot::"><scope>DSpot</scope><name>operator==</name></member>
+      <member refid="class_spot_1a2d892f6aacda5f12bbac38d898f081be" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>q</name></member>
+      <member refid="class_spot_1a087c2359bd0211c20f76b98bcaf5af17" prot="public" virt="non-virtual"><scope>DSpot</scope><name>set_q</name></member>
+      <member refid="class_spot_1a9c1d78ca2465737a3e5480ce76095cee" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
+      <member refid="class_spot_1a769b3886ecef1c4edaa819146cf45cd5" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
+      <member refid="class_spot_1a78251b9f558dd4679d5d39bccbe2c5f2" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
+      <member refid="class_spot_1a3ef94b50934e298b396433c50aae84fd" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
+      <member refid="class_spot_1ae7c88c27e7044d4aa78f5c32db651f24" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
+      <member refid="class_d_spot_1a097cd010a6027a8653adb1490070f594" prot="public" virt="non-virtual"><scope>DSpot</scope><name>status</name></member>
+      <member refid="class_d_spot_1af770f74c4abf19a7422c22f1e7bdaa7e" prot="public" virt="non-virtual"><scope>DSpot</scope><name>step</name></member>
+      <member refid="class_d_spot_1ae5ae568aebc2fd8adbc5412dc863c277" prot="public" virt="non-virtual"><scope>DSpot</scope><name>stringStatus</name></member>
+      <member refid="class_spot_1a0ee115c2b0a0ffa650d26cab8608ca73" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>t_down</name></member>
+      <member refid="class_spot_1a1a77b818c89dcf1596d4ce78e8cba986" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>t_up</name></member>
+      <member refid="class_spot_1a1bf1515b0922c88a4b28715d8702fb85" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>up</name></member>
+      <member refid="class_spot_1a63aba545c0dd16504a63c4904ed1d09d" prot="public" virt="non-virtual"><scope>DSpot</scope><name>up_probability</name></member>
+      <member refid="class_spot_1a256d07450f2a03f75d5207216f95628e" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>upper_bound</name></member>
+      <member refid="class_spot_1aca10a8cb4409935af0154e78e9ee47ff" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>z_down</name></member>
+      <member refid="class_spot_1ae5283f4238abff9fe19ef902256f041f" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>z_up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

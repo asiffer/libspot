@@ -120,6 +120,11 @@ test_dspot:
 
 test: test_spot test_dspot
 
+## HTML/XML docs
+docs:
+	@rm -rf $(CURDIR)/docs/xml $(CURDIR)/docs/html
+	@doxygen $(CURDIR)/docs/Doxygen 
+
 ## CLEAN
 clean:
 	@rm -rfd $(OBJ_DIR)

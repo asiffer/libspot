@@ -49,17 +49,36 @@ enum SPOTEVENT: int {
  */
 class SpotStatus {
 	public:
-		int n;			/*!< Number of normal observations (not the alarms) */
-		int Nt_up;		/*!< Total number of up excesses */
-		int Nt_down;	/*!< Total number of down excesses */
-		int ex_up;		/*!< Local number of up excesses (may be different from Nt_up in the bounded mode) */
-		int ex_down;	/*!< Local number of down excesses (may be different from Nt_down in the bounded mode) */
-		int al_up;		/*!< Number of up alarms */
-		int al_down;	/*!< Number of down alarms */
-		double t_up;	/*!< transitional up threshold */
-		double t_down;	/*!< transitional down threshold */
-		double z_up;	/*!< up alert thresholds */
-		double z_down;	/*!< down alert thresholds */
+		/** Number of normal observations (not the alarms) */
+		int n; 			
+		
+		/** Current number of up excesses */
+		int ex_up;
+		/** Current number of down excesses */ 		
+		int ex_down; 		
+		
+		/** Ttoal number of up excesses */
+		int Nt_up;
+		/** Total number of down excesses */ 		
+		int Nt_down; 
+		
+		/** Number of up alarms */
+		int al_up; 	
+		/** Number of down alarms */	
+		int al_down; 		
+		
+		/** initial batch (for calibration) */
+		vector<double> init_batch; 
+
+		/** transitional up threshold */
+		double t_up; 	
+		/** transitional down threshold */	
+		double t_down; 		
+		
+		/** up alert thresholds */
+		double z_up; 		
+		/** down alert thresholds */
+		double z_down; 	
 		
 		/**
 			\brief Format the status to print it
@@ -74,14 +93,29 @@ class SpotStatus {
  */
 class SpotConfig {
 	public:
-		double q;		/*!< the main parameter ( P(X>z_q) < q ) */
-		bool bounded; 	/*!< if true, the number of stored will be bounded by max_excess */
-		int max_excess;	/*!< Maximum number of stored excesses (bounded mode) */
-		bool alert;		/*!< if true, the algorithm triggers alarms (the outlier is not taking into account in the model) */
-		bool up;		/*!< if true, compute upper threshold */
-		bool down;		/*!< if true, compute lower threshold */
-		int n_init; 	/*!< number of observation to perform calibration */
-		double level; 	/*!< level of the update threshold (0<l<1) */
+		/** the main parameter ( P(X>z_q) < q ) */
+		double q; 
+	
+		/** if true, the number of stored will be bounded by max_excess */
+		bool bounded; 		
+		
+		/** Maximum number of stored excesses (bounded mode) */
+		int max_excess; 	
+
+		/** if true, the algorithm triggers alarms (the outlier is not taking into account in the model) */
+		bool alert; 		
+		
+		/** if true, compute upper threshold */
+		bool up; 		
+		
+		/** if true, compute lower threshold */
+		bool down; 		
+
+		/** number of observation to perform calibration */
+		int n_init; 		
+	
+		/** level of the update threshold (0<l<1) */
+		double level; 
 		
 		/**
 			\brief Format the config to print it
@@ -103,53 +137,66 @@ class Spot
 	
 		// SETTINGS -----------------------------------------
 	
-		double q; 		/*!< the main parameter ( P(X>z_q) < q ) */
+		/** the main parameter ( P(X>z_q) < q ) */
+		double q;
 	
-		bool bounded; 	/*!< if true, the number of stored will be bounded by max_excess */
+		/** if true, the number of stored will be bounded by max_excess */
+		bool bounded; 		
 		
-		int max_excess; /*!< Maximum number of stored excesses (bounded mode) */
+		/** Maximum number of stored excesses (bounded mode) */
+		int max_excess; 	
 
-		bool alert; 	/*!< if true, the algorithm triggers alarms (the outlier is not taking into account in the model) */
+		/** if true, the algorithm triggers alarms (the outlier is not taking into account in the model) */
+		bool alert; 		
 		
-		bool up; 		/*!< if true, compute upper threshold */
+		/** if true, compute upper threshold */
+		bool up; 		
 		
-		bool down; 		/*!< if true, compute lower threshold */
+		/** if true, compute lower threshold */
+		bool down; 		
 
-		int n_init; 	/*!< number of observation to perform calibration */
+		/** number of observation to perform calibration */
+		int n_init; 		
 	
-		double level; 	/*!< level of the update threshold (0<l<1) */
+		/** level of the update threshold (0<l<1) */
+		double level; 		
 	
 		// INFORMATION ------------------------------------
 		
-		int n; 			/*!< Number of normal observations (not the alarms) */
+		/** Number of normal observations (not the alarms) */
+		int n; 			
 		
-		int Nt_up; 		/*!< Number of up excesses */
-		int Nt_down; 	/*!< Number of down excesses */
+		/** Number of up excesses */
+		int Nt_up;
+		/** Number of down excesses */ 		
+		int Nt_down; 		
 		
-		int al_up; 		/*!< Number of up alarms */
-		int al_down; 	/*!< Number of down alarms */
+		/** Number of up alarms */
+		int al_up; 	
+		/** Number of down alarms */	
+		int al_down; 		
 		
-		vector<double> init_batch; /*!< initial batch (for calibration) */
+		/** initial batch (for calibration) */
+		vector<double> init_batch; 
 
-		double t_up; 	/*!< transitional up threshold */
-		double t_down; 	/*!< transitional down threshold */
+		/** transitional up threshold */
+		double t_up; 	
+		/** transitional down threshold */	
+		double t_down; 		
 		
-		double z_up; 	/*!< up alert thresholds */
-		double z_down; 	/*!< down alert thresholds */
+		/** up alert thresholds */
+		double z_up; 		
+		/** down alert thresholds */
+		double z_down; 		
 	
-		GPDfit upper_bound; 	/*!< Object to compute the upper threshold */ 
-		GPDfit lower_bound; 	/*!< Object to compute the lower threshold */ 
+		/** Object to compute the upper threshold */ 
+		GPDfit upper_bound; 	
+		/** Object to compute the lower threshold */
+		GPDfit lower_bound; 	
+		
 		
 		// METHODS ----------------------------------------
 	
-		/**
-			\brief Compute threshold from the GPD fit
-			\param[in] g GPDinfo (from the fit)
-			\param[in] t excess quantile
-			\param[in] Nt number of excesses (observations higher than t)
-			\return threshold (z_q)
-		*/
-		double threshold(GPDinfo g, double t, int Nt);
 		
 		/**
 			\brief GPD fit for the upper bound (update upper threshold)
@@ -281,7 +328,16 @@ class Spot
 		*/
 		string stringStatus();
 	
-		// config of the algorithm
+		/**
+			\brief Return the current state of the Spot instance through a single line string
+			\param[in] log_level 0,1 or 2 according to the desired verbosity
+		*/
+		string log(int log_level);
+		
+
+		/**
+			\brief Return the configuration of the Spot instance
+		*/
 		SpotConfig config() const;
 	
 		// access functions
@@ -310,6 +366,25 @@ class Spot
 			\brief Get the lower excess quantile
 		*/
 		double getLower_t();
+		
+		/**
+			\brief Set the risk parameter q
+		*/
+		void set_q(double q_new);
+		
+		/**
+			\brief Give the probability to observe things higher than a value
+			\param[in] z input value
+			\return proability 1-F(z)
+		*/
+		double up_probability(double z);
+		
+		/**
+			\brief Give the probability to observe things lower than a value
+			\param[in] z input value
+			\return proability F(z)
+		*/
+		double down_probability(double z);
 };
 
 

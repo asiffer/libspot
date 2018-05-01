@@ -26,6 +26,10 @@ extern "C" {
 	double Spot_getLowerThreshold(Spot * s) { return s->getLowerThreshold(); }
 	double Spot_getUpper_t(Spot * s) { return s->getUpper_t(); }
 	double Spot_getLower_t(Spot * s) { return s->getLower_t(); }
+	void Spot_set_q(Spot * s, double q_new) { s->set_q(q_new); }
+	double Spot_up_probability(Spot * s, double z) { return s->up_probability(z); }
+	double Spot_down_probability(Spot * s, double z) { return s->down_probability(z); }
+	
 	
 	// DSPOT
 	DSpot * DSpot_new(int d, double q, int n_init, double level, 
@@ -44,5 +48,6 @@ extern "C" {
 	double DSpot_getUpper_t(DSpot * ds) { return ds->getUpper_t(); }
 	double DSpot_getLower_t(DSpot * ds) { return ds->getLower_t(); }
 	double DSpot_getDrift(DSpot * ds) { return ds->getDrift(); }
+	void DSpot_set_q(DSpot * ds, double q_new) { ds->set_q(q_new); }
 }
 

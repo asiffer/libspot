@@ -282,6 +282,42 @@ Bounds DSpot::getThresholds()
 	return(Bounds(this->z_down + this->drift,this->z_up + this->drift));
 }
 
+
+/**
+	@brief Return the current state of the DSpot instance through a single line string
+*/
+string DSpot::log(int log_level)
+{
+	stringstream ss;
+	ss.precision(4);
+	ss << std::left;
+	const int w = 10;
+	
+	if ( log_level >= 0)
+	{
+		ss << setw(w) << this->drift;
+		ss << setw(w) << this->z_down;
+		ss << setw(w) << this->z_up;
+	}
+	
+	if ( log_level >= 1)
+	{
+		ss << setw(w) << this->n;
+		ss << setw(w) << this->al_down;
+		ss << setw(w) << this->al_up;
+	}
+	
+	if ( log_level >= 2)
+	{
+		ss << setw(w) << this->Nt_down;
+		ss << setw(w) << this->Nt_up;
+	}
+	ss << endl;
+	return ss.str();
+}
+
+
+
 /**
 	@brief Get the internal state of the DSpot instance
 */

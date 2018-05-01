@@ -12,7 +12,9 @@ using namespace std;
 */
 GPDfit::GPDfit(int capacity) : Ubend(capacity)
 {
-
+	this->gamma = 0.0;
+	this->sigma = 0.0;
+	this->llhood = 0.0;
 }
 
 
@@ -22,8 +24,7 @@ GPDfit::GPDfit(int capacity) : Ubend(capacity)
 */
 double GPDfit::min()
 {	
-	double mini = *std::min_element(this->begin(),this->end());
-	return mini;
+	return *std::min_element(this->begin(),this->end());
 }
 
 
@@ -32,8 +33,7 @@ double GPDfit::min()
 */
 double GPDfit::max()
 {
-	double maxi = *std::max_element(this->begin(),this->end());
-	return maxi;
+	return *std::max_element(this->begin(),this->end());
 }
 
 
@@ -93,24 +93,45 @@ double GPDfit::grimshaw_w(double x)
 	@param[in] x_star the antecedent
 	@return GPDinfo object gathering gamma, sigma and the likelihood 
 */
+/*
 GPDinfo GPDfit::log_likelihood(double x_star)
 {
-	GPDinfo info;
+	GPDinfo info_x;
 	double Nt_local = this->size();
-	info.gamma = this->grimshaw_v(x_star)-1;
+	info_x.gamma = this->grimshaw_v(x_star)-1;
 
-	if (info.gamma == 0)
+	if (info_x.gamma == 0)
 	{
-		info.sigma = this->mean();
-		info.llhood = Nt_local * ( 1 + log(info.sigma) );
+		info_x.sigma = this->mean();
+		info_x.llhood = Nt_local * ( 1 + log(info_x.sigma) );
 	}
 	else
 	{
-		info.sigma = info.gamma/x_star;
-		info.llhood = -Nt_local*log(info.sigma)-Nt_local*(1+info.gamma);
+		info_x.sigma = info_x.gamma/x_star;
+		info_x.llhood = -Nt_local*log(info_x.sigma)-Nt_local*(1+info_x.gamma);
 	}
-	return info;
+
+	return( info_x );
 }
+
+*/
+double GPDfit::log_likelihood(double x_star, double * g, double * s)
+{
+	double Nt_local = this->size();
+	*g = this->grimshaw_v(x_star)-1;
+
+	if (*g == 0.0)
+	{
+		*s = this->mean();
+		return ( Nt_local * ( 1 + std::log(*s) ) );
+	}
+	else
+	{
+		*s = *g/x_star;
+		return ( -Nt_local*std::log(*s)-Nt_local*(1 + *g) );
+	}
+}
+
 
 /**
 	@brief Return the roots of the auxiliary function w
@@ -161,7 +182,43 @@ vector<double> GPDfit::roots()
 	@brief Perform a GPD fit of the stored excesses
 	@return GPDinfo object gathering gamma, sigma and the likelihood 
 */
-GPDinfo GPDfit::fit()
+//GPDinfo GPDfit::fit()
+void GPDfit::fit()
+{
+	// retrieve the candidates
+	vector<double> candidates = this->roots();
+	vector<double>::iterator it = candidates.begin();
+
+	// zero is always candidate
+	double x_star = *it;
+	it++;
+
+	double g;
+	double s;
+	// we use the likelihood of zero as a base
+	double l = this->log_likelihood(x_star, &g, &s);
+	this->gamma = g;
+	this->sigma = s;
+	
+	double llh;
+
+	// we look for better likelihood across the roots
+	for(; it != candidates.end(); ++it)
+	{
+		llh = this->log_likelihood(x_star, &g, &s);
+		if (llh > l)
+		{
+			l = llh;
+			this->gamma = g;
+			this->sigma = s;
+			this->llhood = llh;
+		}
+	}
+}
+
+/*
+
+void GPDfit::fit()
 {
 	// retrieve the candidates
 	vector<double> candidates = this->roots();
@@ -185,7 +242,40 @@ GPDinfo GPDfit::fit()
 		}
 	}
 
-	return(a);
+	// update the internal state
+	this->info = a;
+	
+	//return(a);
+}*/
+
+
+double GPDfit::quantile(double q, double t, int n, int Nt)
+{
+	double r = (q * n) / Nt;
+	if (this->gamma == 0.0)
+	{
+		return ( t - this->sigma * std::log(r) );
+	}
+	else
+	{
+		return ( t + (this->sigma/this->gamma) * ( pow(r, - this->gamma) - 1 ) );
+	}
+}
+
+
+
+double GPDfit::probability(double z, double t, int n, int Nt)
+{
+	double r = (t - z)*(this->gamma/this->sigma);
+	double s = Nt/n;
+	if (this->gamma == 0.0)
+	{
+		return ( s * std::exp(r) );
+	}
+	else
+	{
+		return ( s * pow(1+r, - 1.0/this->gamma) );
+	}
 }
 
 

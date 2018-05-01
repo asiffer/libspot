@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_spot_status" kind="class" language="C++" prot="public">
+    <compoundname>SpotStatus</compoundname>
+    <includes refid="spot_8h" local="no">spot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_spot_status_1a0232bdda4e80f27f853f127f32b5f7dc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of normal observations (not the alarms) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="53" column="1" bodyfile="include/spot.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1ab5f04d2f9df372677633f05f66566eb5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::ex_up</definition>
+        <argsstring></argsstring>
+        <name>ex_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Current number of up excesses </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="56" column="1" bodyfile="include/spot.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1a83cadaceace9765f122b1cb52fa9cd8d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::ex_down</definition>
+        <argsstring></argsstring>
+        <name>ex_down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Current number of down excesses </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="58" column="1" bodyfile="include/spot.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1a441d1322a33c6959503a264d26b939bd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::Nt_up</definition>
+        <argsstring></argsstring>
+        <name>Nt_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Ttoal number of up excesses </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="61" column="1" bodyfile="include/spot.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1af8b16c44fc6a1acd0c1051f26a64dc25" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::Nt_down</definition>
+        <argsstring></argsstring>
+        <name>Nt_down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Total number of down excesses </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="63" column="1" bodyfile="include/spot.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1ae6d4cd0076e8f9f0c3de6561b93fe605" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::al_up</definition>
+        <argsstring></argsstring>
+        <name>al_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of up alarms </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="66" column="1" bodyfile="include/spot.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1af61113804644236566e8b01e30b2c7a0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SpotStatus::al_down</definition>
+        <argsstring></argsstring>
+        <name>al_down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of down alarms </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="68" column="1" bodyfile="include/spot.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1a6f06682e5bebe349409568c7bef7862a" prot="public" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; SpotStatus::init_batch</definition>
+        <argsstring></argsstring>
+        <name>init_batch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>initial batch (for calibration) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="71" column="1" bodyfile="include/spot.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1a2ac2050f4fdc0952ee208b9d873c027d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SpotStatus::t_up</definition>
+        <argsstring></argsstring>
+        <name>t_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>transitional up threshold </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="74" column="1" bodyfile="include/spot.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1ab05d4fec79e034675d577c85922add45" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SpotStatus::t_down</definition>
+        <argsstring></argsstring>
+        <name>t_down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>transitional down threshold </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="76" column="1" bodyfile="include/spot.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1a475ca20196f3cee358e88544a5d3f332" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SpotStatus::z_up</definition>
+        <argsstring></argsstring>
+        <name>z_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>up alert thresholds </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="79" column="1" bodyfile="include/spot.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_spot_status_1a37fdc64e3d6941d4a5b837812811179b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double SpotStatus::z_down</definition>
+        <argsstring></argsstring>
+        <name>z_down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>down alert thresholds </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="81" column="1" bodyfile="include/spot.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_spot_status_1a50dcbf56d7363bce856636974e1dc6a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string SpotStatus::str</definition>
+        <argsstring>()</argsstring>
+        <name>str</name>
+        <briefdescription>
+<para>Format the status to print it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/spot.h" line="86" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This structure summarizes the status of the <ref refid="class_spot" kindref="compound">Spot</ref> object around the decision area. </para>    </briefdescription>
+    <detaileddescription>
+<para>It gives the number of excesses, the number of alarms, the number of normal observations, the values of the thresholds etc. </para>    </detaileddescription>
+    <location file="include/spot.h" line="50" column="1" bodyfile="include/spot.h" bodystart="50" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_spot_status_1af61113804644236566e8b01e30b2c7a0" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>al_down</name></member>
+      <member refid="class_spot_status_1ae6d4cd0076e8f9f0c3de6561b93fe605" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>al_up</name></member>
+      <member refid="class_spot_status_1a83cadaceace9765f122b1cb52fa9cd8d" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>ex_down</name></member>
+      <member refid="class_spot_status_1ab5f04d2f9df372677633f05f66566eb5" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>ex_up</name></member>
+      <member refid="class_spot_status_1a6f06682e5bebe349409568c7bef7862a" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>init_batch</name></member>
+      <member refid="class_spot_status_1a0232bdda4e80f27f853f127f32b5f7dc" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>n</name></member>
+      <member refid="class_spot_status_1af8b16c44fc6a1acd0c1051f26a64dc25" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>Nt_down</name></member>
+      <member refid="class_spot_status_1a441d1322a33c6959503a264d26b939bd" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>Nt_up</name></member>
+      <member refid="class_spot_status_1a50dcbf56d7363bce856636974e1dc6a6" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>str</name></member>
+      <member refid="class_spot_status_1ab05d4fec79e034675d577c85922add45" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>t_down</name></member>
+      <member refid="class_spot_status_1a2ac2050f4fdc0952ee208b9d873c027d" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>t_up</name></member>
+      <member refid="class_spot_status_1a37fdc64e3d6941d4a5b837812811179b" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>z_down</name></member>
+      <member refid="class_spot_status_1a475ca20196f3cee358e88544a5d3f332" prot="public" virt="non-virtual"><scope>SpotStatus</scope><name>z_up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

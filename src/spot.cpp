@@ -25,7 +25,7 @@ Spot::Spot(double q, int n_init)
 	this->up = true;
 	this->down = true;
 	this->n_init = n_init;
-	this->level = 0.98;
+	this->level = 0.99;
 	
 	this->n = 0;
 	
@@ -342,7 +342,7 @@ int Spot::step(double v)
 }*/
 
 
-/** EXPERIMENTAL
+/** WORK
 
 */
 SPOTEVENT Spot::step(double v)
@@ -367,14 +367,14 @@ SPOTEVENT Spot::step(double v)
 
 			if (this->alert && v>this->z_up) // check alert
 			{
-		this->n--;
-		this->al_up++;
-		return(SPOTEVENT::ALERT_UP);
+				this->n--;
+				this->al_up++;
+				return(SPOTEVENT::ALERT_UP);
 			}
 			else if (v>this->t_up) // check update
 			{
 				// increment Nt_up
-		this->Nt_up++;
+				this->Nt_up++;
 				
 				// push value
 				this->upper_bound.push( v - (this->t_up) );
@@ -382,7 +382,7 @@ SPOTEVENT Spot::step(double v)
 				// fit
 				this->fitup();
 				
-		return(SPOTEVENT::EXCESS_UP);
+				return(SPOTEVENT::EXCESS_UP);
 			}
 
 		}
@@ -415,13 +415,14 @@ SPOTEVENT Spot::step(double v)
 }
 
 
-
 /**
 	@brief GPD fit for the upper bound (update upper threshold)
 */
 void Spot::fitup()
 {
-	this->z_up = this->threshold(this->upper_bound.fit(),this->t_up,this->Nt_up);
+	this->upper_bound.fit();
+	this->z_up = this->upper_bound.quantile(this->q, this->t_up, this->n, this->Nt_up);
+	//this->z_up = this->threshold(this->upper_bound.fit(),this->t_up,this->Nt_up);
 }
 
 /**
@@ -429,31 +430,53 @@ void Spot::fitup()
 */
 void Spot::fitdown()
 {
-	this->z_down = - this->threshold(this->lower_bound.fit(),-this->t_down,this->Nt_down);
+	this->lower_bound.fit();
+	this->z_down = - this->lower_bound.quantile(this->q, -this->t_down, this->n, this->Nt_down);
+	//this->z_down = - this->threshold(this->lower_bound.fit(),-this->t_down,this->Nt_down);
 }
 
 
-/**
-	@brief Compute threshold from the GPD fit
-	@param[in] g GPDinfo (from the fit)
-	@param[in] t excess quantile
-	@param[in] Nt number of excesses (observations higher than t)
-	@return threshold (z_q)
-*/
+
+
+/*
 double Spot::threshold(GPDinfo g, double t, int Nt)
 {
 	double z;
 	double r = (this->q)*(this->n)/Nt;
 	if (g.gamma == 0.0)
 	{
-		z = t - g.sigma * log(r);
+		z = t - g.sigma * std::log(r);
 	}
 	else
 	{
 		z = t + (g.sigma/g.gamma) * ( pow(r,-g.gamma) - 1 );
 	}
 	return(z);
+}*/
+
+
+
+/**
+	@brief Give the probability to observe things higher than a value
+	@param[in] z input value
+	@return proability 1-F(z)
+*/
+double Spot::up_probability(double z)
+{
+	return this->upper_bound.probability(z, this->t_up, this->n, this->Nt_up);
 }
+
+
+/**
+	@brief Give the probability to observe things lower than a value
+	@param[in] z input value
+	@return proability F(z)
+*/
+double Spot::down_probability(double z)
+{
+	return 1-this->lower_bound.probability(-z, -this->t_down, this->n, this->Nt_down);
+}
+
 
 
 
@@ -469,7 +492,7 @@ void Spot::calibrate()
 	{
 		// get the quantile
 		int rank_up = (int)(this->n_init * this->level);
-		int Nt = (this->n_init)-rank_up;
+		//int Nt = (this->n_init)-rank_up;
 		this->t_up = this->init_batch[rank_up];
 		
 
@@ -480,8 +503,9 @@ void Spot::calibrate()
 		}
 		
 		this->Nt_up = this->upper_bound.size();
-		GPDinfo info_up = this->upper_bound.fit();
-		this->z_up = this->threshold(info_up,this->t_up,Nt);
+		//GPDinfo info_up = this->upper_bound.fit();
+		//this->z_up = this->threshold(info_up,this->t_up,Nt);
+		this->fitup();
 
 	}
 
@@ -498,8 +522,9 @@ void Spot::calibrate()
 		}
 		
 		this->Nt_down = this->lower_bound.size();
-		GPDinfo info_down = this->lower_bound.fit();
-		this->z_down = - this->threshold(info_down,- this->t_down,rank_down);
+		this->fitdown();
+		//GPDinfo info_down = this->lower_bound.fit();
+		//this->z_down = - this->threshold(info_down,- this->t_down,rank_down);
 	}
    
 }
@@ -550,6 +575,14 @@ double Spot::getLower_t()
 }
 
 
+/**
+	@brief Set the risk parameter q
+*/
+void Spot::set_q(double q_new)
+{
+	this->q = q_new;
+}
+
 
 /**
 	@brief Get the internal state of the Spot instance
@@ -579,6 +612,40 @@ string Spot::stringStatus()
 {
 	return this->status().str();
 }
+
+
+/**
+	@brief Return the current state of the Spot instance through a single line string
+*/
+string Spot::log(int log_level)
+{
+	stringstream ss;
+	ss.precision(4);
+	ss << std::left;
+	const int w = 10;
+	
+	if ( log_level >= 0)
+	{
+		ss << setw(w) << this->z_down;
+		ss << setw(w) << this->z_up;
+	}
+	
+	if ( log_level >= 1)
+	{
+		ss << setw(w) << this->n;
+		ss << setw(w) << this->al_down;
+		ss << setw(w) << this->al_up;
+	}
+	
+	if ( log_level >= 2)
+	{
+		ss << setw(w) << this->Nt_down;
+		ss << setw(w) << this->Nt_up;
+	}
+	ss << endl;
+	return ss.str();
+}
+
 
 
 /**
