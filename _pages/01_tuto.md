@@ -42,6 +42,9 @@ If the memory is not bounded, the algorithm will store more and more data to per
 ```c++
 Spot(double q, vector<double> init_data, double level, bool up, bool down, bool alert, bool bounded, int max_excess);
 ```
+
+
+
 Finally, shorter constructors can also be used:
 ```c++
 Spot(double q = 1e-3, int n_init = 1000);
@@ -68,44 +71,87 @@ Once a `SPOT` object is created you can feed it with data through the `step` met
 ```c++
 int Spot.step(double x)
 ```
-According to the state of the algorithm or the detected event, this method returns a corresponding integer.
-<center>
-<table align="center" width="40%" style="margin: auto auto;">
-   <TR ALIGN="CENTER">
-		<TD width="20%"><h3>Code</h3></TD>
-		<TD width="80%"><h3>Meaning</h3></TD>
-   </TR>
-   <TR ALIGN="CENTER">
-		<TD width="20%">0</TD>
-		<TD width="80%">Normal data</TD>
-   </TR>
-   <TR ALIGN="CENTER">
-		<TD width="20%">-1/1</TD>
-		<TD width="80%">Down/Up alert</TD>
-   </TR>
-   <TR ALIGN="CENTER">
-		<TD width="20%">-2/2</TD>
-		<TD width="80%">Down/Up excess</TD>
-   </TR>
-   <TR ALIGN="CENTER">
-		<TD width="20%">3</TD>
-		<TD width="80%">Data for inital batch</TD>
-   </TR>
-   <TR ALIGN="CENTER">
-		<TD width="20%">4</TD>
-		<TD width="80%">Calibration step</TD>
-   </TR>
-</table>
-</center>
+According to the state of the algorithm or the detected event, this method returns an enum item `SPOTEVENT::` (corresponding to an integer).
+
+| enum item   | integer | meaning                        |
+|:------------|:-------:|:-------------------------------|
+| NORMAL      | 0       | Normal data                    |
+| ALERT_UP    | 1       | Abnormal data (too high)       |
+| ALERT_DOWN  | -1      | Abnormal data (too low)        |
+| EXCESS_UP   | 2       | Excess (update the up model)   |
+| EXCESS_DOWN | -2      | Excess (update the down model) |
+| INIT_BATCH  | 3       | Data for initial batch         |
+| CALIBRATION | 4       | Calibration step               |
+
 
 <a name="example"></a>
 ### EXAMPLE
 
-Here we give an example where Spot is applied on a Gaussian white noise of 10000 values. You can compile it with `g++` and the `C++14` standard:
-```bash
+Here we give an example where Spot is applied on a Gaussian white noise of 10000 values.
+
+<a></a>
+
+```c++
+// main.cpp
+
+#include "spot.h"
+#include <random>
+#include <iostream>    
+#include <algorithm>    
+#include <vector>
+#include <math.h>
+
+using namespace std;
+
+vector<double> gaussian_white_noise(double mu, double sigma, int N)
+{
+	vector<double> v(N);
+	random_device rd;
+	default_random_engine gen(rd());
+	normal_distribution<double> gaussian(mu,sigma);
+
+	for (int i = 0; i < N; i++) {
+		v[i] = gaussian(gen);
+	}
+	return v;
+}
+
+
+int main(int argc, const char * argv[])
+{
+	int N = 10000;
+	vector<double> data = gaussian_white_noise(0,1,N);
+
+	int nb_up_alarm = 0;
+	int nb_down_alarm = 0;
+
+  	Spot S;
+	int output;
+
+	for(auto & x : data) {
+		output = S.step(x);
+
+		if (output == SPOTVEVENT::ALERT_UP) {
+			nb_up_alarm++;
+		}
+		if (output == SPOTVEVENT::ALERT_DOWN) {
+			nb_down_alarm++;
+		}
+	}
+
+	cout << "#Up Alerts: " << nb_up_alarm << endl;
+	cout << "#Down Alerts: " << nb_down_alarm << endl;
+
+	return 0;
+}
+```
+
+
+You can compile it with `g++` and the `C++14` standard:
+```awk
 g++ -std=c++14 -Wall main.cpp -lspot
 ```
 
-{% gist 42d77da0c8775e1ede92bf66f7c3602a %}
+<!-- {% gist 42d77da0c8775e1ede92bf66f7c3602a %} -->
 
 

@@ -33,6 +33,14 @@ include: ['_pages']
 
 markdown: kramdown
 highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    default_lang: c++
+    css_class: 'highlight'
+
+
   
 theme: minima
 plugins:

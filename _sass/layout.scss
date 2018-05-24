@@ -104,7 +104,7 @@ main .block {
 	white-space: pre-wrap;
 }
 
-.bash {
+/*.bash {
 	color: #FFFFFF;
 	background-color: $color1;
 	font: normal 1em $font4; 
@@ -113,7 +113,7 @@ main .block {
 	&:before {
     		content: '>';
 	}
-}
+}*/
 
 header {
 	float: left;
@@ -142,7 +142,7 @@ header img {
 /*	vertical-align: text-top;*/
 }
 
-pre, code  {
+/*pre, code  {
 	font-size: 1.1em;
 	color: $color4;
 	white-space: pre-wrap;
@@ -151,7 +151,27 @@ pre, code  {
 pre {
 	margin-left: 15%;
 }
+pre {
+    border-radius: 1em; 
+    border: 1px solid $color1;
+    white-space: pre-wrap;
+    padding: 1em;
+    
+}*/
 
+
+.highlight  { 
+	padding: 0.25em;
+	padding-left: 1em;
+	padding-right: 1em;
+	border-radius: 0.5em; 
+	background: $color1; 
+	white-space: pre-wrap;
+}
+
+code {
+	color: $color3;
+}
 
 
 footer {
@@ -164,13 +184,13 @@ footer {
 
 
 .alert {
-	background-color: $color1; 
-	border: thin solid $color2; 
-	color: $color2;
+	/*background-color: $color3; */
+	border: thin solid $color3; 
+	color: $color3;
 	font: normal 1em $font1, sans serif;
 	padding: 0.5em 1em;
 	pre, code  {
-		color: $color2;
+		color: $color1;
 	}
 }
 
@@ -185,7 +205,7 @@ footer {
 }
 
 
-@media (max-width: 800px)
+@media (max-width: 900px)
 {
 	#page {
 		margin: 0 auto;
@@ -244,11 +264,11 @@ footer {
 		width: 100%;
 	}
 	
-	pre {
+	/*pre {
 		font-size: 1em;
 		width: 80%;
 		margin: auto 0;
-	}
+	}*/
 	
 	
 }
@@ -267,9 +287,9 @@ footer {
 		height: 0;
 	}
 	
-	pre {
+	/*pre {
 		font-size: 0.9em;
-	}
+	}*/
 }
 
 
