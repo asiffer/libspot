@@ -1,2 +1,1 @@
-debian/libspot-dev/usr/lib/*.so usr/lib/*.so 
-debian/libspot-dev/usr/include/libspot/* usr/include/libspot/*
+debian/tmp/usr/include/libspot/* usr/include/libspot/*
