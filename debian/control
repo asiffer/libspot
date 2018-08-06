@@ -4,7 +4,7 @@ Maintainer: Alban Siffer <alban.siffer@irisa.fr>
 Build-Depends: debhelper (>=9)
 Standards-Version: 3.9.6
 Section: libs
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://asiffer.github.io/libspot/
 
 
 Package: libspot-dev
@@ -12,5 +12,11 @@ Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: A C++ library to flag outliers in streaming data
- <insert long description, indented with spaces>
+Description: A C++ library to flag outliers in streaming data - dev files
+
+
+Package: libspot
+Architecture: any
+Multi-Arch: same
+Depends: libarmadillo8, ${shlibs:Depends}, ${misc:Depends}
+Description: A C++ library to flag outliers in streaming data - exec files

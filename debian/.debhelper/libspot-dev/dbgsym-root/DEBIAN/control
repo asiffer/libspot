@@ -8,7 +8,7 @@ Maintainer: Alban Siffer <alban.siffer@irisa.fr>
 Installed-Size: 50
 Depends: libspot-dev (= 1.1)
 Section: debug
-Priority: extra
+Priority: optional
 Multi-Arch: same
-Description: Debug symbols for libspot-dev
-Build-Ids: cf670b483a4a7913f83bf4ef831f0b86efd4f018 cf670b483a4a7913f83bf4ef831f0b86efd4f018
+Description: debug symbols for libspot-dev
+Build-Ids: 0852d5d40bdf571e6f6ba90986c4c8f85286571f

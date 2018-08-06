@@ -10,7 +10,7 @@
 8988d1fe786e702dbae35d5bc523e3d2  usr/include/libspot/gpdfit.h
 3b616cf624bb7045505bb1b55d636067  usr/include/libspot/spot.h
 2df0509e310c10bbec35e6db7fa1759d  usr/include/libspot/ubend.h
-a02f28e8d4e0d9ed4beff5e4704e6089  usr/lib/*.so/libspot.so
-a02f28e8d4e0d9ed4beff5e4704e6089  usr/lib/libspot.so
+3cd9a831e59ae3651886c977f2706296  usr/lib/*.so/libspot.so
+3cd9a831e59ae3651886c977f2706296  usr/lib/libspot.so
 107a21b4188738fbffff4638bac3cb61  usr/share/doc/libspot-dev/changelog.gz
 c430693f737a8b57daa1effcad49d7c0  usr/share/doc/libspot-dev/copyright
