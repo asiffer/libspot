@@ -1,0 +1,11 @@
+Package: libspot
+Version: 1.1
+Architecture: amd64
+Maintainer: Alban Siffer <alban.siffer@irisa.fr>
+Installed-Size: 131
+Depends: libarmadillo8, libc6 (>= 2.4), libgcc1 (>= 1:3.0), libstdc++6 (>= 5.2)
+Section: libs
+Priority: extra
+Multi-Arch: same
+Homepage: https://asiffer.github.io/libspot/
+Description: A C++ library to flag outliers in streaming data - exec files

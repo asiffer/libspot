@@ -1,0 +1,11 @@
+Package: libspot-dev
+Source: libspot
+Version: 1.1
+Architecture: amd64
+Maintainer: Alban Siffer <alban.siffer@irisa.fr>
+Installed-Size: 36
+Section: libdevel
+Priority: extra
+Multi-Arch: same
+Homepage: https://asiffer.github.io/libspot/
+Description: A C++ library to flag outliers in streaming data - dev files
