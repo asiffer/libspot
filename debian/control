@@ -14,7 +14,6 @@ Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data - dev files
 
-
 Package: libspot
 Architecture: any
 Multi-Arch: same
