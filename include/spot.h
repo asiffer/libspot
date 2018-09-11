@@ -68,7 +68,7 @@ class SpotStatus {
 		int al_down; 		
 		
 		/** initial batch (for calibration) */
-		vector<double> init_batch; 
+		//vector<double> init_batch; 
 
 		/** transitional up threshold */
 		double t_up; 	
