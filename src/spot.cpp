@@ -591,10 +591,10 @@ SpotStatus Spot::status()
 {
 	SpotStatus status;
 	status.n = this->n;
-	status.Nt_up = this->Nt_up;
-	status.Nt_down = this->Nt_down;
 	status.ex_up = this->upper_bound.size();
 	status.ex_down = this->lower_bound.size();
+	status.Nt_up = this->Nt_up;
+	status.Nt_down = this->Nt_down;
 	status.al_up = this->al_up;
 	status.al_down = this->al_down;
 	status.t_up = this->t_up;

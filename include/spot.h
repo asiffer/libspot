@@ -57,7 +57,7 @@ class SpotStatus {
 		/** Current number of down excesses */ 		
 		int ex_down; 		
 		
-		/** Ttoal number of up excesses */
+		/** Total number of up excesses */
 		int Nt_up;
 		/** Total number of down excesses */ 		
 		int Nt_down; 
