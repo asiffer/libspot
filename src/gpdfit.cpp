@@ -266,11 +266,11 @@ double GPDfit::quantile(double q, double t, int n, int Nt)
 
 double GPDfit::probability(double z, double t, int n, int Nt)
 {
-	double r = (t - z)*(this->gamma/this->sigma);
-	double s = Nt/n;
+	double r = (z - t)*(this->gamma/this->sigma);
+	double s = 1.*Nt/n;
 	if (this->gamma == 0.0)
 	{
-		return ( s * std::exp(r) );
+		return ( s * std::exp( - (z - t)/this->sigma ) );
 	}
 	else
 	{

@@ -474,7 +474,7 @@ double Spot::up_probability(double z)
 */
 double Spot::down_probability(double z)
 {
-	return 1-this->lower_bound.probability(-z, -this->t_down, this->n, this->Nt_down);
+	return this->lower_bound.probability(-z, -this->t_down, this->n, this->Nt_down);
 }
 
 

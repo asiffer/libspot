@@ -111,6 +111,102 @@ void check_thresholds(Spot & S, double z_truth)
 	}
 }
 
+vector<double> linspace(double min, double max, int n_points)
+{
+	vector<double> v(n_points);
+	double step = (max - min)/(n_points - 1);
+	for (int i = 0; i<n_points; i++)
+	{
+		v[i] = min + i*step;
+	}
+	return v;
+}
+
+void check_up_proba(Spot & S)
+{
+	double q = S.config().q;
+	double z_q = S.getUpperThreshold();
+	vector<double> v = linspace(z_q, 5., 20);
+	
+	cout << setw(30) << std::left << "Upper threshold meaning"; 
+	double rel_err = abs(q - S.up_probability(z_q))/q;
+	if ( rel_err < 0.01 )
+	{
+		cout << OK << endl;
+	}
+	else if ( rel_err < 0.02 )
+	{
+		cout << WARNING << endl;
+	}
+	else {
+		cout << FAIL << endl;
+	}
+
+	cout << setw(30) << std::left << "Probability computation";
+	double ref = S.up_probability(z_q);
+	double p = 0.;
+	for (auto & z: v)
+	{
+		p = S.up_probability(z);
+		if (p > ref)
+		{
+			cout << FAIL << endl;
+			return;
+		}
+		else
+		{
+			ref = p;
+		}
+		
+		// cout << "P(X>" << setprecision(3) << z << ") = " << setprecision(5) << S.up_probability(z) << endl;
+		// cout << "P(X>" << z << ") = " << S.up_probability(z) << endl;
+	}
+	cout << OK << endl;
+}
+
+
+
+void check_down_proba(Spot & S)
+{
+	double q = S.config().q;
+	double z_q = S.getLowerThreshold();
+	vector<double> v = linspace(z_q, -5., 20);
+	
+	cout << setw(30) << std::left << "Lower threshold meaning"; 
+	double rel_err = abs(q - S.down_probability(z_q))/q;
+	if ( rel_err < 0.01 )
+	{
+		cout << OK << endl;
+	}
+	else if ( rel_err < 0.02 )
+	{
+		cout << WARNING << endl;
+	}
+	else {
+		cout << FAIL << endl;
+	}
+
+	cout << setw(30) << std::left << "Probability computation";
+	double ref = S.down_probability(z_q);
+	double p = 0.;
+	for (auto & z: v)
+	{
+		p = S.down_probability(z);
+		//cout << "P(X<" << setprecision(3) << z << ") = " << setprecision(5) << p << endl;
+		if (p > ref)
+		{
+			cout << FAIL << endl;
+			return;
+		}
+		else
+		{
+			ref = p;
+		}
+	}
+	cout << OK << endl;
+}
+
+
 
 
 void check_flagging(Spot & S)
@@ -179,5 +275,10 @@ int main(int argc, const char * argv[])
 	}
 	cout << endl << S.stringStatus() << endl;
 	check_flagging(S);
+
+	cout << endl << "\t3. Probability computation\n" << endl;
+	check_up_proba(S);
+	check_down_proba(S);
+
 	return 0;
 }
