@@ -17,5 +17,5 @@ Description: A C++ library to flag outliers in streaming data - dev files
 Package: libspot
 Architecture: any
 Multi-Arch: same
-Depends: libarmadillo8, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data - exec files
