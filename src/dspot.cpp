@@ -198,9 +198,6 @@ int DSpot::step(double x)
 */
 
 
-/**
-EXPERIMENTAL
-*/
 SPOTEVENT DSpot::step(double x)
 {
 	SPOTEVENT res;
@@ -319,8 +316,49 @@ string DSpot::log(int log_level)
 
 
 /**
+	@brief Get the initial config of the DSpot instance
+*/
+DSpotConfig DSpot::config() const
+{
+	DSpotConfig dsc;
+	dsc.q = this->q;
+	dsc.bounded = this->bounded;
+	dsc.max_excess = this->max_excess;
+	dsc.alert = this->alert;
+	dsc.up = this->up;
+	dsc.down = this->down;
+	dsc.n_init = this->n_init;
+	dsc.level = this->level;
+	dsc.depth = this->depth;
+	return(dsc);
+}
+
+
+string DSpotConfig::str()
+{
+	stringstream ss;
+	string h = "---- DSpot config ----";
+	ss << h << endl;
+	ss.precision(4);
+	ss << "depth" << "\t\t" << this->depth << endl; 
+	ss << "q" << "\t\t" << this->q << endl; 
+	ss << "n_init" << "\t\t" << this->n_init << endl;
+	ss << "level" << "\t\t" << this->level << endl; 
+	ss << "up" << "\t\t" << this->up << endl; 
+	ss << "down" << "\t\t" << this->down << endl; 
+	ss << "alert" << "\t\t" << this->alert << endl; 
+	ss << "bounded" << "\t\t" << this->bounded << endl; 
+	ss << "max_excess" << "\t" << this->max_excess << endl; 
+	ss << endl;
+	return ss.str();
+}
+
+
+
+/**
 	@brief Get the internal state of the DSpot instance
 */
+/*
 SpotStatus DSpot::status()
 {
 	SpotStatus ss = this->Spot::status();
@@ -329,19 +367,111 @@ SpotStatus DSpot::status()
 	ss.t_up += this->drift;
 	ss.t_down += this->drift;
 	return(ss);
+}*/
+DSpotStatus DSpot::status()
+{
+	DSpotStatus status;
+	status.n = this->n;
+	status.ex_up = this->upper_bound.size();
+	status.ex_down = this->lower_bound.size();
+	status.Nt_up = this->Nt_up;
+	status.Nt_down = this->Nt_down;
+	status.al_up = this->al_up;
+	status.al_down = this->al_down;
+	status.t_up = this->t_up + this->drift;
+	status.t_down = this->t_down + this->drift;
+	status.z_up = this->z_up + this->drift;
+	status.z_down = this->z_down + this->drift;
+	status.drift = this->drift;
+	return(status);
 }
+
+
+
+/**
+	@brief Format the status to print it
+*/
+string DSpotStatus::str()
+{
+	stringstream ss;
+	string h = "----- DSpot status -----";
+	ss << h << endl;
+	ss << std::left << "n = " << setw(h.length()-4) << this->n << endl;
+	ss << std::left << "drift = " << setw(h.length()-4) << this->drift << endl;
+	ss << setw(h.length()) << "" << endl;
+	ss << "info" << "\t" << "up" << "\t" << "down" << endl; 
+	ss << setfill('-') << setw(h.length()) << "" << endl;
+	ss.precision(4);
+	ss << "Nt" << "\t" << this->Nt_up << "\t" << this->Nt_down << endl; 
+	ss << "ex" << "\t" << this->ex_up << "\t" << this->ex_down << endl; 
+	ss << "al" << "\t" << this->al_up << "\t" << this->al_down << endl;
+	ss << "t" << "\t" << this->t_up << "\t" << this->t_down << endl; 
+	ss << "z" << "\t" << this->z_up << "\t" << this->z_down << endl; 
+	ss << endl;
+	return ss.str();
+}
+
+
 
 /**
 	@brief Format the config to print it
 */
 string DSpot::stringStatus()
 {
-	stringstream ss;
+	/*stringstream ss;
 	string h = "----- DSpot status ----";
 	ss << h << endl;
 	ss << std::left << "drift = " << setw(h.length()-8) << this->drift << endl;
 	ss << setw(h.length()) << "" << endl;
 	ss << this->DSpot::status().str();
-	return ss.str();
+	return ss.str();*/
+	return this->DSpot::status().str();
 }
+
+
+
+
+/**
+	\brief Get the upper excess quantile
+	\details Overload Spot method (return the real absolute value with the drift)
+*/
+double DSpot::getUpper_t() 
+{
+	return(this->t_up + this->drift);
+}
+
+/**
+	\brief Get the lower excess quantile
+	\details Overload Spot method (return the real absolute value with the drift)
+*/
+double DSpot::getLower_t() 
+{
+	return(this->t_up + this->drift);
+}
+
+
+/**
+	\brief Give the probability to observe things higher than a value
+	\details Overload Spot method (return the real absolute value with the drift)
+	\param[in] z input value
+	\return proability 1-F(z)
+*/
+double DSpot::up_probability(double z) 
+{
+	return(this->Spot::up_probability(z)  + this->drift);
+}
+
+/**
+	\brief Give the probability to observe things lower than a value
+	\details Overload Spot method (return the real absolute value with the drift)
+	\param[in] z input value
+	\return proability F(z)
+*/
+double DSpot::down_probability(double z) 
+{
+	return(this->Spot::down_probability(z)  + this->drift);
+}
+
+
+
 

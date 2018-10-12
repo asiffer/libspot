@@ -84,6 +84,44 @@ class StreamMean : public Ubend {
 #ifndef DSPOT_H
 #define DSPOT_H
 
+
+/**
+ *  \class DSpotStatus
+ *	\brief This structure summarizes the status of the DSpot object around the decision area (inherit SpotStatus)
+ *	\details It gives the number of excesses, the number of alarms, the number of normal observations, the values of the thresholds etc.
+ */
+class DSpotStatus : public SpotStatus{
+	public:
+		/** the local drift */	
+		double drift;
+		
+		/**
+			\brief Format the status to print it
+		*/
+		string str();
+
+};
+
+
+
+/**
+ *  	\class DSpotConfig
+ *	\brief This structure gathers the configuration of a DSpot object (aims to build similar instance)
+ *	\details inherit SpotConfig
+ */
+class DSpotConfig: public SpotConfig {
+	public:
+		/** the depth of the moving average */
+        	int depth;
+        	
+        	/**
+			\brief Format the config to print it
+		*/
+		string str();
+};
+
+
+
 /**
  *  \class DSpot
  *	\brief Embed the DSpot algorithm to flag outliers in streaming and drifting data
@@ -113,7 +151,7 @@ class DSpot : public Spot
     public:
         // constructors (use the Spot constructor syntax)
         
-        /**
+        	/**
 			\brief Default constructor
 			\param[in] d Depth of the moving average
 			\param[in] q Probability of abnormal events
@@ -250,13 +288,50 @@ class DSpot : public Spot
 		
 		/**
 			\brief Get the internal state of the DSpot instance
+			\details overload Spot method
 		*/
-		SpotStatus status();
+		DSpotStatus status();
 		
 		/**
-			\brief Format the config to print it
+			\brief Return the configuration of the DSpot instance
+			\details overload Spot method
+		*/
+		DSpotConfig config() const;
+		
+		/**
+			\brief Format the status to print it
 		*/
 		string stringStatus();
+		
+		
+		/**
+			\brief Get the upper excess quantile
+			\details Overload Spot method (return the real absolute value with the drift)
+		*/
+		double getUpper_t();
+	
+		/**
+			\brief Get the lower excess quantile
+			\details Overload Spot method (return the real absolute value with the drift)
+		*/
+		double getLower_t();
+		
+		
+		/**
+			\brief Give the probability to observe things higher than a value
+			\details Overload Spot method (return the real absolute value with the drift)
+			\param[in] z input value
+			\return proability 1-F(z)
+		*/
+		double up_probability(double z);
+		
+		/**
+			\brief Give the probability to observe things lower than a value
+			\details Overload Spot method (return the real absolute value with the drift)
+			\param[in] z input value
+			\return proability F(z)
+		*/
+		double down_probability(double z);
 };
 
 #endif // DSPOT_H

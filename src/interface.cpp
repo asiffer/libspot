@@ -40,14 +40,16 @@ extern "C" {
 					up, down, alert, 
 					bounded, max_excess);
 	}
-	SpotStatus DSpot_status(DSpot * ds) { return ds->status(); }
+	DSpotStatus DSpot_status(DSpot * ds) { return ds->status(); }
+	DSpotConfig DSpot_config(DSpot * ds) { return ds->config(); }
 	int DSpot_step(DSpot * ds, double x) { return ds->step(x); }
-	//SpotStatus DSpot_config(DSpot * ds) { return ds->config(); }
 	double DSpot_getUpperThreshold(DSpot * ds) { return ds->getUpperThreshold(); }
 	double DSpot_getLowerThreshold(DSpot * ds) { return ds->getLowerThreshold(); }
 	double DSpot_getUpper_t(DSpot * ds) { return ds->getUpper_t(); }
 	double DSpot_getLower_t(DSpot * ds) { return ds->getLower_t(); }
 	double DSpot_getDrift(DSpot * ds) { return ds->getDrift(); }
 	void DSpot_set_q(DSpot * ds, double q_new) { ds->set_q(q_new); }
+	double DSpot_up_probability(DSpot * ds, double z) { return ds->up_probability(z); }
+	double DSpot_down_probability(DSpot * ds, double z) { return ds->down_probability(z); }
 }
 
