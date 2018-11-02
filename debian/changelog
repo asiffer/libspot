@@ -1,8 +1,33 @@
+libspot (1.2) cosmic; urgency=medium
+
+  [ Alban Siffer ]
+  * add proba computation to DSPOT and fix config/status export on DSPOT too
+  * Add OPENMP support for the GPDfit
+  * C interface for python
+  * C interface for python
+  * doxygen in Makefile + remove GPDinfo
+  * update README
+  * update README
+  * towards git+launchpad
+  * towards git+launchpad
+  * towards git+launchpad
+  * modif on *.install files
+  * update debian folder
+  * minor
+  * remove init_batch in spot status
+  * change order in Spot::status
+  * fix probability computation
+  * remove useless libarmadillo dependency
+
+
+ -- asr <asr@PORT-120>  Fri, 02 Nov 2018 11:57:44 +0100
+
 libspot (1.1) unstable; urgency=medium
 
+  [ Alban Siffer ]
   * New enum items
 
- -- Alban Siffer <alban.siffer@irisa.fr>  Fri, 02 Mar 2018 11:12:28 +0100
+ -- asr <asr@PORT-120>  Fri, 02 Nov 2018 11:55:36 +0100
 
 libspot (1.0) unstable; urgency=medium
 
