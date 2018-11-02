@@ -1,6 +1,6 @@
 Package: libspot-dev
 Source: libspot
-Version: 1.1
+Version: 1.2
 Architecture: amd64
 Maintainer: Alban Siffer <alban.siffer@irisa.fr>
 Installed-Size: 40
