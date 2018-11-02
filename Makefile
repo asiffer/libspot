@@ -7,7 +7,7 @@ DESTDIR =
 ###
 
 
-VERSION = 1.1
+VERSION = 1.2
 
 # Current directory
 CURDIR = $(realpath .)
