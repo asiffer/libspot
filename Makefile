@@ -37,7 +37,8 @@ EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
 
 # compiler & flags
 CC = @g++
-CXXFLAGS = -std=c++14 -Wall -pedantic 
+CXXFLAGS = -std=c++14 -Wall -pedantic -fopenmp
+CXXFLAGS_NO_OPENMP = -std=c++14 -Wall -pedantic
 CCVERSION = $(shell g++ --version | grep ^g++ | sed 's/^.* //g' | awk -F '[.]' '{print $1"."$2}')
 CCVERSIONOK = $(shell echo "$(CCVERSION)>=4.8" | bc) 
 $(info $(CCVERSION))
@@ -48,11 +49,12 @@ endif
 
 # all the files (header, sources, build)
 #removed : streammoments.h streamstats.h 
-FILES = bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h
+FILES = bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h interface.h
 DEPS = $(foreach n,$(FILES),$(INC_DIR)/$(n))
-SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n)) $(SRC_DIR)/interface.cpp
-OBJS = $(FILES:.h=.o) interface.o
-
+#SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n)) $(SRC_DIR)/interface.cpp
+#OBJS = $(FILES:.h=.o) interface.o
+SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
+OBJS = $(FILES:.h=.o)
 
 # library file
 TARGET = libspot.so
@@ -64,7 +66,7 @@ all: checkdir $(TARGET)
 # create lib/ and build/ directories
 checkdir:
 	@echo
-	@echo "==== libspot-dev" $(VERSION) "===="
+	@echo "==== libspot" $(VERSION) "===="
 	@echo
 	@echo "Checking the library directory ("$(LIB_DIR)")"
 	@mkdir -p $(LIB_DIR)
@@ -117,8 +119,16 @@ test_dspot:
 	@echo "Running test ..."
 	$(EXPORT); $(TEST_DIR)/test_dspot
 
+test_openmp_perf:
+	@echo
+	@echo "[Testing OPENMP performances]"
+	@echo "Building tests ..."
+	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_perf_with_openmp $(TEST_DIR)/test_openmp_perf.cpp -lspot 
+	$(CC) $(CXXFLAGS_NO_OPENMP) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_perf_without_openmp $(TEST_DIR)/test_openmp_perf.cpp -lspot 
+	@echo "Running test ..."
+	$(EXPORT); $(TEST_DIR)/test_perf_without_openmp; $(TEST_DIR)/test_perf_with_openmp
 
-test: test_spot test_dspot
+test: test_spot test_dspot test_openmp_perf
 
 ## HTML/XML docs
 docs:

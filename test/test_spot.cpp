@@ -26,7 +26,7 @@ const auto& tick = std::chrono::steady_clock::now;
 
 int duration(T start, T end)
 {
-	return std::chrono::duration_cast<usec>(end - start).count();
+	return chrono::duration_cast<usec>(end - start).count();
 }
 
 int operator-(const T& end, const T& start)
@@ -139,7 +139,7 @@ void check_up_proba(Spot & S)
 		cout << WARNING << endl;
 	}
 	else {
-		cout << FAIL << endl;
+		cout << FAIL << "(Relative error: " << rel_err << ", lower than 0.02 expected)" << endl;
 	}
 
 	cout << setw(30) << std::left << "Probability computation";
@@ -183,7 +183,7 @@ void check_down_proba(Spot & S)
 		cout << WARNING << endl;
 	}
 	else {
-		cout << FAIL << endl;
+		cout << FAIL << "(Relative error: " << rel_err << ", lower than 0.02 expected)" << endl;
 	}
 
 	cout << setw(30) << std::left << "Probability computation";

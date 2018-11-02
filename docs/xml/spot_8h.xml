@@ -10,13 +10,75 @@
     <includes local="no">string</includes>
     <includes local="no">algorithm</includes>
     <includes local="no">sstream</includes>
-    <includedby refid="dspot_8h" local="yes">include/dspot.h</includedby>
+    <includedby refid="dspot_8h" local="yes">/home/asr/Documents/Work/github/libspot/master/include/dspot.h</includedby>
     <incdepgraph>
       <node id="51">
         <label>iomanip</label>
       </node>
       <node id="47">
         <label>functional</label>
+      </node>
+      <node id="42">
+        <label>ubend.h</label>
+        <link refid="ubend_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>cmath</label>
+      </node>
+      <node id="49">
+        <label>numeric</label>
+      </node>
+      <node id="52">
+        <label>string</label>
+      </node>
+      <node id="46">
+        <label>brent.h</label>
+        <link refid="brent_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>bounds.h</label>
+        <link refid="bounds_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>vector</label>
+      </node>
+      <node id="53">
+        <label>sstream</label>
+      </node>
+      <node id="44">
+        <label>iostream</label>
+      </node>
+      <node id="40">
+        <label>/home/asr/Documents/Work/github/libspot/master/include/spot.h</label>
+        <link refid="spot_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
       </node>
       <node id="41">
         <label>gpdfit.h</label>
@@ -38,79 +100,17 @@
         <childnode refid="49" relation="include">
         </childnode>
       </node>
-      <node id="48">
-        <label>cmath</label>
-      </node>
-      <node id="49">
-        <label>numeric</label>
-      </node>
-      <node id="52">
-        <label>string</label>
-      </node>
-      <node id="50">
-        <label>bounds.h</label>
-        <link refid="bounds_8h"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-      </node>
-      <node id="43">
-        <label>vector</label>
-      </node>
-      <node id="53">
-        <label>sstream</label>
-      </node>
-      <node id="44">
-        <label>iostream</label>
-      </node>
-      <node id="40">
-        <label>include/spot.h</label>
-        <link refid="spot_8h"/>
-        <childnode refid="41" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
-      </node>
-      <node id="46">
-        <label>brent.h</label>
-        <link refid="brent_8h"/>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-      </node>
-      <node id="42">
-        <label>ubend.h</label>
-        <link refid="ubend_8h"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="45" relation="include">
-        </childnode>
-      </node>
       <node id="45">
         <label>algorithm</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
       <node id="55">
-        <label>include/dspot.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/dspot.h</label>
         <link refid="dspot_8h"/>
       </node>
       <node id="54">
-        <label>include/spot.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/spot.h</label>
         <link refid="spot_8h"/>
         <childnode refid="55" relation="include">
         </childnode>
@@ -184,7 +184,7 @@
 <para>The previous integer values we used are kept </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="34" column="1" bodyfile="include/spot.h" bodystart="34" bodyend="42"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="34" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="34" bodyend="42"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -236,7 +236,7 @@
 <codeline lineno="66" refid="class_spot_status_1ae6d4cd0076e8f9f0c3de6561b93fe605" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_spot_status_1ae6d4cd0076e8f9f0c3de6561b93fe605" kindref="member">al_up</ref>;<sp/><sp/></highlight></codeline>
 <codeline lineno="68" refid="class_spot_status_1af61113804644236566e8b01e30b2c7a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_spot_status_1af61113804644236566e8b01e30b2c7a0" kindref="member">al_down</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="71" refid="class_spot_status_1a6f06682e5bebe349409568c7bef7862a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;double&gt;<sp/><ref refid="class_spot_status_1a6f06682e5bebe349409568c7bef7862a" kindref="member">init_batch</ref>;<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//vector&lt;double&gt;<sp/>init_batch;<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"></highlight></codeline>
 <codeline lineno="74" refid="class_spot_status_1a2ac2050f4fdc0952ee208b9d873c027d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spot_status_1a2ac2050f4fdc0952ee208b9d873c027d" kindref="member">t_up</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="76" refid="class_spot_status_1ab05d4fec79e034675d577c85922add45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_spot_status_1ab05d4fec79e034675d577c85922add45" kindref="member">t_down</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
@@ -390,6 +390,6 @@
 <codeline lineno="391"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>SPOT_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="392"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="include/spot.h"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h"/>
   </compounddef>
 </doxygen>

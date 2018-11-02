@@ -30,7 +30,7 @@ enum UBENDSTATUS: int {
 
 
 /**
- *  	\class Ubend
+ *  \class Ubend
  *	\brief This container is a kind of circular vector. 
  *	\details First it is empty. 
  *	Then we feed it with data until its max capacity is reached (transitory state).

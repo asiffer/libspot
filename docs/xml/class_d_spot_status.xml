@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_d_spot_status" kind="class" language="C++" prot="public">
+    <compoundname>DSpotStatus</compoundname>
+    <basecompoundref refid="class_spot_status" prot="public" virt="non-virtual">SpotStatus</basecompoundref>
+    <includes refid="dspot_8h" local="no">dspot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_d_spot_status_1acc439e6d2bd1082bb6218ff32190607b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double DSpotStatus::drift</definition>
+        <argsstring></argsstring>
+        <name>drift</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the local drift </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="96" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_d_spot_status_1a6f1f0e9ef3c28e97e924548d13a3306d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string DSpotStatus::str</definition>
+        <argsstring>()</argsstring>
+        <name>str</name>
+        <briefdescription>
+<para>Format the status to print it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="101" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This structure summarizes the status of the <ref refid="class_d_spot" kindref="compound">DSpot</ref> object around the decision area (inherit <ref refid="class_spot_status" kindref="compound">SpotStatus</ref>) </para>    </briefdescription>
+    <detaileddescription>
+<para>It gives the number of excesses, the number of alarms, the number of normal observations, the values of the thresholds etc. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="14">
+        <label>DSpotStatus</label>
+        <link refid="class_d_spot_status"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>SpotStatus</label>
+        <link refid="class_spot_status"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="16">
+        <label>DSpotStatus</label>
+        <link refid="class_d_spot_status"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>SpotStatus</label>
+        <link refid="class_spot_status"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="93" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="93" bodyend="103"/>
+    <listofallmembers>
+      <member refid="class_spot_status_1af61113804644236566e8b01e30b2c7a0" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>al_down</name></member>
+      <member refid="class_spot_status_1ae6d4cd0076e8f9f0c3de6561b93fe605" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>al_up</name></member>
+      <member refid="class_d_spot_status_1acc439e6d2bd1082bb6218ff32190607b" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>drift</name></member>
+      <member refid="class_spot_status_1a83cadaceace9765f122b1cb52fa9cd8d" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>ex_down</name></member>
+      <member refid="class_spot_status_1ab5f04d2f9df372677633f05f66566eb5" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>ex_up</name></member>
+      <member refid="class_spot_status_1a0232bdda4e80f27f853f127f32b5f7dc" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>n</name></member>
+      <member refid="class_spot_status_1af8b16c44fc6a1acd0c1051f26a64dc25" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>Nt_down</name></member>
+      <member refid="class_spot_status_1a441d1322a33c6959503a264d26b939bd" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>Nt_up</name></member>
+      <member refid="class_d_spot_status_1a6f1f0e9ef3c28e97e924548d13a3306d" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>str</name></member>
+      <member refid="class_spot_status_1ab05d4fec79e034675d577c85922add45" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>t_down</name></member>
+      <member refid="class_spot_status_1a2ac2050f4fdc0952ee208b9d873c027d" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>t_up</name></member>
+      <member refid="class_spot_status_1a37fdc64e3d6941d4a5b837812811179b" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>z_down</name></member>
+      <member refid="class_spot_status_1a475ca20196f3cee358e88544a5d3f332" prot="public" virt="non-virtual"><scope>DSpotStatus</scope><name>z_up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

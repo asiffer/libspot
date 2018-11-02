@@ -11,11 +11,11 @@ Package: libspot-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: libgomp1, ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data - dev files
 
 Package: libspot
 Architecture: any
 Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: libgomp1, ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data - exec files

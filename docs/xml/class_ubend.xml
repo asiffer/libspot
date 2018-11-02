@@ -18,7 +18,7 @@
 <para>position of the next block to fill </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="43" column="1" bodyfile="include/ubend.h" bodystart="43" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="43" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -31,7 +31,7 @@
 <para>maximum size of the container </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="46" column="1" bodyfile="include/ubend.h" bodystart="46" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="46" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_ubend_1afb79ffb4bb8a4c0036ef99a2d38c171f" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -44,7 +44,7 @@
 <para>last value erased (replaced by a new one) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="49" column="1" bodyfile="include/ubend.h" bodystart="49" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="49" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" bodystart="49" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -73,7 +73,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="57" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="57" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_ubend_1a3ce0b5a4f7f60a6273594c370803bd84" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_ubend" kindref="compound">Ubend</ref></type>
@@ -91,7 +91,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="63" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="63" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_ubend_1ae821aee3b90148e3dc8b77970a697947" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -105,7 +105,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="69" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="69" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_ubend_1ad7b783a532d3123794e4010be9ee8442" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -119,7 +119,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="75" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="75" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_ubend_1af481e49255fa61cee741420321891deb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -133,7 +133,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="81" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="81" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_ubend_1adae407b77285bfeefb0d3b0d2de7b854" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -147,7 +147,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="87" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="87" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_ubend_1a14d9844228e9a33fd3565b280e946f28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="ubend_8h_1a7b281aeecd70ca8ebfa9874e42d1f04d" kindref="member">UBENDSTATUS</ref></type>
@@ -195,7 +195,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/ubend.h" line="99" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="99" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -203,40 +203,40 @@
     <detaileddescription>
 <para>First it is empty. Then we feed it with data until its max capacity is reached (transitory state). When it is full, the earlier data erase the older one (cruise state). </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="33">
+      <node id="43">
         <label>std::vector&lt; double &gt;</label>
       </node>
-      <node id="32">
+      <node id="42">
         <label>Ubend</label>
         <link refid="class_ubend"/>
-        <childnode refid="33" relation="public-inheritance">
+        <childnode refid="43" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="35">
+      <node id="45">
         <label>StreamMean</label>
         <link refid="class_stream_mean"/>
-        <childnode refid="32" relation="public-inheritance">
+        <childnode refid="42" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="34">
+      <node id="44">
         <label>GPDfit</label>
         <link refid="class_g_p_dfit"/>
-        <childnode refid="32" relation="public-inheritance">
+        <childnode refid="42" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="37">
+      <node id="47">
         <label>std::vector&lt; double &gt;</label>
       </node>
-      <node id="36">
+      <node id="46">
         <label>Ubend</label>
         <link refid="class_ubend"/>
-        <childnode refid="37" relation="public-inheritance">
+        <childnode refid="47" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/ubend.h" line="40" column="1" bodyfile="include/ubend.h" bodystart="39" bodyend="101"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" line="40" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/ubend.h" bodystart="39" bodyend="101"/>
     <listofallmembers>
       <member refid="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" virt="non-virtual"><scope>Ubend</scope><name>capacity</name></member>
       <member refid="class_ubend_1a82b8a2847f23eafca91a44747af8918c" prot="protected" virt="non-virtual"><scope>Ubend</scope><name>cursor</name></member>

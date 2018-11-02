@@ -15,7 +15,7 @@
 <para>lower threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="25" column="1" bodyfile="include/bounds.h" bodystart="25" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="25" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_bounds_1adbfd113d9ce8e0fa1737648c8e603015" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
 <para>upper threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="26" column="1" bodyfile="include/bounds.h" bodystart="26" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="26" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -69,7 +69,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="34" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="34" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_bounds_1a29b0515fde7a09a244fd04a320261895" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -95,7 +95,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="42" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="42" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_bounds_1a53a06997ada0cac9aaa55f08d74c059b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -127,7 +127,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="49" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="49" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_bounds_1a880deb0027e57f57b894c72a860cf92f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -159,7 +159,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="56" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="56" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_bounds_1acda126989164abc7410762c005a311dc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -191,14 +191,14 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/bounds.h" line="63" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="63" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>A structure which embeds upper and lower thresholds. </para>    </briefdescription>
     <detaileddescription>
 <para>Some basic methods are also implemented ---<mdash/>|---------<mdash/>|----<mdash/> down up </para>    </detaileddescription>
-    <location file="include/bounds.h" line="23" column="1" bodyfile="include/bounds.h" bodystart="23" bodyend="65"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" line="23" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/bounds.h" bodystart="23" bodyend="65"/>
     <listofallmembers>
       <member refid="class_bounds_1a63daacb83dd0f6768075dd51d9c0a37c" prot="public" virt="non-virtual"><scope>Bounds</scope><name>Bounds</name></member>
       <member refid="class_bounds_1a53a06997ada0cac9aaa55f08d74c059b" prot="public" virt="non-virtual"><scope>Bounds</scope><name>contains</name></member>

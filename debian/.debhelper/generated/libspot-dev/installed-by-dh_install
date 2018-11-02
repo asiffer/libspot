@@ -2,5 +2,6 @@
 ./debian/tmp/usr/include/libspot/brent.h
 ./debian/tmp/usr/include/libspot/dspot.h
 ./debian/tmp/usr/include/libspot/gpdfit.h
+./debian/tmp/usr/include/libspot/interface.h
 ./debian/tmp/usr/include/libspot/spot.h
 ./debian/tmp/usr/include/libspot/ubend.h

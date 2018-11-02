@@ -57,7 +57,7 @@ class SpotStatus {
 		/** Current number of down excesses */ 		
 		int ex_down; 		
 		
-		/** Ttoal number of up excesses */
+		/** Total number of up excesses */
 		int Nt_up;
 		/** Total number of down excesses */ 		
 		int Nt_down; 
@@ -68,7 +68,7 @@ class SpotStatus {
 		int al_down; 		
 		
 		/** initial batch (for calibration) */
-		vector<double> init_batch; 
+		//vector<double> init_batch; 
 
 		/** transitional up threshold */
 		double t_up; 	
@@ -215,30 +215,30 @@ class Spot
 	
 		/**
 			\brief Default constructor
-			\param[in] q Probability of abnormal events
-			\param[in] n_init Size of initial batch to perform calibration
+			\param q Probability of abnormal events
+			\param n_init Size of initial batch to perform calibration
 			\return Spot object
 		*/
 		Spot(double q = 1e-3, int n_init = 1000);
 		
 		/**
 			\brief Constructor with risk parametrization (q) and initial batch
-			\param[in] q Probability of abnormal events
-			\param[in] init_data Initial batch to perform calibration
+			\param q Probability of abnormal events
+			\param init_data Initial batch to perform calibration
 			\return Spot object
 		*/
 		Spot(double q, vector<double> init_data);
 		
 		/**
 			\brief Full parametrizable constructor
-			\param[in] q Probability of abnormal events
-			\param[in] n_init Number of initial observations to perform calibration
-			\param[in] level Quantile level to discriminate the excesses from the normal data
-			\param[in] up Compute upper threshold
-			\param[in] down Compute lower threshold
-			\param[in] alert Trigger alert
-			\param[in] bounded Bounded mode
-			\param[in] max_excess Maximum number of storable excesses (for bounded mode) 
+			\param q Probability of abnormal events
+			\param n_init Number of initial observations to perform calibration
+			\param level Quantile level to discriminate the excesses from the normal data
+			\param up Compute upper threshold
+			\param down Compute lower threshold
+			\param alert Trigger alert
+			\param bounded Bounded mode
+			\param max_excess Maximum number of storable excesses (for bounded mode) 
 			\return Spot object
 		*/
 		Spot(	double q, int n_init, double level, 
@@ -247,14 +247,14 @@ class Spot
 				
 		/**
 			\brief Full parametrizable constructor with initial batch
-			\param[in] q Probability of abnormal events
-			\param[in] init_data Initial batch to perform calibration
-			\param[in] level Quantile level to discriminate the excesses from the normal data
-			\param[in] up Compute upper threshold
-			\param[in] down Compute lower threshold
-			\param[in] alert Trigger alert
-			\param[in] bounded Bounded mode
-			\param[in] max_excess Maximum number of storable excesses (for bounded mode) 
+			\param q Probability of abnormal events
+			\param init_data Initial batch to perform calibration
+			\param level Quantile level to discriminate the excesses from the normal data
+			\param up Compute upper threshold
+			\param down Compute lower threshold
+			\param alert Trigger alert
+			\param bounded Bounded mode
+			\param max_excess Maximum number of storable excesses (for bounded mode) 
 			\return Spot object
 		*/
 		Spot(	double q, vector<double> init_data, double level, 
@@ -263,14 +263,14 @@ class Spot
 				
 		/**
 			\brief create a Spot object according to the configuration
-			\param[in] conf a SpotConfig object
+			\param conf a SpotConfig object
 			\return Spot object
 		*/
 		Spot(SpotConfig conf);
 
 		/**
 			\brief Spot configuration comparison
-			\param[in] spot Spot instance
+			\param spot Spot instance
 			\retval true both instances have the same configuration
 			\retval false instances have not the same configuration
 		*/
@@ -278,7 +278,7 @@ class Spot
 	
 		/**
 			\brief Merge 2 Spot instances
-			\param[in] spot Spot instance
+			\param spot Spot instance
 			\return Spot
 			\details Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. 
 			This function takes the lower_bound of Spot_1 and the upper_bound of Spot_2.
@@ -290,7 +290,7 @@ class Spot
 	
 		/**
 			\brief Spot iteration
-			\param[in] v input data
+			\param v input data
 			\return The nature of the input data
 			\retval 0 Normal data
 			\retval	1 Up alert
@@ -307,7 +307,7 @@ class Spot
 
 		/**
 			\brief Spot iteration
-			\param[in] v input data
+			\param v input data
 			\return The nature of the input data
 		*/
 		SPOTEVENT step(double v);
@@ -330,7 +330,7 @@ class Spot
 	
 		/**
 			\brief Return the current state of the Spot instance through a single line string
-			\param[in] log_level 0,1 or 2 according to the desired verbosity
+			\param log_level 0,1 or 2 according to the desired verbosity
 		*/
 		string log(int log_level);
 		
@@ -374,14 +374,14 @@ class Spot
 		
 		/**
 			\brief Give the probability to observe things higher than a value
-			\param[in] z input value
+			\param z input value
 			\return proability 1-F(z)
 		*/
 		double up_probability(double z);
 		
 		/**
 			\brief Give the probability to observe things lower than a value
-			\param[in] z input value
+			\param z input value
 			\return proability F(z)
 		*/
 		double down_probability(double z);

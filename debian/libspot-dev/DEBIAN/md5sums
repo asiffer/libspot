@@ -1,8 +1,9 @@
 716594a719b6deee1dd5887a1f5e52f5  usr/include/libspot/bounds.h
 1c71fe5dcc22f702974832e1180af2aa  usr/include/libspot/brent.h
-882b688731aeb0ecb054626373c0f850  usr/include/libspot/dspot.h
-8988d1fe786e702dbae35d5bc523e3d2  usr/include/libspot/gpdfit.h
-3b616cf624bb7045505bb1b55d636067  usr/include/libspot/spot.h
-2df0509e310c10bbec35e6db7fa1759d  usr/include/libspot/ubend.h
+a25454a79e9796d24eaf14cb6426ff64  usr/include/libspot/dspot.h
+6bb2a9ad4010892829e1896b82209dd5  usr/include/libspot/gpdfit.h
+4bf782cd9808b720592b1a862fd5d1e4  usr/include/libspot/interface.h
+e20c57eb011df3478bb9075bcac0f070  usr/include/libspot/spot.h
+6dd3448fdc6ff3cc34b047ac62d0c527  usr/include/libspot/ubend.h
 107a21b4188738fbffff4638bac3cb61  usr/share/doc/libspot-dev/changelog.gz
 c430693f737a8b57daa1effcad49d7c0  usr/share/doc/libspot-dev/copyright

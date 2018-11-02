@@ -16,7 +16,7 @@
 <para>the depth of the moving average </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="97" column="1" bodyfile="include/dspot.h" bodystart="97" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="135" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_d_spot_1a6771eb0d0cfaa7030a5b3e4e7ce0fa16" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +29,7 @@
 <para>the local drift </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="100" column="1" bodyfile="include/dspot.h" bodystart="100" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="138" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="138" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_d_spot_1adca0ca159e28aead09b619071ae321b9" prot="protected" static="no" mutable="no">
         <type><ref refid="class_stream_mean" kindref="compound">StreamMean</ref></type>
@@ -42,7 +42,7 @@
 <para>A buffer to compute the local drift </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="103" column="1" bodyfile="include/dspot.h" bodystart="103" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="141" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="141" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -57,7 +57,7 @@
 <para>the attribute &quot;drift&quot; is updated </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="111" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="149" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -110,7 +110,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="123" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="161" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a9d7bb79088e06fefe0aacfb3445977bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -158,7 +158,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="132" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="170" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a2a65b9ed0b2ce8ad0eabd62a8e060feb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -272,7 +272,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="147" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="185" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1aec88700b166d31b870c1be6a981a71e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -386,7 +386,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="163" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="201" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a173699824dd7097cb6d130884c02ca96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -431,7 +431,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="173" column="1" bodyfile="include/dspot.h" bodystart="173" bodyend="173"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="211" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="211" bodyend="211"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1ac291df649386a59c870a6e003fad1a41" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -471,7 +471,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="184" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="222" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a26d1930a7d8a60e5f357385785bad54d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -511,7 +511,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="192" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="230" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1af770f74c4abf19a7422c22f1e7bdaa7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="spot_8h_1af3bf0aa2c34c1aef1f8221de0466f17e" kindref="member">SPOTEVENT</ref></type>
@@ -596,7 +596,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="217" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="255" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a030e7a856188aff7a766d1bc733a03f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -609,7 +609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="224" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="262" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1aacf1f3be69b6196a68898214aeba28b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -622,7 +622,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="229" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="267" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a792ca50d53eb54c0da19981377773d68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_bounds" kindref="compound">Bounds</ref></type>
@@ -635,7 +635,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="234" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="272" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a156bd055a06629e026e1b15d3b08fa06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -648,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="241" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="279" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1a4669907e0a7975f5e156de46e10cdd4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>string</type>
@@ -665,20 +665,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="247" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="285" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="class_d_spot_1a097cd010a6027a8653adb1490070f594" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="class_spot_status" kindref="compound">SpotStatus</ref></type>
-        <definition>SpotStatus DSpot::status</definition>
+      <memberdef kind="function" id="class_d_spot_1af4fad7195bf9a2e200cc8cb2c43a2e20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_d_spot_status" kindref="compound">DSpotStatus</ref></type>
+        <definition>DSpotStatus DSpot::status</definition>
         <argsstring>()</argsstring>
         <name>status</name>
         <briefdescription>
 <para>Get the internal state of the <ref refid="class_d_spot" kindref="compound">DSpot</ref> instance. </para>        </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>overload <ref refid="class_spot" kindref="compound">Spot</ref> method </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="254" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="293" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a5675a7e71168ca888ab365f03f462a88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_d_spot_config" kindref="compound">DSpotConfig</ref></type>
+        <definition>DSpotConfig DSpot::config</definition>
+        <argsstring>() const</argsstring>
+        <name>config</name>
+        <briefdescription>
+<para>Return the configuration of the <ref refid="class_d_spot" kindref="compound">DSpot</ref> instance. </para>        </briefdescription>
+        <detaileddescription>
+<para>overload <ref refid="class_spot" kindref="compound">Spot</ref> method </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="299" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_d_spot_1ae5ae568aebc2fd8adbc5412dc863c277" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>string</type>
@@ -686,12 +699,90 @@
         <argsstring>()</argsstring>
         <name>stringStatus</name>
         <briefdescription>
-<para>Format the config to print it. </para>        </briefdescription>
+<para>Format the status to print it. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="259" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="304" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1ac48b95a7bc0f59b4226190fb373cbff6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::getUpper_t</definition>
+        <argsstring>()</argsstring>
+        <name>getUpper_t</name>
+        <briefdescription>
+<para>Get the upper excess quantile. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload <ref refid="class_spot" kindref="compound">Spot</ref> method (return the real absolute value with the drift) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="311" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1ab048a77cd2284932dfafb657d8997c9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::getLower_t</definition>
+        <argsstring>()</argsstring>
+        <name>getLower_t</name>
+        <briefdescription>
+<para>Get the lower excess quantile. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload <ref refid="class_spot" kindref="compound">Spot</ref> method (return the real absolute value with the drift) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="317" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1a35993fd8eaab4b4a8a65bdc77384ab11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::up_probability</definition>
+        <argsstring>(double z)</argsstring>
+        <name>up_probability</name>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Give the probability to observe things higher than a value. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload <ref refid="class_spot" kindref="compound">Spot</ref> method (return the real absolute value with the drift) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input value </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>proability 1-F(z) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="326" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_d_spot_1ae106396da5be209ad66cbafa3ac60575" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double DSpot::down_probability</definition>
+        <argsstring>(double z)</argsstring>
+        <name>down_probability</name>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+<para>Give the probability to observe things lower than a value. </para>        </briefdescription>
+        <detaileddescription>
+<para>Overload <ref refid="class_spot" kindref="compound">Spot</ref> method (return the real absolute value with the drift) <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input value </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>proability F(z) </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="334" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -750,7 +841,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/dspot.h" line="93" column="1" bodyfile="include/dspot.h" bodystart="92" bodyend="260"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="131" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="130" bodyend="335"/>
     <listofallmembers>
       <member refid="class_spot_1ae6139cf212ca89128d772a69440784c9" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>al_down</name></member>
       <member refid="class_spot_1a50e56c8fcf35e3b98ae6b7e84dbb5bf9" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>al_up</name></member>
@@ -758,10 +849,10 @@
       <member refid="class_spot_1ab50a7aa6de09a3774c9c41de7825b685" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>bounded</name></member>
       <member refid="class_spot_1a1647c2952c5c6cd9d8d4849b5beda8ce" prot="public" virt="non-virtual"><scope>DSpot</scope><name>calibrate</name></member>
       <member refid="class_d_spot_1a2b4cf7d2ced0f7cbc7203d02b8a5bd8e" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>computeDrift</name></member>
-      <member refid="class_spot_1a92cc75d19b5f85a004c70d012a30c281" prot="public" virt="non-virtual"><scope>DSpot</scope><name>config</name></member>
+      <member refid="class_d_spot_1a5675a7e71168ca888ab365f03f462a88" prot="public" virt="non-virtual"><scope>DSpot</scope><name>config</name></member>
       <member refid="class_d_spot_1aaba032f9f6008ff6a489a555d6115e1a" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>depth</name></member>
       <member refid="class_spot_1ab72120f32002ab2c9ddf010bba49b9ed" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>down</name></member>
-      <member refid="class_spot_1a83d6de0b67cce07d72b9ce963be7757b" prot="public" virt="non-virtual"><scope>DSpot</scope><name>down_probability</name></member>
+      <member refid="class_d_spot_1ae106396da5be209ad66cbafa3ac60575" prot="public" virt="non-virtual"><scope>DSpot</scope><name>down_probability</name></member>
       <member refid="class_d_spot_1a6771eb0d0cfaa7030a5b3e4e7ce0fa16" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>drift</name></member>
       <member refid="class_d_spot_1afbddfe8831a800dbb79fad7e447a6fbb" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
       <member refid="class_d_spot_1a9d7bb79088e06fefe0aacfb3445977bb" prot="public" virt="non-virtual"><scope>DSpot</scope><name>DSpot</name></member>
@@ -771,10 +862,10 @@
       <member refid="class_spot_1ac1684b552b97b216831fa8a018606c59" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>fitdown</name></member>
       <member refid="class_spot_1ab2ee61794881d4faa87b7a9422b68e3d" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>fitup</name></member>
       <member refid="class_d_spot_1a156bd055a06629e026e1b15d3b08fa06" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getDrift</name></member>
-      <member refid="class_spot_1afe9718f788af6165d7722f554aa1bbb1" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getLower_t</name></member>
+      <member refid="class_d_spot_1ab048a77cd2284932dfafb657d8997c9b" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getLower_t</name></member>
       <member refid="class_d_spot_1aacf1f3be69b6196a68898214aeba28b5" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getLowerThreshold</name></member>
       <member refid="class_d_spot_1a792ca50d53eb54c0da19981377773d68" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getThresholds</name></member>
-      <member refid="class_spot_1a94d7dfde5506c2874ca28104f760932b" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getUpper_t</name></member>
+      <member refid="class_d_spot_1ac48b95a7bc0f59b4226190fb373cbff6" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getUpper_t</name></member>
       <member refid="class_d_spot_1a030e7a856188aff7a766d1bc733a03f3" prot="public" virt="non-virtual"><scope>DSpot</scope><name>getUpperThreshold</name></member>
       <member refid="class_spot_1a201aad21506428e8b77181c569590c89" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>init_batch</name></member>
       <member refid="class_spot_1a194a7efe5da7c5d5d0e4bc8447f98ca5" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>level</name></member>
@@ -797,13 +888,13 @@
       <member refid="class_spot_1a78251b9f558dd4679d5d39bccbe2c5f2" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
       <member refid="class_spot_1a3ef94b50934e298b396433c50aae84fd" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
       <member refid="class_spot_1ae7c88c27e7044d4aa78f5c32db651f24" prot="public" virt="non-virtual"><scope>DSpot</scope><name>Spot</name></member>
-      <member refid="class_d_spot_1a097cd010a6027a8653adb1490070f594" prot="public" virt="non-virtual"><scope>DSpot</scope><name>status</name></member>
+      <member refid="class_d_spot_1af4fad7195bf9a2e200cc8cb2c43a2e20" prot="public" virt="non-virtual"><scope>DSpot</scope><name>status</name></member>
       <member refid="class_d_spot_1af770f74c4abf19a7422c22f1e7bdaa7e" prot="public" virt="non-virtual"><scope>DSpot</scope><name>step</name></member>
       <member refid="class_d_spot_1ae5ae568aebc2fd8adbc5412dc863c277" prot="public" virt="non-virtual"><scope>DSpot</scope><name>stringStatus</name></member>
       <member refid="class_spot_1a0ee115c2b0a0ffa650d26cab8608ca73" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>t_down</name></member>
       <member refid="class_spot_1a1a77b818c89dcf1596d4ce78e8cba986" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>t_up</name></member>
       <member refid="class_spot_1a1bf1515b0922c88a4b28715d8702fb85" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>up</name></member>
-      <member refid="class_spot_1a63aba545c0dd16504a63c4904ed1d09d" prot="public" virt="non-virtual"><scope>DSpot</scope><name>up_probability</name></member>
+      <member refid="class_d_spot_1a35993fd8eaab4b4a8a65bdc77384ab11" prot="public" virt="non-virtual"><scope>DSpot</scope><name>up_probability</name></member>
       <member refid="class_spot_1a256d07450f2a03f75d5207216f95628e" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>upper_bound</name></member>
       <member refid="class_spot_1aca10a8cb4409935af0154e78e9ee47ff" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>z_down</name></member>
       <member refid="class_spot_1ae5283f4238abff9fe19ef902256f041f" prot="protected" virt="non-virtual"><scope>DSpot</scope><name>z_up</name></member>

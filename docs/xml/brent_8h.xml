@@ -4,7 +4,7 @@
     <compoundname>brent.h</compoundname>
     <includes local="no">functional</includes>
     <includes local="no">cmath</includes>
-    <includedby refid="gpdfit_8h" local="yes">include/gpdfit.h</includedby>
+    <includedby refid="gpdfit_8h" local="yes">/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h</includedby>
     <incdepgraph>
       <node id="6">
         <label>functional</label>
@@ -13,7 +13,7 @@
         <label>cmath</label>
       </node>
       <node id="5">
-        <label>include/brent.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/brent.h</label>
         <link refid="brent_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
@@ -23,25 +23,25 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="11">
-        <label>include/dspot.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/dspot.h</label>
         <link refid="dspot_8h"/>
       </node>
-      <node id="9">
-        <label>include/gpdfit.h</label>
-        <link refid="gpdfit_8h"/>
-        <childnode refid="10" relation="include">
+      <node id="8">
+        <label>/home/asr/Documents/Work/github/libspot/master/include/brent.h</label>
+        <link refid="brent_8h"/>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="10">
-        <label>include/spot.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/spot.h</label>
         <link refid="spot_8h"/>
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>include/brent.h</label>
-        <link refid="brent_8h"/>
-        <childnode refid="9" relation="include">
+      <node id="9">
+        <label>/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h</label>
+        <link refid="gpdfit_8h"/>
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -127,7 +127,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/brent.h" line="30" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/brent.h" line="30" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -157,6 +157,6 @@
 <codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BRENT_H</highlight></codeline>
     </programlisting>
-    <location file="include/brent.h"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/brent.h"/>
   </compounddef>
 </doxygen>

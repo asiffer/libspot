@@ -16,7 +16,7 @@
 <para>the classic mean </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="33" column="1" bodyfile="include/dspot.h" bodystart="33" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="33" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -45,7 +45,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="41" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="41" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_stream_mean_1a74146344fdc04041c42b42aeb5855b06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -82,7 +82,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="49" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="49" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_stream_mean_1ae29b32d0c2e0027f2665859db3ff71e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -108,7 +108,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="56" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="56" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_stream_mean_1a3be969dbed390a7f550f3ed7518052eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="61" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="61" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_stream_mean_1a8c4b57ffad34ec1b4b924ad66dbab9c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="ubend_8h_1a7b281aeecd70ca8ebfa9874e42d1f04d" kindref="member">UBENDSTATUS</ref></type>
@@ -147,7 +147,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="69" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="69" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_stream_mean_1af1d9c6b3da3c6bc2fdd321b7d8dbba27" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_stream_mean" kindref="compound">StreamMean</ref></type>
@@ -173,7 +173,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/dspot.h" line="76" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="76" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -181,40 +181,40 @@
     <detaileddescription>
 <para>The harmonic mean has also been added but it is not used </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="28">
+      <node id="38">
         <label>std::vector&lt; double &gt;</label>
       </node>
-      <node id="27">
+      <node id="37">
         <label>Ubend</label>
         <link refid="class_ubend"/>
-        <childnode refid="28" relation="public-inheritance">
+        <childnode refid="38" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="26">
+      <node id="36">
         <label>StreamMean</label>
         <link refid="class_stream_mean"/>
-        <childnode refid="27" relation="public-inheritance">
+        <childnode refid="37" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="31">
+      <node id="41">
         <label>std::vector&lt; double &gt;</label>
       </node>
-      <node id="30">
+      <node id="40">
         <label>Ubend</label>
         <link refid="class_ubend"/>
-        <childnode refid="31" relation="public-inheritance">
+        <childnode refid="41" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="29">
+      <node id="39">
         <label>StreamMean</label>
         <link refid="class_stream_mean"/>
-        <childnode refid="30" relation="public-inheritance">
+        <childnode refid="40" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/dspot.h" line="30" column="1" bodyfile="include/dspot.h" bodystart="30" bodyend="77"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="30" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="30" bodyend="77"/>
     <listofallmembers>
       <member refid="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" virt="non-virtual"><scope>StreamMean</scope><name>capacity</name></member>
       <member refid="class_ubend_1a82b8a2847f23eafca91a44747af8918c" prot="protected" virt="non-virtual"><scope>StreamMean</scope><name>cursor</name></member>

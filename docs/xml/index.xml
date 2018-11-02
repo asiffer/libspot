@@ -27,8 +27,21 @@
     <member refid="class_d_spot_1a792ca50d53eb54c0da19981377773d68" kind="function"><name>getThresholds</name></member>
     <member refid="class_d_spot_1a156bd055a06629e026e1b15d3b08fa06" kind="function"><name>getDrift</name></member>
     <member refid="class_d_spot_1a4669907e0a7975f5e156de46e10cdd4d" kind="function"><name>log</name></member>
-    <member refid="class_d_spot_1a097cd010a6027a8653adb1490070f594" kind="function"><name>status</name></member>
+    <member refid="class_d_spot_1af4fad7195bf9a2e200cc8cb2c43a2e20" kind="function"><name>status</name></member>
+    <member refid="class_d_spot_1a5675a7e71168ca888ab365f03f462a88" kind="function"><name>config</name></member>
     <member refid="class_d_spot_1ae5ae568aebc2fd8adbc5412dc863c277" kind="function"><name>stringStatus</name></member>
+    <member refid="class_d_spot_1ac48b95a7bc0f59b4226190fb373cbff6" kind="function"><name>getUpper_t</name></member>
+    <member refid="class_d_spot_1ab048a77cd2284932dfafb657d8997c9b" kind="function"><name>getLower_t</name></member>
+    <member refid="class_d_spot_1a35993fd8eaab4b4a8a65bdc77384ab11" kind="function"><name>up_probability</name></member>
+    <member refid="class_d_spot_1ae106396da5be209ad66cbafa3ac60575" kind="function"><name>down_probability</name></member>
+  </compound>
+  <compound refid="class_d_spot_config" kind="class"><name>DSpotConfig</name>
+    <member refid="class_d_spot_config_1a18ab08bb534bfedb2b7745fa6ef22950" kind="variable"><name>depth</name></member>
+    <member refid="class_d_spot_config_1a613f1acc0291e5e4b401bee8ea921292" kind="function"><name>str</name></member>
+  </compound>
+  <compound refid="class_d_spot_status" kind="class"><name>DSpotStatus</name>
+    <member refid="class_d_spot_status_1acc439e6d2bd1082bb6218ff32190607b" kind="variable"><name>drift</name></member>
+    <member refid="class_d_spot_status_1a6f1f0e9ef3c28e97e924548d13a3306d" kind="function"><name>str</name></member>
   </compound>
   <compound refid="class_g_p_dfit" kind="class"><name>GPDfit</name>
     <member refid="class_g_p_dfit_1a7ae78e41277746f4b91e25886bb51095" kind="variable"><name>gamma</name></member>
@@ -110,7 +123,6 @@
     <member refid="class_spot_status_1af8b16c44fc6a1acd0c1051f26a64dc25" kind="variable"><name>Nt_down</name></member>
     <member refid="class_spot_status_1ae6d4cd0076e8f9f0c3de6561b93fe605" kind="variable"><name>al_up</name></member>
     <member refid="class_spot_status_1af61113804644236566e8b01e30b2c7a0" kind="variable"><name>al_down</name></member>
-    <member refid="class_spot_status_1a6f06682e5bebe349409568c7bef7862a" kind="variable"><name>init_batch</name></member>
     <member refid="class_spot_status_1a2ac2050f4fdc0952ee208b9d873c027d" kind="variable"><name>t_up</name></member>
     <member refid="class_spot_status_1ab05d4fec79e034675d577c85922add45" kind="variable"><name>t_down</name></member>
     <member refid="class_spot_status_1a475ca20196f3cee358e88544a5d3f332" kind="variable"><name>z_up</name></member>
@@ -168,6 +180,6 @@
     <member refid="ubend_8h_1a7b281aeecd70ca8ebfa9874e42d1f04dab99715d474758345b9d4201073f8f451" kind="enumvalue"><name>NOT_FILLED</name></member>
     <member refid="ubend_8h_1a7b281aeecd70ca8ebfa9874e42d1f04da6a1459101774b7f68e084098fa8bacbb" kind="enumvalue"><name>INFINITE</name></member>
   </compound>
-  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>/home/asr/Documents/Work/github/libspot/master/include</name>
   </compound>
 </doxygenindex>

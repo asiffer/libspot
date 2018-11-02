@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_d_spot_config" kind="class" language="C++" prot="public">
+    <compoundname>DSpotConfig</compoundname>
+    <basecompoundref refid="class_spot_config" prot="public" virt="non-virtual">SpotConfig</basecompoundref>
+    <includes refid="dspot_8h" local="no">dspot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_d_spot_config_1a18ab08bb534bfedb2b7745fa6ef22950" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int DSpotConfig::depth</definition>
+        <argsstring></argsstring>
+        <name>depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the depth of the moving average </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="115" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_d_spot_config_1a613f1acc0291e5e4b401bee8ea921292" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string DSpotConfig::str</definition>
+        <argsstring>()</argsstring>
+        <name>str</name>
+        <briefdescription>
+<para>Format the config to print it. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="120" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This structure gathers the configuration of a <ref refid="class_d_spot" kindref="compound">DSpot</ref> object (aims to build similar instance) </para>    </briefdescription>
+    <detaileddescription>
+<para>inherit <ref refid="class_spot_config" kindref="compound">SpotConfig</ref> </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="11">
+        <label>SpotConfig</label>
+        <link refid="class_spot_config"/>
+      </node>
+      <node id="10">
+        <label>DSpotConfig</label>
+        <link refid="class_d_spot_config"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="13">
+        <label>SpotConfig</label>
+        <link refid="class_spot_config"/>
+      </node>
+      <node id="12">
+        <label>DSpotConfig</label>
+        <link refid="class_d_spot_config"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" line="112" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/dspot.h" bodystart="112" bodyend="121"/>
+    <listofallmembers>
+      <member refid="class_spot_config_1a4897ee87a1636d3d77c0119da3ae6d5a" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>alert</name></member>
+      <member refid="class_spot_config_1a8bb40e4243c870bfff84f1527f1c46ec" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>bounded</name></member>
+      <member refid="class_d_spot_config_1a18ab08bb534bfedb2b7745fa6ef22950" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>depth</name></member>
+      <member refid="class_spot_config_1a7ac9922eacecba72e8ce759c57e92161" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>down</name></member>
+      <member refid="class_spot_config_1a98127d55b01429059cca41f46ffbf4ff" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>level</name></member>
+      <member refid="class_spot_config_1a30dc2e363b4d159ffc5284ae68b0249d" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>max_excess</name></member>
+      <member refid="class_spot_config_1a63952c8f78443b980944f633dbee084e" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>n_init</name></member>
+      <member refid="class_spot_config_1a7ee99a047b82a8b410c4ef955380a744" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>q</name></member>
+      <member refid="class_d_spot_config_1a613f1acc0291e5e4b401bee8ea921292" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>str</name></member>
+      <member refid="class_spot_config_1a32af7aaf538dbff2e334503e90b7d40b" prot="public" virt="non-virtual"><scope>DSpotConfig</scope><name>up</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

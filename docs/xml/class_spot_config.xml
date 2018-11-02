@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="class_spot_config" kind="class" language="C++" prot="public">
     <compoundname>SpotConfig</compoundname>
+    <derivedcompoundref refid="class_d_spot_config" prot="public" virt="non-virtual">DSpotConfig</derivedcompoundref>
     <includes refid="spot_8h" local="no">spot.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="class_spot_config_1a7ee99a047b82a8b410c4ef955380a744" prot="public" static="no" mutable="no">
@@ -15,7 +16,7 @@
 <para>the main parameter ( P(X&gt;z_q) &lt; q ) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="97" column="1" bodyfile="include/spot.h" bodystart="97" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="97" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="97" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a8bb40e4243c870bfff84f1527f1c46ec" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -28,7 +29,7 @@
 <para>if true, the number of stored will be bounded by max_excess </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="100" column="1" bodyfile="include/spot.h" bodystart="100" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="100" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="100" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a30dc2e363b4d159ffc5284ae68b0249d" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -41,7 +42,7 @@
 <para>Maximum number of stored excesses (bounded mode) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="103" column="1" bodyfile="include/spot.h" bodystart="103" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="103" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a4897ee87a1636d3d77c0119da3ae6d5a" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -54,7 +55,7 @@
 <para>if true, the algorithm triggers alarms (the outlier is not taking into account in the model) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="106" column="1" bodyfile="include/spot.h" bodystart="106" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="106" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="106" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a32af7aaf538dbff2e334503e90b7d40b" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -67,7 +68,7 @@
 <para>if true, compute upper threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="109" column="1" bodyfile="include/spot.h" bodystart="109" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="109" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="109" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a7ac9922eacecba72e8ce759c57e92161" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -80,7 +81,7 @@
 <para>if true, compute lower threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="112" column="1" bodyfile="include/spot.h" bodystart="112" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="112" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a63952c8f78443b980944f633dbee084e" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -93,7 +94,7 @@
 <para>number of observation to perform calibration </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="115" column="1" bodyfile="include/spot.h" bodystart="115" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="115" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_config_1a98127d55b01429059cca41f46ffbf4ff" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -106,7 +107,7 @@
 <para>level of the update threshold (0&lt;l&lt;1) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="118" column="1" bodyfile="include/spot.h" bodystart="118" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="118" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="118" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -121,14 +122,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="123" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="123" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>This structure gathers the configuration of a <ref refid="class_spot" kindref="compound">Spot</ref> object (aims to build similar instance) </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/spot.h" line="94" column="1" bodyfile="include/spot.h" bodystart="94" bodyend="124"/>
+    <inheritancegraph>
+      <node id="30">
+        <label>SpotConfig</label>
+        <link refid="class_spot_config"/>
+      </node>
+      <node id="31">
+        <label>DSpotConfig</label>
+        <link refid="class_d_spot_config"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="94" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="94" bodyend="124"/>
     <listofallmembers>
       <member refid="class_spot_config_1a4897ee87a1636d3d77c0119da3ae6d5a" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>alert</name></member>
       <member refid="class_spot_config_1a8bb40e4243c870bfff84f1527f1c46ec" prot="public" virt="non-virtual"><scope>SpotConfig</scope><name>bounded</name></member>

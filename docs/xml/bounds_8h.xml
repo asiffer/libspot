@@ -3,10 +3,10 @@
   <compounddef id="bounds_8h" kind="file" language="C++">
     <compoundname>bounds.h</compoundname>
     <includes local="no">vector</includes>
-    <includedby refid="spot_8h" local="yes">include/spot.h</includedby>
+    <includedby refid="spot_8h" local="yes">/home/asr/Documents/Work/github/libspot/master/include/spot.h</includedby>
     <incdepgraph>
       <node id="0">
-        <label>include/bounds.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/bounds.h</label>
         <link refid="bounds_8h"/>
         <childnode refid="1" relation="include">
         </childnode>
@@ -17,17 +17,17 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="4">
-        <label>include/dspot.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/dspot.h</label>
         <link refid="dspot_8h"/>
       </node>
       <node id="2">
-        <label>include/bounds.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/bounds.h</label>
         <link refid="bounds_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="3">
-        <label>include/spot.h</label>
+        <label>/home/asr/Documents/Work/github/libspot/master/include/spot.h</label>
         <link refid="spot_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
@@ -69,6 +69,6 @@
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>BOUNDS_H</highlight></codeline>
     </programlisting>
-    <location file="include/bounds.h"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/bounds.h"/>
   </compounddef>
 </doxygen>

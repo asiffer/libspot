@@ -16,7 +16,7 @@
 <para>the main parameter ( P(X&gt;z_q) &lt; q ) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="141" column="1" bodyfile="include/spot.h" bodystart="141" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="141" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1ab50a7aa6de09a3774c9c41de7825b685" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -29,7 +29,7 @@
 <para>if true, the number of stored will be bounded by max_excess </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="144" column="1" bodyfile="include/spot.h" bodystart="144" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="144" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1aeee3f83b725c5356325af55a9157ee8a" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -42,7 +42,7 @@
 <para>Maximum number of stored excesses (bounded mode) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="147" column="1" bodyfile="include/spot.h" bodystart="147" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="147" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="147" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a76101429c1e291171b81cb5844407e20" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -55,7 +55,7 @@
 <para>if true, the algorithm triggers alarms (the outlier is not taking into account in the model) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="150" column="1" bodyfile="include/spot.h" bodystart="150" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="150" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a1bf1515b0922c88a4b28715d8702fb85" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -68,7 +68,7 @@
 <para>if true, compute upper threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="153" column="1" bodyfile="include/spot.h" bodystart="153" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="153" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1ab72120f32002ab2c9ddf010bba49b9ed" prot="protected" static="no" mutable="no">
         <type>bool</type>
@@ -81,7 +81,7 @@
 <para>if true, compute lower threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="156" column="1" bodyfile="include/spot.h" bodystart="156" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="156" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="156" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a33b25257619ba047f2f9ec7435a18708" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -94,7 +94,7 @@
 <para>number of observation to perform calibration </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="159" column="1" bodyfile="include/spot.h" bodystart="159" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="159" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="159" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a194a7efe5da7c5d5d0e4bc8447f98ca5" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -107,7 +107,7 @@
 <para>level of the update threshold (0&lt;l&lt;1) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="162" column="1" bodyfile="include/spot.h" bodystart="162" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="162" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="162" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a4bf16ea24b5075f495804cd1df275490" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -120,7 +120,7 @@
 <para>Number of normal observations (not the alarms) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="167" column="1" bodyfile="include/spot.h" bodystart="167" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="167" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="167" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a988361ccafb438ad4a0bdde5c0d7ead6" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -133,7 +133,7 @@
 <para>Number of up excesses </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="170" column="1" bodyfile="include/spot.h" bodystart="170" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="170" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1aaa8b824d16c4ae08fffd16ba2ae744b8" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -146,7 +146,7 @@
 <para>Number of down excesses </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="172" column="1" bodyfile="include/spot.h" bodystart="172" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="172" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="172" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a50e56c8fcf35e3b98ae6b7e84dbb5bf9" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -159,7 +159,7 @@
 <para>Number of up alarms </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="175" column="1" bodyfile="include/spot.h" bodystart="175" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="175" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="175" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1ae6139cf212ca89128d772a69440784c9" prot="protected" static="no" mutable="no">
         <type>int</type>
@@ -172,7 +172,7 @@
 <para>Number of down alarms </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="177" column="1" bodyfile="include/spot.h" bodystart="177" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="177" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="177" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a201aad21506428e8b77181c569590c89" prot="protected" static="no" mutable="no">
         <type>vector&lt; double &gt;</type>
@@ -185,7 +185,7 @@
 <para>initial batch (for calibration) </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="180" column="1" bodyfile="include/spot.h" bodystart="180" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="180" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="180" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a1a77b818c89dcf1596d4ce78e8cba986" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -198,7 +198,7 @@
 <para>transitional up threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="183" column="1" bodyfile="include/spot.h" bodystart="183" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="183" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="183" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a0ee115c2b0a0ffa650d26cab8608ca73" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -211,7 +211,7 @@
 <para>transitional down threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="185" column="1" bodyfile="include/spot.h" bodystart="185" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="185" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="185" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1ae5283f4238abff9fe19ef902256f041f" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -224,7 +224,7 @@
 <para>up alert thresholds </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="188" column="1" bodyfile="include/spot.h" bodystart="188" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="188" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="188" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1aca10a8cb4409935af0154e78e9ee47ff" prot="protected" static="no" mutable="no">
         <type>double</type>
@@ -237,7 +237,7 @@
 <para>down alert thresholds </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="190" column="1" bodyfile="include/spot.h" bodystart="190" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="190" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="190" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a256d07450f2a03f75d5207216f95628e" prot="protected" static="no" mutable="no">
         <type><ref refid="class_g_p_dfit" kindref="compound">GPDfit</ref></type>
@@ -250,7 +250,7 @@
 <para>Object to compute the upper threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="193" column="1" bodyfile="include/spot.h" bodystart="193" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="193" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="193" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_spot_1a2729436f8049869b303f5b01c09cbf48" prot="protected" static="no" mutable="no">
         <type><ref refid="class_g_p_dfit" kindref="compound">GPDfit</ref></type>
@@ -263,7 +263,7 @@
 <para>Object to compute the lower threshold </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="195" column="1" bodyfile="include/spot.h" bodystart="195" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="195" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="195" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -278,7 +278,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="204" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="204" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1ac1684b552b97b216831fa8a018606c59" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -291,7 +291,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="209" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="209" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -315,14 +315,14 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">n_init</parametername>
+<parametername>n_init</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Size of initial batch to perform calibration </para></parameterdescription>
@@ -332,7 +332,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="222" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="222" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a769b3886ecef1c4edaa819146cf45cd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -352,14 +352,14 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">init_data</parametername>
+<parametername>init_data</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Initial batch to perform calibration </para></parameterdescription>
@@ -369,7 +369,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="230" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="230" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a78251b9f558dd4679d5d39bccbe2c5f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -413,56 +413,56 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">n_init</parametername>
+<parametername>n_init</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Number of initial observations to perform calibration </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">level</parametername>
+<parametername>level</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Quantile level to discriminate the excesses from the normal data </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">up</parametername>
+<parametername>up</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute upper threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">down</parametername>
+<parametername>down</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute lower threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">alert</parametername>
+<parametername>alert</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Trigger alert </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">bounded</parametername>
+<parametername>bounded</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Bounded mode </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">max_excess</parametername>
+<parametername>max_excess</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Maximum number of storable excesses (for bounded mode) </para></parameterdescription>
@@ -472,7 +472,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="244" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="244" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a3ef94b50934e298b396433c50aae84fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -516,56 +516,56 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">init_data</parametername>
+<parametername>init_data</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Initial batch to perform calibration </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">level</parametername>
+<parametername>level</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Quantile level to discriminate the excesses from the normal data </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">up</parametername>
+<parametername>up</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute upper threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">down</parametername>
+<parametername>down</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute lower threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">alert</parametername>
+<parametername>alert</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Trigger alert </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">bounded</parametername>
+<parametername>bounded</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Bounded mode </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">max_excess</parametername>
+<parametername>max_excess</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Maximum number of storable excesses (for bounded mode) </para></parameterdescription>
@@ -575,7 +575,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="260" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="260" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1ae7c88c27e7044d4aa78f5c32db651f24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -591,7 +591,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">conf</parametername>
+<parametername>conf</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>a <ref refid="class_spot_config" kindref="compound">SpotConfig</ref> object </para></parameterdescription>
@@ -601,7 +601,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="269" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="269" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a1da0219dbf03892e9d14274f1fa297e2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -617,7 +617,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">spot</parametername>
+<parametername>spot</parametername>
 </parameternamelist>
 <parameterdescription>
 <para><ref refid="class_spot" kindref="compound">Spot</ref> instance </para></parameterdescription>
@@ -641,7 +641,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="277" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="277" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a2fb5bfd52a8c54ec2356e6bab9f0be1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_spot" kindref="compound">Spot</ref></type>
@@ -657,7 +657,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">spot</parametername>
+<parametername>spot</parametername>
 </parameternamelist>
 <parameterdescription>
 <para><ref refid="class_spot" kindref="compound">Spot</ref> instance </para></parameterdescription>
@@ -667,7 +667,7 @@
 Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the lower_bound of Spot_1 and the upper_bound of Spot_2. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="286" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="286" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a12cdab21606b41ad211d07ad5bda1dc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="spot_8h_1af3bf0aa2c34c1aef1f8221de0466f17e" kindref="member">SPOTEVENT</ref></type>
@@ -683,7 +683,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">v</parametername>
+<parametername>v</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input data </para></parameterdescription>
@@ -742,7 +742,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
 </parameterlist>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">v</parametername>
+<parametername>v</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input data </para></parameterdescription>
@@ -752,7 +752,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="313" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="313" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a1647c2952c5c6cd9d8d4849b5beda8ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -765,7 +765,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="319" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="319" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a365d16355b8af9803bf65a49f7d6b2da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_spot_status" kindref="compound">SpotStatus</ref></type>
@@ -778,7 +778,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="324" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="324" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1adc3fdba1c574dabd304c29e52332b0e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>string</type>
@@ -791,7 +791,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="329" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="329" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a5619422ed9ba104f2734e70fa1308d40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>string</type>
@@ -807,7 +807,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">log_level</parametername>
+<parametername>log_level</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>0,1 or 2 according to the desired verbosity </para></parameterdescription>
@@ -816,7 +816,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="335" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="335" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a92cc75d19b5f85a004c70d012a30c281" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_spot_config" kindref="compound">SpotConfig</ref></type>
@@ -829,7 +829,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="341" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="341" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a193403ca1f7e6f00a0a1437d111c9fac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -842,7 +842,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="348" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="348" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a7938cd04a79fe26208a91a9b0a66ec9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -855,7 +855,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="353" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="353" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a3ea05091194db6bd4cf3fa7af9ddf14d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="class_bounds" kindref="compound">Bounds</ref></type>
@@ -868,7 +868,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="358" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="358" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a94d7dfde5506c2874ca28104f760932b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -881,7 +881,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="363" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="363" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1afe9718f788af6165d7722f554aa1bbb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -894,7 +894,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="368" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="368" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a087c2359bd0211c20f76b98bcaf5af17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -911,7 +911,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="373" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="373" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a63aba545c0dd16504a63c4904ed1d09d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -927,7 +927,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">z</parametername>
+<parametername>z</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input value </para></parameterdescription>
@@ -937,7 +937,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="380" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="380" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_spot_1a83d6de0b67cce07d72b9ce963be7757b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -953,7 +953,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">z</parametername>
+<parametername>z</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input value </para></parameterdescription>
@@ -963,7 +963,7 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/spot.h" line="387" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="387" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -971,43 +971,43 @@ Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1. This function takes the
     <detaileddescription>
 <para>This object computes probabilistic upper and lower bounds (as desired) according to the incoming data and the main parameter q </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="16">
+      <node id="24">
         <label>Spot</label>
         <link refid="class_spot"/>
       </node>
-      <node id="17">
+      <node id="25">
         <label>DSpot</label>
         <link refid="class_d_spot"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="24" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="21">
+      <node id="29">
         <label>std::vector&lt; double &gt;</label>
       </node>
-      <node id="20">
+      <node id="28">
         <label>Ubend</label>
         <link refid="class_ubend"/>
-        <childnode refid="21" relation="public-inheritance">
+        <childnode refid="29" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="18">
+      <node id="26">
         <label>Spot</label>
         <link refid="class_spot"/>
-        <childnode refid="19" relation="usage">
+        <childnode refid="27" relation="usage">
           <edgelabel>upper_bound</edgelabel>
           <edgelabel>lower_bound</edgelabel>
         </childnode>
       </node>
-      <node id="19">
+      <node id="27">
         <label>GPDfit</label>
         <link refid="class_g_p_dfit"/>
-        <childnode refid="20" relation="public-inheritance">
+        <childnode refid="28" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="include/spot.h" line="135" column="1" bodyfile="include/spot.h" bodystart="134" bodyend="388"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/spot.h" line="135" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/spot.h" bodystart="134" bodyend="388"/>
     <listofallmembers>
       <member refid="class_spot_1ae6139cf212ca89128d772a69440784c9" prot="protected" virt="non-virtual"><scope>Spot</scope><name>al_down</name></member>
       <member refid="class_spot_1a50e56c8fcf35e3b98ae6b7e84dbb5bf9" prot="protected" virt="non-virtual"><scope>Spot</scope><name>al_up</name></member>
