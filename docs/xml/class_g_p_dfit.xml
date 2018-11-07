@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="36" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="36" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="39" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_p_dfit_1abdfbde745f7c33c070a0bd61e4a15b87" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="37" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="37" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="40" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_g_p_dfit_1aade38288a1d0c44054a7c4dfabc627fc" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="38" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="38" bodyend="-1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="41" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -70,7 +70,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="45" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="48" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1ac4e7ec86e02deb86b8728288db2189c2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -118,7 +118,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="54" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="57" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1a787e109ecf2a9093e682281d0d86ceea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>vector&lt; double &gt;</type>
@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="61" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="64" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -160,7 +160,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="70" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="73" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1a54d29d3eef44e36cc491924b6e43ffbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -173,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="75" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="78" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1aec42abc9a889e5db99a06c64d8eea4a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -186,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="80" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="83" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1a00b6178330208de4d31b2125174ba19f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -199,7 +199,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="85" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="88" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1ae4df0020fd3c23f199b2c36b87863bad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -225,7 +225,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="92" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="95" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1a82cefaa05050d06f055240411acd53b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -239,7 +239,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="98" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="101" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1a899dc0ae0ff27c94bc9ccad0a6128d37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -297,7 +297,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="107" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="110" column="1"/>
       </memberdef>
       <memberdef kind="function" id="class_g_p_dfit_1a89c9ad66339442f1d418a56e7fdbf966" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -355,7 +355,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="116" column="1"/>
+        <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="119" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -396,7 +396,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="34" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="34" bodyend="118"/>
+    <location file="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" line="37" column="1" bodyfile="/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h" bodystart="37" bodyend="121"/>
     <listofallmembers>
       <member refid="class_ubend_1a8d436357fdc7f423da17b06cf4f6e9a2" prot="protected" virt="non-virtual"><scope>GPDfit</scope><name>capacity</name></member>
       <member refid="class_ubend_1a82b8a2847f23eafca91a44747af8918c" prot="protected" virt="non-virtual"><scope>GPDfit</scope><name>cursor</name></member>

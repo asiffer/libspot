@@ -86,21 +86,21 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">d</parametername>
+<parametername>d</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Depth of the moving average </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">n_init</parametername>
+<parametername>n_init</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Size of initial batch to perform calibration </para></parameterdescription>
@@ -134,21 +134,21 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">d</parametername>
+<parametername>d</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Depth of the moving average </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">init_data</parametername>
+<parametername>init_data</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Initial batch to perform calibration </para></parameterdescription>
@@ -206,63 +206,63 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">d</parametername>
+<parametername>d</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Depth of the moving average </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">n_init</parametername>
+<parametername>n_init</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Number of initial observations to perform calibration </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">level</parametername>
+<parametername>level</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Quantile level to discriminate the excesses from the normal data </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">up</parametername>
+<parametername>up</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute upper threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">down</parametername>
+<parametername>down</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute lower threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">alert</parametername>
+<parametername>alert</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Trigger alert </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">bounded</parametername>
+<parametername>bounded</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Bounded mode </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">max_excess</parametername>
+<parametername>max_excess</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Maximum number of storable excesses (for bounded mode) </para></parameterdescription>
@@ -320,63 +320,63 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">d</parametername>
+<parametername>d</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Depth of the moving average </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">q</parametername>
+<parametername>q</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Probability of abnormal events </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">init_data</parametername>
+<parametername>init_data</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Initial batch to perform calibration </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">level</parametername>
+<parametername>level</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Quantile level to discriminate the excesses from the normal data </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">up</parametername>
+<parametername>up</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute upper threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">down</parametername>
+<parametername>down</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Compute lower threshold </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">alert</parametername>
+<parametername>alert</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Trigger alert </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">bounded</parametername>
+<parametername>bounded</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Bounded mode </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">max_excess</parametername>
+<parametername>max_excess</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Maximum number of storable excesses (for bounded mode) </para></parameterdescription>
@@ -414,14 +414,14 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">d</parametername>
+<parametername>d</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The depth of the local model </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">args</parametername>
+<parametername>args</parametername>
 </parameternamelist>
 <parameterdescription>
 <para><ref refid="class_spot" kindref="compound">Spot</ref> arguments (see <ref refid="class_spot" kindref="compound">Spot</ref> class) </para></parameterdescription>
@@ -447,7 +447,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">other</parametername>
+<parametername>other</parametername>
 </parameternamelist>
 <parameterdescription>
 <para><ref refid="class_d_spot" kindref="compound">DSpot</ref> instance </para></parameterdescription>
@@ -487,7 +487,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">other</parametername>
+<parametername>other</parametername>
 </parameternamelist>
 <parameterdescription>
 <para><ref refid="class_d_spot" kindref="compound">DSpot</ref> instance </para></parameterdescription>
@@ -527,7 +527,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">v</parametername>
+<parametername>v</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input data </para></parameterdescription>
@@ -586,7 +586,7 @@
 </parameterlist>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">v</parametername>
+<parametername>v</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input data </para></parameterdescription>
@@ -746,7 +746,7 @@
         <detaileddescription>
 <para>Overload <ref refid="class_spot" kindref="compound">Spot</ref> method (return the real absolute value with the drift) <parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">z</parametername>
+<parametername>z</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input value </para></parameterdescription>
@@ -772,7 +772,7 @@
         <detaileddescription>
 <para>Overload <ref refid="class_spot" kindref="compound">Spot</ref> method (return the real absolute value with the drift) <parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">z</parametername>
+<parametername>z</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>input value </para></parameterdescription>

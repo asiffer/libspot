@@ -35,7 +35,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">size</parametername>
+<parametername>size</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The window size where the mean is computed (-1 for infinite window) </para></parameterdescription>
@@ -65,14 +65,14 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">size</parametername>
+<parametername>size</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>The window size where the mean is computed (-1 for infinite window) </para></parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername direction="in">v</parametername>
+<parametername>v</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>An initial batch of data </para></parameterdescription>
@@ -98,7 +98,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">other</parametername>
+<parametername>other</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>External <ref refid="class_ubend" kindref="compound">Ubend</ref> object </para></parameterdescription>
@@ -137,7 +137,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">x_n</parametername>
+<parametername>x_n</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>New incoming data </para></parameterdescription>
@@ -163,7 +163,7 @@
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
-<parametername direction="in">other</parametername>
+<parametername>other</parametername>
 </parameternamelist>
 <parameterdescription>
 <para>Another <ref refid="class_stream_mean" kindref="compound">StreamMean</ref> object </para></parameterdescription>

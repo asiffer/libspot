@@ -22,6 +22,8 @@ Spot* Spot_new(double q,
     bool bounded,
     int max_excess);
 
+void Spot_delete(Spot *s);
+
 int Spot_step(Spot* s, double x);
 
 SpotStatus Spot_status(Spot* s);
@@ -55,6 +57,8 @@ DSpot* DSpot_new(int d,
     bool alert,
     bool bounded,
     int max_excess);
+
+void DSpot_delete(DSpot* ds);
 
 DSpotStatus DSpot_status(DSpot* ds);
 

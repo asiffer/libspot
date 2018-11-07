@@ -162,6 +162,32 @@
     <member refid="dspot_8h_1a44c53be154ff0b08f50675d06335aa17" kind="define"><name>DSPOT_H</name></member>
   </compound>
   <compound refid="gpdfit_8h" kind="file"><name>gpdfit.h</name>
+    <member refid="gpdfit_8h_1af9075fb98a3527f9730e74746c3944db" kind="define"><name>GPDFIT_H</name></member>
+  </compound>
+  <compound refid="interface_8h" kind="file"><name>interface.h</name>
+    <member refid="interface_8h_1aa2088f87fcfbd4de29aa4c02a099234e" kind="function"><name>Spot_new</name></member>
+    <member refid="interface_8h_1acd4ff4515c370a7541b3a3138e2d7c0e" kind="function"><name>Spot_step</name></member>
+    <member refid="interface_8h_1aa70498b49f18b9a449234d099d3b00e8" kind="function"><name>Spot_status</name></member>
+    <member refid="interface_8h_1acb8a5ec1db361c2201ba431d97ce54f6" kind="function"><name>Spot_config</name></member>
+    <member refid="interface_8h_1a0712c26eaa168876989d395f62f70f13" kind="function"><name>Spot_getUpperThreshold</name></member>
+    <member refid="interface_8h_1a9bd345a26add119d7f9c03828c6d2b33" kind="function"><name>Spot_getLowerThreshold</name></member>
+    <member refid="interface_8h_1a1ddb75b76ba97f9070ce26622661f1fe" kind="function"><name>Spot_getUpper_t</name></member>
+    <member refid="interface_8h_1a6aa7629f937672776ae82380cd066598" kind="function"><name>Spot_getLower_t</name></member>
+    <member refid="interface_8h_1a6ac3f4014998a1ee06d353ed17f2d794" kind="function"><name>Spot_set_q</name></member>
+    <member refid="interface_8h_1a5edd0057e25cad8108fbba5c9225693e" kind="function"><name>Spot_up_probability</name></member>
+    <member refid="interface_8h_1aa124d82179412dd3f75974d7f22ff066" kind="function"><name>Spot_down_probability</name></member>
+    <member refid="interface_8h_1a0c589bde0f12563874b0b6ea24fc7a18" kind="function"><name>DSpot_new</name></member>
+    <member refid="interface_8h_1a7355397a51f21cac4ad697c27e873e99" kind="function"><name>DSpot_status</name></member>
+    <member refid="interface_8h_1ab465635f37b5babafc430c8041088e28" kind="function"><name>DSpot_config</name></member>
+    <member refid="interface_8h_1a5553a464008977434f92fc99618c180a" kind="function"><name>DSpot_step</name></member>
+    <member refid="interface_8h_1ab2572992e809c911d3030e308dc50c00" kind="function"><name>DSpot_getUpperThreshold</name></member>
+    <member refid="interface_8h_1ac4de4a3d7a1b7cee0cc1963ccc4287fc" kind="function"><name>DSpot_getLowerThreshold</name></member>
+    <member refid="interface_8h_1aca4fc79660e757e09bc6715291588ac3" kind="function"><name>DSpot_getUpper_t</name></member>
+    <member refid="interface_8h_1a081cb284e461f2b0dffd501d73f74103" kind="function"><name>DSpot_getLower_t</name></member>
+    <member refid="interface_8h_1a8bf4711428c2bd84ae76410afa6d1d2e" kind="function"><name>DSpot_getDrift</name></member>
+    <member refid="interface_8h_1a5a84ca258e807990ce48c044d0eee811" kind="function"><name>DSpot_set_q</name></member>
+    <member refid="interface_8h_1a7af61ce428c9f656e0d410b2839bd4b2" kind="function"><name>DSpot_up_probability</name></member>
+    <member refid="interface_8h_1a2abe99f9ac268368b5d6d03729deb9f3" kind="function"><name>DSpot_down_probability</name></member>
   </compound>
   <compound refid="spot_8h" kind="file"><name>spot.h</name>
     <member refid="spot_8h_1af3bf0aa2c34c1aef1f8221de0466f17e" kind="enum"><name>SPOTEVENT</name></member>

@@ -6,6 +6,7 @@
     <innerfile refid="brent_8h">brent.h</innerfile>
     <innerfile refid="dspot_8h">dspot.h</innerfile>
     <innerfile refid="gpdfit_8h">gpdfit.h</innerfile>
+    <innerfile refid="interface_8h">interface.h</innerfile>
     <innerfile refid="spot_8h">spot.h</innerfile>
     <innerfile refid="ubend_8h">ubend.h</innerfile>
     <briefdescription>

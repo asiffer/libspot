@@ -6,42 +6,48 @@
     <includes local="no">cmath</includes>
     <includedby refid="gpdfit_8h" local="yes">/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h</includedby>
     <incdepgraph>
-      <node id="6">
+      <node id="7">
         <label>functional</label>
       </node>
-      <node id="7">
+      <node id="8">
         <label>cmath</label>
       </node>
-      <node id="5">
+      <node id="6">
         <label>/home/asr/Documents/Work/github/libspot/master/include/brent.h</label>
         <link refid="brent_8h"/>
-        <childnode refid="6" relation="include">
-        </childnode>
         <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="11">
+      <node id="12">
         <label>/home/asr/Documents/Work/github/libspot/master/include/dspot.h</label>
         <link refid="dspot_8h"/>
-      </node>
-      <node id="8">
-        <label>/home/asr/Documents/Work/github/libspot/master/include/brent.h</label>
-        <link refid="brent_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>/home/asr/Documents/Work/github/libspot/master/include/spot.h</label>
-        <link refid="spot_8h"/>
-        <childnode refid="11" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
       <node id="9">
+        <label>/home/asr/Documents/Work/github/libspot/master/include/brent.h</label>
+        <link refid="brent_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>/home/asr/Documents/Work/github/libspot/master/include/interface.h</label>
+        <link refid="interface_8h"/>
+      </node>
+      <node id="11">
+        <label>/home/asr/Documents/Work/github/libspot/master/include/spot.h</label>
+        <link refid="spot_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
         <label>/home/asr/Documents/Work/github/libspot/master/include/gpdfit.h</label>
         <link refid="gpdfit_8h"/>
-        <childnode refid="10" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

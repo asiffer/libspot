@@ -25,6 +25,11 @@ Spot* Spot_new(double q,
     return new Spot(q, n_init, level, up, down, alert, bounded, max_excess);
 }
 
+void Spot_delete(Spot* s)
+{
+    delete s;
+}
+
 int Spot_step(Spot* s, double x)
 {
     return s->step(x);
@@ -89,6 +94,11 @@ DSpot* DSpot_new(int d,
     int max_excess)
 {
     return new DSpot(d, q, n_init, level, up, down, alert, bounded, max_excess);
+}
+
+void DSpot_delete(DSpot* ds)
+{
+    delete ds;
 }
 
 DSpotStatus DSpot_status(DSpot* ds)

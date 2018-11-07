@@ -17,8 +17,6 @@ using namespace std;
  *  \class Bounds
  *	\brief A structure which embeds upper and lower thresholds
  *	\details Some basic methods are also implemented
- *	------|------------|-------
- * 	    down	   up
  */
 class Bounds {
 	public:
