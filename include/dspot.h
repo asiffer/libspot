@@ -112,7 +112,7 @@ class DSpotStatus : public SpotStatus{
 class DSpotConfig: public SpotConfig {
 	public:
 		/** the depth of the moving average */
-        	int depth;
+        int depth;
         	
         /**
 			\brief Format the config to print it

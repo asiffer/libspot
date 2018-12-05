@@ -358,16 +358,6 @@ string DSpotConfig::str()
 /**
 	@brief Get the internal state of the DSpot instance
 */
-/*
-SpotStatus DSpot::status()
-{
-	SpotStatus ss = this->Spot::status();
-	ss.z_up += this->drift;
-	ss.z_down += this->drift;
-	ss.t_up += this->drift;
-	ss.t_down += this->drift;
-	return(ss);
-}*/
 DSpotStatus DSpot::status()
 {
 	DSpotStatus status;

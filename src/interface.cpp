@@ -80,6 +80,7 @@ double Spot_down_probability(Spot* s, double z)
     return s->down_probability(z);
 }
 
+
 // ----------------------------------------------------------------------------
 // DSPOT
 // ----------------------------------------------------------------------------
@@ -154,4 +155,193 @@ double DSpot_up_probability(DSpot* ds, double z)
 double DSpot_down_probability(DSpot* ds, double z)
 {
     return ds->down_probability(z);
+}
+
+
+
+
+// ----------------------------------------------------------------------------
+// SPOT STATUS
+// ----------------------------------------------------------------------------
+SpotStatus* Spot_status_ptr(Spot* s) 
+{
+    return new SpotStatus{s->status()};
+}
+
+void Spot_status_delete(SpotStatus* ss)
+{
+    delete ss;
+}
+
+
+// ----------------------------------------------------------------------------
+// DSPOT STATUS
+// ----------------------------------------------------------------------------
+DSpotStatus* DSpot_status_ptr(DSpot* ds) 
+{
+    return new DSpotStatus{ds->status()};
+}
+
+void DSpot_status_delete(DSpotStatus* ds)
+{
+    delete ds;
+}
+
+// ----------------------------------------------------------------------------
+// SPOT/DSPOT status methods
+// ----------------------------------------------------------------------------
+int _status_get_n(SpotStatus* ss) 
+{
+    return ss->n;
+}
+
+int _status_get_ex_up(SpotStatus* ss) 
+{
+    return ss->ex_up;
+}
+
+int _status_get_ex_down(SpotStatus* ss) 
+{
+    return ss->ex_down;
+}
+
+int _status_get_Nt_up(SpotStatus* ss) 
+{
+    return ss->Nt_up;
+}
+
+int _status_get_Nt_down(SpotStatus* ss) 
+{
+    return ss->Nt_down;
+}
+
+int _status_get_al_up(SpotStatus* ss) 
+{
+    return ss->al_up;
+}
+
+int _status_get_al_down(SpotStatus* ss) 
+{
+    return ss->al_down;
+}
+
+double _status_get_t_up(SpotStatus* ss) 
+{
+    return ss->t_up;
+}
+
+double _status_get_t_down(SpotStatus* ss) 
+{
+    return ss->t_down;
+}
+
+double _status_get_z_up(SpotStatus* ss) 
+{
+    return ss->z_up;
+}
+
+double _status_get_z_down(SpotStatus* ss) 
+{
+    return ss->z_down;
+}
+
+// specific to DSpot
+double _status_get_drift(DSpotStatus* dss) 
+{
+    return dss->drift;
+}
+
+
+// ----------------------------------------------------------------------------
+// SPOT CONFIG
+// ----------------------------------------------------------------------------
+
+SpotConfig* Spot_config_ptr(Spot* s) 
+{
+    return new SpotConfig{s->config()};
+}
+
+void Spot_config_delete(SpotConfig* sc)
+{
+    delete sc;
+}
+
+// ----------------------------------------------------------------------------
+// DSPOT CONFIG
+// ----------------------------------------------------------------------------
+DSpotConfig* DSpot_config_ptr(DSpot* ds) 
+{
+    return new DSpotConfig{ds->config()};
+}
+
+void DSpot_config_delete(DSpotConfig* dsc)
+{
+    delete dsc;
+}
+
+
+// ----------------------------------------------------------------------------
+// SPOT/DSPOT config methods
+// ----------------------------------------------------------------------------
+
+double _config_get_q(SpotConfig* sc)
+{
+    return sc->q;
+}
+
+int _config_get_bounded(SpotConfig* sc)
+{
+    if (sc->bounded) 
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int _config_get_max_excess(SpotConfig* sc)
+{
+    return sc->max_excess;
+}
+
+int _config_get_alert(SpotConfig* sc)
+{
+    if (sc->alert) 
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int _config_get_up(SpotConfig* sc)
+{
+    if (sc->up) 
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int _config_get_down(SpotConfig* sc)
+{
+    if (sc->down) 
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int _config_get_n_init(SpotConfig* sc)
+{
+    return sc->n_init;
+}
+
+double _config_get_level(SpotConfig* sc)
+{
+    return sc->level;
+}
+
+// specific to DSpot
+double _config_get_depth(DSpotConfig* dsc) 
+{
+    return dsc->depth;
 }
