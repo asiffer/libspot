@@ -84,7 +84,6 @@ double DSpot_up_probability(DSpot* ds, double z);
 
 double DSpot_down_probability(DSpot* ds, double z);
 
-}
 
 
 // ----------------------------------------------------------------------------
@@ -167,3 +166,5 @@ double _config_get_level(SpotConfig* sc);
 
 // specific to DSpot
 double _config_get_depth(DSpotConfig* dsc);
+
+}
