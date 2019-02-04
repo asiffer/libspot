@@ -85,7 +85,7 @@ class SpotStatus {
 
 
 /**
- *  	\class SpotConfig
+ *  \class SpotConfig
  *	\brief This structure gathers the configuration of a Spot object (aims to build similar instance)
  */
 class SpotConfig {
@@ -123,7 +123,7 @@ class SpotConfig {
 
 
 /**
- *  	\class Spot
+ *  \class Spot
  *	\brief Embed the Spot algorithm to flag outliers in streaming data
  *	\details This object computes probabilistic upper and lower bounds (as desired) according to the incoming data and 
  *	the main parameter q

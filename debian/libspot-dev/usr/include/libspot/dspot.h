@@ -23,7 +23,7 @@ using namespace std;
 #define STREAMMEAN_H
 
 /**
- *  	\class StreamMean
+ *  \class StreamMean
  *	\brief Compute the mean over streaming data (window)
  *	\details The harmonic mean has also been added but it is not used
  */
@@ -35,22 +35,22 @@ class StreamMean : public Ubend {
 	public:
 		/**
 			\brief Basic constructor
-			\param[in] size The window size where the mean is computed (-1 for infinite window)
+			\param size The window size where the mean is computed (-1 for infinite window)
 			\return A StreamMean object
 		*/
 		StreamMean(int size = -1);
 		
 		/**
 			\brief Basic constructor with a first batch of data
-			\param[in] size The window size where the mean is computed (-1 for infinite window)
-			\param[in] v An initial batch of data
+			\param size The window size where the mean is computed (-1 for infinite window)
+			\param v An initial batch of data
 			\return A StreamMean object
 		*/
 		StreamMean(int size, vector<double> v);
 		
 		/**
 			\brief Constructor from a Ubend object
-			\param[in] other External Ubend object
+			\param other External Ubend object
 			\return A StreamMean object
 		*/
 		StreamMean(const Ubend & other);
@@ -63,14 +63,14 @@ class StreamMean : public Ubend {
 		
 		/**
 			\brief Update the mean with a new incoming data
-			\param[in] x_n New incoming data
+			\param x_n New incoming data
 			\return The state of the Ubend container (see the Ubend class)
 		*/
 		UBENDSTATUS step(double x_n);
 		
 		/**
 			\brief The sum operator (merge the Ubend)
-			\param[in] other Another StreamMean object
+			\param other Another StreamMean object
 			\return A new StreamMean instance
 		*/		
 		StreamMean operator+(const StreamMean& other) const;
@@ -105,16 +105,16 @@ class DSpotStatus : public SpotStatus{
 
 
 /**
- *  	\class DSpotConfig
+ *  \class DSpotConfig
  *	\brief This structure gathers the configuration of a DSpot object (aims to build similar instance)
  *	\details inherit SpotConfig
  */
 class DSpotConfig: public SpotConfig {
 	public:
 		/** the depth of the moving average */
-        	int depth;
+        int depth;
         	
-        	/**
+        /**
 			\brief Format the config to print it
 		*/
 		string str();
@@ -153,49 +153,54 @@ class DSpot : public Spot
         
         	/**
 			\brief Default constructor
-			\param[in] d Depth of the moving average
-			\param[in] q Probability of abnormal events
-			\param[in] n_init Size of initial batch to perform calibration
+			\param d Depth of the moving average
+			\param q Probability of abnormal events
+			\param n_init Size of initial batch to perform calibration
 			\return Spot object
 		*/
 		DSpot(int d = 10, double q = 1e-3, int n_init = 1000);
 		
 		/**
 			\brief Constructor with risk parametrization (q) and initial batch
-			\param[in] d Depth of the moving average
-			\param[in] q Probability of abnormal events
-			\param[in] init_data Initial batch to perform calibration
+			\param d Depth of the moving average
+			\param q Probability of abnormal events
+			\param init_data Initial batch to perform calibration
 			\return Spot object
 		*/
 		DSpot(int d, double q, vector<double> init_data);
 		
 		/**
 			\brief Full parametrizable constructor
-			\param[in] d Depth of the moving average
-			\param[in] q Probability of abnormal events
-			\param[in] n_init Number of initial observations to perform calibration
-			\param[in] level Quantile level to discriminate the excesses from the normal data
-			\param[in] up Compute upper threshold
-			\param[in] down Compute lower threshold
-			\param[in] alert Trigger alert
-			\param[in] bounded Bounded mode
-			\param[in] max_excess Maximum number of storable excesses (for bounded mode) 
+			\param d Depth of the moving average
+			\param q Probability of abnormal events
+			\param n_init Number of initial observations to perform calibration
+			\param level Quantile level to discriminate the excesses from the normal data
+			\param up Compute upper threshold
+			\param down Compute lower threshold
+			\param alert Trigger alert
+			\param bounded Bounded mode
+			\param max_excess Maximum number of storable excesses (for bounded mode) 
 			\return Spot object
 		*/
 		DSpot(	int d, double q, int n_init, double level, 
 				bool up, bool down, bool alert, bool bounded, int max_excess);
         
+        /** EXPERIMENTAL -> to avoid boolean export
+         */
+        DSpot(	int d, double q, int n_init, double level, 
+				int up, int down, int alert, int bounded, int max_excess);
+        
 		/**
 			\brief Full parametrizable constructor
-			\param[in] d Depth of the moving average
-			\param[in] q Probability of abnormal events
-			\param[in] init_data Initial batch to perform calibration
-			\param[in] level Quantile level to discriminate the excesses from the normal data
-			\param[in] up Compute upper threshold
-			\param[in] down Compute lower threshold
-			\param[in] alert Trigger alert
-			\param[in] bounded Bounded mode
-			\param[in] max_excess Maximum number of storable excesses (for bounded mode) 
+			\param d Depth of the moving average
+			\param q Probability of abnormal events
+			\param init_data Initial batch to perform calibration
+			\param level Quantile level to discriminate the excesses from the normal data
+			\param up Compute upper threshold
+			\param down Compute lower threshold
+			\param alert Trigger alert
+			\param bounded Bounded mode
+			\param max_excess Maximum number of storable excesses (for bounded mode) 
 			\return Spot object
 		*/
         	DSpot(	int d, double q, vector<double> init_data, double level, 
@@ -203,19 +208,19 @@ class DSpot : public Spot
         
 		/**
 			\brief Default constructor
-			\param[in] d The depth of the local model
-			\param[in] args Spot arguments (see Spot class)
+			\param d The depth of the local model
+			\param args Spot arguments (see Spot class)
 			\return DSpot object
 		*/
-        	template<typename... Args> 
-        	DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
+        //	template<typename... Args> 
+        //	DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
         
 
     	
     		
 		/**
 			\brief DSpot configuration comparison
-			\param[in] other DSpot instance
+			\param other DSpot instance
 			\retval true both instances have the same configuration
 			\retval false instances have not the same configuration
 		*/
@@ -223,7 +228,7 @@ class DSpot : public Spot
 		
 		/**
 			\brief DSpot bounds comparison
-			\param[in] other DSpot instance
+			\param other DSpot instance
 			\retval true if this->z_up + this->drift < other.z_down + other.drift
 			\retval false otherwise
 		*/
@@ -233,7 +238,7 @@ class DSpot : public Spot
 		
 		/**
 			\brief Spot iteration
-			\param[in] v input data
+			\param v input data
 			\return The nature of the input data
 			\retval 0 Normal data
 			\retval	1 Up alert
@@ -249,7 +254,7 @@ class DSpot : public Spot
 		
 		/**
 			\brief Spot iteration
-			\param[in] v input data
+			\param v input data
 			\return The nature of the input data
 		*/
 		SPOTEVENT step(double x);
@@ -320,7 +325,7 @@ class DSpot : public Spot
 		/**
 			\brief Give the probability to observe things higher than a value
 			\details Overload Spot method (return the real absolute value with the drift)
-			\param[in] z input value
+			\param z input value
 			\return proability 1-F(z)
 		*/
 		double up_probability(double z);
@@ -328,7 +333,7 @@ class DSpot : public Spot
 		/**
 			\brief Give the probability to observe things lower than a value
 			\details Overload Spot method (return the real absolute value with the drift)
-			\param[in] z input value
+			\param z input value
 			\return proability F(z)
 		*/
 		double down_probability(double z);

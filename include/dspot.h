@@ -185,6 +185,11 @@ class DSpot : public Spot
 		DSpot(	int d, double q, int n_init, double level, 
 				bool up, bool down, bool alert, bool bounded, int max_excess);
         
+        /** EXPERIMENTAL -> to avoid boolean export
+         */
+        DSpot(	int d, double q, int n_init, double level, 
+				int up, int down, int alert, int bounded, int max_excess);
+        
 		/**
 			\brief Full parametrizable constructor
 			\param d Depth of the moving average
@@ -207,8 +212,8 @@ class DSpot : public Spot
 			\param args Spot arguments (see Spot class)
 			\return DSpot object
 		*/
-        	template<typename... Args> 
-        	DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
+        //	template<typename... Args> 
+        //	DSpot(int d = 10, Args&... args) : Spot(args...) {this->depth = d;}
         
 
     	

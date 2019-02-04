@@ -9,7 +9,9 @@
 
 using namespace std;
 
+#ifdef __cplusplus
 extern "C" {
+#endif
 // ----------------------------------------------------------------------------
 // SPOT
 // ----------------------------------------------------------------------------
@@ -50,6 +52,16 @@ double Spot_down_probability(Spot* s, double z);
 // DSPOT
 // ----------------------------------------------------------------------------
 
+// "lightweight" constructor (to pass lower than 256 bytes)
+DSpot* DSpot_new_light( int d,
+                        int n_init,
+                        double level,
+                        bool up,
+                        bool down,
+                        bool alert,
+                        bool bounded,
+                        int max_excess);
+
 DSpot* DSpot_new(int d,
     double q,
     int n_init,
@@ -59,6 +71,15 @@ DSpot* DSpot_new(int d,
     bool alert,
     bool bounded,
     int max_excess);
+/*DSpot* DSpot_new(int d,
+                 double q,
+                 int n_init,
+                 double level,
+                 int up,
+                 int down,
+                 int alert,
+                 int bounded,
+                 int max_excess);*/
 
 void DSpot_delete(DSpot* ds);
 
@@ -167,4 +188,6 @@ double _config_get_level(SpotConfig* sc);
 // specific to DSpot
 double _config_get_depth(DSpotConfig* dsc);
 
+#ifdef __cplusplus
 }
+#endif

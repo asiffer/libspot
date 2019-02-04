@@ -128,6 +128,13 @@ DSpot::DSpot(int d, double q, vector<double> init_data, double level,
 	}
 }
 
+// experimental
+DSpot::DSpot(	int d, double q, int n_init, double level, 
+                int up, int down, int alert, int bounded, int max_excess) : 
+				DSpot(d, q, n_init, level, up==1, down==1, alert==1, bounded==1, max_excess) 
+{
+}
+
 
 /**
 	@brief Test if the configurations are the same

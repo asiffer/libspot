@@ -84,15 +84,27 @@ double Spot_down_probability(Spot* s, double z)
 // ----------------------------------------------------------------------------
 // DSPOT
 // ----------------------------------------------------------------------------
+DSpot* DSpot_new_light( int d,
+                        int n_init,
+                        double level,
+                        bool up,
+                        bool down,
+                        bool alert,
+                        bool bounded,
+                        int max_excess)
+{
+    return new DSpot(d, 1e-3, n_init, level, up, down, alert, bounded, max_excess);
+}
+
 DSpot* DSpot_new(int d,
-    double q,
-    int n_init,
-    double level,
-    bool up,
-    bool down,
-    bool alert,
-    bool bounded,
-    int max_excess)
+                 double q,
+                 int n_init,
+                 double level,
+                 int up,
+                 int down,
+                 int alert,
+                 int bounded,
+                 int max_excess)
 {
     return new DSpot(d, q, n_init, level, up, down, alert, bounded, max_excess);
 }

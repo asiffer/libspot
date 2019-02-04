@@ -3,7 +3,7 @@ Source: libspot
 Version: 1.2
 Architecture: amd64
 Maintainer: Alban Siffer <alban.siffer@irisa.fr>
-Installed-Size: 40
+Installed-Size: 43
 Depends: libgomp1
 Section: libdevel
 Priority: extra

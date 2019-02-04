@@ -20,14 +20,14 @@ libspot (1.2) cosmic; urgency=medium
   * remove useless libarmadillo dependency
 
 
- -- asr <asr@PORT-120>  Fri, 02 Nov 2018 11:57:44 +0100
+ -- Alban Siffer <alban.siffer@irisa.fr>  Fri, 02 Nov 2018 11:57:44 +0100
 
 libspot (1.1) unstable; urgency=medium
 
   [ Alban Siffer ]
   * New enum items
 
- -- asr <asr@PORT-120>  Fri, 02 Nov 2018 11:55:36 +0100
+ -- Alban Siffer <alban.siffer@irisa.fr>  Fri, 02 Nov 2018 11:55:36 +0100
 
 libspot (1.0) unstable; urgency=medium
 

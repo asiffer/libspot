@@ -37,8 +37,8 @@ EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
 
 # compiler & flags
 CC = @g++
-CXXFLAGS = -std=c++14 -Wall -pedantic -fopenmp
-CXXFLAGS_NO_OPENMP = -std=c++14 -Wall -pedantic
+CXXFLAGS = -std=c++11 -Wall -pedantic -fopenmp
+CXXFLAGS_NO_OPENMP = -std=c++11 -Wall -pedantic
 CCVERSION = $(shell g++ --version | grep ^g++ | sed 's/^.* //g' | awk -F '[.]' '{print $1"."$2}')
 CCVERSIONOK = $(shell echo "$(CCVERSION)>=4.8" | bc) 
 $(info $(CCVERSION))
@@ -83,6 +83,12 @@ $(TARGET): $(OBJS)
 	$(CC) $(CXXFLAGS) -shared $(foreach n,$^,$(OBJ_DIR)/$(n)) -o $(LIB_DIR)/$@ -fPIC;
 	@echo "[done]"
 
+libspot.a: $(OBJS)
+	@echo "[Building static library]"
+	@echo "Building" $@ "..."
+	@ar rcs $(LIB_DIR)/$@ $(foreach n,$^,$(OBJ_DIR)/$(n));
+	@echo "[done]"
+	
 # build source files
 %.o: $(SRC_DIR)/%.cpp
 	@echo "Building" $@ "..."
