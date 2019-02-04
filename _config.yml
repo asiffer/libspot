@@ -37,13 +37,13 @@ highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter_opts:
-    default_lang: c++
+    default_lang: cpp
     css_class: 'highlight'
 
 
   
 theme: minima
-plugins:
+plugins_dir:
   - jekyll-feed
   - jekyll-gist
   - font-awesome-sass

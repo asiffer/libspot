@@ -2,6 +2,8 @@
 layout: default
 title: About
 permalink: about/
+categories: 
+  - main
 ---
 
 This library is an extension of research work previously published at KDD'17 conference.

@@ -2,22 +2,24 @@
 layout: default
 title: Tutorial
 permalink: tuto/
+categories: 
+  - main
 ---
 
 <a name="intro"></a>
 <a name="buildspot"></a>
 ### INTRODUCTION
-**libspot** is based on the core algorithm **SPOT** which detects anomalies. This algorithm is a part of the main object `SPOT`.
+**libspot** is based on the core algorithm **SPOT** which detects anomalies. This algorithm is a part of the main object `Spot`.
 
 ### CONSTRUCT A SPOT OBJECT
 
-Here is the full constructor of the `SPOT` object:
+Here is the full constructor of the `Spot` object:
 
-```c++
+```cpp
 Spot(double q, int n_init, double level, bool up, bool down, bool alert, bool bounded, int max_excess);
 ```
 
-The main parameter is <code>q</code>. It defines the probability of an abnormal event. For example, if `q = 0.001`, it means that the algorithm will consider events with a probability lower than `q` as abnormal.
+The main parameter is `q`. It defines the probability of an abnormal event. For example, if `q = 0.001`, it means that the algorithm will consider events with a probability lower than `q` as abnormal.
 
 The parameters `n_init` and `level` are involved in the calibration step of the algorithm. `n_init` is the number of data required to calibrate and `level` is the proportion of these initial data not involved in the tail distribution fit. For example, let us use `n_init = 1000` and `level = 0.99`. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first fit. 
 
@@ -39,14 +41,14 @@ If the memory is not bounded, the algorithm will store more and more data to per
 ### OTHER CONSTRUCTORS
 **libspot** provides other constructors. For instance rather than specifying `n_init` (the number of data to calibrate), the user can provide an initial batch of data `init_data`. This batch will directly be used to perform the calibration.
 
-```c++
+```cpp
 Spot(double q, vector<double> init_data, double level, bool up, bool down, bool alert, bool bounded, int max_excess);
 ```
 
 
 
 Finally, shorter constructors can also be used:
-```c++
+```cpp
 Spot(double q = 1e-3, int n_init = 1000);
 Spot(double q, vector<double> init_data);
 ```
@@ -54,7 +56,7 @@ Spot(double q, vector<double> init_data);
 
 The default values of the parameters are the following:
 <a name="runspot"></a>
-```c++
+```cpp
 q = 1e-3;
 n_init = 1000;
 level = 0.99;
@@ -67,8 +69,8 @@ max_excess = 200;
 
 ### RUN SPOT
 
-Once a `SPOT` object is created you can feed it with data through the `step` method.
-```c++
+Once a `Spot` object is created you can feed it with data through the `step` method.
+```cpp
 int Spot.step(double x)
 ```
 According to the state of the algorithm or the detected event, this method returns an enum item `SPOTEVENT::` (corresponding to an integer).
@@ -91,7 +93,7 @@ Here we give an example where Spot is applied on a Gaussian white noise of 10000
 
 <a></a>
 
-```c++
+```cpp
 // main.cpp
 
 #include "spot.h"
@@ -147,11 +149,9 @@ int main(int argc, const char * argv[])
 ```
 
 
-You can compile it with `g++` and the `C++14` standard:
-```awk
-g++ -std=c++14 -Wall main.cpp -lspot
+You can compile it with `g++` and the `C++11` standard:
+```shell
+$ g++ -std=c++11 -Wall main.cpp -lspot
 ```
-
-<!-- {% gist 42d77da0c8775e1ede92bf66f7c3602a %} -->
 
 

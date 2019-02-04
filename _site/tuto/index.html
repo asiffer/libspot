@@ -24,6 +24,39 @@
 	</div>
 
 	<div class="tab">
+	<!--  
+		<a href="/libspot/index.html">Home</a>
+	  
+		<a href="/libspot/tuto/">Tutorial</a>
+	  
+		<a href="/libspot/python/">Python</a>
+	  
+		<a href="/libspot/download/">Download</a>
+	  
+		<a href="/libspot/docs/">Documentation</a>
+	  
+		<a href="/libspot/about/">About</a>
+	  
+		<a href="/libspot/doc/Bounds.html">Bounds</a>
+	  
+		<a href="/libspot/doc/DSpot.html">DSpot</a>
+	  
+		<a href="/libspot/doc/DSpotConfig.html">DSpotConfig</a>
+	  
+		<a href="/libspot/doc/DSpotStatus.html">DSpotStatus</a>
+	  
+		<a href="/libspot/doc/GPDfit.html">GPDfit</a>
+	  
+		<a href="/libspot/doc/Spot.html">Spot</a>
+	  
+		<a href="/libspot/doc/SpotConfig.html">SpotConfig</a>
+	  
+		<a href="/libspot/doc/SpotStatus.html">SpotStatus</a>
+	  
+		<a href="/libspot/doc/StreamMean.html">StreamMean</a>
+	  
+		<a href="/libspot/doc/Ubend.html">Ubend</a>
+	        -->
 	 
 		<a href="/libspot/index.html">Home</a>
 	  
@@ -33,8 +66,10 @@
 	  
 		<a href="/libspot/download/">Download</a>
 	  
+		<a href="/libspot/docs/">Documentation</a>
+	  
 		<a href="/libspot/about/">About</a>
-	       
+	                           
 	</div>
 	
 	
@@ -48,47 +83,47 @@
 			<main><p><a name="intro"></a>
 <a name="buildspot"></a></p>
 <h3 id="introduction">INTRODUCTION</h3>
-<p><strong>libspot</strong> is based on the core algorithm <strong>SPOT</strong> which detects anomalies. This algorithm is a part of the main object <code class="language-c++ highlighter-rouge"><span class="n">SPOT</span></code>.</p>
+<p><strong>libspot</strong> is based on the core algorithm <strong>SPOT</strong> which detects anomalies. This algorithm is a part of the main object <code class="language-cpp highlighter-rouge"><span class="n">Spot</span></code>.</p>
 
 <h3 id="construct-a-spot-object">CONSTRUCT A SPOT OBJECT</h3>
 
-<p>Here is the full constructor of the <code class="language-c++ highlighter-rouge"><span class="n">SPOT</span></code> object:</p>
+<p>Here is the full constructor of the <code class="language-cpp highlighter-rouge"><span class="n">Spot</span></code> object:</p>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>The main parameter is <code>q</code>. It defines the probability of an abnormal event. For example, if <code class="language-c++ highlighter-rouge"><span class="n">q</span> <span class="o">=</span> <span class="mf">0.001</span></code>, it means that the algorithm will consider events with a probability lower than <code class="language-c++ highlighter-rouge"><span class="n">q</span></code> as abnormal.</p>
+<p>The main parameter is <code class="language-cpp highlighter-rouge"><span class="n">q</span></code>. It defines the probability of an abnormal event. For example, if <code class="language-cpp highlighter-rouge"><span class="n">q</span> <span class="o">=</span> <span class="mf">0.001</span></code>, it means that the algorithm will consider events with a probability lower than <code class="language-cpp highlighter-rouge"><span class="n">q</span></code> as abnormal.</p>
 
-<p>The parameters <code class="language-c++ highlighter-rouge"><span class="n">n_init</span></code> and <code class="language-c++ highlighter-rouge"><span class="n">level</span></code> are involved in the calibration step of the algorithm. <code class="language-c++ highlighter-rouge"><span class="n">n_init</span></code> is the number of data required to calibrate and <code class="language-c++ highlighter-rouge"><span class="n">level</span></code> is the proportion of these initial data not involved in the tail distribution fit. For example, let us use <code class="language-c++ highlighter-rouge"><span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span></code> and <code class="language-c++ highlighter-rouge"><span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span></code>. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first fit.</p>
+<p>The parameters <code class="language-cpp highlighter-rouge"><span class="n">n_init</span></code> and <code class="language-cpp highlighter-rouge"><span class="n">level</span></code> are involved in the calibration step of the algorithm. <code class="language-cpp highlighter-rouge"><span class="n">n_init</span></code> is the number of data required to calibrate and <code class="language-cpp highlighter-rouge"><span class="n">level</span></code> is the proportion of these initial data not involved in the tail distribution fit. For example, let us use <code class="language-cpp highlighter-rouge"><span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span></code> and <code class="language-cpp highlighter-rouge"><span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span></code>. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first fit.</p>
 
 <div class="alert">
 In practice, the user must ensure that <code>n_init * (1 - level) &gt; 10</code> to have enough data for the fit (at least 10). Furthermore, the <code>level</code> must be high enough to reduce the bias of the algorithm. We may advice to have the <code>level</code> as close to 1 as possible.
 </div>
 
-<p>The booleans <code class="language-c++ highlighter-rouge"><span class="n">up</span></code> and <code class="language-c++ highlighter-rouge"><span class="n">down</span></code> define whether the algorithm computes upper/lower thresholds or not.</p>
+<p>The booleans <code class="language-cpp highlighter-rouge"><span class="n">up</span></code> and <code class="language-cpp highlighter-rouge"><span class="n">down</span></code> define whether the algorithm computes upper/lower thresholds or not.</p>
 
-<p>The boolean <code class="language-c++ highlighter-rouge"><span class="n">alert</span> <span class="o">=</span> <span class="nb">true</span></code> enables alert triggering. If <code class="language-c++ highlighter-rouge"><span class="n">alert</span> <span class="o">=</span> <span class="nb">false</span></code>, it means that all the data (even those out of the bounds) will be taken into account.</p>
+<p>The boolean <code class="language-cpp highlighter-rouge"><span class="n">alert</span> <span class="o">=</span> <span class="nb">true</span></code> enables alert triggering. If <code class="language-cpp highlighter-rouge"><span class="n">alert</span> <span class="o">=</span> <span class="nb">false</span></code>, it means that all the data (even those out of the bounds) will be taken into account.</p>
 
-<p>The boolean <code class="language-c++ highlighter-rouge"><span class="n">bounded</span> <span class="o">=</span> <span class="nb">true</span></code> enables the memory bounding. The bound is given by <code class="language-c++ highlighter-rouge"><span class="n">max_excess</span></code> which is the maximum number of data stored to perform the tail fit.
+<p>The boolean <code class="language-cpp highlighter-rouge"><span class="n">bounded</span> <span class="o">=</span> <span class="nb">true</span></code> enables the memory bounding. The bound is given by <code class="language-cpp highlighter-rouge"><span class="n">max_excess</span></code> which is the maximum number of data stored to perform the tail fit.
 <a name="buildotherspot"></a></p>
 <div class="alert">
 If the memory is not bounded, the algorithm will store more and more data to perform the tail fit. However, the computation time will cause more problems than the memory growth because the tail fit complexity depends on this number of stored data.
 </div>
 
 <h3 id="other-constructors">OTHER CONSTRUCTORS</h3>
-<p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="language-c++ highlighter-rouge"><span class="n">n_init</span></code> (the number of data to calibrate), the user can provide an initial batch of data <code class="language-c++ highlighter-rouge"><span class="n">init_data</span></code>. This batch will directly be used to perform the calibration.</p>
+<p><strong>libspot</strong> provides other constructors. For instance rather than specifying <code class="language-cpp highlighter-rouge"><span class="n">n_init</span></code> (the number of data to calibrate), the user can provide an initial batch of data <code class="language-cpp highlighter-rouge"><span class="n">init_data</span></code>. This batch will directly be used to perform the calibration.</p>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">,</span> <span class="kt">double</span> <span class="n">level</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">up</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">down</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">alert</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">bounded</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max_excess</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>Finally, shorter constructors can also be used:</p>
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">);</span>
 <span class="n">Spot</span><span class="p">(</span><span class="kt">double</span> <span class="n">q</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">init_data</span><span class="p">);</span>
 </code></pre></div></div>
 
 <p>The default values of the parameters are the following:
 <a name="runspot"></a></p>
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">q</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span>
 <span class="n">n_init</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
 <span class="n">level</span> <span class="o">=</span> <span class="mf">0.99</span><span class="p">;</span>
 <span class="n">up</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
@@ -100,10 +135,10 @@ If the memory is not bounded, the algorithm will store more and more data to per
 
 <h3 id="run-spot">RUN SPOT</h3>
 
-<p>Once a <code class="language-c++ highlighter-rouge"><span class="n">SPOT</span></code> object is created you can feed it with data through the <code class="language-c++ highlighter-rouge"><span class="n">step</span></code> method.</p>
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
+<p>Once a <code class="language-cpp highlighter-rouge"><span class="n">Spot</span></code> object is created you can feed it with data through the <code class="language-cpp highlighter-rouge"><span class="n">step</span></code> method.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">Spot</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
 </code></pre></div></div>
-<p>According to the state of the algorithm or the detected event, this method returns an enum item <code class="language-c++ highlighter-rouge"><span class="n">SPOTEVENT</span><span class="o">::</span></code> (corresponding to an integer).</p>
+<p>According to the state of the algorithm or the detected event, this method returns an enum item <code class="language-cpp highlighter-rouge"><span class="n">SPOTEVENT</span><span class="o">::</span></code> (corresponding to an integer).</p>
 
 <table>
   <thead>
@@ -159,7 +194,7 @@ If the memory is not bounded, the algorithm will store more and more data to per
 
 <p><a></a></p>
 
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.cpp</span>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.cpp</span>
 
 <span class="cp">#include "spot.h"
 #include &lt;random&gt;
@@ -213,12 +248,9 @@ If the memory is not bounded, the algorithm will store more and more data to per
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>You can compile it with <code class="language-c++ highlighter-rouge"><span class="n">g</span><span class="o">++</span></code> and the <code class="language-c++ highlighter-rouge"><span class="n">C</span><span class="o">++</span><span class="mi">14</span></code> standard:</p>
-<div class="language-awk highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">g</span><span class="o">++</span> <span class="o">-</span><span class="nx">std</span><span class="o">=</span><span class="nx">c</span><span class="o">++</span><span class="mi">14</span> <span class="o">-</span><span class="nx">Wall</span> <span class="nx">main</span><span class="p">.</span><span class="nx">cpp</span> <span class="o">-</span><span class="nx">lspot</span>
+<p>You can compile it with <code class="language-cpp highlighter-rouge"><span class="n">g</span><span class="o">++</span></code> and the <code class="language-cpp highlighter-rouge"><span class="n">C</span><span class="o">++</span><span class="mi">11</span></code> standard:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>g++ <span class="nt">-std</span><span class="o">=</span>c++11 <span class="nt">-Wall</span> main.cpp <span class="nt">-lspot</span>
 </code></pre></div></div>
-
-<!-- <noscript><pre>400: Invalid request
-</pre></noscript><script src="https://gist.github.com/42d77da0c8775e1ede92bf66f7c3602a.js"> </script> -->
 
 </main>
 		</body>

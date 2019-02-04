@@ -2,6 +2,8 @@
 layout: default
 title: Python
 permalink: python/
+categories: 
+  - main
 ---
 
 Yes, `python3` bindings exist.

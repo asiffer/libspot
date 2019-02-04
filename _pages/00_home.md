@@ -3,6 +3,8 @@ layout: home
 title: Home
 permalink: index.html
 tag: "BORN TO FLAG OUTLIERS"
+categories: 
+  - main
 ---
 
 

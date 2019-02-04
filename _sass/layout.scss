@@ -56,6 +56,102 @@ body {
 	margin: 0 auto;
 	width: 100%;
 }
+
+body .leftbar {
+	float: left;
+	//list-style-type: none;
+	//text-decoration: none;
+    margin-top: 0;
+    padding-top: 0;
+    width: 25%;
+	background-color: $color-onyx;
+    height: 100%;
+    overflow: auto;
+}
+
+body .leftbar a {
+	padding: 0.5em 0;
+	width: 100%;
+	//color: white;
+	color: white;
+	//color: $color-onyx;
+	//font: normal 1.5em $font2, sans serif;
+	text-align: center;
+	display: block;
+	text-decoration: none;
+}
+
+/* Change the link color on hover */
+body .leftbar a:hover {
+	text-decoration: none;
+	background-color: white;
+	color: $color-firework;
+}
+
+body .right {
+	float: left;
+	width: 72%;
+	height: 100%;
+	margin-left: 3%;
+	margin-right: auto;
+	color: $color-onyx;
+
+	title {
+		padding-top: 1em;
+		font: normal 3em $font4;
+		color: $color2;
+		text-align: right;
+		display: block;
+		width: 100%;
+	}
+	hr {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		}
+	
+	desc {
+		float: left;
+		margin-left: 2em;
+		padding-bottom: 2em;
+		padding-top: 0.5em;
+	}
+
+	h2 {
+		float: left;
+		text-align: left;
+		display: block;
+		width: 100%;
+	}
+		
+}
+
+
+body .right .code  { 
+	font: normal 125% $font4;
+	//padding: 0.25em;
+	//padding-left: 1em;
+	//padding-right: 1em;
+	//border-radius: 0.5em; 
+	border-color: $color-onyx;
+	//border-width: 1em;
+	background: white; 
+	white-space: pre-wrap;
+	//display: inline;
+	float: left;
+	width: 100%;
+
+	type {
+		color: $color-type;
+	}
+	prot {
+		font-style: italic;
+		color: $color-prot;
+	}
+}
+
+
+
 h1 {
 	color: $color2;
 	font: normal 4em $font2;
@@ -134,6 +230,10 @@ header h1 {
 	margin: 0 auto;
 }
 */
+p img {
+	width: 100%;
+}
+
 header img {
 	float: left;
 	height: 15em;
@@ -185,12 +285,13 @@ footer {
 
 .alert {
 	/*background-color: $color3; */
-	border: thin solid $color3; 
-	color: $color3;
+	border: thin solid $color-sage; 
+	color: $color-meadow;
 	font: normal 1em $font1, sans serif;
 	padding: 0.5em 1em;
 	pre, code  {
-		color: $color1;
+		font-size: 1.2em;
+		color: $color-sage;
 	}
 }
 

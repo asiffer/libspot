@@ -4,7 +4,10 @@
 	</div>
 
 	<div class="tab">
-	{% for page in site.pages %} {% if page.title %}
+	<!-- {% for page in site.pages %} {% if page.title %}
+		<a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+	{% endif %} {% endfor %} -->
+	{% for page in site.pages %} {% if page.categories contains 'main' %}
 		<a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
 	{% endif %} {% endfor %}
 	</div>

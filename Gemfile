@@ -8,7 +8,7 @@ source "https://rubygems.org"
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll", "~> 3.8.2"
+gem "jekyll"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
@@ -23,6 +23,7 @@ group :jekyll_plugins do
   gem "jekyll-gist"
   gem "font-awesome-sass"
   gem "redcarpet"
+  gem "liquid", "~> 4.0"
 end
 
 

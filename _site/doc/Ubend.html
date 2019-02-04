@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Ubend</title>
+
+	<link rel="stylesheet" href="/libspot/css/main.css">
+	<link rel="canonical" href="http://localhost:4000/libspot/doc/Ubend.html">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/libspot/favicon.png" >
+</head> 
+
+	<div id="page">
+		<div class="topbar">
+	<div class="title">
+		<a href="/libspot/">libspot</a>
+	</div>
+
+	<div class="tab">
+	<!--  
+		<a href="/libspot/index.html">Home</a>
+	  
+		<a href="/libspot/tuto/">Tutorial</a>
+	  
+		<a href="/libspot/python/">Python</a>
+	  
+		<a href="/libspot/download/">Download</a>
+	  
+		<a href="/libspot/docs/">Documentation</a>
+	  
+		<a href="/libspot/about/">About</a>
+	  
+		<a href="/libspot/doc/Bounds.html">Bounds</a>
+	  
+		<a href="/libspot/doc/DSpot.html">DSpot</a>
+	  
+		<a href="/libspot/doc/DSpotConfig.html">DSpotConfig</a>
+	  
+		<a href="/libspot/doc/DSpotStatus.html">DSpotStatus</a>
+	  
+		<a href="/libspot/doc/GPDfit.html">GPDfit</a>
+	  
+		<a href="/libspot/doc/Spot.html">Spot</a>
+	  
+		<a href="/libspot/doc/SpotConfig.html">SpotConfig</a>
+	  
+		<a href="/libspot/doc/SpotStatus.html">SpotStatus</a>
+	  
+		<a href="/libspot/doc/StreamMean.html">StreamMean</a>
+	  
+		<a href="/libspot/doc/Ubend.html">Ubend</a>
+	        -->
+	 
+		<a href="/libspot/index.html">Home</a>
+	  
+		<a href="/libspot/tuto/">Tutorial</a>
+	  
+		<a href="/libspot/python/">Python</a>
+	  
+		<a href="/libspot/download/">Download</a>
+	  
+		<a href="/libspot/docs/">Documentation</a>
+	  
+		<a href="/libspot/about/">About</a>
+	                           
+	</div>
+	
+	
+</div>
+
+
+		<header>
+			<h1>Documentation</h1>
+		</header>
+		<body>
+            <div class="leftbar"> <li><a href="/libspot/docs/">Main</a></li>
+             
+    <li><a href="/libspot/doc/Bounds.html">Bounds</a></li>
+  
+    <li><a href="/libspot/doc/DSpot.html">DSpot</a></li>
+  
+    <li><a href="/libspot/doc/DSpotConfig.html">DSpotConfig</a></li>
+  
+    <li><a href="/libspot/doc/DSpotStatus.html">DSpotStatus</a></li>
+  
+    <li><a href="/libspot/doc/GPDfit.html">GPDfit</a></li>
+  
+    <li><a href="/libspot/doc/Spot.html">Spot</a></li>
+  
+    <li><a href="/libspot/doc/SpotConfig.html">SpotConfig</a></li>
+  
+    <li><a href="/libspot/doc/SpotStatus.html">SpotStatus</a></li>
+  
+    <li><a href="/libspot/doc/StreamMean.html">StreamMean</a></li>
+  
+    <li><a href="/libspot/doc/Ubend.html">Ubend</a></li>
+       
+ </div>
+			<div class="right"><title>class Ubend</title>
+<hr />
+
+<h2 id="attributes">Attributes</h2>
+<div class="code"><type>int</type> cursor 		<prot>protected</prot></div>
+<desc>position of the next block to fill</desc>
+
+<div class="code"><type>int</type> capacity 		<prot>protected</prot></div>
+<desc>maximum size of the container</desc>
+
+<div class="code"><type>double</type> last_erased_data 		<prot>protected</prot></div>
+<desc>last value erased (replaced by a new one)</desc>
+
+<h2 id="methods">Methods</h2>
+<div class="code"><type></type> Ubend(<type>int</type> N=-1)	<prot>public</prot></div>
+
+<desc>Basic Ubend constructor.</desc>
+<div class="code"><type>Ubend</type> merge(const Ubend &amp;U) const	<prot>public</prot></div>
+
+<desc>Merge two Ubend instances (take half data in each instance)</desc>
+<div class="code"><type>int</type> getCursor()	<prot>public</prot></div>
+
+<desc>Get the value of the cursor, so the next block to fill.</desc>
+<div class="code"><type>double</type> getLastErasedData()	<prot>public</prot></div>
+
+<desc>Get the value of the last erased data.</desc>
+<div class="code"><type>int</type> getCapacity()	<prot>public</prot></div>
+
+<desc>Get the capacity of the container (its max size)</desc>
+<div class="code"><type>bool</type> isFilled()	<prot>public</prot></div>
+
+<desc>Get the fill state of the container.</desc>
+<div class="code"><type>UBENDSTATUS</type> push(<type>double</type> x)	<prot>public</prot></div>
+
+<desc>Feed the container with a new value.</desc>
+
+</div>
+		</body>
+		<footer>
+	by @sr
+</footer>
+
+	</div>
+</html>
+  
+
+
