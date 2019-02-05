@@ -51,3 +51,10 @@ The `python3` bindings are also available on <a href="https://github.com/asiffer
 ```shell
 $ sudo apt install python3-libspot
 ```
+
+### Golang
+
+The `Go` bindings have also been implemented. You can get it through:
+```shell
+$ go get github.com/asiffer/gospot
+```
