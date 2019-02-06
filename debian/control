@@ -1,7 +1,7 @@
 Source: libspot
 Priority: extra
 Maintainer: Alban Siffer <alban.siffer@irisa.fr>
-Build-Depends: debhelper (>=9)
+Build-Depends: debhelper (>=9), libgcc1
 Standards-Version: 3.9.6
 Section: libs
 Homepage: https://asiffer.github.io/libspot/

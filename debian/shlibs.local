@@ -1,4 +1,1 @@
-linux-vdso 1 linux-vdso
-libc 6 libc
-ld-linux-x86-64 2 ld-linux-x86-64
-libgcc_s 1 libgcc
+libgcc_s 1 libgcc1
