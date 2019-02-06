@@ -59,16 +59,16 @@ DSpot* DSpot_new_light( int d,
                         bool alert,
                         bool bounded,
                         int max_excess);
-
+/*
 DSpot* DSpot_new(int d,
-    double q,
-    int n_init,
-    double level,
-    bool up,
-    bool down,
-    bool alert,
-    bool bounded,
-    int max_excess);
+                 double q,
+                 int n_init,
+                 double level,
+                 bool up,
+                 bool down,
+                 bool alert,
+                 bool bounded,
+                 int max_excess);*/
 
 
 void DSpot_delete(DSpot* ds);

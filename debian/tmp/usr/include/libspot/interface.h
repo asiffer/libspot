@@ -59,25 +59,17 @@ DSpot* DSpot_new_light( int d,
                         bool alert,
                         bool bounded,
                         int max_excess);
-
+/*
 DSpot* DSpot_new(int d,
-    double q,
-    int n_init,
-    double level,
-    bool up,
-    bool down,
-    bool alert,
-    bool bounded,
-    int max_excess);
-/*DSpot* DSpot_new(int d,
                  double q,
                  int n_init,
                  double level,
-                 int up,
-                 int down,
-                 int alert,
-                 int bounded,
+                 bool up,
+                 bool down,
+                 bool alert,
+                 bool bounded,
                  int max_excess);*/
+
 
 void DSpot_delete(DSpot* ds);
 
@@ -186,4 +178,6 @@ double _config_get_level(SpotConfig* sc);
 // specific to DSpot
 double _config_get_depth(DSpotConfig* dsc);
 
+
 }
+

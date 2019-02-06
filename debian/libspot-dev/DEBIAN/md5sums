@@ -2,7 +2,7 @@
 1c71fe5dcc22f702974832e1180af2aa  usr/include/libspot/brent.h
 1f806a33882ee308cd6f00d559e05a50  usr/include/libspot/dspot.h
 6bb2a9ad4010892829e1896b82209dd5  usr/include/libspot/gpdfit.h
-cd40f38996d286823ab00b76e56aa89a  usr/include/libspot/interface.h
+47e52f61efca185e76a59392ac011e61  usr/include/libspot/interface.h
 e91ebc25f2f70702949df990a45c5ec6  usr/include/libspot/spot.h
 6dd3448fdc6ff3cc34b047ac62d0c527  usr/include/libspot/ubend.h
 131a3393587f289ae90cb71ad1d25d82  usr/share/doc/libspot-dev/changelog.gz
