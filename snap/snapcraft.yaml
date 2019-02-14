@@ -1,0 +1,21 @@
+name: libspot
+version: '1.2.0'
+summary: A C++ library to flag outliers in streaming data
+description: |
+  libspot implements the SPOT algorithm and its variant DSPOT.
+  These algorithm monitor time series and flag extreme events
+  through automatic thresholding.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  libspot:
+    plugin: make
+    source-type: git
+    source: https://github.com/asiffer/libspot.git
+    build-packages:
+      - g++
+      - make
+      - libgcc1
+      - libgomp1
