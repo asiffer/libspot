@@ -1,4 +1,4 @@
-# libspot
+# libspot [![Snap Status](https://build.snapcraft.io/badge/asiffer/libspot.svg)](https://build.snapcraft.io/user/asiffer/libspot)
 
 ### Introduction
 **libspot** is a `C++` library which aims to detect anomalies in univariate streaming data. This work is based on the KDD17 publication:
