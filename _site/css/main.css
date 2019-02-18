@@ -218,7 +218,8 @@ h2 {
 h3 {
   color: #0F1F38;
   font: bold 1.5em "Open Sans", sans serif;
-  line-height: 1em; }
+  line-height: 1em;
+  padding-top: 0.5em; }
 
 a {
   color: #2988BC; }

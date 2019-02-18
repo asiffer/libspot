@@ -6,6 +6,18 @@ categories:
   - main
 ---
 
+- [Getting libspot](#getting-libspot)
+  - [Git](#git)
+  - [Ubuntu](#ubuntu)
+  - [Debian-like distributions](#debian-like-distributions)
+  - [Linux (Snap)](#linux-(snap))
+- [Bindings](#bindings)
+  - [Python](#python)
+  - [Go](#golang)
+
+
+## Getting libspot
+
 ### Git
 The code is available on github. You can either clone the repository
 
@@ -43,6 +55,22 @@ $ sudo apt update
 $ sudo apt install libspot libspot-dev 
 ```
 
+### Linux (Snap)
+
+I have recently discovered [Snap](https://snapcraft.io/) which claims to be a *universal app store for linux*. You only need to install `snap` on your linux system and then:
+
+```shell
+sudo snap install libspot
+```
+
+I also give you the fancy button: 
+
+<a href="https://snapcraft.io/libspot">
+  <img style="width: 20%;" alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-white.svg" />
+</a>
+
+
+## Bindings
 
 ### Python
 
