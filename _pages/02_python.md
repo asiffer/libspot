@@ -9,7 +9,7 @@ categories:
 Yes, `python3` bindings exist.
 Thanks to the powerful built-in package `ctypes` we make the use of `libspot` through python possible.
 
-#### INTRODUCTION
+### INTRODUCTION
 
 The `Spot` constructor is very straightforward. We reuse the full constructor of the `C++` library but without the positional argument constraint:
 ```python
@@ -24,7 +24,7 @@ Be careful, the default values of the python constructor may not be the same as 
 </div>
 
 
-#### QUICK EXAMPLE
+### QUICK EXAMPLE
 
 Here we give an application of the `SPOT` algorithm. The script and the data are available on the github repository <a href="https://github.com/asiffer/python3-libspot">python3-libspot</a> (in the 'example' folder). 
 
