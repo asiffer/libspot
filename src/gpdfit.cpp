@@ -40,6 +40,19 @@ double GPDfit::mean()
     return sum / this->size();
 }
 
+/**
+	@brief (NEW) Return the variance of the stored excesses
+*/
+double GPDfit::var()
+{
+    vector<double>::iterator i;
+    int ss = 0;
+    for (i = this->begin(); i != this->end(); i++) {
+        ss += pow(*i, 2);
+    }
+    return (ss / this->size()) - pow(this->mean(), 2);
+}
+
 // fit
 
 /**
@@ -50,12 +63,12 @@ double GPDfit::mean()
 double GPDfit::grimshaw_v(double x)
 {
     double v = 0.0;
-	#ifdef _OPENMP
-	#pragma omp parallel for reduction(+: v)
-	#endif
-	for (size_t i = 0; i < this->size(); i++) 
-	{
-		v += log(1 + x * this->at(i));
+#ifdef _OPENMP
+#pragma omp parallel for reduction(+ \
+                                   : v)
+#endif
+    for (size_t i = 0; i < this->size(); i++) {
+        v += log(1 + x * this->at(i));
     }
     /*for (auto it = this->begin(); it != this->end(); ++it) {
         v += log(1 + x * (*it));
@@ -75,7 +88,6 @@ double GPDfit::grimshaw_w(double x)
     double v = 0.0;
     double s;
 
-
     /*
 	for (auto it = this->begin(); it != this->end(); ++it)
 	{
@@ -83,14 +95,13 @@ double GPDfit::grimshaw_w(double x)
 		u += 1 / s;
 		v += log(s);
 	}*/
-	#ifdef _OPENMP
-	#pragma omp parallel for
-	#endif
-    for (size_t i = 0; i < this->size(); i++) 
-	{
-		s = 1 + x * this->at(i);
-		u += 1 / s;
-		v += log(s);
+#ifdef _OPENMP
+#pragma omp parallel for
+#endif
+    for (size_t i = 0; i < this->size(); i++) {
+        s = 1 + x * this->at(i);
+        u += 1 / s;
+        v += log(s);
     }
     return ((u / Nt_local) * (1 + v / Nt_local) - 1);
 }
@@ -159,20 +170,25 @@ vector<double> GPDfit::roots()
     using std::placeholders::_1;
     function<double(double)> f = std::bind(&GPDfit::grimshaw_w, this, _1);
 
-    // left root
-    a = -1 / max + epsilon;
-    b = -epsilon;
-    r = brent(&found, a, b, f);
-    if (found) {
-        vec_roots.push_back(r);
-    }
+    bool is_convex = (this->var() >= pow(this->mean(), 2));
 
-    // right root
-    a = 2 * (mean - min) / (mean * min);
-    b = 2 * (mean - min) / (min * min);
-    r = brent(&found, a, b, f);
-    if (found) {
-        vec_roots.push_back(r);
+    if (is_convex) {
+        // left root
+        a = -1 / max + epsilon;
+        b = -epsilon;
+        r = brent(&found, a, b, f);
+        if (found) {
+            vec_roots.push_back(r);
+        }
+    } else {
+        // right root
+        // a = 2 * (mean - min) / (mean * min);
+        a = epsilon;
+        b = 2 * (mean - min) / (min * min);
+        r = brent(&found, a, b, f);
+        if (found) {
+            vec_roots.push_back(r);
+        }
     }
 
     return (vec_roots);
