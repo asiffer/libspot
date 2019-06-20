@@ -170,25 +170,23 @@ vector<double> GPDfit::roots()
     using std::placeholders::_1;
     function<double(double)> f = std::bind(&GPDfit::grimshaw_w, this, _1);
 
-    bool is_convex = (this->var() >= pow(this->mean(), 2));
+    // bool is_convex = (this->var() >= pow(this->mean(), 2));
 
-    if (is_convex) {
-        // left root
-        a = -1 / max + epsilon;
-        b = -epsilon;
-        r = brent(&found, a, b, f);
-        if (found) {
-            vec_roots.push_back(r);
-        }
-    } else {
-        // right root
-        // a = 2 * (mean - min) / (mean * min);
-        a = epsilon;
-        b = 2 * (mean - min) / (min * min);
-        r = brent(&found, a, b, f);
-        if (found) {
-            vec_roots.push_back(r);
-        }
+    // left root
+    a = -1 / max + epsilon;
+    b = -epsilon;
+    r = brent(&found, a, b, f);
+    if (found) {
+        vec_roots.push_back(r);
+    }
+
+    // right root
+    // a = 2 * (mean - min) / (mean * min);
+    a = epsilon;
+    b = 2 * (mean - min) / (min * min);
+    r = brent(&found, a, b, f);
+    if (found) {
+        vec_roots.push_back(r);
     }
 
     return (vec_roots);
