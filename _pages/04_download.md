@@ -83,6 +83,7 @@ You can also download these bindings through the `pip` package manager
 ```shell
 $ pip3 install pylibspot
 ```
+
 <div class="alert">
 Unlike `apt` which checks the dependencies, you need to previously install the `libspot` library if you download the bindings through `pip`.
 </div>
