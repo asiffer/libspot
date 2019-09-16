@@ -11,9 +11,9 @@ categories:
   - [Ubuntu](#ubuntu)
   - [Debian-like distributions](#debian-like-distributions)
   - [Linux (Snap)](#linux-(snap))
-- [Bindings](#bindings)
-  - [Python](#python)
-  - [Go](#golang)
+<!-- - [Python](#bindings) -->
+- [Python](#python)
+- [Go](#golang)
 
 
 ## Getting libspot
@@ -70,9 +70,8 @@ I also give you the fancy button:
 </a>
 
 
-## Bindings
 
-### Python
+## Python
 
 The `python3` bindings are also available on <a href="https://github.com/asiffer/python3-libspot">github</a> or through the same ppa:
 
@@ -80,9 +79,17 @@ The `python3` bindings are also available on <a href="https://github.com/asiffer
 $ sudo apt install python3-libspot
 ```
 
-### Golang
+You can also download these bindings through the `pip` package manager
+```shell
+$ pip3 install pylibspot
+```
+<div class="alert">
+Unlike `apt` which checks the dependencies, you need to previously install the `libspot` library if you download the bindings through `pip`.
+</div>
 
-The `Go` bindings have also been implemented. You can get it through:
+## Golang
+
+`libspot` has also been re-implemented in `Go`. You can get it through:
 ```shell
 $ go get github.com/asiffer/gospot
 ```
