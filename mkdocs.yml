@@ -1,0 +1,25 @@
+site_name: libspot
+site_url: https://asiffer.github.io/libspot/
+site_author: Alban Siffer
+site_description: >-
+  Born to flag outliers
+repo_name: asiffer/libspot
+repo_url: https://github.com/asiffer/libspot
+
+nav:
+    - Home: index.md
+    - C++: cpp.md
+    - Python: python.md
+    - Go: go.md
+    - About: about.md
+
+theme:
+  name: material
+  palette:
+    primary: blue grey
+    accent: light blue
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
