@@ -102,7 +102,7 @@ test_spot:
 	@echo
 	@echo "[Testing SPOT]"
 	@echo "Building test ..."
-	@$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
+	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
 	@echo "Running test ..."
 	$(EXPORT); $(TEST_DIR)/test_spot
 	

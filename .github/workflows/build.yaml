@@ -40,8 +40,8 @@ jobs:
           name: libspot
           path: lib/
 
-      - name: Create symlink
-        run: ln -s "lib/libspot.so*" lib/libspot.so
+      - name: Rename library
+        run: mv "lib/libspot.so*" lib/libspot.so
 
       - name: Test
         run: make test
