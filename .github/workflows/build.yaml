@@ -8,14 +8,24 @@ on:
 
 jobs:
   build:
-    name: Build (all architectures)
+    name: Build (x64)
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
-      
-      - name: Install build dependencies
-        run: sudo apt update -y && sudo apt install -y build-essential 
 
-      - name: Build library
-        run: make
+      - name: Install build dependencies
+        run: sudo apt update -y && sudo apt install -y build-essential
+
+      - name: Build optimized shared library
+        run: make CXXMOREFLAGS=-O3
+
+      - name: Build optimized static library
+        run: make CXXMOREFLAGS=-O3
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Upload libraries
+          path: |
+            lib/libspot.so*
+            lib/libspot.a*
