@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    name: Build (x64)
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
@@ -66,17 +66,4 @@ jobs:
       - name: Test simple program
         run: make test_post_install
 
-  # release:
-  #   name: Release
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   if: github.ref == 'refs/heads/master'
-  #   steps:
-  #     - uses: "marvinpinto/action-automatic-releases@latest"
-  #       with:
-  #         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-  #         prerelease: false
-  #         title: "New release"
-  #         files: |
-  #           lib/libspot.so*
-  #           lib/libspot.a*
+
