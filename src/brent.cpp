@@ -10,9 +10,9 @@ double brent(bool * found, double a, double b, function<double(double)> f, doubl
     double fb = f(b);
     double fc;
     double c;
-    double s;
+    double s = 0.0;
     double d;
-    double fs;
+    double fs = 0.0;
     bool mflag;
 
     double dab, dac, dbc;
