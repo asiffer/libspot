@@ -41,7 +41,7 @@ jobs:
           path: lib/
 
       - name: Rename library
-        run: mv "lib/libspot.so*" lib/libspot.so
+        run: ls -al lib || mv lib/libspot.so* lib/libspot.so
 
       - name: Test
         run: make test
