@@ -29,10 +29,10 @@ INSTALL_LIB_DIR = $(DESTDIR)/usr/lib
 EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
 
 # compiler & flags
-CC                   ?= c++
-CXXMOREFLAGS         ?=
-CXXFLAGS             ?= -std=c++11 -Wall -pedantic $(CXXMOREFLAGS)
-CXXFLAGS_WITH_OPENMP ?= $(CXXFLAGS) -fopenmp
+CC                   = c++
+CXXMOREFLAGS         =
+CXXFLAGS             = -std=c++11 -Wall -pedantic $(CXXMOREFLAGS)
+CXXFLAGS_WITH_OPENMP = $(CXXFLAGS) -fopenmp
 
 
 # all the files (header, sources, build)
@@ -102,7 +102,7 @@ test_spot:
 	@echo
 	@echo "[Testing SPOT]"
 	@echo "Building test ..."
-	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
+	@$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
 	@echo "Running test ..."
 	$(EXPORT); $(TEST_DIR)/test_spot
 	
@@ -123,6 +123,9 @@ test_openmp_perf:
 	@echo "Running test ..."
 	$(EXPORT); $(TEST_DIR)/test_perf_without_openmp; $(TEST_DIR)/test_perf_with_openmp
 
+test_post_install:
+	$(CC) -std=c++11 -Wall -I$(INC_DIR) $(TEST_DIR)/test_example.cpp -o $(TEST_DIR)/test_example -lspot && $(TEST_DIR)/test_example
+
 test: test_spot test_dspot test_openmp_perf
 
 ## HTML/XML docs
@@ -134,7 +137,7 @@ docs:
 clean:
 	@rm -rfd $(OBJ_DIR)
 	@rm -rfd $(LIB_DIR)
-	@rm -rf $(TEST_DIR)/test_spot
+	@cd $(TEST_DIR) && rm -f $$(ls -I "*.cpp" .)
 
 ## build/install test
 
