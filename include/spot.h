@@ -38,7 +38,10 @@ enum SPOTEVENT: int {
 	EXCESS_UP = 2,
 	EXCESS_DOWN = -2,
 	INIT_BATCH = 3,
-	CALIBRATION = 4
+	CALIBRATION = 4,
+	// this new value is used for DSPOT to fill the internal moving average
+	// It occurs before the SPOT instance is triggered for the first time 
+	OTHER = 5 
 };
 
 

@@ -207,7 +207,7 @@ int DSpot::step(double x)
 
 SPOTEVENT DSpot::step(double x)
 {
-	SPOTEVENT res;
+	SPOTEVENT res = OTHER;
 	int filled = -1;
 	
 	if (this->depth == 0) // SPOT case (no drift computation)
