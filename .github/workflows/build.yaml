@@ -41,7 +41,7 @@ jobs:
           path: lib/
 
       - name: Create symlink
-        run: ls -alh . && ls -alh libspot && ls -alh lib && ln -s "lib/libspot.so*" lib/libspot.so
+        run: ln -s "lib/libspot.so*" lib/libspot.so
 
       - name: Test
         run: make test
@@ -58,6 +58,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: libspot
+          path: lib/
 
       - name: Install
         run: sudo make install
