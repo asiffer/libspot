@@ -1,4 +1,4 @@
-name: Build
+name: build
 
 on:
   workflow_dispatch:
@@ -21,11 +21,11 @@ jobs:
         run: make CXXMOREFLAGS=-O3
 
       - name: Build optimized static library
-        run: make CXXMOREFLAGS=-O3
+        run: make static CXXMOREFLAGS=-O3
       
       - uses: actions/upload-artifact@v3
         with:
-          name: Upload libraries
+          name: libspot
           path: |
             lib/libspot.so*
             lib/libspot.a*
