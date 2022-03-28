@@ -1,0 +1,69 @@
+name: build
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Install build dependencies
+        run: sudo apt update -y && sudo apt install -y build-essential
+
+      - name: Build shared library
+        run: make
+
+      - name: Build static library
+        run: make static
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: libspot
+          path: |
+            lib/libspot.so*
+            lib/libspot.a*
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Get artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: libspot
+          path: lib/
+
+      - name: Rename library
+        run: mv lib/libspot.so* lib/libspot.so
+
+      - name: Test
+        run: make test
+
+  install:
+    name: Install
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: Get artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: libspot
+          path: lib/
+
+      - name: Install
+        run: sudo make install
+
+      - name: Test simple program
+        run: make test_post_install
+
+
