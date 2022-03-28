@@ -40,7 +40,7 @@ jobs:
           name: libspot
 
       - name: Create symlink
-        run: ln -s lib/libspot.so* lib/libspot.so
+        run: ls -alh . && ls -alh libspot && ls -alh lib && ln -s "lib/libspot.so*" lib/libspot.so
 
       - name: Test
         run: make test
