@@ -6,7 +6,7 @@
 DESTDIR =
 ###
 
-VERSION = 1.2
+VERSION = 1.2.1
 
 # Current directory
 CURDIR = $(realpath .)
@@ -42,10 +42,11 @@ SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
 OBJS = $(FILES:.h=.o)
 
 # library file
-TARGET = libspot.so
+DYNAMIC ?= libspot.so.$(VERSION)
+STATIC  ?= libspot.a.$(VERSION)
 
 ### MAKEFILE TARGETS
-all: checkdir $(TARGET)
+all: checkdir $(DYNAMIC)
 
 # create lib/ and build/ directories
 checkdir:
@@ -60,14 +61,16 @@ checkdir:
 	@echo "[Building sources]"
 
 # create the shared library
-$(TARGET): $(OBJS)
+$(DYNAMIC): $(OBJS)
 	@echo
 	@echo "[Building library]"
 	@echo "Building" $@ "..."
 	@$(CC) $(CXXFLAGS) -shared $(foreach n,$^,$(OBJ_DIR)/$(n)) -o $(LIB_DIR)/$@ -fPIC;
 	@echo "[done]"
 
-libspot.a: $(OBJS)
+static: $(STATIC)
+
+$(STATIC): $(OBJS)
 	@echo "[Building static library]"
 	@echo "Building" $@ "..."
 	@ar rcs $(LIB_DIR)/$@ $(foreach n,$^,$(OBJ_DIR)/$(n));
@@ -85,8 +88,10 @@ install:
 	@echo "Checking the library installation directory ("$(INSTALL_LIB_DIR)")"
 	@mkdir -p $(INSTALL_LIB_DIR)
 	
-	@echo "Installing the shared library ("$(TARGET)")"
-	@install -t $(INSTALL_LIB_DIR) $(LIB_DIR)/*.so
+	@echo "Installing the shared library ("$(DYNAMIC)")"
+	@install -t $(INSTALL_LIB_DIR) $(LIB_DIR)/$(DYNAMIC)
+	@echo "Creating symbolic link (libspot.so -> "$(DYNAMIC)")"
+	@ln -s $(INSTALL_LIB_DIR)/$(DYNAMIC) $(INSTALL_LIB_DIR)/libspot.so
 	@echo "Installing the headers"
 	@install -t $(INSTALL_HEAD_DIR) $(INC_DIR)/*.h
 	@echo "[done]"
@@ -131,6 +136,7 @@ clean:
 	@rm -rfd $(LIB_DIR)
 	@rm -rf $(TEST_DIR)/test_spot
 
+## build/install test
 
 
 
