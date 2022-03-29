@@ -148,7 +148,7 @@ clean:
 	@rm -rfd $(OBJ_DIR)
 	@rm -rfd $(LIB_DIR)
 	@cd $(TEST_DIR) && rm -f $$(ls -I "*.cpp" .)
-	@rm -rfd ./debian/libspot* ./debian/tmp ./debian/.deb*
+	@rm -rfd ./debian/*.log ./debian/*.substvars ./debian/tmp ./debian/.deb*
 
 ## build/install test
 
