@@ -16,7 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install build dependencies
         run: sudo apt update -y && sudo apt install -y build-essential
@@ -36,7 +38,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
           automatic_release_tag: "v${{ env.VERSION_FULL }}"
-          title: "New release"
+          title: "libspot version {{ env.VERSION_FULL }}"
           files: |
             lib/libspot.so*
             lib/libspot.a*
