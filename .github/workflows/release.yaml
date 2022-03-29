@@ -38,7 +38,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
           automatic_release_tag: "v${{ env.VERSION_FULL }}"
-          title: "libspot version {{ env.VERSION_FULL }}"
+          title: "Version ${{ env.VERSION_FULL }}"
           files: |
             lib/libspot.so*
             lib/libspot.a*
