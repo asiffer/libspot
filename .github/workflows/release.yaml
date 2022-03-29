@@ -27,12 +27,15 @@ jobs:
       - name: Build static library
         run: make static
 
+      - name: Put full version in env
+        run: echo "VERSION_FULL=$(make version_full)" >> $GITHUB_ENV
+
       - name: Release now
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-          automatic_release_tag: "latest"
+          automatic_release_tag: "v${{ env.VERSION_FULL }}"
           title: "New release"
           files: |
             lib/libspot.so*

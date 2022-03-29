@@ -7,6 +7,7 @@ DESTDIR =
 ###
 
 VERSION = 1.2.1
+COMMIT_COUNT = $(shell git rev-list --count master)
 
 # Current directory
 CURDIR = $(realpath .)
@@ -47,6 +48,12 @@ STATIC  ?= libspot.a.$(VERSION)
 
 ### MAKEFILE TARGETS
 all: checkdir $(DYNAMIC)
+
+version:
+	@echo $(VERSION)
+
+version_full:
+	@echo "$(VERSION)-$(COMMIT_COUNT)"
 
 # create lib/ and build/ directories
 checkdir:
