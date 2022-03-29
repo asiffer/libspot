@@ -97,8 +97,8 @@ install:
 	
 	@echo "Installing the shared library ("$(DYNAMIC)")"
 	@install -t $(INSTALL_LIB_DIR) $(LIB_DIR)/$(DYNAMIC)
-	@echo "Creating symbolic link (libspot.so -> "$(DYNAMIC)")"
-	@ln -s $(INSTALL_LIB_DIR)/$(DYNAMIC) $(INSTALL_LIB_DIR)/libspot.so
+	@echo "Copying library to "$(INSTALL_LIB_DIR)"/libspot.so"
+	@cp -f $(INSTALL_LIB_DIR)/$(DYNAMIC) $(INSTALL_LIB_DIR)/libspot.so
 	@echo "Installing the headers"
 	@install -t $(INSTALL_HEAD_DIR) $(INC_DIR)/*.h
 	@echo "[done]"

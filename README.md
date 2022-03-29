@@ -1,47 +1,60 @@
-# libspot [![Snap Status](https://build.snapcraft.io/badge/asiffer/libspot.svg)](https://build.snapcraft.io/user/asiffer/libspot)
+# libspot [![snap status](https://snapcraft.io/libspot/badge.svg)](https://snapcraft.io/libspot)
 
-### Introduction
-**libspot** is a `C++` library which aims to detect anomalies in univariate streaming data. This work is based on the KDD17 publication:
-
-*Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly Detection in Streams with Extreme Value Theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075). ACM.*
+## Introduction
+**libspot** is a `C++` library which aims to detect anomalies in univariate streaming data. 
 
 Github pages : https://asiffer.github.io/libspot/
 
-### Details
-#### main algorithms
-* `SPOT` algorithm (detect anomalies in stationary data streams)
-* `DSPOT` algorithm (detect anomalies in drifting data streams)
+## Install
 
-#### other resources
-* `GPDfit`(fit data to a Generalized Pareto Distribution)
-* `StreamStats` (compute basic statistics over sliding window)
+### Latest release
 
-### Install
-The most simple way to install the library is to add my ppa and let your package manager do the job:
-```
-$ add-apt-repository ppa:asiffer/libspot
-$ apt-get update
-$ apt-get install libspot-dev
-```
+Automatic releases provide compiled libraries for linux/amd64 platforms.
+Check the assets of the [latest version](https://github.com/asiffer/libspot/releases).
+
+### From source
 
 Otherwise, you can clone the repository and install it manually:
 ```
+$ git clone https://github.com/asiffer/libspot.git
 $ make
 $ sudo make install
 ```
-In order to build the library (`lib/libspot.so`), use `make` in the main directory.
-To install the library on your system you can either move by yourself the library file and the headers to the right folder or set the paths in the installation step:
+
+The default paths are `/usr/include/` for the headers and `/usr/lib/` for the library.
+You can change these paths in the installation step:
+
 ```
 $ make install INSTALL_HEAD_DIR=... INSTALL_LIB_DIR=...
 ```
-The default paths are `/usr/include/` for the headers and `/usr/lib/` for the library.
+
 After that, you can test the `SPOT` algorithm with `make test`.
 
+### Snap package
 
-### Python
-The `python3` bindings are also available on my [github](https://github.com/asiffer/python3-libspot).
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/libspot)
 
-### Next
-I am currently integrating the SPOT algorithm within an IDS ([Bro](https://www.bro.org/))
+### Debian package
 
+Basically, you need to add the ppa and download the packages you want 
+(`libspot` or `libspot-dev` if you want the headers)
 
+```
+$ add-apt-repository ppa:asiffer/libspot
+$ apt-get update
+$ apt-get install libspot libspot-dev
+```
+
+## Get started
+
+TODO
+
+## Python
+
+Yes, you could interact with the library with python bindings (see https://asiffer.github.io/libspot/python/).
+
+## About 
+
+This work is based on the following publication:
+
+*Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly Detection in Streams with Extreme Value Theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075). ACM.*
