@@ -1,7 +1,7 @@
 Source: libspot
 Priority: extra
 Maintainer: Alban Siffer <alban.siffer@irisa.fr>
-Build-Depends: debhelper (>=9), libgcc1
+Build-Depends: debhelper (>=10), build-essential
 Standards-Version: 3.9.6
 Section: libs
 Homepage: https://asiffer.github.io/libspot/
@@ -11,11 +11,11 @@ Package: libspot-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libgomp1, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data - dev files
 
 Package: libspot
 Architecture: any
 Multi-Arch: same
-Depends: libgomp1, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A C++ library to flag outliers in streaming data - exec files

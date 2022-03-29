@@ -97,6 +97,9 @@ install:
 	@echo "[done]"
 
 ## TEST
+test_prepare:
+	if [ ! -f "$(LIB_DIR)/libspot.so" ]; then cp $(LIB_DIR)/$(DYNAMIC) $(LIB_DIR)/libspot.so; fi
+
 # test spot on a gaussian white noise
 test_spot:
 	@echo
@@ -126,7 +129,7 @@ test_openmp_perf:
 test_post_install:
 	$(CC) -std=c++11 -Wall -I$(INC_DIR) $(TEST_DIR)/test_example.cpp -o $(TEST_DIR)/test_example -lspot && $(TEST_DIR)/test_example
 
-test: test_spot test_dspot test_openmp_perf
+test: test_prepare test_spot test_dspot test_openmp_perf
 
 ## HTML/XML docs
 docs:
