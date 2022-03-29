@@ -1,6 +1,7 @@
 name: libspot
-version: '1.2'
-version-script: git describe | sed 's/debian\///g; s/-/./g; s/.[^.]*//4g'
+version: '1.2.1'
+# version-script: git describe | sed 's/debian\///g; s/-/./g; s/.[^.]*//4g'
+version-script: make version_full
 summary: A C++ library to flag outliers in streaming data
 description: |
   libspot implements the SPOT algorithm and its variant DSPOT.
@@ -10,13 +11,13 @@ description: |
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
+base: core20
+
 parts:
   libspot:
     plugin: make
     source-type: git
+    source-branch: master
     source: https://github.com/asiffer/libspot.git
     build-packages:
-      - g++
-      - make
-      - libgcc1
-      - libgomp1
+      - build-essential
