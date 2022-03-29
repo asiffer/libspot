@@ -3,3 +3,9 @@ lib/
 .vscode/
 .dev/
 .archives/
+debian/.debhelper/
+debian/libspot-dev.debhelper.log
+debian/libspot-dev/
+debian/libspot.debhelper.log
+debian/libspot/
+debian/tmp/
