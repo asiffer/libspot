@@ -2,13 +2,11 @@
 
 using namespace std;
 
-
-
 Ubend::Ubend(int N)
 {
 	this->cursor = 0;
-	
-	if (N>0)
+
+	if (N > 0)
 	{
 		this->capacity = N;
 	}
@@ -18,26 +16,23 @@ Ubend::Ubend(int N)
 	}
 }
 
-
-
-
-Ubend Ubend::merge(const Ubend & other) const
+Ubend Ubend::merge(const Ubend &other) const
 {
-	int N = std::min(this->capacity,other.capacity);
+	int N = std::min(this->capacity, other.capacity);
 	Ubend merged(N);
 	int a = 0;
 	int b = 0;
-	
-	for (int i = 0; i<N; i++)
+
+	for (int i = 0; i < N; i++)
 	{
-		if (i%2 == 0)
+		if (i % 2 == 0)
 		{
-			merged.push( this->at( (this->cursor + a) % N ) );
+			merged.push(this->at((this->cursor + a) % N));
 			a++;
 		}
 		else
 		{
-			merged.push( other.at( (other.cursor + b) % N ) );
+			merged.push(other.at((other.cursor + b) % N));
 			b++;
 		}
 	}
@@ -46,13 +41,10 @@ Ubend Ubend::merge(const Ubend & other) const
 	return merged;
 }
 
-
-
 int Ubend::getCapacity()
 {
 	return this->capacity;
 }
-
 
 /*
 int Ubend::push(double x)
@@ -81,55 +73,48 @@ int Ubend::push(double x)
 		this->cursor = (this->cursor + 1) % this->capacity;
 		return(1);
 	}
-	
+
 }*/
 
 UBENDSTATUS Ubend::push(double x)
 {
 	int s = this->size();
 
-	if ( this->capacity == -1 ) // infinite capacity
+	if (this->capacity == -1) // infinite capacity
 	{
 		this->push_back(x);
-		return(UBENDSTATUS::INFINITE);
+		return (UBENDSTATUS::INFINITE);
 	}
-	else if ( s < this->capacity-1 )
+	else if (s < this->capacity - 1)
 	{
 		this->push_back(x);
-		return(UBENDSTATUS::NOT_FILLED);
+		return (UBENDSTATUS::NOT_FILLED);
 	}
-	else if ( s == this->capacity-1 )
+	else if (s == this->capacity - 1)
 	{
 		this->push_back(x);
-		return(UBENDSTATUS::JUST_FILLED);
+		return (UBENDSTATUS::JUST_FILLED);
 	}
 	else
 	{
 		this->last_erased_data = this->operator[](this->cursor);
 		this->operator[](this->cursor) = x;
 		this->cursor = (this->cursor + 1) % this->capacity;
-		return(UBENDSTATUS::CRUISING);
+		return (UBENDSTATUS::CRUISING);
 	}
-	
 }
-
 
 int Ubend::getCursor()
 {
 	return this->cursor;
 }
 
-
 double Ubend::getLastErasedData()
 {
 	return this->last_erased_data;
 }
 
-
 bool Ubend::isFilled()
 {
-	return((int)this->size()==this->capacity);
+	return ((int)this->size() == this->capacity);
 }
-
-
-
