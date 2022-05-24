@@ -22,9 +22,11 @@ LIB_DIR = $(CURDIR)/lib
 #folder for the testspot
 TEST_DIR = $(CURDIR)/test
 
+PREFIX = /usr
+
 ###
-INSTALL_HEAD_DIR = $(DESTDIR)/usr/include/libspot
-INSTALL_LIB_DIR = $(DESTDIR)/usr/lib
+INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/libspot
+INSTALL_LIB_DIR = $(DESTDIR)$(PREFIX)/lib
 ###
 
 EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
