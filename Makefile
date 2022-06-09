@@ -6,7 +6,7 @@
 DESTDIR =
 ###
 
-VERSION = 1.3.0
+VERSION = 1.3.1
 COMMIT_COUNT = $(shell git rev-list --count master)
 
 # Current directory
