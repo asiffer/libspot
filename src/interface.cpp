@@ -8,13 +8,15 @@
 // #include "dspot.h"
 #include "interface.h"
 
-
 using namespace std;
 
-void version(char * buffer, size_t len) {
-    if (len >= sizeof(VERSION)) {
-        strncpy(buffer, VERSION, sizeof(VERSION));
-    } 
+void version(char *buffer, size_t len)
+{
+    size_t n = sizeof(VERSION) / sizeof(char);
+    if (len >= n)
+    {
+        strncpy(buffer, VERSION, n);
+    }
 }
 // ----------------------------------------------------------------------------
 // SPOT

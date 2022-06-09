@@ -8,8 +8,6 @@
 #include "dspot.h"
 #include "string.h"
 
-#define VERSION "LIBSPOT_VERSION"
-
 using namespace std;
 
 extern "C"

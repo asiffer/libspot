@@ -1,5 +1,5 @@
 name: libspot
-version: '1.2.1'
+version: "1.3.0"
 # version-script: git describe | sed 's/debian\///g; s/-/./g; s/.[^.]*//4g'
 version-script: make version_full
 summary: A C++ library to flag outliers in streaming data
