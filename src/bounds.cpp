@@ -1,31 +1,28 @@
 #include "bounds.h"
 
-
 Bounds::Bounds(double d, double u)
 {
 	this->up = u;
 	this->down = d;
 }
 
-
-bool Bounds::operator<(Bounds const& other) const
+bool Bounds::operator<(Bounds const &other) const
 {
-	return(this->up < other.down);
+	return (this->up < other.down);
 }
 
-bool Bounds::operator>(Bounds const& other) const
+bool Bounds::operator>(Bounds const &other) const
 {
-	return(this->down > other.up);
+	return (this->down > other.up);
 }
-
 
 double Bounds::distanceTo(double x)
 {
-	if (x<this->down)
+	if (x < this->down)
 	{
 		return (this->down - x);
 	}
-	else if (x>this->up)
+	else if (x > this->up)
 	{
 		return (x - this->up);
 	}
@@ -37,7 +34,7 @@ double Bounds::distanceTo(double x)
 
 bool Bounds::contains(double x)
 {
-	return( (x>=this->down) && (x<=this->up) );
+	return ((x >= this->down) && (x <= this->up));
 }
 
 Bounds operator+(Bounds B, double b)

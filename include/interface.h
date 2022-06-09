@@ -6,178 +6,172 @@
 */
 
 #include "dspot.h"
+#include "string.h"
 
 using namespace std;
 
-extern "C" {
-// ----------------------------------------------------------------------------
-// SPOT
-// ----------------------------------------------------------------------------
-Spot* Spot_new(double q,
-    int n_init,
-    double level,
-    bool up,
-    bool down,
-    bool alert,
-    bool bounded,
-    int max_excess);
+extern "C"
+{
+    void version(char *version, size_t len);
 
-void Spot_delete(Spot *s);
+    // ----------------------------------------------------------------------------
+    // SPOT
+    // ----------------------------------------------------------------------------
+    Spot *Spot_new(double q,
+                   int n_init,
+                   double level,
+                   bool up,
+                   bool down,
+                   bool alert,
+                   bool bounded,
+                   int max_excess);
 
-int Spot_step(Spot* s, double x);
+    void Spot_delete(Spot *s);
 
-SpotStatus Spot_status(Spot* s);
+    int Spot_step(Spot *s, double x);
 
-SpotConfig Spot_config(Spot* s);
+    SpotStatus Spot_status(Spot *s);
 
-double Spot_getUpperThreshold(Spot* s);
+    SpotConfig Spot_config(Spot *s);
 
-double Spot_getLowerThreshold(Spot* s);
+    double Spot_getUpperThreshold(Spot *s);
 
-double Spot_getUpper_t(Spot* s);
+    double Spot_getLowerThreshold(Spot *s);
 
-double Spot_getLower_t(Spot* s);
+    double Spot_getUpper_t(Spot *s);
 
-void Spot_set_q(Spot* s, double q_new);
+    double Spot_getLower_t(Spot *s);
 
-double Spot_up_probability(Spot* s, double z);
+    void Spot_set_q(Spot *s, double q_new);
 
-double Spot_down_probability(Spot* s, double z);
+    double Spot_up_probability(Spot *s, double z);
 
+    double Spot_down_probability(Spot *s, double z);
 
+    // ----------------------------------------------------------------------------
+    // DSPOT
+    // ----------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------
-// DSPOT
-// ----------------------------------------------------------------------------
+    // "lightweight" constructor (to pass lower than 256 bytes)
+    DSpot *DSpot_new_light(int d,
+                           int n_init,
+                           double level,
+                           bool up,
+                           bool down,
+                           bool alert,
+                           bool bounded,
+                           int max_excess);
+    /*
+    DSpot* DSpot_new(int d,
+                     double q,
+                     int n_init,
+                     double level,
+                     bool up,
+                     bool down,
+                     bool alert,
+                     bool bounded,
+                     int max_excess);*/
 
-// "lightweight" constructor (to pass lower than 256 bytes)
-DSpot* DSpot_new_light( int d,
-                        int n_init,
-                        double level,
-                        bool up,
-                        bool down,
-                        bool alert,
-                        bool bounded,
-                        int max_excess);
-/*
-DSpot* DSpot_new(int d,
-                 double q,
-                 int n_init,
-                 double level,
-                 bool up,
-                 bool down,
-                 bool alert,
-                 bool bounded,
-                 int max_excess);*/
+    void DSpot_delete(DSpot *ds);
 
+    DSpotStatus DSpot_status(DSpot *ds);
 
-void DSpot_delete(DSpot* ds);
+    DSpotConfig DSpot_config(DSpot *ds);
 
-DSpotStatus DSpot_status(DSpot* ds);
+    int DSpot_step(DSpot *ds, double x);
 
-DSpotConfig DSpot_config(DSpot* ds);
+    double DSpot_getUpperThreshold(DSpot *ds);
 
-int DSpot_step(DSpot* ds, double x);
+    double DSpot_getLowerThreshold(DSpot *ds);
 
-double DSpot_getUpperThreshold(DSpot* ds);
+    double DSpot_getUpper_t(DSpot *ds);
 
-double DSpot_getLowerThreshold(DSpot* ds);
+    double DSpot_getLower_t(DSpot *ds);
 
-double DSpot_getUpper_t(DSpot* ds);
+    double DSpot_getDrift(DSpot *ds);
 
-double DSpot_getLower_t(DSpot* ds);
+    void DSpot_set_q(DSpot *ds, double q_new);
 
-double DSpot_getDrift(DSpot* ds);
+    double DSpot_up_probability(DSpot *ds, double z);
 
-void DSpot_set_q(DSpot* ds, double q_new);
+    double DSpot_down_probability(DSpot *ds, double z);
 
-double DSpot_up_probability(DSpot* ds, double z);
+    // ----------------------------------------------------------------------------
+    // SPOT STATUS
+    // ----------------------------------------------------------------------------
+    SpotStatus *Spot_status_ptr(Spot *s);
 
-double DSpot_down_probability(DSpot* ds, double z);
+    void Spot_status_delete(SpotStatus *ss);
 
+    // ----------------------------------------------------------------------------
+    // DSPOT STATUS
+    // ----------------------------------------------------------------------------
+    DSpotStatus *DSpot_status_ptr(DSpot *ds);
 
+    void DSpot_status_delete(DSpotStatus *ds);
 
-// ----------------------------------------------------------------------------
-// SPOT STATUS
-// ----------------------------------------------------------------------------
-SpotStatus* Spot_status_ptr(Spot* s);
+    // ----------------------------------------------------------------------------
+    // SPOT/DSPOT status methods
+    // ----------------------------------------------------------------------------
+    int _status_get_n(SpotStatus *ss);
 
-void Spot_status_delete(SpotStatus* ss);
+    int _status_get_ex_up(SpotStatus *ss);
 
-// ----------------------------------------------------------------------------
-// DSPOT STATUS
-// ----------------------------------------------------------------------------
-DSpotStatus* DSpot_status_ptr(DSpot* ds);
+    int _status_get_ex_down(SpotStatus *ss);
 
-void DSpot_status_delete(DSpotStatus* ds);
+    int _status_get_Nt_up(SpotStatus *ss);
 
+    int _status_get_Nt_down(SpotStatus *ss);
 
-// ----------------------------------------------------------------------------
-// SPOT/DSPOT status methods
-// ----------------------------------------------------------------------------
-int _status_get_n(SpotStatus* ss);
+    int _status_get_al_up(SpotStatus *ss);
 
-int _status_get_ex_up(SpotStatus* ss);
+    int _status_get_al_down(SpotStatus *ss);
 
-int _status_get_ex_down(SpotStatus* ss);
+    double _status_get_t_up(SpotStatus *ss);
 
-int _status_get_Nt_up(SpotStatus* ss);
+    double _status_get_t_down(SpotStatus *ss);
 
-int _status_get_Nt_down(SpotStatus* ss);
+    double _status_get_z_up(SpotStatus *ss);
 
-int _status_get_al_up(SpotStatus* ss);
+    double _status_get_z_down(SpotStatus *ss);
 
-int _status_get_al_down(SpotStatus* ss);
+    // specific to DSpot
+    double _status_get_drift(DSpotStatus *dss);
 
-double _status_get_t_up(SpotStatus* ss);
+    // ----------------------------------------------------------------------------
+    // SPOT CONFIG
+    // ----------------------------------------------------------------------------
+    SpotConfig *Spot_config_ptr(Spot *s);
 
-double _status_get_t_down(SpotStatus* ss);
+    void Spot_config_delete(SpotConfig *sc);
 
-double _status_get_z_up(SpotStatus* ss);
+    // ----------------------------------------------------------------------------
+    // DSPOT CONFIG
+    // ----------------------------------------------------------------------------
+    DSpotConfig *DSpot_config_ptr(DSpot *ds);
 
-double _status_get_z_down(SpotStatus* ss);
+    void DSpot_config_delete(DSpotConfig *dsc);
 
-// specific to DSpot
-double _status_get_drift(DSpotStatus* dss);
+    // ----------------------------------------------------------------------------
+    // SPOT/DSPOT config methods
+    // ----------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------
-// SPOT CONFIG
-// ----------------------------------------------------------------------------
-SpotConfig* Spot_config_ptr(Spot* s);
+    double _config_get_q(SpotConfig *sc);
 
-void Spot_config_delete(SpotConfig* sc);
+    int _config_get_bounded(SpotConfig *sc);
 
-// ----------------------------------------------------------------------------
-// DSPOT CONFIG
-// ----------------------------------------------------------------------------
-DSpotConfig* DSpot_config_ptr(DSpot* ds);
+    int _config_get_max_excess(SpotConfig *sc);
 
-void DSpot_config_delete(DSpotConfig* dsc);
+    int _config_get_alert(SpotConfig *sc);
 
+    int _config_get_up(SpotConfig *sc);
 
-// ----------------------------------------------------------------------------
-// SPOT/DSPOT config methods
-// ----------------------------------------------------------------------------
+    int _config_get_down(SpotConfig *sc);
 
-double _config_get_q(SpotConfig* sc);
+    int _config_get_n_init(SpotConfig *sc);
 
-int _config_get_bounded(SpotConfig* sc);
+    double _config_get_level(SpotConfig *sc);
 
-int _config_get_max_excess(SpotConfig* sc);
-
-int _config_get_alert(SpotConfig* sc);
-
-int _config_get_up(SpotConfig* sc);
-
-int _config_get_down(SpotConfig* sc);
-
-int _config_get_n_init(SpotConfig* sc);
-
-double _config_get_level(SpotConfig* sc);
-
-// specific to DSpot
-double _config_get_depth(DSpotConfig* dsc);
-
-
+    // specific to DSpot
+    double _config_get_depth(DSpotConfig *dsc);
 }
-

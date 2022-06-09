@@ -6,7 +6,7 @@
 DESTDIR =
 ###
 
-VERSION = 1.2.1
+VERSION = 1.3.0
 COMMIT_COUNT = $(shell git rev-list --count master)
 
 # Current directory
@@ -34,7 +34,7 @@ EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
 # compiler & flags
 CC                   = c++
 CXXMOREFLAGS         =
-CXXFLAGS             = -std=c++11 -Wall -pedantic $(CXXMOREFLAGS)
+CXXFLAGS             = -std=c++11 -Wall -pedantic $(CXXMOREFLAGS) -D VERSION=\"$(VERSION)-$(COMMIT_COUNT)\"
 CXXFLAGS_WITH_OPENMP = $(CXXFLAGS) -fopenmp
 
 

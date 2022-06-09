@@ -1,18 +1,16 @@
 /**
  * \file brent.h
- * \brief Brent's method implementation 
+ * \brief Brent's method implementation
  * \author asr
  *
  * \see https://en.wikipedia.org/wiki/Brent%27s_method
  *
  */
 
-
 #include <functional>
 #include <cmath>
 
 using namespace std;
-
 
 #ifndef BRENT_H
 #define BRENT_H
@@ -27,12 +25,11 @@ using namespace std;
 	\param[in] delta extra parameter
 	\return root
 */
-double brent(bool * found,
-             double a,
-             double b,
-             function<double(double)> f,
-             double epsilon = 1e-6,
-             double delta = 1e-8);
+double brent(bool *found,
+			 double a,
+			 double b,
+			 function<double(double)> f,
+			 double epsilon = 1e-6,
+			 double delta = 1e-8);
 
-             
 #endif // BRENT_H
