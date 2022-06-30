@@ -4,9 +4,10 @@
 
 ### INSTALL DIRECTORIES
 DESTDIR =
+PREFIX = /usr
 ###
 
-VERSION = 1.3.1
+VERSION = 2.0a
 COMMIT_COUNT = $(shell git rev-list --count master)
 
 # Current directory
@@ -17,29 +18,32 @@ INC_DIR = $(CURDIR)/include
 SRC_DIR = $(CURDIR)/src
 #folder of the built sources
 OBJ_DIR = $(CURDIR)/build
-#folder of the shared library
+# folder of the shared library
 LIB_DIR = $(CURDIR)/lib
-#folder for the testspot
+# folder for the testspot
 TEST_DIR = $(CURDIR)/test
+# folder of python stuff
+PYTHON_DIR = $(CURDIR)/python
+# folder of python wheel
+PYTHON_DIST_DIR = $(CURDIR)/dist
 
-PREFIX = /usr
+
 
 ###
 INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/libspot
 INSTALL_LIB_DIR = $(DESTDIR)$(PREFIX)/lib
 ###
 
-EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
+EXPORT = LD_LIBRARY_PATH=$(LIB_DIR)
 
 # compiler & flags
 CC                   = c++
-CXXMOREFLAGS         =
-CXXFLAGS             = -std=c++11 -Wall -pedantic $(CXXMOREFLAGS) -D VERSION=\"$(VERSION)-$(COMMIT_COUNT)\"
-CXXFLAGS_WITH_OPENMP = $(CXXFLAGS) -fopenmp
-
+CXXMOREFLAGS         = 
+CXXFLAGS             = -O2 -std=c++11 -Wall -pedantic $(CXXMOREFLAGS) -D VERSION=\"$(VERSION)-$(COMMIT_COUNT)\"
+LDFLAGS              = -static-libstdc++ -static-libgcc
 
 # all the files (header, sources, build)
-FILES = bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h interface.h
+FILES = bounds.h ubend.h brent.h peaks.h estimator.h spot.h dspot.h interface.h
 DEPS = $(foreach n,$(FILES),$(INC_DIR)/$(n))
 SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
 OBJS = $(FILES:.h=.o)
@@ -47,6 +51,8 @@ OBJS = $(FILES:.h=.o)
 # library file
 DYNAMIC ?= libspot.so.$(VERSION)
 STATIC  ?= libspot.a.$(VERSION)
+
+.PHONY: $(DYNAMIC) python
 
 ### MAKEFILE TARGETS
 all: checkdir $(DYNAMIC)
@@ -74,7 +80,7 @@ $(DYNAMIC): $(OBJS)
 	@echo
 	@echo "[Building library]"
 	@echo "Building" $@ "..."
-	@$(CC) $(CXXFLAGS) -shared $(foreach n,$^,$(OBJ_DIR)/$(n)) -o $(LIB_DIR)/$@ -fPIC;
+	@$(CC) $(CXXFLAGS) -shared $(foreach n,$^,$(OBJ_DIR)/$(n)) -o $(LIB_DIR)/$@ -fPIC $(LDFLAGS)
 	@echo "[done]"
 
 static: $(STATIC)
@@ -88,7 +94,7 @@ $(STATIC): $(OBJS)
 # build source files
 %.o: $(SRC_DIR)/%.cpp
 	@echo "Building" $@ "..."
-	@$(CC) $(CXXFLAGS) $(EXT_INC_DIR) -I $(INC_DIR) -c $< -o $(OBJ_DIR)/$@ -fPIC
+	@$(CC) $(CXXFLAGS) $(EXT_INC_DIR) -I $(INC_DIR) -c $< -o $(OBJ_DIR)/$@ -fPIC 
 
 ## INSTALL
 install:
@@ -110,35 +116,19 @@ test_prepare:
 	if [ ! -f "$(LIB_DIR)/libspot.so" ]; then cp $(LIB_DIR)/$(DYNAMIC) $(LIB_DIR)/libspot.so; fi
 
 # test spot on a gaussian white noise
-test_spot:
+test_%:
 	@echo
 	@echo "[Testing SPOT]"
-	@echo "Building test ..."
-	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
+	@echo "Building $@ ..."
+	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/$@ $(TEST_DIR)/$@.cpp -lspot 
 	@echo "Running test ..."
-	$(EXPORT); $(TEST_DIR)/test_spot
-	
-test_dspot:
-	@echo
-	@echo "[Testing DSPOT]"
-	@echo "Building test ..."
-	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_dspot $(TEST_DIR)/test_dspot.cpp -lspot 
-	@echo "Running test ..."
-	$(EXPORT); $(TEST_DIR)/test_dspot
+	$(EXPORT) $(TEST_DIR)/$@
 
-test_openmp_perf:
-	@echo
-	@echo "[Testing OPENMP performances]"
-	@echo "Building tests ..."
-	$(CC) $(CXXFLAGS_WITH_OPENMP) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_perf_with_openmp $(TEST_DIR)/test_openmp_perf.cpp -lspot 
-	$(CC) $(CXXFLAGS) $(CXXTESTFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_perf_without_openmp $(TEST_DIR)/test_openmp_perf.cpp -lspot 
-	@echo "Running test ..."
-	$(EXPORT); $(TEST_DIR)/test_perf_without_openmp; $(TEST_DIR)/test_perf_with_openmp
 
 test_post_install:
 	$(CC) -std=c++11 -Wall -I$(INC_DIR) $(TEST_DIR)/test_example.cpp -o $(TEST_DIR)/test_example -lspot && $(TEST_DIR)/test_example
 
-test: test_prepare test_spot test_dspot test_openmp_perf
+test: test_prepare test_spot test_dspot test_gamma
 
 ## HTML/XML docs
 docs:
@@ -149,8 +139,13 @@ docs:
 clean:
 	@rm -rfd $(OBJ_DIR)
 	@rm -rfd $(LIB_DIR)
+	@rm -rfd $(PYTHON_DIST_DIR)
+	@cd $(PYTHON_DIR) && rm -rf $$(ls -I "*.py" .)
 	@cd $(TEST_DIR) && rm -f $$(ls -I "*.cpp" .)
 	@rm -rfd ./debian/*.log ./debian/*.substvars ./debian/tmp ./debian/.deb*
+
+python:
+	@python3 -m build -nw
 
 ## build/install test
 
