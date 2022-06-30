@@ -44,12 +44,12 @@ Spot::Spot(double q, int n_init)
 
 	if (up)
 	{
-		this->upper_bound = GPDfit(max_excess);
+		this->upper_bound = Peaks(max_excess);
 	}
 
 	if (down)
 	{
-		this->lower_bound = GPDfit(max_excess);
+		this->lower_bound = Peaks(max_excess);
 	}
 }
 
@@ -120,12 +120,12 @@ Spot::Spot(double q, int n_init, double level,
 
 	if (up)
 	{
-		this->upper_bound = GPDfit(max_excess);
+		this->upper_bound = Peaks(max_excess);
 	}
 
 	if (down)
 	{
-		this->lower_bound = GPDfit(max_excess);
+		this->lower_bound = Peaks(max_excess);
 	}
 }
 
@@ -180,12 +180,12 @@ Spot::Spot(SpotConfig sc)
 
 	if (up)
 	{
-		this->upper_bound = GPDfit(max_excess);
+		this->upper_bound = Peaks(max_excess);
 	}
 
 	if (down)
 	{
-		this->lower_bound = GPDfit(max_excess);
+		this->lower_bound = Peaks(max_excess);
 	}
 
 	this->init_batch = vector<double>(this->n_init);
@@ -392,21 +392,27 @@ SPOTEVENT Spot::step(double v)
 }
 
 /**
-	@brief GPD fit for the upper bound (update upper threshold)
-*/
+ *	@brief GPD fit for the upper bound (update upper threshold)
+ */
 void Spot::fitup()
 {
-	this->upper_bound.fit();
+	double gamma, sigma;
+	gpd_fit(this->upper_bound, &gamma, &sigma);
+	this->upper_bound.set_gpd_parameters(gamma, sigma);
+	// this->upper_bound.fit();
 	this->z_up = this->upper_bound.quantile(this->q, this->t_up, this->n, this->Nt_up);
 	// this->z_up = this->threshold(this->upper_bound.fit(),this->t_up,this->Nt_up);
 }
 
 /**
-	@brief GPD fit for the lower bound (update lower threshold)
-*/
+ *	@brief GPD fit for the lower bound (update lower threshold)
+ */
 void Spot::fitdown()
 {
-	this->lower_bound.fit();
+	double gamma, sigma;
+	gpd_fit(this->lower_bound, &gamma, &sigma);
+	this->lower_bound.set_gpd_parameters(gamma, sigma);
+	// this->lower_bound.fit();
 	this->z_down = -this->lower_bound.quantile(this->q, -this->t_down, this->n, this->Nt_down);
 	// this->z_down = - this->threshold(this->lower_bound.fit(),-this->t_down,this->Nt_down);
 }

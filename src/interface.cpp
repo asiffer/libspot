@@ -5,7 +5,6 @@
         @date 03 March 2018
 */
 
-// #include "dspot.h"
 #include "interface.h"
 
 using namespace std;
