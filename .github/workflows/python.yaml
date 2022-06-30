@@ -1,0 +1,39 @@
+name: Python
+
+on: [push, pull_request]
+
+jobs:
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2019, macos-10.15]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.7.0
+        # to supply options, put them in 'env', like:
+        # env:
+        #   CIBW_SOME_OPTION: value
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: ./wheelhouse/*.whl
+
+  upload_all:
+    needs: [build_wheels]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          path: dist
+
+      - uses: pypa/gh-action-pypi-publish@v1.4.2
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_KEY }}
