@@ -9,3 +9,6 @@ debian/libspot-dev/
 debian/libspot.debhelper.log
 debian/libspot/
 debian/tmp/
+dist
+python/build
+python/pylibspot.egg-info
