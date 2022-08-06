@@ -475,8 +475,6 @@ void Spot::calibrate()
 		}
 
 		this->Nt_up = this->upper_bound.size();
-		// GPDinfo info_up = this->upper_bound.fit();
-		// this->z_up = this->threshold(info_up,this->t_up,Nt);
 		this->fitup();
 	}
 
@@ -494,9 +492,10 @@ void Spot::calibrate()
 
 		this->Nt_down = this->lower_bound.size();
 		this->fitdown();
-		// GPDinfo info_down = this->lower_bound.fit();
-		// this->z_down = - this->threshold(info_down,- this->t_down,rank_down);
 	}
+
+	// set the value of n
+	this->n = this->init_batch.size();
 }
 
 // GETTER
