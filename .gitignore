@@ -12,3 +12,9 @@ debian/tmp/
 dist
 python/build
 python/pylibspot.egg-info
+*.gcov
+*.gcda
+*.gcno
+*.bak
+test_*
+!test_*.cpp

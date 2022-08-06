@@ -21,7 +21,7 @@ OBJ_DIR = $(CURDIR)/build
 # folder of the shared library
 LIB_DIR = $(CURDIR)/lib
 # folder for the testspot
-TEST_DIR = $(CURDIR)/test
+TEST_DIR = $(CURDIR)/tests
 # folder of python stuff
 PYTHON_DIR = $(CURDIR)/python
 # folder of python wheel
@@ -41,12 +41,17 @@ CC                   = c++
 CXXMOREFLAGS         = 
 CXXFLAGS             = -O2 -std=c++11 -Wall -pedantic $(CXXMOREFLAGS) -D VERSION=\"$(VERSION)-$(COMMIT_COUNT)\"
 LDFLAGS              = -static-libstdc++ -static-libgcc
+CXXTESTFLAGS         = -O0 -g -fprofile-abs-path -fprofile-arcs -ftest-coverage -Wall -pedantic -std=c++14 --coverage -D VERSION=\"$(VERSION)-$(COMMIT_COUNT)\"
 
 # all the files (header, sources, build)
 FILES = bounds.h ubend.h brent.h peaks.h estimator.h spot.h dspot.h interface.h
 DEPS = $(foreach n,$(FILES),$(INC_DIR)/$(n))
 SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
 OBJS = $(FILES:.h=.o)
+# TEST_FILES = $(foreach s,$(SRCS),$(TEST_DIR)/test_$(s))
+# TEST_FILES = $(TEST_DIR)/test_bounds.cpp $(TEST_DIR)/test_ubend.cpp $(TEST_DIR)/test_brent.cpp $(TEST_DIR)/test_peaks.cpp $(TEST_DIR)/test_estimator.cpp $(TEST_DIR)/utils.cpp
+# TEST_FILES = $(TEST_DIR)/test_root.cpp $(TEST_DIR)/utils.cpp $(TEST_DIR)/test_spot.cpp
+TEST_FILES = $(TEST_DIR)/utils.cpp $(shell find $(TEST_DIR) -name 'test_*.cpp')
 
 # library file
 DYNAMIC ?= libspot.so.$(VERSION)
@@ -129,6 +134,12 @@ test_post_install:
 	$(CC) -std=c++11 -Wall -I$(INC_DIR) $(TEST_DIR)/test_example.cpp -o $(TEST_DIR)/test_example -lspot && $(TEST_DIR)/test_example
 
 test: test_prepare test_spot test_dspot test_gamma
+
+test2:
+	rm -f $(TEST_DIR)/*.gcda $(TEST_DIR)/*.gcno
+	$(CC) $(CXXTESTFLAGS) -I$(TEST_DIR) -I$(INC_DIR) -o $(TEST_DIR)/test_libspot $(TEST_FILES) $(SRCS)
+	$(TEST_DIR)/test_libspot -s -v normal
+	gcovr -e "tests/*"
 
 ## HTML/XML docs
 docs:

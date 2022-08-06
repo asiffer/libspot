@@ -1,284 +1,267 @@
 #include "spot.h"
-#include <random>
-#include <iostream>
-#include <iomanip>
-#include <chrono>
+#include "utils.h"
+#include "catch.hpp"
 
-
-/* COLORS FOR FANCY PRINT */
-#define END  "\x1B[0m"
-#define RED  "\x1B[31m"
-#define GRN  "\x1B[32m"
-#define YEL  "\x1B[33m"
-
-#define OK "[" GRN "OK" END "]"
-#define WARNING "[" YEL "WARNING" END "]"
-#define FAIL "[" RED "FAIL" END "]"
-/* END OF COLORS FOR FANCY PRINT */
-
-
-using namespace std;
-using T = std::chrono::steady_clock::time_point;
-using usec = std::chrono::microseconds;
-using sec = std::chrono::seconds;
-const auto& tick = std::chrono::steady_clock::now;
-
-
-int duration(T start, T end)
+TEST_CASE("Default initialization", "[spot]")
 {
-	return chrono::duration_cast<usec>(end - start).count();
+    auto s0 = Spot();
+    const SpotConfig c0 = s0.config();
+    REQUIRE(c0.q == 0.001);
+    REQUIRE(c0.bounded == true);
+    REQUIRE(c0.max_excess == 200);
+    REQUIRE(c0.alert == true);
+    REQUIRE(c0.up == true);
+    REQUIRE(c0.down == true);
+    REQUIRE(c0.n_init == 1000);
+    REQUIRE(c0.level == 0.99);
 }
 
-int operator-(const T& end, const T& start)
+TEST_CASE("Initialization 1", "[spot]")
 {
-	return(duration(start,end));
+    const int size = 2500;
+    const double q = 0.0005;
+    vector<double> sample = gaussian(0., 1., size);
+    auto s0 = Spot(q, sample);
+    const SpotConfig c0 = s0.config();
+    REQUIRE(c0.q == q);
+    REQUIRE(c0.bounded == true);
+    REQUIRE(c0.max_excess == 200);
+    REQUIRE(c0.alert == true);
+    REQUIRE(c0.up == true);
+    REQUIRE(c0.down == true);
+    REQUIRE(c0.n_init == size);
+    REQUIRE(c0.level == 0.99);
 }
 
-double alea()
+TEST_CASE("Initialization 2", "[spot]")
 {
-	std::random_device rd;
-	std::default_random_engine gen(rd());
-	std::uniform_real_distribution<double> u(0,1);
-	return u(gen);
+    const auto config = rand_config();
+    vector<double> sample = gaussian(0., 1., config.n_init);
+    auto s0 = Spot(
+        config.q,
+        sample,
+        config.level,
+        config.up,
+        config.down,
+        config.alert,
+        config.bounded,
+        config.max_excess);
+
+    const SpotConfig c0 = s0.config();
+    REQUIRE(c0.q == config.q);
+    REQUIRE(c0.bounded == config.bounded);
+    REQUIRE(c0.max_excess == config.max_excess);
+    REQUIRE(c0.alert == config.alert);
+    REQUIRE(c0.up == config.up);
+    REQUIRE(c0.down == config.down);
+    REQUIRE(c0.n_init == config.n_init);
+    REQUIRE(c0.level == config.level);
 }
 
-
-vector<double> uniform(double a, double b, int N)
+TEST_CASE("Initialization 3", "[spot]")
 {
-	vector<double> v(N);
-	std::random_device rd;
-	std::default_random_engine gen(rd());
-	std::uniform_real_distribution<double> u(a,b);
-
-	for (int i = 0; i < N; i++)
-	{
-		v[i] = u(gen);
-	}
-
-	return(v); 
+    const auto config = rand_config();
+    auto s0 = Spot(config);
+    const SpotConfig c0 = s0.config();
+    REQUIRE(c0.q == config.q);
+    REQUIRE(c0.bounded == config.bounded);
+    REQUIRE(c0.max_excess == config.max_excess);
+    REQUIRE(c0.alert == config.alert);
+    REQUIRE(c0.up == config.up);
+    REQUIRE(c0.down == config.down);
+    REQUIRE(c0.n_init == config.n_init);
+    REQUIRE(c0.level == config.level);
 }
 
-
-
-vector<double> gaussian(double mu, double sigma, int N)
+TEST_CASE("Initialization 4", "[spot]")
 {
-	vector<double> v(N);
-	std::random_device rd;
-	std::default_random_engine gen(rd());
-	std::normal_distribution<double> d(mu,sigma);
-
-	for (int i = 0; i < N; i++)
-	{
-		v[i] = d(gen);
-	}
-
-	return(v);   
+    auto config = rand_config();
+    config.down = true;
+    config.up = true;
+    const int n_init = -500;
+    auto s0 = Spot(
+        config.q,
+        n_init,
+        config.level,
+        config.up,
+        config.down,
+        config.alert,
+        config.bounded,
+        config.max_excess);
+    auto c0 = s0.config();
+    REQUIRE(c0.q == config.q);
+    REQUIRE(c0.bounded == config.bounded);
+    REQUIRE(c0.max_excess == config.max_excess);
+    REQUIRE(c0.alert == config.alert);
+    REQUIRE(c0.up == config.up);
+    REQUIRE(c0.down == config.down);
+    REQUIRE(c0.n_init == 1000);
+    REQUIRE(c0.level == config.level);
 }
 
-
-void check_thresholds(Spot & S, double z_truth)
+TEST_CASE("Equality", "[spot]")
 {
-	double r = 0.0;
-	
-	r = std::abs(S.getUpperThreshold() - z_truth);
-	cout << setw(20) << std::left << "Upper threshold"; 
-	if ( r < 0.1)
-	{
-		cout << OK << endl;
-	}
-	else if ( r < 0.6)
-	{
-		cout << WARNING << " (maybe anomalies are flagged or you are not lucky, try again to verify)" << endl;
-	}
-	else
-	{
-		cout << FAIL << " (maybe anomalies are flagged or you are not lucky, try again to verify)" << endl;
-	}
-	
-	r = std::abs(S.getLowerThreshold() + z_truth);
-	cout << setw(20) << std::left << "Lower threshold";
-	if ( r < 0.1)
-	{
-		cout << OK << endl;
-	}
-	else if ( r < 0.6)
-	{
-		cout << WARNING << " (maybe anomalies are flagged or you are not lucky, try again to verify)" << endl;
-	}
-	else
-	{
-		cout << FAIL << " (maybe anomalies are flagged or you are not lucky, try again to verify)" << endl;
-	}
+    const auto config = rand_config();
+    auto s0 = Spot(config);
+    auto s1 = Spot(config);
+    REQUIRE(s0 == s1);
 }
 
-vector<double> linspace(double min, double max, int n_points)
+TEST_CASE("Init steps", "[spot]")
 {
-	vector<double> v(n_points);
-	double step = (max - min)/(n_points - 1);
-	for (int i = 0; i<n_points; i++)
-	{
-		v[i] = min + i*step;
-	}
-	return v;
+    const double q = 0.001;
+    const int n_init = 5000;
+    const int check_period = n_init / 10;
+    const double level = 0.98;
+    const bool up = true, down = true, alert = true, bounded = true;
+    const int max_excess = 100;
+
+    vector<double> init_data = gaussian(0, 1, 5000);
+
+    SPOTEVENT event;
+
+    auto s0 = Spot(q, n_init, level, up, down, alert, bounded, max_excess);
+
+    int k = 0;
+    for (auto &x : init_data)
+    {
+        event = s0.step(x);
+        // periodic check
+        if (k % check_period == 0)
+        {
+            REQUIRE(event == SPOTEVENT::INIT_BATCH);
+        }
+        k++;
+    }
+    // the last event must be the calibration one
+    REQUIRE(event == SPOTEVENT::CALIBRATION);
+
+    // check the status
+    const auto status = s0.status();
+    REQUIRE(status.n == n_init);
+    const double z = (1. - level) * n_init;
+    INFO("z: " << z);
+    INFO("Nt up: " << status.Nt_up);
+    INFO("Nt down: " << status.Nt_down);
+    REQUIRE(abs(status.Nt_up - z) / z <= 0.011);
+    REQUIRE(abs(status.Nt_down - z) / z <= 0.011);
 }
 
-void check_up_proba(Spot & S)
+TEST_CASE("Cruising steps", "[spot]")
 {
-	double q = S.config().q;
-	double z_q = S.getUpperThreshold();
-	vector<double> v = linspace(z_q, 5., 20);
-	
-	cout << setw(30) << std::left << "Upper threshold meaning"; 
-	double rel_err = abs(q - S.up_probability(z_q))/q;
-	if ( rel_err < 0.01 )
-	{
-		cout << OK << endl;
-	}
-	else if ( rel_err < 0.02 )
-	{
-		cout << WARNING << endl;
-	}
-	else {
-		cout << FAIL << "(Relative error: " << rel_err << ", lower than 0.02 expected)" << endl;
-	}
+    const double q = 0.001;
+    const int n_init = 20000, n_next = 80000;
 
-	cout << setw(30) << std::left << "Probability computation";
-	double ref = S.up_probability(z_q);
-	double p = 0.;
-	for (auto & z: v)
-	{
-		p = S.up_probability(z);
-		if (p > ref)
-		{
-			cout << FAIL << endl;
-			return;
-		}
-		else
-		{
-			ref = p;
-		}
-		
-		// cout << "P(X>" << setprecision(3) << z << ") = " << setprecision(5) << S.up_probability(z) << endl;
-		// cout << "P(X>" << z << ") = " << S.up_probability(z) << endl;
-	}
-	cout << OK << endl;
+    const double level = 0.98;
+    const bool up = true, down = true, alert = true, bounded = false;
+    const int max_excess = -500;
+
+    vector<double> init_data = gaussian(0, 1, n_init);
+    vector<double> next_data = gaussian(0, 1, n_next);
+
+    const int check_period = n_next / 10;
+
+    SPOTEVENT event;
+
+    auto s0 = Spot(q, init_data, level, up, down, alert, bounded, max_excess);
+    auto status = s0.status();
+
+    REQUIRE(status.n == n_init);
+
+    int k = 0;
+    for (auto &x : next_data)
+    {
+        event = s0.step(x);
+        // periodic check
+        if (k % check_period == 0)
+        {
+            REQUIRE(event != SPOTEVENT::INIT_BATCH);
+            REQUIRE(event != SPOTEVENT::CALIBRATION);
+        }
+        k++;
+    }
+
+    // check the status
+    status = s0.status();
+    const int n = init_data.size() + next_data.size();
+    // we expect a number of alarms lower than q*n for
+    // both tails
+    REQUIRE(double(n - status.n) / (double)n < 10 * q);
+    const double z = (1. - level) * status.n;
+    INFO("z: " << z);
+    INFO("Nt up: " << status.Nt_up);
+    INFO("Nt down: " << status.Nt_down);
+    REQUIRE(abs(status.Nt_up - z) / z <= 0.15);
+    REQUIRE(abs(status.Nt_down - z) / z <= 0.15);
 }
 
-
-
-void check_down_proba(Spot & S)
+TEST_CASE("Queries", "[spot]")
 {
-	double q = S.config().q;
-	double z_q = S.getLowerThreshold();
-	vector<double> v = linspace(z_q, -5., 20);
-	
-	cout << setw(30) << std::left << "Lower threshold meaning"; 
-	double rel_err = abs(q - S.down_probability(z_q))/q;
-	if ( rel_err < 0.01 )
-	{
-		cout << OK << endl;
-	}
-	else if ( rel_err < 0.02 )
-	{
-		cout << WARNING << endl;
-	}
-	else {
-		cout << FAIL << "(Relative error: " << rel_err << ", lower than 0.02 expected)" << endl;
-	}
+    // here we do not trigger alerts
+    const double q = 0.001;
+    const int n_init = 10000, n_next = 90000;
 
-	cout << setw(30) << std::left << "Probability computation";
-	double ref = S.down_probability(z_q);
-	double p = 0.;
-	for (auto & z: v)
-	{
-		p = S.down_probability(z);
-		//cout << "P(X<" << setprecision(3) << z << ") = " << setprecision(5) << p << endl;
-		if (p > ref)
-		{
-			cout << FAIL << endl;
-			return;
-		}
-		else
-		{
-			ref = p;
-		}
-	}
-	cout << OK << endl;
+    const double level = 0.98;
+    const bool up = true, down = true, alert = false, bounded = false;
+    const int max_excess = -500;
+
+    vector<double> init_data = gaussian(0, 1, n_init);
+    vector<double> next_data = gaussian(0, 1, n_next);
+
+    auto s0 = Spot(2 * q, init_data, level, up, down, alert, bounded, max_excess);
+    s0.set_q(q);
+    REQUIRE(s0.config().q == q);
+
+    for (auto &x : next_data)
+    {
+        s0.step(x);
+    }
+
+    double t_down = gaussian_inv_cdf(1. - level);
+    double t_up = gaussian_inv_cdf(level);
+
+    INFO("t_down: " << s0.getLower_t());
+    INFO("t_up: " << s0.getUpper_t());
+    REQUIRE(abs((s0.getLower_t() - t_down) / t_down) < 0.05);
+    REQUIRE(abs((s0.getUpper_t() - t_up)) / t_up < 0.05);
+
+    double z_up = gaussian_inv_cdf(1. - q);
+    double z_down = gaussian_inv_cdf(q);
+
+    INFO("z_down: " << s0.getLowerThreshold());
+    INFO("z_up: " << s0.getUpperThreshold());
+    REQUIRE(abs((s0.getLowerThreshold() - z_down) / z_down) < 0.05);
+    REQUIRE(abs((s0.getUpperThreshold() - z_up)) / z_up < 0.05);
+
+    auto bounds = s0.getThresholds();
+    REQUIRE(bounds.down == s0.getLowerThreshold());
+    REQUIRE(bounds.up == s0.getUpperThreshold());
+
+    REQUIRE(abs(s0.up_probability(s0.getUpperThreshold()) - q) < 0.01);
+    REQUIRE(abs(s0.down_probability(s0.getLowerThreshold()) - q) < 0.01);
 }
 
-
-
-
-void check_flagging(Spot & S)
+TEST_CASE("Print", "[spot]")
 {
-	SpotStatus status = S.status();
-	int al_up = status.al_up;
-	int al_down = status.al_down;
-	
-	cout << setw(30) << std::left << "Flagging up anomalies"; 
-	if ( ( al_up >= 18 ) && ( al_up <= 66 ) ) // these bounds are specific to N = 20000
-	{
-		cout << OK << endl;
-	}
-	else if ( ( al_up < 13 ) || ( al_up > 85 ) ) // these bounds are specific to N = 20000
-	{
-		cout << FAIL << " (this is abnormal or you are not lucky, try again to verify)" << endl;
-	}
-	else
-	{
-		cout << WARNING << " (maybe you are not lucky, try again to verify)" << endl;
-	}
-	
-	cout << setw(30) << std::left << "Flagging down anomalies"; 
-	if ( ( al_down >= 18 ) && ( al_down <= 66 ) ) // these bounds are specific to N = 20000
-	{
-		cout << OK << endl;
-	}
-	else if ( ( al_down < 13 ) || ( al_down > 85 ) ) // these bounds are specific to N = 20000
-	{
-		cout << FAIL << " (this is abnormal or you are not lucky, try again to verify)" << endl;
-	}
-	else
-	{
-		cout << WARNING << " (maybe you are not lucky, try again to verify)" << endl;
-	}
-	
-}
+    // here we do not trigger alerts
+    const double q = 0.001;
+    const int n_init = 10000, n_next = 90000;
 
+    const double level = 0.98;
+    const bool up = true, down = true, alert = false, bounded = false;
+    const int max_excess = -500;
 
-int main(int argc, const char * argv[])
-{
-	// the tests depend on these parameters
-	double mu = 0.0;
-	double sigma = 1.0;
-	double z_truth = 3.09;
-	int N = 20000;
-	vector<double> data = gaussian(mu,sigma,N);
-	// ------------------------------------
-	
-	
-	cout << endl << "\t1. Quantile computation" << endl;
-	Spot S(1e-3,2000,0.99,true,true,false,true,200);
-	
-	for(auto x : data)
-	{
-		S.step(x);
-	}
-	cout << endl << S.stringStatus() << endl;
-	check_thresholds(S, z_truth);
-	
-	cout << endl << "\t2. Anomaly flagging" << endl;
-	S = Spot(1e-3,2000);
-	for(auto x : data)
-	{
-		S.step(x);
-	}
-	cout << endl << S.stringStatus() << endl;
-	check_flagging(S);
+    vector<double> init_data = gaussian(0, 1, n_init);
+    vector<double> next_data = gaussian(0, 1, n_next);
 
-	cout << endl << "\t3. Probability computation\n" << endl;
-	check_up_proba(S);
-	check_down_proba(S);
+    auto s0 = Spot(q, init_data, level, up, down, alert, bounded, max_excess);
 
-	return 0;
+    for (auto &x : next_data)
+    {
+        s0.step(x);
+    }
+
+    s0.log(2);
+    s0.stringStatus();
+    s0.config().str();
 }
