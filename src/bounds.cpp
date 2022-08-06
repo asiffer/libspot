@@ -37,16 +37,16 @@ bool Bounds::contains(double x)
 	return ((x >= this->down) && (x <= this->up));
 }
 
-Bounds operator+(Bounds B, double b)
-{
-	B.up += b;
-	B.down += b;
-	return B;
-}
+// Bounds operator+(Bounds B, double b)
+// {
+// 	B.up += b;
+// 	B.down += b;
+// 	return B;
+// }
 
-Bounds operator-(Bounds B, double b)
-{
-	B.up -= b;
-	B.down -= b;
-	return B;
-}
+// Bounds operator-(Bounds B, double b)
+// {
+// 	B.up -= b;
+// 	B.down -= b;
+// 	return B;
+// }
