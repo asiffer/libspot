@@ -34,7 +34,7 @@ public:
      * @brief Destroy the Estimator object
      *
      */
-    virtual ~Estimator(){};
+    // virtual ~Estimator(){};
 
     /**
      * @brief run the estimator (fit)
