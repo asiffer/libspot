@@ -208,7 +208,7 @@ public:
 		@param n_init Size of initial batch to perform calibration
 		@return Spot object
 	*/
-	Spot(double q = 1e-3, int n_init = 1000);
+	Spot(double q = 0.001, int n_init = 1000);
 
 	/**
 		@brief Constructor with risk parametrization (q) and initial batch
@@ -272,7 +272,7 @@ public:
 		@details Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1.
 		This function takes the lower_bound of Spot_1 and the upper_bound of Spot_2.
 	*/
-	Spot operator+(const Spot &spot) const;
+	// Spot operator+(const Spot &spot) const;
 
 	// SPOT iteration
 

@@ -147,6 +147,8 @@ Spot::Spot(double q, vector<double> init_data, double level,
 {
 	this->init_batch = init_data;
 	this->calibrate();
+	// set the value of n
+	this->n = this->init_batch.size();
 }
 
 /**
@@ -214,6 +216,7 @@ bool Spot::operator==(const Spot &spot) const
 	Beware of the order. Spot_1 + Spot_2 != Spot_2 + Spot_1
 	This function takes the lower_bound of Spot_1 and the upper_bound of Spot_2
 */
+/*
 Spot Spot::operator+(const Spot &spot) const
 {
 
@@ -241,6 +244,7 @@ Spot Spot::operator+(const Spot &spot) const
 		return *this;
 	}
 }
+*/
 
 /**
 	@brief Spot iteration
@@ -493,9 +497,6 @@ void Spot::calibrate()
 		this->Nt_down = this->lower_bound.size();
 		this->fitdown();
 	}
-
-	// set the value of n
-	this->n = this->init_batch.size();
 }
 
 // GETTER
