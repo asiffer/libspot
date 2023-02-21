@@ -1,0 +1,84 @@
+@import url("https://fonts.cdnfonts.com/css/proxima-nova-2");
+
+/* see https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/_colors.scss */
+[data-md-color-scheme="zendesk"] {
+  --md-primary-fg-color: #03363d;
+  --md-primary-fg-color--light: #17494d;
+  --md-primary-fg-color--dark: #012b30;
+  --md-default-bg-color: #ffffff;
+  --md-default-fg-color--light: #03363d;
+  --md-accent-fg-color: #03363d;
+  --md-typeset-a-color: #ff6224;
+
+  /* text */
+  --md-typeset-color: #2f3941;
+
+  /* Code color shades */
+  --md-code-fg-color: #03363d;
+  --md-code-bg-color: #f8f9f9;
+  /* --md-text-font: "Proxima Nova"; */
+
+  /* footer */
+  --md-footer-bg-color: var(--md-primary-fg-color);
+}
+
+/* .md-header {
+    background-color: #fef6e4;
+    color: #001858;
+} */
+.md-typeset code {
+  border-radius: 8px;
+}
+
+ul.md-nav__list {
+  margin-top: 1em;
+}
+
+li.md-nav__item {
+  padding: 0.1em;
+  border-radius: 5px;
+  margin: 0.3em 0em;
+}
+
+li.md-nav__item > a:hover {
+  color: #2f3941;
+}
+
+li.md-nav__item:hover {
+  background-color: var(--md-code-bg-color);
+}
+
+li.md-nav__item.md-nav__item--active {
+  background-color: #bdd9d7;
+  font-weight: 600;
+}
+
+li.md-nav__item.md-nav__item--active > a {
+  color: #2f3941;
+}
+
+.md-nav__link {
+  margin: 0em;
+  padding: 0.3em;
+}
+
+/* .md-header__topic > span {
+    font-weight: 800;
+} */
+.md-header__topic:first-child {
+  font-weight: 800;
+}
+
+.md-header__title.md-header__title--active {
+  font-weight: 400;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  color: var(--md-primary-fg-color--light);
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  color: var(--md-primary-fg-color--light);
+}
