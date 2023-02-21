@@ -1,0 +1,22 @@
+site_name: libspot
+theme:
+  name: material
+  font:
+    text: "IBM Plex Sans"
+    code: "IBM Plex Mono"
+  # icon:
+  #   logo: dev/logo/libspot.svg
+  palette:
+    scheme: zendesk
+
+extra_css:
+  - css/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
