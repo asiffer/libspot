@@ -1,3 +1,12 @@
+/**
+ * @file ubend.c
+ * @brief Implements Ubend methods
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ *
+ */
 #include "ubend.h"
 
 int ubend_init(struct Ubend *ubend, unsigned long capacity) {
@@ -9,7 +18,7 @@ int ubend_init(struct Ubend *ubend, unsigned long capacity) {
     if (ubend->data) {
         return 0;
     }
-    return -ERR_ALLOC_ERROR;
+    return -ERR_MEMORY_ALLOCATION_FAILED;
 }
 
 void ubend_free(struct Ubend *ubend) {

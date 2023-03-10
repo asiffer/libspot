@@ -2,8 +2,8 @@
  * @file allocator.h
  * @author your name (you@domain.com)
  * @brief
- * @version 0.1
- * @date 2022-09-08
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
  *
  * @copyright Copyright (c) 2022
  *
@@ -11,8 +11,6 @@
 
 #ifndef ALLOCATOR_H
 #define ALLOCATOR_H
-
-//
 
 /**
  * @brief malloc_fn is a pointer to a malloc-type function
@@ -31,6 +29,7 @@ typedef void (*free_fn)(void *);
 
 /**
  * @brief Set the allocators object (malloc and free)
+ * wtf
  *
  * @param m pointer to a "malloc" function
  * @param f pointer to a "free" function

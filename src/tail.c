@@ -1,3 +1,12 @@
+/**
+ * @file tail.c
+ * @brief Implements Tail methods
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ *
+ */
 #include "tail.h"
 
 estimator ESTIMATORS[] = {mom_estimator, grimshaw_estimator};
@@ -24,19 +33,19 @@ void tail_push(struct Tail *tail, double x) {
 double tail_probability(struct Tail const *tail, double s, double d) {
     // d = zq - t
     if (tail->gamma == 0.0) {
-        return s * exp(-d / tail->sigma);
+        return s * xexp(-d / tail->sigma);
     } else {
         double r = d * (tail->gamma / tail->sigma);
-        return s * pow(1.0 + r, -1.0 / tail->gamma);
+        return s * xpow(1.0 + r, -1.0 / tail->gamma);
     }
 }
 
 double tail_quantile(struct Tail const *tail, double s, double q) {
     double r = q / s;
     if (tail->gamma == 0.0) {
-        return -tail->sigma * log(r);
+        return -tail->sigma * xlog(r);
     }
-    return (tail->sigma / tail->gamma) * (pow(r, -tail->gamma) - 1);
+    return (tail->sigma / tail->gamma) * (xpow(r, -tail->gamma) - 1);
 }
 
 double tail_fit(struct Tail *tail) {

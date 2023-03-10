@@ -1,11 +1,10 @@
 /**
  * @file tail.h
- * @author Alban Siffer
- * @brief
- * @version 0.1
- * @date 2022-08-14
- *
- * @copyright Copyright (c) 2022
+ * @brief Declares Tail structure and methods
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
  *
  */
 
@@ -16,64 +15,64 @@
 #define TAIL_H
 
 /**
- * @brief
+ * @brief Stucture that embeds GPD parameter (GPD tail actually)
  *
  */
 struct Tail {
-    double gamma;       // GPD parameter
-    double sigma;       // GPD parameter
-    struct Peaks peaks; // underlying set of peaks
+    double gamma;       /**< GPD gamma parameter */
+    double sigma;       /**< GPD sigma parameter */
+    struct Peaks peaks; /**< underlying Peaks structure */
 };
 
 /**
- * @brief
+ * @brief Initialize the tail structure
  *
- * @param tail
- * @param size
- * @return int
+ * @param tail Tail instance
+ * @param size Tail size
+ * @return 0 if the initialization is ok
  */
 int tail_init(struct Tail *tail, unsigned long size);
 
 /**
- * @brief
+ * @brief Free the tail structure
  *
- * @param tail
+ * @param tail Tail instance
  */
 void tail_free(struct Tail *tail);
 
 /**
- * @brief
+ * @brief Add a new data into the tail
  *
- * @param tail
- * @param x
+ * @param tail Tail instance
+ * @param x new data
  */
 void tail_push(struct Tail *tail, double x);
 
 /**
  * @brief Compute the probability to be higher a given value z
  *
- * @param tail the tail structure
+ * @param tail Tail instance
  * @param s the ratio Nt/n (an estimator of P(X>t) = 1-F(t))
  * @param d the local quantile (z_q - t)
- * @return an estimate of P(X>z_q)
+ * @return the desired probability
  */
 double tail_probability(struct Tail const *tail, double s, double d);
 
 /**
  * @brief Compute the extreme quantile related to the input probability
  *
- * @param tail the tail structure
+ * @param tail Tail instance
  * @param s the ratio Nt/n (an estimator of P(X>t) = 1-F(t))
  * @param q the desired [low] probability
- * @return double z_q such that P(X>z_q) = q
+ * @return The desired quantile
  */
 double tail_quantile(struct Tail const *tail, double s, double q);
 
 /**
  * @brief Defines gamma and sigma for the underlying peaks structure
  *
- * @param tail
- * @return double the related log-likelihood
+ * @param tail Tail instance
+ * @return The related log-likelihood
  */
 double tail_fit(struct Tail *tail);
 

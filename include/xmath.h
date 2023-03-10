@@ -1,11 +1,10 @@
 /**
  * @file xmath.h
- * @author your name (you@domain.com)
- * @brief
- * @version 0.1
- * @date 2022-09-26
- *
- * @copyright Copyright (c) 2022
+ * @brief Declares math functions
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
  *
  */
 
@@ -51,7 +50,7 @@ extern double const _INFINITY;
  * @param x input value
  * @return double
  */
-double log(double x);
+double xlog(double x);
 
 /**
  * @brief Compute exponential with continuous fraction
@@ -63,7 +62,7 @@ double log(double x);
  * @param x
  * @return double
  */
-double exp(double x);
+double xexp(double x);
 
 /**
  * @brief Compute a^x with log and exp :)
@@ -72,29 +71,24 @@ double exp(double x);
  * @param x
  * @return double
  */
-double pow(double a, double x);
+double xpow(double a, double x);
 
 /**
  * @brief Return the minimum of two values
  *
- * @param a
- * @param b
- * @return double
+ * @param a input value
+ * @param b input value
+ * @return the minimum of a and b
  */
-double min(double a, double b);
+double xmin(double a, double b);
 
 /**
  * @brief Check if a double is NAN
  *
  * @param x input value to check
- * @return 1 when x is nan
- * @return 0 otherwise
+ * @retval 1 when x is nan
+ * @retval 0 otherwise
  */
 int is_nan(double x);
 
-/**
- * @brief
- *
- */
-// int is_inf(double x);
 #endif // XMATH_H

@@ -1,3 +1,12 @@
+/**
+ * @file estimator.c
+ * @brief Implements GPD parameters estimators
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ *
+ */
 #include "estimator.h"
 #include "stdio.h"
 
@@ -21,7 +30,7 @@ static double grimshaw_w(double x, void *peaks_as_void) {
     for (unsigned long i = 0; i < Nt_local; ++i) {
         s = 1. + x * peaks->container.data[i];
         u += 1 / s;
-        v += log(s);
+        v += xlog(s);
     }
     return (u / Nt_local) * (1.0 + v / Nt_local) - 1.0;
 }
@@ -30,7 +39,7 @@ static double grimshaw_v(double x, struct Peaks const *peaks) {
     double v = 0.0;
     unsigned long Nt_local = peaks_size(peaks);
     for (unsigned long i = 0; i < Nt_local; ++i) {
-        v += log(1.0 + x * peaks->container.data[i]);
+        v += xlog(1.0 + x * peaks->container.data[i]);
     }
     return 1.0 + v / Nt_local;
 }
@@ -55,7 +64,7 @@ double grimshaw_estimator(struct Peaks const *peaks, double *gamma,
     double maxi = peaks->max;
     double mean = peaks_mean(peaks);
 
-    double epsilon = min(BRENT_DEFAULT_EPSILON, 0.5 / maxi);
+    double epsilon = xmin(BRENT_DEFAULT_EPSILON, 0.5 / maxi);
     double r;
     double a, b;
 

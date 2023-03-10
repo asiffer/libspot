@@ -1,9 +1,12 @@
 /**
- * \file brent.h
- * \brief Brent's method implementation
- * \author asr
+ * @file brent.h
+ * @brief Brent's method declaration
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
  *
- * \see https://en.wikipedia.org/wiki/Brent%27s_method
+ * @see https://en.wikipedia.org/wiki/Brent%27s_method
  *
  */
 

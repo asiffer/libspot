@@ -1,3 +1,12 @@
+/**
+ * @file spot.c
+ * @brief Implements Spot methods
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ *
+ */
 #include "spot.h"
 
 int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,

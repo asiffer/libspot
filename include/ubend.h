@@ -1,11 +1,14 @@
 /**
-    \file ubend.h
-    \brief A "ubend" container class.
-    \details This is a kind of circular vector.
-    \author asr
-*/
+ * @file ubend.h
+ * @brief Declares Ubend structure and methods
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ */
 
 #include "allocator.h"
+#include "errors.h"
 #include "xmath.h"
 
 #ifndef UBEND_H
@@ -24,13 +27,6 @@ struct Ubend {
     unsigned long capacity;  /* max storage */
     double last_erased_data; /* last erased value (replaced by a new one) */
     int filled;              /* container fill status */
-};
-
-/**
- * @brief Error codes
- */
-enum {
-    ERR_ALLOC_ERROR = 100,
 };
 
 /**

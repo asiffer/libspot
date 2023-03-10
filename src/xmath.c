@@ -1,3 +1,12 @@
+/**
+ * @file xmath.c
+ * @brief Implementation of math functions
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ *
+ */
 #include "xmath.h"
 
 static double const LOG2 =
@@ -88,7 +97,7 @@ static double exp_continuous_fraction2(double x_squared, unsigned int depth,
 //                exp_continuous_fraction(x_squared, depth + 1, max_depth);
 // }
 
-double exp(double x) {
+double xexp(double x) {
     // if (x > 2) {
     //     // return 1.0 / exp(-x);
     //     double t = exp(x / 2.);
@@ -98,7 +107,7 @@ double exp(double x) {
         return _NAN;
     }
     if (x < 0) {
-        return 1.0 / exp(-x);
+        return 1.0 / xexp(-x);
     }
     if (x > LOG2) {
         int k = x / LOG2;
@@ -110,7 +119,7 @@ double exp(double x) {
         };
         // return 1.0 / exp(-x);
         // double t = exp(x / 2.);
-        return exp(r) * z.d;
+        return xexp(r) * z.d;
     }
     double x2 = x * x;
     // return 1 / (1 - (2 * x / (2 + x + exp_khovanskii(x2, 1,
@@ -169,7 +178,7 @@ static double log_cf(double x, double x_squared, unsigned int depth,
            (b * (2. + x) + log_cf(x, x_squared, depth + 1, max_depth));
 }
 
-double log(double x) {
+double xlog(double x) {
     if (is_nan(x)) {
         return _NAN;
     }
@@ -180,7 +189,7 @@ double log(double x) {
         return -_INFINITY;
     }
     if (x < 1) {
-        return -log(1.0 / x);
+        return -xlog(1.0 / x);
     }
     if (x == 1) {
         return 0.0;
@@ -189,7 +198,7 @@ double log(double x) {
         double_cast casted = {.d = x};
         long exponent = casted.bits.exponent;
         casted.bits.exponent = 1023;
-        return log(casted.d) + (exponent - 1023) * LOG2;
+        return xlog(casted.d) + (exponent - 1023) * LOG2;
     }
     // here 1 < x < E (requested to use Shank's algorithm)
     // return log_shanks(E, x, LOG_SHANKS_DEPTH);
@@ -199,9 +208,9 @@ double log(double x) {
     return 2 * z / (2 + z + log_cf(z, z2, 2, LOG_CF_DEPTH));
 }
 
-double pow(double a, double x) { return exp(x * log(a)); }
+double xpow(double a, double x) { return xexp(x * xlog(a)); }
 
-double min(double a, double b) {
+double xmin(double a, double b) {
     if (is_nan(a) || is_nan(b)) {
         return _NAN;
     }

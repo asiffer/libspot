@@ -1,3 +1,12 @@
+/**
+ * @file peaks.c
+ * @brief Implements Peaks methods
+ * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @version 2.0a
+ * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @copyright GNU General Public License version 3
+ *
+ */
 #include "peaks.h"
 
 int peaks_init(struct Peaks *peaks, unsigned long size) {
@@ -96,14 +105,14 @@ double log_likelihood(struct Peaks const *peaks, double gamma, double sigma) {
     unsigned long Nt_local = ubend_size(&(peaks->container));
     double Nt = (double)Nt_local;
     if (gamma == 0.) {
-        return -Nt * log(sigma) - peaks->e / sigma;
+        return -Nt * xlog(sigma) - peaks->e / sigma;
     }
 
-    double r = -Nt * log(sigma);
+    double r = -Nt * xlog(sigma);
     const double c = 1. + 1. / gamma;
     const double x = gamma / sigma;
     for (unsigned long i = 0; i < Nt_local; ++i) {
-        r += -c * log(1 + x * peaks->container.data[i]);
+        r += -c * xlog(1 + x * peaks->container.data[i]);
     }
     return r;
 }
