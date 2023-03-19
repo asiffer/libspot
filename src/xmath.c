@@ -23,9 +23,9 @@ double const _INFINITY = +1.0 / 0.0;
 typedef union {
     double d;
     struct {
-        unsigned long significand : 52;
-        unsigned long exponent : 11;
-        unsigned long sign : 1;
+        unsigned long long significand : 52;
+        unsigned long long exponent : 11;
+        unsigned long long sign : 1;
     } bits;
 } double_cast;
 
