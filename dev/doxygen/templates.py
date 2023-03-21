@@ -1,4 +1,5 @@
 HEADER = """
+# THIS FILE IS GENERATED AUTOMATICALLY. DO NOT EDIT.
 import os
 from ctypes import (
     CDLL,

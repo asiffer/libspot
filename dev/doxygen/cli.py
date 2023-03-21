@@ -1,12 +1,7 @@
 import argparse
 import os
 from argparse import Namespace
-from pathlib import Path
-from typing import Dict, List, NamedTuple
-
-from black import WriteBack, format_file_in_place
-from black.mode import Mode  # pylint: disable=no-name-in-module
-from fun import (
+from parser import (
     Structure,
     parse_doxygen_folder,
     parse_function,
@@ -14,6 +9,11 @@ from fun import (
     parse_typedef,
     topological_sort,
 )
+from pathlib import Path
+from typing import Dict, List, NamedTuple
+
+from black import WriteBack, format_file_in_place
+from black.mode import Mode  # pylint: disable=no-name-in-module
 from templates import HEADER
 
 
