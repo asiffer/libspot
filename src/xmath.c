@@ -2,8 +2,8 @@
  * @file xmath.c
  * @brief Implementation of math functions
  * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0a
- * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @version 2.0b
+ * @date mar. 21 mars 2023 10:23:09 UTC
  * @copyright GNU General Public License version 3
  *
  */

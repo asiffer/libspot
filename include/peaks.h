@@ -2,8 +2,8 @@
  * @file peaks.h
  * @author Alban Siffer (alban.siffer@irisa.fr)
  * @brief
- * @version 2.0a
- * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @version 2.0b
+ * @date mar. 21 mars 2023 10:23:09 UTC
  *
  * @copyright Copyright (c) 2023
  *
@@ -47,6 +47,7 @@ void peaks_free(struct Peaks *peaks);
  * @brief Insert a new peak
  *
  * @param peaks Peaks instance
+ * @param x new peak
  */
 void peaks_push(struct Peaks *peaks, double x);
 
@@ -78,6 +79,8 @@ unsigned long peaks_size(struct Peaks const *peaks);
  * @brief Compute the GPD log-likelihood function
  *
  * @param[in] peaks Peaks instance
+ * @param gamma GPD gamma parameter
+ * @param sigma GPD sigma parameter
  * @return the log likelihood
  */
 double log_likelihood(struct Peaks const *peaks, double gamma, double sigma);

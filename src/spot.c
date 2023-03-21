@@ -2,12 +2,16 @@
  * @file spot.c
  * @brief Implements Spot methods
  * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0a
- * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @version 2.0b
+ * @date mar. 21 mars 2023 10:23:09 UTC
  * @copyright GNU General Public License version 3
  *
  */
 #include "spot.h"
+
+// static inline double __up_down(struct Spot *spot) {
+//     return 2.0 * (1.0 - spot->low) - 1.0;
+// };
 
 int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,
               double level, unsigned long max_excess) {

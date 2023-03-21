@@ -2,8 +2,8 @@
  * @file allocator.h
  * @author your name (you@domain.com)
  * @brief
- * @version 2.0a
- * @date Fri Mar 10 09:44:55 AM UTC 2023
+ * @version 2.0b
+ * @date mar. 21 mars 2023 10:23:09 UTC
  *
  * @copyright Copyright (c) 2022
  *
