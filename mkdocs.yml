@@ -1,21 +1,37 @@
 site_name: libspot
+repo_url: https://github.com/asiffer/libspot
+repo_name: asiffer/libspot
 theme:
+  favicon: img/favicon.svg
   name: material
+  custom_dir: docs/overrides
+  icon:
+    repo: fontawesome/brands/github
   font:
     text: "IBM Plex Sans"
     code: "IBM Plex Mono"
-  # icon:
-  #   logo: dev/logo/libspot.svg
+  logo: img/logo.svg
   palette:
-    scheme: zendesk
+    scheme: nord-dark
+  features:
+    - navigation.tracking
 
 extra_css:
-  - css/extra.css
+  - css/nord.css
+
+extra_javascript:
+  - js/script.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/xxb42rby
 
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.inlinehilite
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
