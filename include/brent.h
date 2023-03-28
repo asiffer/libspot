@@ -13,7 +13,7 @@
 
 extern double const BRENT_DEFAULT_EPSILON;
 
-extern int const BRENT_ITMAX;
+extern unsigned long const BRENT_ITMAX;
 
 typedef double (*real_function)(double, void *);
 
