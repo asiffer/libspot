@@ -6,8 +6,6 @@
  * @date mar. 21 mars 2023 10:23:09 UTC
  * @copyright GNU General Public License version 3
  *
- * @see https://en.wikipedia.org/wiki/Brent%27s_method
- *
  */
 
 #ifndef BRENT_H
