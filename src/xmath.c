@@ -106,7 +106,7 @@ double xexp(double x) {
     if (is_nan(x)) {
         return _NAN;
     }
-    if (x < 0) {
+    if (x < 0.0) {
         return 1.0 / xexp(-x);
     }
     if (x > LOG2) {
@@ -124,10 +124,10 @@ double xexp(double x) {
     double x2 = x * x;
     // return 1 / (1 - (2 * x / (2 + x + exp_khovanskii(x2, 1,
     // EXP_CF_DEPTH))));
-    return 1 + 2 * x /
-                   (2 - x +
-                    (1. / 6.) * x2 /
-                        (1 + exp_continuous_fraction2(x2, 3, EXP_CF_DEPTH)));
+    return 1. + 2. * x /
+                    (2. - x +
+                     (1. / 6.) * x2 /
+                         (1. + exp_continuous_fraction2(x2, 3, EXP_CF_DEPTH)));
 }
 
 // static double log_halley(double x, unsigned int n)
@@ -182,16 +182,16 @@ double xlog(double x) {
     if (is_nan(x)) {
         return _NAN;
     }
-    if (x < 0) {
+    if (x < 0.0) {
         return _NAN;
     }
-    if (x == 0) {
+    if (x == 0.0) {
         return -_INFINITY;
     }
-    if (x < 1) {
+    if (x < 1.0) {
         return -xlog(1.0 / x);
     }
-    if (x == 1) {
+    if (x == 1.0) {
         return 0.0;
     }
     if (x > E) {
@@ -203,9 +203,9 @@ double xlog(double x) {
     // here 1 < x < E (requested to use Shank's algorithm)
     // return log_shanks(E, x, LOG_SHANKS_DEPTH);
     // x = 1+z
-    double z = x - 1;
+    double z = x - 1.0;
     double z2 = z * z;
-    return 2 * z / (2 + z + log_cf(z, z2, 2, LOG_CF_DEPTH));
+    return 2.0 * z / (2.0 + z + log_cf(z, z2, 2, LOG_CF_DEPTH));
 }
 
 double xpow(double a, double x) { return xexp(x * xlog(a)); }
