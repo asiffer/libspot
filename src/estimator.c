@@ -76,7 +76,7 @@ double grimshaw_estimator(struct Peaks const *peaks, double *gamma,
     double tmp_gamma, tmp_sigma;
     double llhood, max_llhood;
     // left root -------------------------------------------------------------
-    a = -1 / maxi + epsilon;
+    a = -1.0 / maxi + epsilon;
     b = -epsilon;
     r = brent(&found[left], a, b, grimshaw_w, (void *)peaks,
               BRENT_DEFAULT_EPSILON);
@@ -86,7 +86,7 @@ double grimshaw_estimator(struct Peaks const *peaks, double *gamma,
 
     // right root -------------------------------------------------------------
     a = epsilon;
-    b = 2 * (mean - mini) / (mini * mini);
+    b = 2.0 * (mean - mini) / (mini * mini);
     r = brent(&found[right], a, b, grimshaw_w, (void *)peaks,
               BRENT_DEFAULT_EPSILON);
     if (found[right]) {
