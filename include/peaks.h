@@ -17,7 +17,7 @@
 #define PEAKS_H
 
 /**
- * @brief
+ * @brief Stucture that computes stats about the peaks
  *
  */
 struct Peaks {
