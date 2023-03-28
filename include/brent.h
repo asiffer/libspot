@@ -15,10 +15,13 @@
 
 extern double const BRENT_DEFAULT_EPSILON;
 
+extern int const BRENT_ITMAX;
+
 typedef double (*real_function)(double, void *);
 
 /**
-    \brief Root search of a scalar function with the Brent's method
+    \brief Root search of a scalar function with the Brent's method. It uses
+   the code from "Numerical Recipes: The Art of Scientific Computing".
     \param[out] found pointer to retrieve the success of the method
     \param[in] a left bound of the interval
     \param[in] b right bound of the interval
