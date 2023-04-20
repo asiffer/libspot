@@ -112,13 +112,14 @@ double xexp(double x) {
     if (x > LOG2) {
         int k = x / LOG2;
         double r = x - LOG2 * (double)k;
-        double_cast z = {
-            .bits.exponent = k + 1023,
-            .bits.significand = 1,
-            .bits.sign = 0,
-        };
-        // return 1.0 / exp(-x);
-        // double t = exp(x / 2.);
+        // double_cast z = {
+        //     .bits.exponent = k + 1023,
+        //     .bits.significand = 1,
+        //     .bits.sign = 0,
+        // };
+
+        // significand, exponent, sign
+        double_cast z = {.bits = {1, k + 1023, 0}};
         return xexp(r) * z.d;
     }
     double x2 = x * x;
