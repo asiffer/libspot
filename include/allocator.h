@@ -16,9 +16,11 @@
  * @brief malloc_fn is a pointer to a malloc-type function
  * i.e. with prototype:
  * void * malloc(unsigned long)
- *
+ * @details __SIZE_TYPE__ define the size_t type. This type is notably used
+ * for malloc but it depends on the architecture. As we assume we receive
+ * malloc-like functions we have to be compliant with their prototypes.
  */
-typedef void *(*malloc_fn)(unsigned long);
+typedef void *(*malloc_fn)(__SIZE_TYPE__);
 
 /**
  * @brief free_fn is a pointer to a free-type function
