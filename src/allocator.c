@@ -30,6 +30,14 @@ void *xmalloc(unsigned long size) {
     if (!mfn) {
         return 0x0;
     }
+    // here is a cast from 'unsigned long' to 'size_t'
+    // In general it does not create issue because size_t
+    // is bigger than 'unsigned long'. In some case this is
+    // not the case (like arduino).
+    // See https://stackoverflow.com/a/131833
+    if (size > __SIZE_MAX__) {
+        return 0x0;
+    }
     return mfn(size);
 }
 
