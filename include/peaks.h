@@ -1,11 +1,10 @@
 /**
  * @file peaks.h
  * @author Alban Siffer (alban.siffer@irisa.fr)
- * @brief
+ * @brief Declares Peaks structure and methods
  * @version 2.0b
  * @date mar. 21 mars 2023 10:23:09 UTC
- *
- * @copyright Copyright (c) 2023
+ * @copyright GNU Lesser General Public License v3.0
  *
  */
 

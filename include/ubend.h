@@ -4,7 +4,7 @@
  * @author Alban Siffer (alban.siffer@irisa.fr)
  * @version 2.0b
  * @date mar. 21 mars 2023 10:23:09 UTC
- * @copyright GNU General Public License version 3
+ * @copyright GNU Lesser General Public License v3.0
  */
 
 #include "allocator.h"
