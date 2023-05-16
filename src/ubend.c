@@ -14,7 +14,7 @@ int ubend_init(struct Ubend *ubend, unsigned long capacity) {
     ubend->filled = 0;
     ubend->capacity = capacity;
     ubend->last_erased_data = _NAN;
-    ubend->data = (double *)xmalloc(capacity * sizeof(double));
+    ubend->data = (double *)xmalloc(capacity * __SIZEOF_DOUBLE__);
     if (ubend->data) {
         return 0;
     }

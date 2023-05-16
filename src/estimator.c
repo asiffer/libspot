@@ -8,7 +8,6 @@
  *
  */
 #include "estimator.h"
-#include "stdio.h"
 
 double mom_estimator(struct Peaks const *peaks, double *gamma, double *sigma) {
     const double E = peaks_mean(peaks);
