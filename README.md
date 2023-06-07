@@ -50,7 +50,7 @@ apt-get update
 apt-get install libspot libspot-dev
 ```
 
-## Get started
+## Get started
 
 TODO
 
