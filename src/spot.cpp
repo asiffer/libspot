@@ -130,7 +130,7 @@ Spot::Spot(double q, int n_init, double level,
 }
 
 /**
-	@brief Full parametrizable constructor with initial batch
+	@brief Full parameterizable constructor with initial batch
 	@param[in] q Probability of abnormal events
 	@param[in] init_data Initial batch to perform calibration
 	@param[in] level Quantile level to discriminate the excesses from the normal data
@@ -430,7 +430,7 @@ double Spot::threshold(GPDinfo g, double t, int Nt)
 /**
 	@brief Give the probability to observe things higher than a value
 	@param[in] z input value
-	@return proability 1-F(z)
+	@return probability 1-F(z)
 */
 double Spot::up_probability(double z)
 {
@@ -440,7 +440,7 @@ double Spot::up_probability(double z)
 /**
 	@brief Give the probability to observe things lower than a value
 	@param[in] z input value
-	@return proability F(z)
+	@return probability F(z)
 */
 double Spot::down_probability(double z)
 {

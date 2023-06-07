@@ -234,7 +234,7 @@ public:
 		 bool bounded, int max_excess);
 
 	/**
-		\brief Full parametrizable constructor with initial batch
+		\brief Full parameterizable constructor with initial batch
 		\param q Probability of abnormal events
 		\param init_data Initial batch to perform calibration
 		\param level Quantile level to discriminate the excesses from the normal data
@@ -359,14 +359,14 @@ public:
 	/**
 		\brief Give the probability to observe things higher than a value
 		\param z input value
-		\return proability 1-F(z)
+		\return probability 1-F(z)
 	*/
 	double up_probability(double z);
 
 	/**
 		\brief Give the probability to observe things lower than a value
 		\param z input value
-		\return proability F(z)
+		\return probability F(z)
 	*/
 	double down_probability(double z);
 };

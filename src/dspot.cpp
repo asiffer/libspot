@@ -428,7 +428,7 @@ double DSpot::getLower_t()
 	\brief Give the probability to observe things higher than a value
 	\details Overload Spot method (return the real absolute value with the drift)
 	\param[in] z input value
-	\return proability 1-F(z)
+	\return probability 1-F(z)
 */
 double DSpot::up_probability(double z)
 {
@@ -439,7 +439,7 @@ double DSpot::up_probability(double z)
 	\brief Give the probability to observe things lower than a value
 	\details Overload Spot method (return the real absolute value with the drift)
 	\param[in] z input value
-	\return proability F(z)
+	\return probability F(z)
 */
 double DSpot::down_probability(double z)
 {
