@@ -82,7 +82,7 @@ double xexp(double x) {
         return _NAN;
     }
     if (x < 0) {
-        return 1.0 / _exp(-x);
+        return 1.0 / xexp(-x);
     }
     if (x > LOG2) {
         unsigned long long k = x / LOG2;
@@ -96,6 +96,12 @@ double xexp(double x) {
 }
 
 double xlog(double x) {
+    if (x < 0 || is_nan(x)) {
+        return _NAN;
+    }
+    if (x == 0) {
+        return -_INFINITY;
+    }
     double_cast casted = {.d = x};
     if (casted.bits.exponent == 1022 || casted.bits.exponent == 1023) {
         // 1/2 < x < 1

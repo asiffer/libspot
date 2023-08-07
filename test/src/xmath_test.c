@@ -424,7 +424,7 @@ void test_log_estimate_precision(void) {
             worst_relative_precision = relative_error;
         }
     }
-    sprintf(buffer, precision_estimation_fmt, LOG_CF_DEPTH, worst_precision,
+    sprintf(buffer, precision_estimation_fmt, 11, worst_precision,
             worst_relative_precision);
     TEST_MESSAGE(buffer);
 }
@@ -456,7 +456,7 @@ void test_exp_estimate_precision(void) {
             worst_relative_precision = relative_error;
         }
     }
-    sprintf(buffer, precision_estimation_fmt, EXP_CF_DEPTH, worst_precision,
+    sprintf(buffer, precision_estimation_fmt, 6, worst_precision,
             worst_relative_precision);
     TEST_MESSAGE(buffer);
 }
