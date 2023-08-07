@@ -10,8 +10,6 @@
 #include "peaks.h"
 
 int peaks_init(struct Peaks *peaks, unsigned long size) {
-    // peaks->gamma = _NAN;
-    // peaks->sigma = _NAN;
     peaks->e = 0.0;
     peaks->e2 = 0.0;
     peaks->min = _NAN;
