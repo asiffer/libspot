@@ -8,36 +8,6 @@
  *
  */
 
-/**
- * @brief LOG_CF_DEPTH is a parameter to modify the precision of the
- * logarithm
- * @details To test the impact of the parameter, you can use the
- * following oneliner:
-rm -f /tmp/results; for i in {8..15}; do make clean && make -s test \
-CMOREFLAGS="-DLOG_CF_DEPTH=$i" && cat build/results/xmath_test.txt|grep \
-'test_log_estimate_precision:INFO' >> /tmp/results; done; echo "[$(cat \
-/tmp/results|awk -F 'INFO: ' '{print $2}'|tr '\n' ','|sed 's/,$//g')]"
- */
-#ifndef LOG_CF_DEPTH
-#define LOG_CF_DEPTH 18
-#endif
-
-/**
- * @brief EXP_CF_DEPTH is a parameter to modify the precision of the
- * exponential
- * @details The following precisions have been noticed on the
- * interval [-19, 11]. The big values are problematic.
- * @details To test the impact of the parameter, you can use the
- * following oneliner:
-rm -f /tmp/results; for i in {8..15}; do make clean && make -s test \
-CMOREFLAGS="-DEXP_CF_DEPTH=$i" && cat build/results/xmath_test.txt|grep \
-'test_exp_estimate_precision:INFO' >> /tmp/results; done; echo "[$(cat \
-/tmp/results|awk -F 'INFO: ' '{print $2}'|tr '\n' ','|sed 's/,$//g')]"
- */
-#ifndef EXP_CF_DEPTH
-#define EXP_CF_DEPTH 22
-#endif
-
 extern double const _NAN;
 extern double const _INFINITY;
 
