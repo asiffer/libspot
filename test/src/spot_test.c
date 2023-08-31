@@ -3,6 +3,7 @@
 #include "test_tail_fit.h"
 #include "unity.h"
 #include <stdlib.h>
+#include <time.h>
 
 typedef void (*Filler)(void);
 
@@ -42,9 +43,9 @@ static int cmp_double(void const *a, void const *b) {
     return (*ad) > (*bd);
 }
 
-void sort_initial_data(void) {
-    qsort(initial_data, SIZE, sizeof(double), cmp_double);
-}
+// void sort_initial_data(void) {
+//     qsort(initial_data, SIZE, sizeof(double), cmp_double);
+// }
 
 void test_spot_init(void) {
     struct Spot Spot;
@@ -88,7 +89,7 @@ void test_spot_init(void) {
 void test_spot_fit(void) {
     struct Spot Spot;
     fill_gaussian();
-    sort_initial_data();
+    // sort_initial_data();
 
     double const q = 1e-5;
     int low = 0;
@@ -110,7 +111,7 @@ void test_spot_fit(void) {
 void test_spot_step(void) {
     struct Spot Spot;
     fill_gaussian();
-    sort_initial_data();
+    // sort_initial_data();
 
     double const q = 5e-5;
     int low = 0;
@@ -231,7 +232,7 @@ void test_spot_quantile(void) {
         // fill data
         filler[i]();
         // and sort
-        sort_initial_data();
+        // sort_initial_data();
 
         // fit spot
         ko = spot_fit(&Spot, initial_data, SIZE);
@@ -275,7 +276,7 @@ void test_spot_probability(void) {
         // fill data
         filler[i]();
         // and sort
-        sort_initial_data();
+        // sort_initial_data();
 
         // fit spot
         ko = spot_fit(&Spot, initial_data, SIZE);
@@ -303,6 +304,62 @@ void test_spot_probability(void) {
     }
 }
 
+void benchmark_spot(void) {
+    struct Spot spot;
+
+    double const q = 1e-5;
+    int low = 0;
+    int discard_anomalies = 1;
+    double const level = 0.995;
+    unsigned long const max_excess = Nt;
+    int ko;
+
+    // init struct
+    ko = spot_init(&spot, q, low, discard_anomalies, level, max_excess);
+    TEST_ASSERT_EQUAL_INT(0, ko);
+    // fill data
+    fill_gaussian();
+    // and sort
+    // sort_initial_data();
+    // fit spot
+    ko = spot_fit(&spot, initial_data, SIZE);
+    TEST_ASSERT_EQUAL_INT(0, ko);
+
+    // prepare data
+    double data[1000000];
+    unsigned long k = 0;
+    unsigned long const n = sizeof(data) / sizeof(double);
+    for (k = 0; k < n; ++k) {
+        data[k] = invnorm(urand());
+    }
+
+    // constant
+    double const cps = (double)CLOCKS_PER_SEC;
+    int normal = 0;
+    int excess = 0;
+    int anomaly = 0;
+
+    clock_t start = clock();
+    for (k = 0; k < n; ++k) {
+        ko = spot_step(&spot, data[k]);
+        switch (spot_step(&spot, data[k])) {
+        case ANOMALY:
+            anomaly++;
+            break;
+        case EXCESS:
+            excess++;
+            break;
+        case NORMAL:
+            normal++;
+            break;
+        }
+    }
+    clock_t end = clock();
+
+    printf("ANOMALY=%d EXCESS=%d NORMAL=%d\n", anomaly, excess, normal);
+    printf("%lf\n", (double)(end - start) / cps);
+}
+
 void setUp(void) {
     srand(0);
     // srand(0xdeadbeef);
@@ -318,5 +375,6 @@ int main(void) {
     RUN_TEST(test_spot_step);
     RUN_TEST(test_spot_quantile);
     RUN_TEST(test_spot_probability);
+    RUN_TEST(benchmark_spot);
     return UNITY_END();
 }
