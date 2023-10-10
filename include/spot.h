@@ -8,39 +8,13 @@
  *
  */
 
-#include "errors.h"
-#include "tail.h"
-
 #ifndef SPOT_H
 #define SPOT_H
 
-/**
- * @brief
- *
- */
-enum SpotResult {
-    NORMAL = 0,
-    EXCESS = 1,
-    ANOMALY = 2,
-};
+#include "p2.h"
+#include "tail.h"
 
-/**
- * @struct Spot
- * @brief Main structure to run the SPOT algorithm
- *
- */
-struct Spot {
-    double q;                 /**< Probability of an anomaly */
-    double level;             /**< Location of the tail */
-    int discard_anomalies;    /**< Flag anomalies */
-    int low;                  /**< Activate lower tail */
-    double __up_down;         /**< internal coefficient */
-    double anomaly_threshold; /**< Normal/abnormal threshold */
-    double excess_threshold;  /**< Tail threshold */
-    unsigned long Nt;         /**< Total number of excesses */
-    unsigned long n;          /**< total number of seen data */
-    struct Tail tail;         /**< GPD tail */
-};
+// Spot API ------------------------------------------------------------------
 
 /**
  * @brief Initialize the Spot structure
@@ -73,14 +47,13 @@ void spot_free(struct Spot *spot);
  * data
  *
  * @param spot Spot instance
- * @param sorted_data Buffer of input data (they must be sorted in ascending
- * order)
+ * @param data Buffer of input data
  * @param size Size of the buffer
  * @retval 0 OK
  * @retval -ERR_EXCESS_THRESHOLD_IS_NAN the excess threshold is nan
  * @retval -ERR_ANOMALY_THRESHOLD_IS_NA the anomaly threshold is nan
  */
-int spot_fit(struct Spot *spot, double *sorted_data, unsigned long size);
+int spot_fit(struct Spot *spot, double *data, unsigned long size);
 
 /**
  * @brief fit-predict step
@@ -92,7 +65,7 @@ int spot_fit(struct Spot *spot, double *sorted_data, unsigned long size);
  * @retval EXCESS data lives in the tail
  * @retval ANOMALY data is out of the threshold
  */
-int spot_step(struct Spot *spot, double x);
+enum SpotResult spot_step(struct Spot *spot, double x);
 
 /**
  * @brief Compute the value zq such that P(X>zq) = q
@@ -111,5 +84,40 @@ double spot_quantile(struct Spot const *spot, double q);
  * @return the desired probability
  */
 double spot_probability(struct Spot const *spot, double z);
+
+/* Extra functions */
+
+/**
+ * @brief Set the allocators object (malloc and free)
+ *
+ * @param m pointer to a "malloc" function
+ * @param f pointer to a "free" function
+ */
+void set_allocators(malloc_fn m, free_fn f);
+
+/**
+ * @brief Return the version of libspot
+ *
+ * @param[out] buffer input buffer to fill with
+ * @param size size of the input buffer
+ */
+void libspot_version(char *buffer, unsigned long size);
+
+/**
+ * @brief Return the license of the library
+ *
+ * @param[out] buffer input buffer to fill with
+ * @param size size of the input buffer
+ */
+void libspot_license(char *buffer, unsigned long size);
+
+/**
+ * @brief Return a string related to an error code
+ *
+ * @param err error code
+ * @param[out] buffer input buffer to fill with
+ * @param size size of the input buffer
+ */
+void error_msg(enum LibspotError err, char *buffer, unsigned long size);
 
 #endif // SPOT_H

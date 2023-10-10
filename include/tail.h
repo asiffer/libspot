@@ -9,7 +9,6 @@
  */
 
 #include "estimator.h"
-#include "peaks.h"
 
 #ifndef TAIL_H
 #define TAIL_H
@@ -18,11 +17,11 @@
  * @brief Stucture that embeds GPD parameter (GPD tail actually)
  *
  */
-struct Tail {
-    double gamma;       /**< GPD gamma parameter */
-    double sigma;       /**< GPD sigma parameter */
-    struct Peaks peaks; /**< underlying Peaks structure */
-};
+// PUBLIC_API struct Tail {
+//     double gamma;       /**< GPD gamma parameter */
+//     double sigma;       /**< GPD sigma parameter */
+//     struct Peaks peaks; /**< underlying Peaks structure */
+// };
 
 /**
  * @brief Initialize the tail structure

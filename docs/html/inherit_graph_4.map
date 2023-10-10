@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$class_ubend.html" title="This container is a kind of circular vector. " alt="" coords="5,31,65,57"/>
-<area shape="rect" id="node2" href="$class_g_p_dfit.html" title="This class implement the Generalized Pareto Distribution fit given some data. " alt="" coords="130,5,193,32"/>
-<area shape="rect" id="node3" href="$class_stream_mean.html" title="Compute the mean over streaming data (window) " alt="" coords="113,56,209,83"/>
-</map>

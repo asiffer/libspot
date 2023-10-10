@@ -13,21 +13,21 @@
  * @brief Global allocator
  *
  */
-static malloc_fn mfn;
+static malloc_fn libspot_malloc;
 
 /**
  * @brief Global free
  *
  */
-static free_fn ffn;
+static free_fn libspot_free;
 
-void set_allocators(malloc_fn m, free_fn f) {
-    mfn = m;
-    ffn = f;
+void internal_set_allocators(malloc_fn m, free_fn f) {
+    libspot_malloc = m;
+    libspot_free = f;
 }
 
 void *xmalloc(unsigned long size) {
-    if (!mfn) {
+    if (!libspot_malloc) {
         return 0x0;
     }
     // here is a cast from 'unsigned long' to 'size_t'
@@ -38,12 +38,12 @@ void *xmalloc(unsigned long size) {
     if (size > __SIZE_MAX__) {
         return 0x0;
     }
-    return mfn(size);
+    return libspot_malloc(size);
 }
 
 void xfree(void *p) {
-    if (!ffn) {
+    if (!libspot_free) {
         return;
     }
-    ffn(p);
+    libspot_free(p);
 }

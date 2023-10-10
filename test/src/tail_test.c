@@ -201,7 +201,7 @@ void test_tail_free(void) {
     TEST_ASSERT_DOUBLE_IS_NAN(Tail.sigma);
 }
 
-void setUp(void) { set_allocators(malloc, free); }
+void setUp(void) { internal_set_allocators(malloc, free); }
 
 void tearDown(void) {}
 

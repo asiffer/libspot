@@ -8,11 +8,11 @@
  *
  */
 
-extern double const _NAN;
-extern double const _INFINITY;
-
 #ifndef XMATH_H
 #define XMATH_H
+
+extern double const _NAN;
+extern double const _INFINITY;
 
 /**
  * @brief Compute natural logarithm with Shank's algorithm

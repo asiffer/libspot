@@ -11,7 +11,7 @@
 #include "brent.h"
 #include "ubend.h"
 #include "xmath.h"
-
+//
 #ifndef PEAKS_H
 #define PEAKS_H
 
@@ -19,13 +19,13 @@
  * @brief Stucture that computes stats about the peaks
  *
  */
-struct Peaks {
-    double e;               /**< sum of the elements */
-    double e2;              /**< sum of the square of the elements */
-    double min;             /**< min of the elements */
-    double max;             /**< max of the elements */
-    struct Ubend container; /**< underlying data */
-};
+// PUBLIC_API struct Peaks {
+//     double e;               /**< sum of the elements */
+//     double e2;              /**< sum of the square of the elements */
+//     double min;             /**< min of the elements */
+//     double max;             /**< max of the elements */
+//     struct Ubend container; /**< underlying data */
+// };
 
 /**
  * @brief Initialize the Peaks structure

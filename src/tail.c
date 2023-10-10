@@ -50,10 +50,10 @@ double tail_quantile(struct Tail const *tail, double s, double q) {
 
 double tail_fit(struct Tail *tail) {
     struct Peaks const *peaks = &(tail->peaks);
-    double tmp_gamma, tmp_sigma = 0.;
+    double tmp_gamma, tmp_sigma = _NAN;
 
     double max_llhood = _NAN;
-    double llhood = -_INFINITY;
+    double llhood;
 
     for (unsigned int i = 0; i < NB_ESTIMATORS; ++i) {
         // compare estimators based on their log likelihood

@@ -1,0 +1,21 @@
+{
+  // only for type declaration
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "declaration": true,
+    "outDir": "./types",
+    "moduleResolution": "classic",
+    "emitDeclarationOnly": true,
+    "moduleDetection": "force",
+    "allowJs": true,
+    "strict": true,
+  },
+  "files": [
+    "index.ts",
+  ],
+}

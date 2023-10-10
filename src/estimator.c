@@ -20,7 +20,7 @@ double mom_estimator(struct Peaks const *peaks, double *gamma, double *sigma) {
 }
 
 static double grimshaw_w(double x, void *peaks_as_void) {
-    struct Peaks *peaks = peaks_as_void;
+    struct Peaks *peaks = (struct Peaks *)peaks_as_void;
     unsigned long Nt_local = peaks_size(peaks);
     double u = 0.0;
     double v = 0.0;

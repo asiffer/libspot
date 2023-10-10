@@ -3,5 +3,8 @@
 BasedOnStyle: LLVM
 IndentWidth: 4
 ColumnLimit: 79
+ReflowComments: true
+SortIncludes: CaseInsensitive
+SeparateDefinitionBlocks: Always
 ---
 

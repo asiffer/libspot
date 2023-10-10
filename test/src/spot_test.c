@@ -360,6 +360,30 @@ void benchmark_spot(void) {
     printf("%lf\n", (double)(end - start) / cps);
 }
 
+void test_error_msg(void) {
+    unsigned long const size = 256;
+    char buffer[size];
+    for (enum LibspotError err = __LIBSPOT_ERR_BEGIN__ + 1;
+         err < __LIBSPOT_ERR_END__; ++err) {
+        error_msg(err, buffer, size);
+        printf("%s\n", buffer);
+    }
+}
+
+void test_libspot_version(void) {
+    unsigned long const size = 64;
+    char buffer[size];
+    libspot_version(buffer, size);
+    TEST_ASSERT_EQUAL_STRING(buffer, VERSION);
+}
+
+void test_libspot_license(void) {
+    unsigned long const size = 64;
+    char buffer[size];
+    libspot_license(buffer, size);
+    TEST_ASSERT_EQUAL_STRING(buffer, LICENSE);
+}
+
 void setUp(void) {
     srand(0);
     // srand(0xdeadbeef);
@@ -376,5 +400,8 @@ int main(void) {
     RUN_TEST(test_spot_quantile);
     RUN_TEST(test_spot_probability);
     RUN_TEST(benchmark_spot);
+    RUN_TEST(test_error_msg);
+    RUN_TEST(test_libspot_version);
+    RUN_TEST(test_libspot_license);
     return UNITY_END();
 }

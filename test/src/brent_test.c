@@ -35,7 +35,7 @@ void test_brent_linear(void) {
     double const b = 5;
     double const root = 1.0;
     void *extra = (void *)&root;
-    double const epsilon = 1e-8;
+    double const epsilon = 2 * BRENT_DEFAULT_EPSILON;
 
     double x = brent(&found, a, b, linear, extra, epsilon);
     TEST_ASSERT_EQUAL_INT(1, found);
@@ -48,7 +48,7 @@ void test_brent_square(void) {
     double const b = 5;
     double root = 3. + 1. / 3.;
     void *extra = &root;
-    double const epsilon = 1e-8;
+    double const epsilon = 2 * BRENT_DEFAULT_EPSILON;
 
     double x = 0.0;
 
@@ -67,7 +67,7 @@ void test_brent_cubic(void) {
     double const b = 5;
     double const root = 2.0;
     void *extra = (void *)&root;
-    double const epsilon = 1e-8;
+    double const epsilon = 2 * BRENT_DEFAULT_EPSILON;
     double x = 0.0;
 
     x = brent(&found, a, b, cubic, extra, epsilon);
@@ -94,7 +94,7 @@ void test_brent_log(void) {
     double const a = -t + 0.5;
     double const b = t + 1.0;
     void *extra = (void *)(&t);
-    double const epsilon = 1e-8;
+    double const epsilon = 2 * BRENT_DEFAULT_EPSILON;
     double x = 0.0;
 
     x = brent(&found, a, b, logarithm, extra, epsilon);
@@ -108,7 +108,7 @@ void test_brent_exp(void) {
     double const a = -3;
     double const b = 3;
     void *extra = NULL;
-    double const epsilon = 1e-8;
+    double const epsilon = 2 * BRENT_DEFAULT_EPSILON;
     double x = 0.0;
 
     x = brent(&found, a, b, exponential, extra, epsilon);
@@ -122,7 +122,7 @@ void test_brent_noroot(void) {
     double const b = 10;
     double p = 1.0;
     void *extra = &p;
-    double const epsilon = 1e-8;
+    double const epsilon = 2 * BRENT_DEFAULT_EPSILON;
 
     brent(&found, a, b, noroot, extra, epsilon);
     TEST_ASSERT_EQUAL_INT(0, found);

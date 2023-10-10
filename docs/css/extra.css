@@ -1,12 +1,118 @@
 @import url("https://fonts.cdnfonts.com/css/proxima-nova-2");
 
+:root {
+  --zendesk-grey-100: #f8f9f9;
+  --zendesk-grey-200: #e9ebed;
+  --zendesk-grey-300: #d8dcde;
+  --zendesk-grey-400: #c2c8cc;
+  --zendesk-grey-500: #87929d;
+  --zendesk-grey-600: #68737d;
+  --zendesk-grey-700: #49545c;
+  --zendesk-grey-800: #2f3941;
+  --zendesk-kale-100: #f5fcfc;
+  --zendesk-kale-200: #daeded;
+  --zendesk-kale-300: #bdd9d7;
+  --zendesk-kale-400: #90bbbb;
+  --zendesk-kale-500: #467b7c;
+  --zendesk-kale-600: #17494d;
+  --zendesk-kale-700: #03363d;
+  --zendesk-kale-800: #012b30;
+  --zendesk-blue-100: #edf7ff;
+  --zendesk-blue-200: #cee2f2;
+  --zendesk-blue-300: #adcce4;
+  --zendesk-blue-400: #5293c7;
+  --zendesk-blue-500: #337fbd;
+  --zendesk-blue-600: #1f73b7;
+  --zendesk-blue-700: #144a75;
+  --zendesk-blue-800: #0f3554;
+  --zendesk-green-100: #edf8f4;
+  --zendesk-green-200: #d1e8df;
+  --zendesk-green-300: #aecfc2;
+  --zendesk-green-400: #5eae91;
+  --zendesk-green-500: #228f67;
+  --zendesk-green-600: #038153;
+  --zendesk-green-700: #186146;
+  --zendesk-green-800: #0b3b29;
+  --zendesk-red-100: #fff0f1;
+  --zendesk-red-200: #f5d5d8;
+  --zendesk-red-300: #f5b5ba;
+  --zendesk-red-400: #e35b66;
+  --zendesk-red-500: #d93f4c;
+  --zendesk-red-600: #cc3340;
+  --zendesk-red-700: #8c232c;
+  --zendesk-red-800: #681219;
+  --zendesk-yellow-100: #fff7ed;
+  --zendesk-yellow-200: #ffeedb;
+  --zendesk-yellow-300: #fed6a8;
+  --zendesk-yellow-400: #ffb057;
+  --zendesk-yellow-500: #f79a3e;
+  --zendesk-yellow-600: #ed8f1c;
+  --zendesk-yellow-700: #ad5918;
+  --zendesk-yellow-800: #703815;
+
+  --zendesk-purple-400: #b552e2;
+  --zendesk-purple-600: #6a27b8;
+  --zendesk-purple-M400: #b072cc;
+  --zendesk-purple-M600: #9358b0;
+
+  --zendesk-royal-400: #5d7df5;
+  --zendesk-royal-600: #3353e2;
+  --zendesk-royal-M400: #7986d8;
+  --zendesk-royal-M600: #4b61c3;
+
+  --zendesk-fuschia-400: #d653c2;
+  --zendesk-fuschia-600: #a81897;
+  --zendesk-fuschia-M400: #cf62a8;
+  --zendesk-fuschia-M600: #a8458c;
+
+  --zendesk-azure-400: #3091ec;
+  --zendesk-azure-600: #1371d6;
+  --zendesk-azure-M400: #5f8dcf;
+  --zendesk-azure-M600: #3a70b2;
+
+  --zendesk-pink-400: #ec4d63;
+  --zendesk-pink-600: #d42054;
+  --zendesk-pink-M400: #d57287;
+  --zendesk-pink-M600: #b23a5d;
+
+  --zendesk-teal-400: #02a191;
+  --zendesk-teal-600: #028079;
+  --zendesk-teal-M400: #2d9e8f;
+  --zendesk-teal-M600: #3c7873;
+
+  --zendesk-crimson-400: #e34f32;
+  --zendesk-crimson-600: #c72a1c;
+  --zendesk-crimson-M400: #cc6c5b;
+  --zendesk-crimson-M600: #b24a3c;
+
+  --zendesk-mint-400: #00a656;
+  --zendesk-mint-600: #058541;
+  --zendesk-mint-M400: #299c66;
+  --zendesk-mint-M600: #2e8057;
+
+  --zendesk-orange-400: #de701d;
+  --zendesk-orange-600: #bf5000;
+  --zendesk-orange-M400: #d4772c;
+  --zendesk-orange-M600: #b35827;
+
+  --zendesk-lime-400: #43b324;
+  --zendesk-lime-600: #2e8200;
+  --zendesk-lime-M400: #519e2d;
+  --zendesk-lime-M600: #47782c;
+
+  --zendesk-lemon-400: #ffd424;
+  --zendesk-lemon-600: #ffbb10;
+  --zendesk-lemon-M400: #e7a500;
+  --zendesk-lemon-M600: #c38f00;
+}
+
 /* see https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/_colors.scss */
 [data-md-color-scheme="zendesk"] {
-  --md-primary-fg-color: #03363d;
-  --md-primary-fg-color--light: #17494d;
-  --md-primary-fg-color--dark: #012b30;
+  --md-primary-fg-color: var(--zendesk-kale-700);
+  --md-primary-fg-color--light: var(--zendesk-kale-600);
+  --md-primary-fg-color--dark: var(--zendesk-kale-800);
   --md-default-bg-color: #ffffff;
-  --md-default-fg-color--light: #03363d;
+  --md-default-fg-color--light: var(--zendesk-kale-700);
   --md-accent-fg-color: #03363d;
   --md-typeset-a-color: #ff6224;
 
@@ -20,6 +126,9 @@
 
   /* footer */
   --md-footer-bg-color: var(--md-primary-fg-color);
+
+  --md-admonition-icon--struct: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M20 9V4c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v5h16zM8 5h2v3H8V5zm-4 6v9c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-9H4zm6 6H8v-5h2v5z"/></g></g></svg>');
+  --md-admonition-icon--fun: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.6 5.29c-1.1-.1-2.07.71-2.17 1.82L13.18 10H16v2h-3l-.44 5.07a3.986 3.986 0 0 1-4.33 3.63 4.007 4.007 0 0 1-3.06-1.87l1.5-1.5c.24.74.9 1.31 1.73 1.38 1.1.1 2.07-.71 2.17-1.82L11 12H8v-2h3.17l.27-3.07c.19-2.2 2.13-3.83 4.33-3.63 1.31.11 2.41.84 3.06 1.87l-1.5 1.5c-.24-.74-.9-1.31-1.73-1.38Z"/></svg>');
 }
 
 /* .md-header {
@@ -30,34 +139,43 @@
   border-radius: 8px;
 }
 
-ul.md-nav__list {
+.md-nav--primary ul.md-nav__list {
   margin-top: 1em;
 }
 
-li.md-nav__item {
+.md-nav--primary li.md-nav__item {
   padding: 0.1em;
   border-radius: 5px;
   margin: 0.3em 0em;
 }
 
-li.md-nav__item > a:hover {
+.md-nav--primary li.md-nav__item > a:hover {
   color: #2f3941;
 }
 
-li.md-nav__item:hover {
+.md-nav--primary li.md-nav__item:hover {
   background-color: var(--md-code-bg-color);
 }
 
-li.md-nav__item.md-nav__item--active {
+.md-nav--primary li.md-nav__link.md-nav__link--active {
   background-color: #bdd9d7;
   font-weight: 600;
 }
 
-li.md-nav__item.md-nav__item--active > a {
+.md-nav--primary  li.md-nav__item.md-nav__item--active.md-nav__item--nested {
+  background-color: none;
+  font-weight: 400;
+}
+
+.md-nav--primary  li.md-nav__item.md-nav__item--nested:hover {
+  background-color: transparent;
+}
+
+.md-nav--primary  li.md-nav__item.md-nav__item--active > a {
   color: #2f3941;
 }
 
-.md-nav__link {
+.md-nav--primary .md-nav__link {
   margin: 0em;
   padding: 0.3em;
 }
@@ -81,4 +199,52 @@ li.md-nav__item.md-nav__item--active > a {
 .md-typeset h2 {
   font-weight: 600;
   color: var(--md-primary-fg-color--light);
+}
+
+/* details */
+
+.md-typeset > details:is(.fun, .struct) {
+  border: 1px solid #c2c8cc;
+  border-radius: 5px;
+  box-shadow: var(--md-shadow-z1);
+}
+
+.md-typeset > details:is(.fun, .struct):not([open]):hover {
+  background-color: var(--md-code-bg-color);
+}
+
+.md-typeset > details:is(.fun, .struct) > summary {
+  background-color: transparent;
+  border-radius: 0px;
+  font-family: monospace;
+}
+
+.md-typeset > details:is(.fun, .struct)[open] > summary {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.md-typeset > details:is(.fun, .struct)[open] code {
+  font-size: 1em;
+}
+
+.md-typeset > details:is(.fun, .struct) > summary::before {
+  background-color: #144a75;
+  mask-image: var(--md-admonition-icon--fun);
+}
+
+.md-typeset > details:is(.fun, .struct) .md-typeset__table thead {
+  background-color: #e9ebed;
+  /* color: white; */
+}
+
+li.md-nav__item--nested li.md-nav__item {
+  margin-left: 1em;
+}
+
+.md-typeset > details.struct > summary::before {
+  background-color: #144a75;
+  mask-image: var(--md-admonition-icon--struct);
 }

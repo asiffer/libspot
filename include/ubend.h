@@ -8,7 +8,6 @@
  */
 
 #include "allocator.h"
-#include "errors.h"
 #include "xmath.h"
 
 #ifndef UBEND_H
@@ -21,13 +20,13 @@
  * state). When it is full, the earlier data erase the older one (cruise
  * state).
  */
-struct Ubend {
-    unsigned long cursor;    /* current position inside the container */
-    double *data;            /* data storage */
-    unsigned long capacity;  /* max storage */
-    double last_erased_data; /* last erased value (replaced by a new one) */
-    int filled;              /* container fill status */
-};
+// PUBLIC_API struct Ubend {
+//     unsigned long cursor;    /* current position inside the container */
+//     unsigned long capacity;  /* max storage */
+//     double last_erased_data; /* last erased value (replaced by a new one) */
+//     int filled;              /* container fill status */
+//     double *data;            /* data storage */
+// };
 
 /**
  * @brief Ubend structure initializer
