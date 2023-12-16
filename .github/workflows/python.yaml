@@ -14,14 +14,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==2.16.2
+        run: python -m pip install cibuildwheel
 
       - name: Build wheels
         run: cd python && python -m cibuildwheel --output-dir wheelhouse
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ./wheelhouse/*.whl
+          path: ./python/wheelhouse/*.whl
 
   upload_all:
     needs: [build_wheels]

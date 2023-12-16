@@ -18,7 +18,7 @@ jobs:
       - name: Install bun
         run: curl -fsSL https://bun.sh/install | bash
       - name: Build
-        run: source ~/.bashrc && bun run build && bun run build:types
+        run: alias bun='~/.bun/bin/bun' && bun run build && bun run build:types
       - name: Generate package-lock.json
         run: npm install
       - name: Publish to Github
