@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+#ifndef VERSION
+#define VERSION "UNKNOWN"
+#endif
+
 typedef void (*Filler)(void);
 
 // for message
@@ -154,8 +158,8 @@ void test_spot_step(void) {
             anomalies++;
         }
     }
-    printf("normal=%d (%.2f%%) excess=%d (%.2f%%) alarm=%d (%.2f%%)\n", normal,
-           (100.0 / size) * (double)normal, excesses,
+    printf("normal=%lu (%.2f%%) excess=%lu (%.2f%%) alarm=%lu (%.2f%%)\n",
+           normal, (100.0 / size) * (double)normal, excesses,
            (100.0 / size) * (double)excesses, anomalies,
            (100.0 / size) * (double)anomalies);
     // the following numbers will depend on the anomalies and the updates
@@ -341,7 +345,7 @@ void benchmark_spot(void) {
 
     clock_t start = clock();
     for (k = 0; k < n; ++k) {
-        ko = spot_step(&spot, data[k]);
+        // ko = spot_step(&spot, data[k]);
         switch (spot_step(&spot, data[k])) {
         case ANOMALY:
             anomaly++;
@@ -363,9 +367,9 @@ void benchmark_spot(void) {
 void test_error_msg(void) {
     unsigned long const size = 256;
     char buffer[size];
-    for (enum LibspotError err = __LIBSPOT_ERR_BEGIN__ + 1;
-         err < __LIBSPOT_ERR_END__; ++err) {
-        error_msg(err, buffer, size);
+    for (enum LibspotError err = ERR_MEMORY_ALLOCATION_FAILED;
+         err <= ERR_DATA_IS_NAN; ++err) {
+        libspot_error(err, buffer, size);
         printf("%s\n", buffer);
     }
 }
@@ -381,7 +385,7 @@ void test_libspot_license(void) {
     unsigned long const size = 64;
     char buffer[size];
     libspot_license(buffer, size);
-    TEST_ASSERT_EQUAL_STRING(buffer, LICENSE);
+    TEST_ASSERT_EQUAL_STRING(buffer, "LGPL-3.0-or-later");
 }
 
 void setUp(void) {

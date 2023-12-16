@@ -77,13 +77,13 @@ void spot_free(struct Spot *spot) {
     tail_free(&(spot->tail));
 }
 
-int spot_fit(struct Spot *spot, double *data, unsigned long size) {
+int spot_fit(struct Spot *spot, double const *data, unsigned long size) {
     // total number of excesses
     spot->Nt = 0;
     spot->n = size;
 
     // compute excess threshold
-    double et = _NAN;
+    double et;
     if (spot->low) {
         // take the low quantile (1 - level)
         et = p2_quantile(1. - spot->level, data, size);
@@ -97,10 +97,9 @@ int spot_fit(struct Spot *spot, double *data, unsigned long size) {
     spot->excess_threshold = et;
 
     // fill the tail
-    double excess = _NAN;
     for (unsigned long i = 0; i < size; ++i) {
         // positive excess
-        excess = spot->__up_down * (data[i] - et);
+        double excess = spot->__up_down * (data[i] - et);
         if (excess > 0) {
             // it is a real excess
             spot->Nt++;
@@ -120,7 +119,7 @@ int spot_fit(struct Spot *spot, double *data, unsigned long size) {
     return 0;
 }
 
-enum SpotResult spot_step(struct Spot *spot, double x) {
+int spot_step(struct Spot *spot, double x) {
     if (is_nan(x)) {
         return -ERR_DATA_IS_NAN;
     }
@@ -175,7 +174,7 @@ void set_allocators(malloc_fn m, free_fn f) { internal_set_allocators(m, f); }
 static char *strncpy(char *dst, const char *src, unsigned long size) {
     if (dst) {
         unsigned long i = 0;
-        for (; (src[i] != '\0') && (i < size); i++) {
+        for (; (i < size) && (src[i] != '\0'); i++) {
             dst[i] = src[i];
         }
         for (; i < size; i++) {
@@ -186,16 +185,21 @@ static char *strncpy(char *dst, const char *src, unsigned long size) {
     return dst;
 }
 
+void set_float_utils(ldexp_fn l, frexp_fn f) {
+    internal_set_float_utils(l, f);
+}
+
+// clang-format off
 static const char *errors[] = {
     "Memory allocation failed", // ERR_MEMORY_ALLOCATION_FAILED
-    "The level parameter is out of bounds (it must be between 0 and 1, but close to 1)",                                // ERR_LEVEL_OUT_OF_BOUNDS
+    "The level parameter is out of bounds (it must be between 0 and 1, but close to 1)", // ERR_LEVEL_OUT_OF_BOUNDS
     "The q parameter must between 0 and 1-level", // ERR_Q_OUT_OF_BOUNDS
     "The excess threshold has not been initialized", // ERR_EXCESS_THRESHOLD_IS_NAN
     "The anomaly threshold has not been initialized", // ERR_ANOMALY_THRESHOLD_IS_NAN
     "The input data is NaN",                          // ERR_DATA_IS_NAN
-};
+}; // clang-format on
 
-void error_msg(enum LibspotError err, char *buffer, unsigned long size) {
+void libspot_error(enum LibspotError err, char *buffer, unsigned long size) {
     if ((err >= ERR_MEMORY_ALLOCATION_FAILED) && (err < ERR_DATA_IS_NAN)) {
         int index = err - ERR_MEMORY_ALLOCATION_FAILED;
         strncpy(buffer, errors[index], size);

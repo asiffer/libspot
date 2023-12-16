@@ -8,11 +8,22 @@
  *
  */
 
+#include "structs.h"
+
 #ifndef XMATH_H
 #define XMATH_H
 
 extern double const _NAN;
 extern double const _INFINITY;
+
+/**
+ * @brief Internal function to set the frexp/ldexp functions
+ * @details By default these functions are provided but the API
+ * allows to change them
+ * @param l pointer to a "ldexp" function
+ * @param f pointer to a "frexp" function
+ */
+void internal_set_float_utils(ldexp_fn l, frexp_fn f);
 
 /**
  * @brief Compute natural logarithm with Shank's algorithm

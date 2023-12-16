@@ -28,7 +28,6 @@ void peaks_free(struct Peaks *peaks) {
 
 static unsigned long peaks_update_stats(struct Peaks *peaks) {
     unsigned long max_iteration;
-    double value;
 
     /* reset min and max */
     peaks->min = _NAN;
@@ -41,7 +40,7 @@ static unsigned long peaks_update_stats(struct Peaks *peaks) {
 
     for (unsigned long i = 0; i < max_iteration; ++i) {
         // value = *iterator;
-        value = peaks->container.data[i];
+        double value = peaks->container.data[i];
         peaks->e += value;
         peaks->e2 = value * value;
         if (is_nan(peaks->min) || (value < peaks->min)) {
@@ -52,6 +51,10 @@ static unsigned long peaks_update_stats(struct Peaks *peaks) {
         }
     }
     return max_iteration;
+}
+
+unsigned long peaks_size(struct Peaks const *peaks) {
+    return ubend_size(&(peaks->container));
 }
 
 void peaks_push(struct Peaks *peaks, double x) {
@@ -93,10 +96,6 @@ double peaks_var(struct Peaks const *peaks) {
     double const size = (double)peaks_size(peaks);
     double mean = peaks->e / size;
     return (peaks->e2 / size) - (mean * mean);
-}
-
-unsigned long peaks_size(struct Peaks const *peaks) {
-    return ubend_size(&(peaks->container));
 }
 
 double log_likelihood(struct Peaks const *peaks, double gamma, double sigma) {

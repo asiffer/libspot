@@ -10,7 +10,7 @@ title: API
     typedef void *(* malloc_fn) (__SIZE_TYPE__)
     ```
     
-    malloc_fn is a pointer to a malloc-type function i.e. with prototype: void * malloc(unsigned long)
+    `malloc_fn` is a pointer to a malloc-type function i.e. with prototype: `void * malloc(size_t)`
     
 
 
@@ -20,7 +20,37 @@ title: API
     typedef void(* free_fn) (void *)
     ```
     
-    free_fn is a pointer to a free-type function i.e. with prototype: void free(void*)
+    `free_fn` is a pointer to a free-type function i.e. with prototype: `void free(void*)`
+    
+
+
+<div id="spot_8h_1ad948bdfab02151949931ddd4cbb4c9d8"></div>
+??? typedef "frexp_fn"
+    ```c
+    typedef double(* frexp_fn) (double, int *)
+    ```
+    
+    `frexp_fn` is a pointer to a frexp-type function i.e. with prototype: `double frexp_fn(double, int*)`
+    
+
+
+<div id="spot_8h_1afe19bf670d7dd3934150c80e165c3441"></div>
+??? typedef "ldexp_fn"
+    ```c
+    typedef double(* ldexp_fn) (double, int)
+    ```
+    
+    `ldexp_fn` is a pointer to a ldexp-type function i.e. with prototype: `double ldexp_fn(double, int*)`
+    
+
+
+<div id="spot_8h_1a02bc38a8011adaf2313cb095d70eaf43"></div>
+??? typedef "real_function"
+    ```c
+    typedef double(* real_function) (double, void *)
+    ```
+    
+    `real_function` defines a pointer to a univariate function that can require extra paramaters (second argument)
     
 
 
@@ -203,10 +233,10 @@ title: API
     | `spot` | [Spot](#structSpot) instance |
 
 
-<div id="spot_8h_1afd6c1e52d8c9418be86d139d7fc395bc"></div>
+<div id="spot_8h_1adea9c7c9ca253236f3ef7b7bc8989f75"></div>
 ??? fun "spot_fit"
     ```c
-    int spot_fit(struct [Spot](#structSpot) * spot, double * data, unsigned long size)
+    int spot_fit(struct [Spot](#structSpot) * spot, double const * data, unsigned long size)
     ```
     
     Compute the first excess and anomaly thresholds based on training data.
@@ -218,10 +248,10 @@ title: API
     | `size` | Size of the buffer |
 
 
-<div id="spot_8h_1afe66cf061e1eeb64d26151e5b902f9cd"></div>
+<div id="spot_8h_1a36a27273bcb885b26e6642b05b974d55"></div>
 ??? fun "spot_step"
     ```c
-    enum SpotResult spot_step(struct [Spot](#structSpot) * spot, double x)
+    int spot_step(struct [Spot](#structSpot) * spot, double x)
     ```
     
     fit-predict step
@@ -302,10 +332,10 @@ title: API
     | `size` | size of the input buffer |
 
 
-<div id="spot_8h_1a33453c918db77a6b0058822d5e424d70"></div>
-??? fun "error_msg"
+<div id="spot_8h_1a500d781bdda02582941f75b5dd95213f"></div>
+??? fun "libspot_error"
     ```c
-    void error_msg(enum LibspotError err, char * buffer, unsigned long size)
+    void libspot_error(enum LibspotError err, char * buffer, unsigned long size)
     ```
     
     Return a string related to an error code.

@@ -20,78 +20,78 @@ static double fabs(double a) {
     return a;
 }
 
-static void swap(double *x, double *y) {
-    double tmp = *x;
-    *x = *y;
-    *y = tmp;
-}
+// static void swap(double *x, double *y) {
+//     double tmp = *x;
+//     *x = *y;
+//     *y = tmp;
+// }
 
 // https://handwiki.org/wiki/Brent%27s_method
-double brent2(int *found, double a, double b, real_function f, void *extra,
-              double epsilon) {
-    double fa = f(a, extra);
-    double fb = f(b, extra);
-    if (fa * fb >= 0) {
-        *found = 0;
-        return 0.;
-    }
+// double brent2(int *found, double a, double b, real_function f, void *extra,
+//               double epsilon) {
+//     double fa = f(a, extra);
+//     double fb = f(b, extra);
+//     if (fa * fb >= 0) {
+//         *found = 0;
+//         return 0.;
+//     }
 
-    if (fabs(fa) < fabs(fb)) { // swap (a,b)
-        swap(&a, &b);
-        swap(&fa, &fb);
-    }
+//     if (fabs(fa) < fabs(fb)) { // swap (a,b)
+//         swap(&a, &b);
+//         swap(&fa, &fb);
+//     }
 
-    double c = a;
-    double fc = fa;
-    int mflag = 1;
-    double s = 0.0;
-    double fs = 0.0;
-    double t = 0.0;
-    int cond1, cond2, cond3 = 0;
-    double d = 0.0;
+//     double c = a;
+//     double fc = fa;
+//     int mflag = 1;
+//     double s = 0.0;
+//     // double fs = 0.0;
+//     // double t = 0.0;
+//     // int cond1, cond2, cond3 = 0;
+//     double d = 0.0;
 
-    while ((fb != 0.0) && fabs(b - a) > epsilon) {
-        if ((fa != fc) && (fb != fc)) {
-            s = (a * fb * fc) / ((fa - fb) * (fa - fc)) +
-                (b * fa * fc) / ((fb - fa) * (fb - fc)) +
-                (c * fa * fb) / ((fc - fa) * (fc - fb));
-        } else {
-            s = b - fb * (b - a) / (fb - fa);
-        }
+//     while ((fb != 0.0) && fabs(b - a) > epsilon) {
+//         if ((fa != fc) && (fb != fc)) {
+//             s = (a * fb * fc) / ((fa - fb) * (fa - fc)) +
+//                 (b * fa * fc) / ((fb - fa) * (fb - fc)) +
+//                 (c * fa * fb) / ((fc - fa) * (fc - fb));
+//         } else {
+//             s = b - fb * (b - a) / (fb - fa);
+//         }
 
-        t = (3 * a + b) / 4;
-        cond1 = !(((t < s) && (s < b)) || ((b < s) && (s < t)));
-        cond2 = (mflag == 1) && (fabs(s - b) >= 0.5 * fabs(b - c));
-        cond3 = (mflag == 0) && (fabs(s - b) >= 0.5 * fabs(d - c));
-        if (cond1 || cond2 || cond3) {
-            s = (a + b) / 2.0;
-            mflag = 1;
-        } else {
-            mflag = 0;
-        }
+//         double t = (3 * a + b) / 4;
+//         int cond1 = !(((t < s) && (s < b)) || ((b < s) && (s < t)));
+//         int cond2 = (mflag == 1) && (fabs(s - b) >= 0.5 * fabs(b - c));
+//         int cond3 = (mflag == 0) && (fabs(s - b) >= 0.5 * fabs(d - c));
+//         if (cond1 || cond2 || cond3) {
+//             s = (a + b) / 2.0;
+//             mflag = 1;
+//         } else {
+//             mflag = 0;
+//         }
 
-        fs = f(s, extra);
-        d = c; // first time d is set
+//         double fs = f(s, extra);
+//         d = c; // first time d is set
 
-        c = b;
-        fc = fb;
-        if (fa * fs < 0) {
-            b = s;
-            fb = fs;
-        } else {
-            a = s;
-            fa = fs;
-        }
+//         c = b;
+//         fc = fb;
+//         if (fa * fs < 0) {
+//             b = s;
+//             fb = fs;
+//         } else {
+//             a = s;
+//             fa = fs;
+//         }
 
-        if (fabs(fa) < fabs(fb)) { // swap (a,b)
-            swap(&a, &b);
-            swap(&fa, &fb);
-        }
-    }
+//         if (fabs(fa) < fabs(fb)) { // swap (a,b)
+//             swap(&a, &b);
+//             swap(&fa, &fb);
+//         }
+//     }
 
-    *found = 1;
-    return b;
-}
+//     *found = 1;
+//     return b;
+// }
 
 double brent(int *found, double x1, double x2, real_function func, void *extra,
              double tol) {
@@ -104,18 +104,18 @@ double brent(int *found, double x1, double x2, real_function func, void *extra,
     double c = x2;
     double d = 0.0;
     double e = 0.0;
-    double min1 = 0.0;
-    double min2 = 0.0;
+    // double min1 = 0.0;
+    // double min2 = 0.0;
 
     double fa = func(a, extra);
     double fb = func(b, extra);
     double fc = 0.0;
-    double p = 0.0;
-    double q = 0.0;
-    double r = 0.0;
-    double s = 0.0;
-    double tol1 = 0.0;
-    double xm = 0.0;
+    // double p = 0.0;
+    // double q = 0.0;
+    // double r = 0.0;
+    // double s = 0.0;
+    // double tol1 = 0.0;
+    // double xm = 0.0;
 
     if ((fa > 0.0 && fb > 0.0) || (fa < 0.0 && fb < 0.0)) {
         *found = 0;
@@ -137,27 +137,30 @@ double brent(int *found, double x1, double x2, real_function func, void *extra,
             fb = fc;
             fc = fa;
         }
-        tol1 = 2.0 * BRENT_DEFAULT_EPSILON * fabs(b) +
-               0.5 * tol; // Convergence check.
-        xm = 0.5 * (c - b);
+        double tol1 = 2.0 * BRENT_DEFAULT_EPSILON * fabs(b) +
+                      0.5 * tol; // Convergence check.
+        double xm = 0.5 * (c - b);
         if (fabs(xm) <= tol1 || fb == 0.0)
             return b;
         if (fabs(e) >= tol1 && fabs(fa) > fabs(fb)) {
-            s = fb / fa; // Attempt inverse quadratic interpolation.
+            double s = fb / fa; // Attempt inverse quadratic interpolation.
+            double p;
+            double q;
+
             if (a == c) {
                 p = 2.0 * xm * s;
                 q = 1.0 - s;
             } else {
                 q = fa / fc;
-                r = fb / fc;
+                double r = fb / fc;
                 p = s * (2.0 * xm * q * (q - r) - (b - a) * (r - 1.0));
                 q = (q - 1.0) * (r - 1.0) * (s - 1.0);
             }
             if (p > 0.0)
                 q = -q; // Check whether in bounds.
             p = fabs(p);
-            min1 = 3.0 * xm * q - fabs(tol1 * q);
-            min2 = fabs(e * q);
+            double min1 = 3.0 * xm * q - fabs(tol1 * q);
+            double min2 = fabs(e * q);
             if (2.0 * p < (min1 < min2 ? min1 : min2)) {
                 e = d; // Accept interpolation.
                 d = p / q;

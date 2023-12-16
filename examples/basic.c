@@ -1,7 +1,10 @@
 // basic.c
-// gcc -o /tmp/basic -Wall -pedantic examples/basic.c -Iinclude/ -Llib/ -lspot
-// -lm
-//
+// BUILD:
+// $ make
+// $ cc -o /tmp/basic examples/basic.c -Idist/ -Ldist/ -l:libspot.so.2.0b0 -lm
+// RUN:
+// $ LD_LIBRARY_PATH=dist /tmp/basic
+
 #include "spot.h"
 #include <math.h>
 #include <stdio.h>
@@ -13,12 +16,6 @@ double runif() { return (double)rand() / (double)RAND_MAX; }
 
 // Exp(1)
 double rexp() { return -log(runif()); }
-
-int cmp(const void *a, const void *b) {
-    double *x = (double *)a;
-    double *y = (double *)b;
-    return (-2) * (int)(*x < *y) + 1;
-}
 
 int main(int argc, const char *argv[]) {
     // set random seed
@@ -44,12 +41,10 @@ int main(int argc, const char *argv[]) {
 
     // initial data (for the fit)
     unsigned long const N = 20000;
-    double *initial_data = malloc(N * sizeof(double));
-    // dev must sort it by himself
+    double initial_data[N];
     for (unsigned long i = 0; i < N; i++) {
         initial_data[i] = rexp();
     }
-    qsort(initial_data, N, sizeof(double), cmp);
 
     // fit
     status = spot_fit(&spot, initial_data, N);

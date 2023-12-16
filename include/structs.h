@@ -12,9 +12,9 @@
 #define STRUCTS_H
 
 /**
- * @brief malloc_fn is a pointer to a malloc-type function
+ * @brief \`malloc_fn\` is a pointer to a malloc-type function
  * i.e. with prototype:
- * void * malloc(unsigned long)
+ * \`void * malloc(size_t)\`
  * @details __SIZE_TYPE__ define the size_t type. This type is notably used
  * for malloc but it depends on the architecture. As we assume we receive
  * malloc-like functions we have to be compliant with their prototypes.
@@ -22,11 +22,37 @@
 typedef void *(*malloc_fn)(__SIZE_TYPE__);
 
 /**
- * @brief free_fn is a pointer to a free-type function
+ * @brief \`free_fn\` is a pointer to a free-type function
  * i.e. with prototype:
- * void free(void*)
+ * \`void free(void*)\`
  */
 typedef void (*free_fn)(void *);
+
+/**
+ * @brief \`frexp_fn\` is a pointer to a frexp-type function
+ * i.e. with prototype:
+ * \`double frexp_fn(double, int*)\`
+ * @details This function decomposes a floating point value
+ * into a normalized fraction and an integral power of 2.
+ * See https://en.cppreference.com/w/c/numeric/math/frexp
+ */
+typedef double (*frexp_fn)(double, int *);
+
+/**
+ * @brief \`ldexp_fn\` is a pointer to a ldexp-type function
+ * i.e. with prototype:
+ * \`double ldexp_fn(double, int*)\`
+ * @details This function multiplies a floating point value
+ * by the number 2 raised to the exp power.
+ * See https://en.cppreference.com/w/c/numeric/math/ldexp
+ */
+typedef double (*ldexp_fn)(double, int);
+
+/**
+ * @brief \`real_function\` defines a pointer to a univariate function that
+ * can require extra paramaters (second argument)
+ */
+typedef double (*real_function)(double, void *);
 
 /**
  * @brief Constants to store libspot errors

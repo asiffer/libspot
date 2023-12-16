@@ -109,12 +109,11 @@ static double parabolic(struct P2 *p2, unsigned int i, int d) {
                     (p2->n[i] - p2->n[i - 1]));
 }
 
-static double quantile(struct P2 *p2, double *x, unsigned long size) {
-    double xj = 0.0;
-    unsigned int k = 0;
-    unsigned int i = 0;
-    double d = 0.0;
-    double qp = 0.0;
+static double quantile(struct P2 *p2, double const *x, unsigned long size) {
+    unsigned int k;
+    unsigned int i;
+    // double d = 0.0;
+    double qp;
 
     if (size < 5) {
         return 0.0;
@@ -127,7 +126,7 @@ static double quantile(struct P2 *p2, double *x, unsigned long size) {
     sort5(p2->q);
     // now treat the other values
     for (unsigned long j = 5; j < size; j++) {
-        xj = x[j];
+        double xj = x[j];
         if (xj < p2->q[0]) {
             // k = 0;
             p2->q[0] = xj;
@@ -150,7 +149,7 @@ static double quantile(struct P2 *p2, double *x, unsigned long size) {
 
             // update other markers
             for (i = 1; i < 4; i++) {
-                d = p2->np[i] - p2->n[i];
+                double d = p2->np[i] - p2->n[i];
                 if ((d >= 1 && (p2->n[i + 1] - p2->n[i]) > 1) ||
                     (d <= -1 && (p2->n[i - 1] - p2->n[i]) < -1)) {
                     d = sign(d);
@@ -167,7 +166,7 @@ static double quantile(struct P2 *p2, double *x, unsigned long size) {
     return p2->q[2];
 }
 
-double p2_quantile(double p, double *data, unsigned long size) {
+double p2_quantile(double p, double const *data, unsigned long size) {
     struct P2 p2;
     init_p2(&p2, p);
     return quantile(&p2, data, size);

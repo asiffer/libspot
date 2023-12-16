@@ -25,7 +25,9 @@ bazel-*
 BUILD
 WORKSPACE
 test/*
-!test/src
+!test/src/*_test.c
 docs/doxygen/generated
 docs/doxygen/_*
 dist/
+wasm/libspot.js
+*.lua

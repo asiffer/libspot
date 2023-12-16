@@ -11,6 +11,6 @@
 #ifndef P2_H
 #define P2_H
 
-double p2_quantile(double p, double *data, unsigned long size);
+double p2_quantile(double p, double const *data, unsigned long size);
 
 #endif // P2_H

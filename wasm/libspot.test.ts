@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { Spot, libspotVersion, spotSize } from "./index.ts";
+import { Spot, libspotVersion, spotSize, libspotError } from "./index.ts";
 import * as fs from "fs";
 
 test("sizeof(Spot)", () => {
@@ -45,4 +45,19 @@ test("Spot.fit", () => {
       expect(s.probability(x)).toBeLessThanOrEqual(1 - level);
     }
   }
+});
+
+const range = (start: number, stop: number, step: number = 1) =>
+  Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+
+test("libspotError()", () => {
+  const errors = range(1000, 1010)
+    .map(libspotError)
+    .map((msg, index) => {
+      if (index > 4) {
+        expect(msg).toBe("");
+      } else {
+        expect(msg).not.toBe("");
+      }
+    });
 });

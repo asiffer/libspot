@@ -5,13 +5,13 @@ title: Get started
 Inside your code, you just have to add the `spot.h` header file.
 
 ```c
-#include "spot/spot.h"
+#include "spot.h"
 ```
 
 One paramount point is that `libspot` does not know how to allocate/free memory (it does not know `libc` by design). So you have to provide these functions. By default you can pass the common `malloc` and `free` functions from `stdlib.h`.
 
 ```c
-#include "spot/spot.h"
+#include "spot.h"
 #include <stdlib.h>
 
 set_allocators(malloc, free);
@@ -42,7 +42,10 @@ int status = spot_init(
     );
 // you can check the initialization
 if (status < 0) {
-    // handle error
+    // print error
+    char buffer[100];
+    error_msg(-status, buffer, 100);
+    printf("ERROR %d: %s\n", -status, buffer);
 }
 ```
 
@@ -63,111 +66,17 @@ Before prediction, we commonly need to fit the algorithm with first data. In pra
 // unsigned long size = ...
 status = spot_fit(&spot, initial_data, size);
 if (status < 0) {
-    // handle error
+    // print error
+    char buffer[100];
+    error_msg(-status, buffer, 100);
+    printf("ERROR %d: %s\n", -status, buffer);
 }
 ```
-
-<!-- prettier-ignore -->
-!!! warning
-    Currently, you must **sort the the initial batch**. You can use the `qsort` function from the standard library for example:
-    ```c
-
-    int cmp(const void *a, const void *b) {
-        double *x = (double *)a;
-        double *y = (double *)b;
-        return (-2) * (int)(*x < *y) + 1;
-    }
-
-    qsort(initial_data, size, sizeof(double), cmp);
-    ```
 
 ## Full example
 
 Here we present a basic example where the SPOT algorithm is run on an exponential stream.
 
 ```c
-// basic.c
-#include "spot/spot.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-// U(0, 1)
-double runif() { return (double)rand() / (double)RAND_MAX; }
-
-// Exp(1)
-double rexp() { return -log(runif()); }
-
-int cmp(const void *a, const void *b) {
-    double *x = (double *)a;
-    double *y = (double *)b;
-    return (-2) * (int)(*x < *y) + 1;
-}
-
-int main(int argc, const char *argv[]) {
-    // set random seed
-    srand(1);
-    // provide allocators to libspot
-    set_allocators(malloc, free);
-    // stack allocation
-    struct Spot spot;
-    int status = 0;
-    // init the structure with some parameters
-    status = spot_init(
-        &spot,
-        1e-4,  // q: anomaly probability
-        0,     // low: observe upper tail
-        1,     // discard_anomalies: flag anomalies
-        0.998, // level: tail quantile (the 1% higher values shapes the tail)
-        200    // max_excess: number of data to keep to summarize the tail
-    );
-
-    if (status < 0) {
-        return -status;
-    }
-
-    // initial data (for the fit)
-    unsigned long const N = 20000;
-    double *initial_data = malloc(N * sizeof(double));
-    // dev must sort it by himself
-    for (unsigned long i = 0; i < N; i++) {
-        initial_data[i] = rexp();
-    }
-    qsort(initial_data, N, sizeof(double), cmp);
-
-    // fit
-    status = spot_fit(&spot, initial_data, N);
-    if (status < 0) {
-        return -status;
-    }
-
-    // now we can run the algorithm
-    int K = 200000;
-    int normal = 0;
-    int excess = 0;
-    int anomaly = 0;
-
-    for (int k = 0; k < K; k++) {
-        switch (spot_step(&spot, rexp())) {
-        case ANOMALY:
-            anomaly++;
-            break;
-        case EXCESS:
-            excess++;
-            break;
-        case NORMAL:
-            normal++;
-            break;
-        }
-    }
-
-    printf("ANOMALY=%d EXCESS=%d NORMAL=%d\n", anomaly, excess, normal);
-    return 0;
-}
-```
-
-This example can be compiled as follows.
-
-```shell
-cc -o basic basic.c -lspot -lm
+--8<-- "examples/basic.c"
 ```

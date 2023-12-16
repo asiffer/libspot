@@ -13,8 +13,6 @@
 #ifndef ESTIMATOR_H
 #define ESTIMATOR_H
 
-typedef double (*estimator)(struct Peaks const *, double *, double *);
-
 /**
  * @brief
  *

@@ -11,13 +11,11 @@
 #ifndef BRENT_H
 #define BRENT_H
 
-#ifndef PUBLIC_API
+#include "structs.h"
 
 extern double const BRENT_DEFAULT_EPSILON;
 
 extern unsigned long const BRENT_ITMAX;
-
-typedef double (*real_function)(double, void *);
 
 /**
     \brief Root search of a scalar function with the Brent's method. It uses
@@ -33,5 +31,4 @@ typedef double (*real_function)(double, void *);
 double brent(int *found, double a, double b, real_function f, void *extra,
              double epsilon);
 
-#endif // PUBLIC_API
 #endif // BRENT_H

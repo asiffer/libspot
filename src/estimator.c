@@ -24,10 +24,9 @@ static double grimshaw_w(double x, void *peaks_as_void) {
     unsigned long Nt_local = peaks_size(peaks);
     double u = 0.0;
     double v = 0.0;
-    double s;
 
     for (unsigned long i = 0; i < Nt_local; ++i) {
-        s = 1. + x * peaks->container.data[i];
+        double s = 1. + x * peaks->container.data[i];
         u += 1 / s;
         v += xlog(s);
     }

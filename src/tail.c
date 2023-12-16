@@ -9,7 +9,10 @@
  */
 #include "tail.h"
 
+typedef double (*estimator)(struct Peaks const *, double *, double *);
+
 estimator ESTIMATORS[] = {mom_estimator, grimshaw_estimator};
+
 unsigned int const NB_ESTIMATORS = sizeof(ESTIMATORS) / sizeof(estimator);
 
 int tail_init(struct Tail *tail, unsigned long size) {
@@ -50,14 +53,14 @@ double tail_quantile(struct Tail const *tail, double s, double q) {
 
 double tail_fit(struct Tail *tail) {
     struct Peaks const *peaks = &(tail->peaks);
-    double tmp_gamma, tmp_sigma = _NAN;
+    double tmp_gamma = _NAN;
+    double tmp_sigma = _NAN;
 
     double max_llhood = _NAN;
-    double llhood;
 
     for (unsigned int i = 0; i < NB_ESTIMATORS; ++i) {
         // compare estimators based on their log likelihood
-        llhood = ESTIMATORS[i](peaks, &tmp_gamma, &tmp_sigma);
+        double llhood = ESTIMATORS[i](peaks, &tmp_gamma, &tmp_sigma);
         if (is_nan(max_llhood) || (llhood > max_llhood)) {
             max_llhood = llhood;
             // update GPD parameters

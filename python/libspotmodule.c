@@ -114,7 +114,7 @@ static int Spot_init(Spot *self, PyObject *args, PyObject *kwds) {
     if (result < 0) {
         const unsigned long size = 256;
         char buffer[size];
-        error_msg(-result, buffer, size);
+        libspot_error(-result, buffer, size);
         PyErr_SetString(PyExc_RuntimeError, buffer);
     }
     return result;
@@ -148,7 +148,7 @@ static PyObject *Spot_fit(Spot *self, PyObject *data) {
     if (result < 0) {
         const unsigned long size = 256;
         char buffer[size];
-        error_msg(-result, buffer, size);
+        libspot_error(-result, buffer, size);
         PyErr_SetString(PyExc_RuntimeError, buffer);
     }
     Py_RETURN_NONE;

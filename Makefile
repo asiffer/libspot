@@ -55,6 +55,9 @@ UNITY_DIR = $(CURDIR)/unity
 PYTHON_DIR = $(CURDIR)/python
 # folder of python wheel
 PYTHON_DIST_DIR = $(PYTHON_DIR)/dist
+# local python version (like 311 or 312)
+PYTHON_VERSION = $(shell python -V|awk '{print $2}'|awk -F '.' '{print $1$2}')
+WHEEL_TAG = $(shell python -c 'from wheel import bdist_wheel as bw; abi=bw.get_abi_tag(); print("-".join([abi, abi, bw.get_platform(None)]))')
 # wasm folder
 WASM_DIR = $(CURDIR)/wasm
 # arduino lib
@@ -91,8 +94,8 @@ INSTALLED_HEADERS = $(HEADERS:$(INC_DIR)%.h=$(INSTALL_HEAD_DIR)%.h)
 # ========================================================================== #
 CC                 ?= cc
 CMOREFLAGS         :=
-CBASEFLAGS         := -O3 -std=c99 -I$(INC_DIR)
-CFLAGS             ?= $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic -D 'VERSION="$(VERSION)"' $(CMOREFLAGS)
+CBASEFLAGS         := -O3 -std=c99 -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
+CFLAGS             ?= $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic $(CMOREFLAGS)
 LDFLAGS            ?= -static -nostdlib
 CTESTFLAGS         := $(CBASEFLAGS) -I$(UNITY_DIR) -I$(TEST_DIR) -DTESTING -DUNITY_INCLUDE_DOUBLE -lm -fprofile-arcs -ftest-coverage -g
 
@@ -144,6 +147,7 @@ endef
 .PHONY: clean
 .PHONY: deps
 .PHONY: test
+.PHONY: check
 .PHONY: doxygen
 .PHONY: wheel
 
@@ -155,6 +159,7 @@ endef
 	@echo '          static    build the static library'
 	@echo '         dynamic    build the dynamic library'
 	@echo '             all    build both the static and dynamic libs'
+	@echo '             api    build libspot API header dist/spot.h'
 	@echo '         install    install the headers and the libraries'
 	@echo '           clean    remove the build artifacts'
 	@echo '         version    print the library version'
@@ -198,7 +203,7 @@ $(STATIC): $(OBJS)
 	@echo -e "$(OK)"
 
 $(DIST_DIR)/spot.h: $(HEADERS)
-	@$(call apify,include/structs.h) >> $@
+	@$(call apify,include/structs.h) > $@
 	@$(call apify,include/spot.h) >> $@
 	@clang-format --style=file -i $@
 
@@ -251,9 +256,9 @@ doxygen: $(DIST_DIR)/spot.h
 	@doxygen
 
 dev/doxygen/generated: doxygen
-	mkdir -p $(@D)
-	xsdata generate doxygen/xml/
-	mv generated $@
+	@mkdir -p $(@D) && rm -rf $@
+	@xsdata generate doxygen/xml/
+	@mv -f generated $@
 
 inject-version: $(HEADERS) $(SRCS)
 	@printf "%-55s" "Setting version to '$(VERSION)'"
@@ -270,10 +275,11 @@ inject-copyright: $(HEADERS) $(SRCS)
 	@sed -i -e 's,@copyright.*,@copyright $(LICENSE),' $^
 	@echo -e "$(OK)"
 
-docs/API: dev/doxygen/generated
-	@mkdir -p $@
-	@python3 dev/doxygen/cli.py docs -o "$@"
+docs/70_API.md: dev/doxygen/generated
+	@mkdir -p $(@D)
+	python3 dev/doxygen/generate_api_docs.py -o "$@"
 
+docs/API: docs/70_API.md
 
 
 # ========================================================================== #
@@ -282,6 +288,12 @@ docs/API: dev/doxygen/generated
 
 libspot.tar.gz:
 	@tar -cvf $@ src include Makefile benchmark/*.c 
+
+check:
+	@clang-tidy $(SRC_DIR)/*.c -- $(CFLAGS)
+
+fmt:
+	@clang-format -i $(SRC_DIR)/*.c $(INC_DIR)/*.h $(DIST_DIR)/spot.h
 
 clean:
 	rm -f $(OBJS)
@@ -293,17 +305,20 @@ clean:
 	rm -rf docs/API
 	rm -rf $(PYTHON_DIR)/build $(PYTHON_DIR)/dist $(PYTHON_DIR)/$(LIB).egg-info
 	rm -rf $(PYTHON_DIR)/$(LIB)/interface.py
+	rm -rf $(WASM_DIR)/dist
 	
 
 # ========================================================================== #
 # Python
 # ========================================================================== #
 
-wheel: $(PYTHON_DIR)/dist
-	cd $(PYTHON_DIR) && python3 setup.py bdist_wheel
 
-python3.%: $(PYTHON_DIR)/dist
-	podman run --rm -it -v $(shell pwd):/libspot -w /libspot python:3.$*-bullseye make wheel
+$(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl: $(PYTHON_DIR)/setup.py $(PYTHON_DIR)/libspotmodule.c $(SRC_DIR)/*.c
+	@cd $(PYTHON_DIR) && python3 setup.py bdist_wheel
+
+python: $(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl
+
+wheel: python
 
 python3.%: $(PYTHON_DIR)/dist
 	podman run --rm -it -v $(shell pwd):/libspot -w /libspot python:3.$*-bullseye make wheel
@@ -312,18 +327,13 @@ python-all: $(foreach v,6 7 8 9 10 11,python3.$(v))
 
 
 # ========================================================================== #
-# WASM
+# WASM/JS
 # ========================================================================== #
 
-# $(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.cpp
-# 	podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.46 \
-# 		emcc -lembind -I $(INC_DIR) \
-# 		-s WASM=1 \
-# 		-s EXPORTED_RUNTIME_METHODS=cwrap,ccall \
-# 		-s NO_EXIT_RUNTIME=1 \
-# 		-sEXPORTED_FUNCTIONS=_malloc,_free,_main \
-# 		-o $@ $^
+js: $(WASM_DIR)/dist/libspot.js
 
+$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.js
+	cd $(WASM_DIR) && bun run build && bun run build:types
 
 $(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c
 	podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.46 \
@@ -338,36 +348,28 @@ $(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c
 		-s EXPORTED_RUNTIME_METHODS=cwrap,ccall \
 		-s EXPORT_NAME=loadWASM \
 		-s NO_EXIT_RUNTIME=1 \
-		-s EXPORTED_FUNCTIONS=_spot_size,_spot_new,_spot_init,_spot_fit,_spot_step,_spot_quantile,_spot_probability,_spot_free,_error_msg,_libspot_version,_malloc,_free,_set_allocators,_main \
+		-s EXPORTED_FUNCTIONS=_spot_size,_spot_new,_spot_init,_spot_fit,_spot_step,_spot_quantile,_spot_probability,_spot_free,_libspot_error,_libspot_version,_malloc,_free,_set_allocators,_main \
 		-o $@ $^
 
-# --embind-emit-tsd interface.d.ts \
-# -s EXPORTED_FUNCTIONS=_spot_new,_spot_init,_spot_fit,_spot_step,_spot_free 
-# 		-s NO_EXIT_RUNTIME=1 \
-		-s WASM=1 \
-		-s EXPORT_ES6=1 \
-      	-s MODULARIZE=1 \
-		-s EXPORTED_RUNTIME_METHODS=cwrap,ccall \
-		-s EXPORTED_FUNCTIONS=_main \
 
 # ========================================================================== #
 # Arduino
 # ========================================================================== #
 
-# remove the headers of each file with awk
-$(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h: $(SORTED_HEADERS)
+
+$(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h: $(DIST_DIR)/spot.h
 	@mkdir -p $(@D)
-	@for i in $^; do awk '/^[/][*][*]/{c++} c!=1; /^ [*][/]/{c++}' $$i >> $@; done
-	@sed -i -e 's/^#include ".*h"//g' $@
+	@cp -u $< $@
 
 $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).cpp: $(SORTED_SRCS)
 	@mkdir -p $(@D)
 	echo '#include "$(ARDUINO_LIB).h"' > $@
 	@for i in $^; do sed 's/^#include ".*h"//g' $$i | awk '/^[/][*][*]/{c++} c!=1; /^ [*][/]/{c++}' >> $@; done
-#cat $^ | sed 's/^#include ".*h"//g' >> $@
 
 $(ARDUINO_DIR)/$(ARDUINO_LIB).zip: $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).cpp
 	cd $(ARDUINO_DIR) && zip -r $(ARDUINO_LIB).zip $(ARDUINO_LIB)/*
+
+arduino: $(ARDUINO_DIR)/$(ARDUINO_LIB).zip
 
 # ========================================================================== #
 # Test
@@ -421,11 +423,6 @@ coverage: $(TEST_COVERAGE_DIR)/html
 # Benchmarks
 # ========================================================================== #
 
-# $(BENCHMARK_DIR)/bin/%: $(BENCHMARK_DIR)/%.c $(DYNAMIC)
-# 	@mkdir -p $(@D)
-# 	@printf "%-25s" "CC   $(@F)"
-# 	@$(CC) $(CBASEFLAGS) $< -o "$@" -L$(LIB_DIR) -l:libspot.so.$(VERSION) -lm -DK=10000000 -DSEED=$$RANDOM
-# 	@echo -e "$(OK)"
 $(BENCHMARK_DIR)/bin/%: $(BENCHMARK_DIR)/%.c $(SRCS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "CC   $(@F)"
@@ -438,9 +435,6 @@ benchmark_%: $(BENCHMARK_DIR)/bin/%
 		$^ $(BENCHMARK_SIZE) $$(date +%N|sed s/...$$//) >> $(BENCHMARK_DIR)/$*.json; \
 	done
 
-# benchmark_%: $(BENCHMARK_DIR)/bin/%
-# 	@printf "%-25s\n" "RUN  $(@F)"
-# 	@LD_LIBRARY_PATH=$(LIB_DIR) $^ >> $(BENCHMARK_DIR)/$*.json
 
 
 

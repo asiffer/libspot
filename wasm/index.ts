@@ -68,11 +68,18 @@ export const libspotVersion = (): string => {
   return version;
 };
 
-const errorMsg = (code: number): string => {
+/**
+ *
+ * @param code error code
+ * @returns the message related to the error code
+ */
+export const libspotError = (code: number): string => {
   const size = 256;
   let ptr = libspot._malloc(size);
+  // fill with zeros
+  libspot.HEAPU8.fill(0, ptr, ptr + size);
   libspot.ccall(
-    "error_msg",
+    "libspot_error",
     null,
     ["number", "number", "number"],
     [code, ptr, size]
@@ -156,7 +163,7 @@ export class Spot {
     freg.register(this, this.ptr); // kind of destructor
     const code = spotInit(this.ptr, q, low, discardAnomalies, level, maxExcess);
     if (code < 0) {
-      throw new Error(errorMsg(-code));
+      throw new Error(libspotError(-code));
     }
   }
 
@@ -190,7 +197,7 @@ export class Spot {
     // call the function
     const code = spotFit(this.ptr, arrayPtr, data.length);
     if (code < 0) {
-      throw new Error(errorMsg(-code));
+      throw new Error(libspotError(-code));
     }
     // release heap
     libspot._free(arrayPtr);
@@ -206,7 +213,7 @@ export class Spot {
   step(x: number) {
     const code = spotStep(this.ptr, x);
     if (code < 0) {
-      throw new Error(errorMsg(-code));
+      throw new Error(libspotError(-code));
     }
     return code;
   }

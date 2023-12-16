@@ -1,5 +1,6 @@
 ---
 title: Python
+icon: material/language-python
 ---
 
 ## Install
@@ -14,11 +15,9 @@ The bindings are implemented as a CPython `C` extension (i.e. directly using the
 
 ## Get started
 
-
 ??? info "examples/basic.py"
     ```python
     --8<-- "examples/basic.py"
     ```
-
 
 ![](img/basic.svg)

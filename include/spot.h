@@ -53,7 +53,7 @@ void spot_free(struct Spot *spot);
  * @retval -ERR_EXCESS_THRESHOLD_IS_NAN the excess threshold is nan
  * @retval -ERR_ANOMALY_THRESHOLD_IS_NA the anomaly threshold is nan
  */
-int spot_fit(struct Spot *spot, double *data, unsigned long size);
+int spot_fit(struct Spot *spot, double const *data, unsigned long size);
 
 /**
  * @brief fit-predict step
@@ -65,7 +65,7 @@ int spot_fit(struct Spot *spot, double *data, unsigned long size);
  * @retval EXCESS data lives in the tail
  * @retval ANOMALY data is out of the threshold
  */
-enum SpotResult spot_step(struct Spot *spot, double x);
+int spot_step(struct Spot *spot, double x);
 
 /**
  * @brief Compute the value zq such that P(X>zq) = q
@@ -96,6 +96,15 @@ double spot_probability(struct Spot const *spot, double z);
 void set_allocators(malloc_fn m, free_fn f);
 
 /**
+ * @brief Set the ldexp/frexp functions
+ * @details By default these functions are provided but the API
+ * allows to change them
+ * @param l pointer to a "ldexp" function
+ * @param f pointer to a "frexp" function
+ */
+void set_float_utils(ldexp_fn l, frexp_fn f);
+
+/**
  * @brief Return the version of libspot
  *
  * @param[out] buffer input buffer to fill with
@@ -118,6 +127,6 @@ void libspot_license(char *buffer, unsigned long size);
  * @param[out] buffer input buffer to fill with
  * @param size size of the input buffer
  */
-void error_msg(enum LibspotError err, char *buffer, unsigned long size);
+void libspot_error(enum LibspotError err, char *buffer, unsigned long size);
 
 #endif // SPOT_H

@@ -1,7 +1,25 @@
-# libspot [![snap status](https://snapcraft.io/libspot/badge.svg)](https://snapcraft.io/libspot)
+<p align="center">
+    <img src="docs/img/logo.svg" style="max-width:50%" alt='libspot'/>
+</p>
+
+<h1 align="center">libspot</h1>
+
+<p align="center">
+<img src="https://img.shields.io/github/release/asiffer/libspot.svg" alt="release"/>
+<img src="https://img.shields.io/github/license/asiffer/libspot.svg" alt="license"/>
+</p>
+
+<p align="center">Born to flag outliers</p>
+
+**libspot** is a `C` library to flag outliers in high-throughput streaming data.
+The current project also provides `Python` and `Javascript` bindings (through webassembly).
+
+Checkout the [docs](https://asiffer.github.io/libspot/)!
+
+<!-- # libspot [![snap status](https://snapcraft.io/libspot/badge.svg)](https://snapcraft.io/libspot)
 
 ## Introduction
-**libspot** is a `C++` library which aims to detect anomalies in univariate streaming data. 
+**libspot** is a `C++` library which aims to detect anomalies in univariate streaming data.
 
 Github pages : https://asiffer.github.io/libspot/
 
@@ -41,7 +59,7 @@ sudo snap install libspot --edge
 
 ### Debian package
 
-Basically, you need to add the ppa and download the packages you want 
+Basically, you need to add the ppa and download the packages you want
 (`libspot` or `libspot-dev` if you want the headers)
 
 ```shell
@@ -58,8 +76,8 @@ TODO
 
 Yes, you could interact with the library with python bindings (see https://asiffer.github.io/libspot/python/).
 
-## About 
+## About
 
 This work is based on the following publication:
 
-*Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly Detection in Streams with Extreme Value Theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075). ACM.*
+*Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly Detection in Streams with Extreme Value Theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075). ACM.* -->
