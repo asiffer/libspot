@@ -19,6 +19,7 @@ jobs:
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "~/.bun/bin" >> $GITHUB_PATH
+          cd wasm
       - name: Build
         run: bun run build && bun run build:types
       - name: Generate package-lock.json
