@@ -25,7 +25,7 @@ jobs:
       - name: Build wheels
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_ENVIRONMENT: "GITHUB_ACTION_PATH=${{ github.action_path }}"
+          CIBW_ENVIRONMENT: "GITHUB_ACTION_PATH=${{ env.GITHUB_ACTION_PATH }}"
 
       - uses: actions/upload-artifact@v3
         with:
