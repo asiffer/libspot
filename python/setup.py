@@ -3,14 +3,14 @@ import os
 from setuptools import Extension, setup
 
 # github action context
-GITHUB_ACTION_REPOSITORY: str | None = os.environ.get("GITHUB_ACTION_REPOSITORY", None)
-
+GITHUB_ACTION_REPOSITORY = os.environ.get("GITHUB_ACTION_REPOSITORY", None)
 if GITHUB_ACTION_REPOSITORY:
     ROOT = os.path.abspath(GITHUB_ACTION_REPOSITORY)
     PWD = os.path.join(ROOT, "python")
 else:
     PWD = os.path.dirname(__file__)
     ROOT = os.path.abspath(os.path.join(PWD, ".."))
+
 
 INCLUDE_DIRS = [os.path.join(ROOT, "include")]
 SRC_DIR = os.path.join(ROOT, "src")
