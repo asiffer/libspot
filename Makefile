@@ -59,7 +59,11 @@ PYTHON_DIST_DIR = $(PYTHON_DIR)/dist
 PYTHON_VERSION = $(shell python -V|awk '{print $2}'|awk -F '.' '{print $1$2}')
 WHEEL_TAG = $(shell python -c 'from wheel import bdist_wheel as bw; abi=bw.get_abi_tag(); print("-".join([abi, abi, bw.get_platform(None)]))')
 # emscripten compiler
-EMCC = $(shell command -pv emcc || echo 'podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.46 emcc')
+EMCC = $(shell command -pv emcc)
+ifndef $(EMCC)
+	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.46 emcc
+endif
+
 # wasm folder
 WASM_DIR = $(CURDIR)/wasm
 # arduino lib
@@ -309,6 +313,7 @@ clean:
 	rm -rf $(PYTHON_DIR)/build $(PYTHON_DIR)/dist $(PYTHON_DIR)/$(LIB).egg-info
 	rm -rf $(PYTHON_DIR)/$(LIB)/interface.py
 	rm -rf $(WASM_DIR)/dist
+	rm -rf $(WASM_DIR)/libspot.js
 	
 
 # ========================================================================== #
@@ -336,9 +341,9 @@ python-all: $(foreach v,6 7 8 9 10 11,python3.$(v))
 js: $(WASM_DIR)/dist/libspot.js
 
 $(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.js 
-	cd $(WASM_DIR) && bun run build && bun run build:types
+	cd $(WASM_DIR) && bun run build
 
-$(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c $(DIST_DIR)/spot.h
+$(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
 	$(EMCC) $(CFLAGS) \
 		-s WASM=1 \
 		-s FILESYSTEM=0 \

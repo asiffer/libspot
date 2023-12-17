@@ -31,7 +31,7 @@ jobs:
           curl -fsSL https://bun.sh/install | bash
           echo "~/.bun/bin" >> $GITHUB_PATH
       - name: Build core libspot.js
-        run: make js
+        run: make api && make js
       - name: Build final js library
         run: bun build:types && bun build:lib
         working-directory: ./wasm

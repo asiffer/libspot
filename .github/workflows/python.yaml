@@ -25,7 +25,8 @@ jobs:
         run: python -m cibuildwheel --output-dir wheelhouse
         working-directory: ./python
         env:
-          CIBW_ENVIRONMENT: "LIBSPOT_PATH=${{ env.LIBSPOT_PATH }}"
+          CIBW_CONTAINER_ENGINE: "podman; create_args: -v ${{ env.LIBSPOT_PATH }}:/libspot"
+          CIBW_ENVIRONMENT: "LIBSPOT_PATH=/libspot"
 
       - uses: actions/upload-artifact@v3
         with:
