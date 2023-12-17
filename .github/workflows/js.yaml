@@ -5,9 +5,6 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./wasm
     permissions:
       contents: read
       packages: write
@@ -40,7 +37,9 @@ jobs:
         working-directory: ./wasm
       - name: Generate package-lock.json
         run: npm install
+        working-directory: ./wasm
       - name: Publish to Github
         run: npm publish
+        working-directory: ./wasm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
