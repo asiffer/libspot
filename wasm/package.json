@@ -22,7 +22,8 @@
   "scripts": {
     "build:wasm": "rm -f libspot.js && make -C .. wasm/libspot.js",
     "build:types": "rm -rf ./types && tsc",
-    "build": "bun build:wasm && bun build --minify ./index.ts --outfile dist/libspot.js --target browser --tsconfig-override ./tsconfig.json"
+    "build:lib": "bun build --minify ./index.ts --outfile dist/libspot.js --target browser --tsconfig-override ./tsconfig.json",
+    "build": "bun build:wasm && bun build:lib"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
