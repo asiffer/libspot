@@ -205,6 +205,7 @@ $(STATIC): $(OBJS)
 	@echo -e "$(OK)"
 
 $(DIST_DIR)/spot.h: $(HEADERS)
+	@mkdir -p $(@D)
 	@$(call apify,include/structs.h) > $@
 	@$(call apify,include/spot.h) >> $@
 	@clang-format --style=file -i $@

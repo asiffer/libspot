@@ -3,9 +3,9 @@ import os
 from setuptools import Extension, setup
 
 # github action context
-GITHUB_ACTION_PATH = os.environ.get("GITHUB_ACTION_PATH", None)
-if GITHUB_ACTION_PATH is not None:
-    ROOT = os.path.abspath(GITHUB_ACTION_PATH)
+LIBSPOT_PATH = os.environ.get("LIBSPOT_PATH", None)
+if LIBSPOT_PATH is not None:
+    ROOT = os.path.abspath(LIBSPOT_PATH)
     PWD = os.path.join(ROOT, "python")
 else:
     PWD = os.path.dirname(__file__)
