@@ -23,13 +23,13 @@ jobs:
         run: python -m pip install cibuildwheel
 
       - name: Build wheels
-        run: cd python && python -m cibuildwheel --output-dir wheelhouse
+        run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_ENVIRONMENT: "GITHUB_ACTION_PATH=${{ github.action_path }}"
 
       - uses: actions/upload-artifact@v3
         with:
-          path: ./python/wheelhouse/*.whl
+          path: ./wheelhouse/*.whl
 
   upload_all:
     needs: [build_wheels]

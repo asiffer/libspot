@@ -332,7 +332,7 @@ python-all: $(foreach v,6 7 8 9 10 11,python3.$(v))
 
 js: $(WASM_DIR)/dist/libspot.js
 
-$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.js
+$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.js api
 	cd $(WASM_DIR) && bun run build && bun run build:types
 
 $(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c
