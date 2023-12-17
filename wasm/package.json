@@ -10,7 +10,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asiffer/libspot.git"
+    "url": "git+https://github.com/asiffer/libspot.git",
+    "directory": "wasm"
   },
   "type": "module",
   "files": [

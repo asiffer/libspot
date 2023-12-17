@@ -29,6 +29,7 @@ jobs:
         env:
           CIBW_CONTAINER_ENGINE: "podman; create_args: -v ${{ env.LIBSPOT_PATH }}:/libspot"
           CIBW_ENVIRONMENT: "LIBSPOT_PATH=/libspot"
+          CIBW_PROJECT_REQUIRES_PYTHON: ">=3.8"
 
       - uses: actions/upload-artifact@v3
         with:
