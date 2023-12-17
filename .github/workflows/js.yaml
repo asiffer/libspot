@@ -21,7 +21,7 @@ jobs:
           echo "~/.bun/bin" >> $GITHUB_PATH
           cd wasm
       - name: Build
-        run: bun run build && bun run build:types
+        run: pwd && ls -alh && bun run build && bun run build:types
       - name: Generate package-lock.json
         run: npm install
       - name: Publish to Github
