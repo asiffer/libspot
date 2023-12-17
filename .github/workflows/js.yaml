@@ -32,9 +32,9 @@ jobs:
       - name: Build final js library
         run: bun build:types && bun build:lib
         working-directory: ./wasm
-      - name: Generate package-lock.json
-        run: npm install
-        working-directory: ./wasm
+      # - name: Generate package-lock.json
+      #   run: npm install
+      #   working-directory: ./wasm
       - name: Publish to Github
         run: npm publish
         working-directory: ./wasm
