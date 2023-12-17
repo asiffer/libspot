@@ -6,6 +6,9 @@ jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: ./python
     strategy:
       matrix:
         os: [ubuntu-22.04, windows-2019, macos-11]
@@ -22,7 +25,7 @@ jobs:
       - name: Build wheels
         run: cd python && python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_ENVIRONMENT: "GITHUB_ACTION_PATH: ${{ github.action_path }}"
+          CIBW_ENVIRONMENT: "GITHUB_ACTION_PATH=${{ github.action_path }}"
 
       - uses: actions/upload-artifact@v3
         with:

@@ -5,6 +5,9 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./wasm
     permissions:
       contents: read
       packages: write
@@ -19,7 +22,6 @@ jobs:
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "~/.bun/bin" >> $GITHUB_PATH
-          cd wasm
       - name: Build
         run: pwd && ls -alh && bun run build && bun run build:types
       - name: Generate package-lock.json
