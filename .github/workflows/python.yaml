@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Define spot.h
+        run: make api
       - name: Define LIBSPOT_PATH
         run: echo "LIBSPOT_PATH=$(pwd)" >> $GITHUB_ENV
         # Used to host cibuildwheel
