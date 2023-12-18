@@ -7,7 +7,6 @@ from wheel.bdist_wheel import bdist_wheel
 
 ROOT = "../"
 
-# ROOT = "libspot/"
 
 INCLUDE_DIRS = [os.path.join(ROOT, "include"), os.path.join(ROOT, "dist")]
 SRC_DIR = os.path.join(ROOT, "src")

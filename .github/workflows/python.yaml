@@ -3,7 +3,20 @@ name: Python
 on: [push, pull_request]
 
 jobs:
+  gen_api:
+    name: Generate public api
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Define spot.h
+        run: make api
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api
+          path: dist/spot.h
+          if-no-files-found: error
+
   build_wheels:
+    needs: gen_api
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -12,11 +25,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Define spot.h
-        run: make api
-      - name: Define LIBSPOT_PATH
-        run: echo "LIBSPOT_PATH=$(pwd)" >> $GITHUB_ENV
-        # Used to host cibuildwheel
+      - uses: actions/download-artifact@v4
+        with:
+          name: api
+          path: dist/
+      - name: Debug
+        run: |
+          pwd
+          ls -alh --color=auto 
+          ls -alh --color=auto dist
+
       - name: Install python
         uses: actions/setup-python@v3
 
