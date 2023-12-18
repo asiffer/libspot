@@ -1,11 +1,11 @@
-// TODO: maybe writing a cpython extension could be nice but I don't know how
-// to integrate the Spot struct currently. Maybe the ctypes interface is enough
-// for the moment...
+#include "../dist/spot.h"
+#include <stdlib.h>
 
 #define PY_SSIZE_T_CLEAN
-#include "../dist/spot.h"
 #include <Python.h>
+//
 #include <structmember.h>
+
 #define STR(x) STR_(x)
 #define STR_(x) #x
 
@@ -15,9 +15,13 @@
 #define SPOT_INIT_MAX_EXCESS 500
 
 // define a wrapper around the raw Spot structure
+// clang-format off
 typedef struct {
-    PyObject_HEAD struct Spot _spot;
+    PyObject_HEAD
+    struct Spot _spot;
 } Spot;
+
+// clang-format on
 
 static PyObject *to_python_list(double *buffer, unsigned long size) {
     PyObject *list = PyList_New(size);
@@ -30,7 +34,7 @@ static PyObject *to_python_list(double *buffer, unsigned long size) {
             Py_DECREF(list);
             return NULL;
         }
-        PyList_SET_ITEM(list, i, num);
+        PyList_SetItem(list, i, num);
     }
     return list;
 }
@@ -112,9 +116,8 @@ static int Spot_init(Spot *self, PyObject *args, PyObject *kwds) {
     int result = spot_init(&(self->_spot), q, low, discard_anomalies, level,
                            max_excess);
     if (result < 0) {
-        const unsigned long size = 256;
-        char buffer[size];
-        libspot_error(-result, buffer, size);
+        char buffer[256];
+        libspot_error(-result, buffer, 256);
         PyErr_SetString(PyExc_RuntimeError, buffer);
     }
     return result;
@@ -131,13 +134,13 @@ static PyObject *Spot_fit(Spot *self, PyObject *data) {
         return NULL;
     }
 
-    unsigned long size = (unsigned long)PySequence_Fast_GET_SIZE(seq);
+    unsigned long size = (unsigned long)PyList_Size(seq);
 
     // allocate a new raw buffer to pass to the fit method
     double *x = malloc(size * sizeof(double));
     for (unsigned long i = 0; i < size; i++) {
         // https://docs.python.org/3/c-api/float.html#c.PyFloat_AsDouble
-        x[i] = PyFloat_AsDouble(PySequence_Fast_GET_ITEM(seq, i));
+        x[i] = PyFloat_AsDouble(PyList_GetItem(seq, i));
     }
     // libspot API call
     int result = spot_fit(&(self->_spot), x, size);
@@ -146,9 +149,8 @@ static PyObject *Spot_fit(Spot *self, PyObject *data) {
     // check result
 
     if (result < 0) {
-        const unsigned long size = 256;
-        char buffer[size];
-        libspot_error(-result, buffer, size);
+        char buffer[256];
+        libspot_error(-result, buffer, 256);
         PyErr_SetString(PyExc_RuntimeError, buffer);
     }
     Py_RETURN_NONE;
@@ -242,10 +244,10 @@ static void Spot_dealloc(Spot *self) {
     // free internal structure
     // libspot API call
     spot_free(&(self->_spot));
-    Py_TYPE(self)->tp_free((PyObject *)self);
+    // Py_TYPE(self)->tp_free((PyObject *)self);
 }
 
-static PyMemberDef Spot_members[] = {
+static const PyMemberDef Spot_members[] = {
     {"q", T_DOUBLE, offsetof(Spot, _spot.q), READONLY, "Anomaly probability"},
     {"level", T_DOUBLE, offsetof(Spot, _spot.level), READONLY,
      "Location of the tail"},
@@ -263,7 +265,7 @@ static PyMemberDef Spot_members[] = {
     {NULL} /* Sentinel */
 };
 
-static PyMethodDef Spot_methods[] = {
+static const PyMethodDef Spot_methods[] = {
     {"fit", (PyCFunction)Spot_fit, METH_O, Spot_fit_doc},
     {"step", (PyCFunction)Spot_step, METH_O, Spot_step_doc},
     {"quantile", (PyCFunction)Spot_quantile, METH_O, Spot_quantile_doc},
@@ -275,18 +277,44 @@ static PyMethodDef Spot_methods[] = {
     {NULL} /* Sentinel */
 };
 
-static PyTypeObject SpotType = {
-    PyVarObject_HEAD_INIT(NULL, 0).tp_name = "libspot.Spot",
-    .tp_doc = Spot_init_doc,
-    .tp_basicsize = sizeof(Spot),
-    .tp_itemsize = 0,
-    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
-    .tp_new = PyType_GenericNew,
-    .tp_init = (initproc)Spot_init,
-    .tp_dealloc = (destructor)Spot_dealloc,
-    .tp_methods = Spot_methods,
-    .tp_members = Spot_members,
+// new object definition using Limited API
+// see
+// https://github.com/joerick/python-abi3-package-sample/tree/main
+// https://doc.qt.io/qtforpython-6/developer/limited_api.html#future-versions-of-the-limited-api
+
+static PyType_Slot SpotType_slots[] = {
+    {Py_tp_dealloc, (void *)Spot_dealloc},
+    {Py_tp_members, (void *)Spot_members},
+    {Py_tp_methods, (void *)Spot_methods},
+    {Py_tp_init, (void *)Spot_init},
+    {Py_tp_dealloc, (void *)Spot_dealloc},
+    {Py_tp_doc, (void *)Spot_init_doc},
+    {0, NULL},
 };
+
+static PyType_Spec SpotType_spec = {
+    .name = "libspot.Spot",
+    .basicsize = sizeof(Spot),
+    .itemsize = 0,
+    .flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
+    .slots = SpotType_slots,
+};
+
+// clang-format off
+// static PyTypeObject SpotType = {
+//     PyObject_HEAD_INIT(NULL)
+//     .tp_name = "libspot.Spot",
+//     .tp_doc = Spot_init_doc,
+//     .tp_basicsize = sizeof(Spot),
+//     .tp_itemsize = 0,
+//     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE,
+//     .tp_new = PyType_GenericNew,
+//     .tp_init = (initproc)Spot_init,
+//     .tp_dealloc = (destructor)Spot_dealloc,
+//     .tp_methods = Spot_methods,
+//     .tp_members = Spot_members,
+// };
+// clang-format on
 
 static PyModuleDef libspotmodule = {
     PyModuleDef_HEAD_INIT,
@@ -296,22 +324,21 @@ static PyModuleDef libspotmodule = {
 };
 
 PyMODINIT_FUNC PyInit_libspot(void) {
-    PyObject *m;
-    if (PyType_Ready(&SpotType) < 0) {
+    PyObject *SpotType = PyType_FromSpec(&SpotType_spec);
+    if (PyType_Ready((PyTypeObject *)SpotType) < 0) {
         return NULL;
     }
 
-    m = PyModule_Create(&libspotmodule);
+    PyObject *m = PyModule_Create(&libspotmodule);
     if (m == NULL) {
         return NULL;
     }
 
-    Py_INCREF(&SpotType);
+    Py_INCREF(SpotType);
 
     // inject __version__
-    const unsigned long size = 64;
-    char buffer[size];
-    libspot_version(buffer, size);
+    char buffer[64];
+    libspot_version(buffer, 64);
     if (PyModule_AddStringConstant(m, "__version__", buffer) < 0) {
         return NULL;
     }
@@ -328,7 +355,7 @@ PyMODINIT_FUNC PyInit_libspot(void) {
     }
 
     // add Spot object
-    PyModule_AddObject(m, "Spot", (PyObject *)&SpotType);
+    PyModule_AddObject(m, "Spot", SpotType);
 
     // set default allocators
     // libspot API call

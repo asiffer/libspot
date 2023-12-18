@@ -323,17 +323,16 @@ clean:
 
 $(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl: $(PYTHON_DIR)/setup.py $(PYTHON_DIR)/libspotmodule.c $(SRC_DIR)/*.c
 	@mkdir -p $(@D)
-	@cd $(PYTHON_DIR) && python3 setup.py bdist_wheel
+	python -m build -w -o $(PYTHON_DIR)/dist $(PYTHON_DIR)
 
 python: $(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl
 
 wheel: python
 
 python3.%:
-	podman run --rm -it -v $(shell pwd):/libspot -w /libspot python:3.$* make wheel
+	podman run --rm -it -v $(shell pwd):/libspot -w /libspot python:3.$* python -m build -w -o $(PYTHON_DIR)/dist $(PYTHON_DIR)
 
-python-all: $(foreach v,6 7 8 9 10 11 12,python3.$(v))
-
+python-all: $(foreach v,11 12,python3.$(v))
 
 # ========================================================================== #
 # WASM/JS
@@ -341,10 +340,10 @@ python-all: $(foreach v,6 7 8 9 10 11 12,python3.$(v))
 
 js: $(WASM_DIR)/dist/libspot.js
 
-$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.js 
+$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.core.js 
 	cd $(WASM_DIR) && bun run build
 
-$(WASM_DIR)/libspot.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
+$(WASM_DIR)/libspot.core.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
 	$(EMCC) $(CFLAGS) \
 		-s WASM=1 \
 		-s FILESYSTEM=0 \

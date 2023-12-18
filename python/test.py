@@ -1,11 +1,11 @@
 import inspect
 import struct
+import tempfile
 from unittest import TestCase
 
+import libspot
 import matplotlib.pyplot as plt
 import numpy as np
-
-import libspot
 from libspot import Spot  # pylint: disable=E0611
 
 
@@ -103,4 +103,7 @@ class Test(TestCase):
         plt.plot(X)
         plt.plot(T, ls="--", lw=2)
         plt.scatter(Ax, Ay, color="red")
-        plt.savefig("/tmp/stream.png")
+
+        file = tempfile.mktemp(suffix=".png")
+        plt.savefig(file)
+        print("Saving to", file)

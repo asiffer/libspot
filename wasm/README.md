@@ -5,12 +5,12 @@ It uses `bun` to build and test the final package.
 
 ## Core library
 
-The core library, namely `libspot.js`, is generated from the root project.
+The core library, namely `libspot.core.js`, is generated from the root project.
 
 ```
 # from project root directory
-# it generates ./wasm/libspot.js
-make ./wasm/libspot.js
+# it generates ./wasm/libspot.core.js
+make ./wasm/libspot.core.js
 ```
 
 ## Interface
@@ -32,11 +32,3 @@ See `package.json` for the script definition.
 ```bash
 bun run build
 ```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

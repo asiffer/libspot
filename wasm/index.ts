@@ -1,4 +1,4 @@
-import loadWASM from "./libspot.js";
+import loadWASM from "./libspot.core.js";
 
 const libspot = await loadWASM();
 

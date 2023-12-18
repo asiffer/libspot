@@ -1,28 +1,21 @@
+import ctypes
 import os
+import sys
 
 from setuptools import Extension, setup
+from wheel.bdist_wheel import bdist_wheel
 
-# github action context
-LIBSPOT_PATH = os.environ.get("LIBSPOT_PATH", None)
-if LIBSPOT_PATH is not None:
-    ROOT = os.path.abspath(LIBSPOT_PATH)
-    PWD = os.path.join(ROOT, "python")
-else:
-    PWD = os.path.dirname(__file__)
-    ROOT = os.path.abspath(os.path.join(PWD, ".."))
+ROOT = "../"
 
+# ROOT = "libspot/"
 
-print("ENVIRON:", os.environ)
-print("PWD:", PWD)
-print("ROOT:", ROOT)
-
-INCLUDE_DIRS = [os.path.join(ROOT, "include")]
+INCLUDE_DIRS = [os.path.join(ROOT, "include"), os.path.join(ROOT, "dist")]
 SRC_DIR = os.path.join(ROOT, "src")
 SOURCES = [
     os.path.join(ROOT, "src", f)
     for f in os.listdir(os.path.join(ROOT, "src"))
     if f.endswith(".c")
-] + [os.path.join(ROOT, "python/libspotmodule.c")]
+] + ["libspotmodule.c"]
 
 
 def get_version() -> str:
@@ -35,6 +28,62 @@ def get_version() -> str:
     i = makefile.find("VERSION")
     j = makefile.find("\n", i)
     return makefile[i:j].replace("VERSION", "").replace("=", "").strip()
+
+
+class bdist_wheel_abi3(bdist_wheel):
+    def get_tag(self):
+        python, abi, plat = super().get_tag()
+
+        if python.startswith("cp"):
+            # on CPython, our wheels are abi3 and compatible back to 3.6
+            return "cp36", "abi3", plat
+
+        return python, abi, plat
+
+
+define_macros = [
+    ("VERSION", f'"{get_version()}"'),
+    ("Py_LIMITED_API", "0x03060000"),  # macro to use Python Limited API (here >=cp36)
+]
+
+# windows specific
+if sys.platform == "win32":
+    # define macros manually based on ctypes output
+    sizeof_double = ctypes.sizeof(ctypes.c_double)
+    size_max = hex(pow(2, 8 * ctypes.sizeof(ctypes.c_size_t)) - 1)
+    size = {
+        "unsigned": ctypes.sizeof(ctypes.c_uint),
+        "unsigned long": ctypes.sizeof(ctypes.c_ulong),
+        "unsigned long long": ctypes.sizeof(ctypes.c_ulonglong),
+    }
+    uint32_type = next(key for key, value in size.items() if value == 4)
+    uint64_type = next(key for key, value in size.items() if value == 8)
+
+    define_macros += [
+        ("__SIZEOF_DOUBLE__", sizeof_double),
+        ("__UINT32_TYPE__", uint32_type),
+        ("__UINT64_TYPE__", uint64_type),
+        ("__SIZE_MAX__", size_max),
+    ]
+
+
+lib = Extension(
+    "libspot",
+    language="c",
+    include_dirs=INCLUDE_DIRS,
+    sources=SOURCES,
+    extra_compile_args=["-std=c99"],
+    define_macros=define_macros,
+    py_limited_api=True,
+)
+
+
+setup(
+    version=get_version(),
+    test_suite="test.Test",
+    ext_modules=[lib],
+    cmdclass={"bdist_wheel": bdist_wheel_abi3},
+)
 
 
 # def modified_cflags() -> str:
@@ -54,46 +103,3 @@ def get_version() -> str:
 
 # modify CFLAGS (see above)
 # sysconfig._CONFIG_VARS["CFLAGS"] = modified_cflags()  #  type: ignore
-
-
-# lib = Extension(
-#     "libspot",
-#     include_dirs=INCLUDE_DIRS,
-#     sources=SOURCES,
-#     # extra_compile_args=["-Wall", "-pedantic", "-Werror"],
-#     extra_link_args=["-nostdlib"],
-# )
-
-lib = Extension(
-    "libspot",
-    language="c",
-    include_dirs=INCLUDE_DIRS,
-    sources=SOURCES,
-    extra_compile_args=["-std=c99"],
-    extra_link_args=["-nostdlib"],
-    define_macros=[("VERSION", f'"{get_version()}"')],
-)
-
-
-setup(
-    name="libspot",
-    version=get_version(),
-    description="Born to flag outliers (from python)",
-    author="Alban Siffer",
-    author_email="alban.siffer@irisa.fr",
-    url="https://asiffer.github.io/libspot/",
-    license="LGPLv3",
-    test_suite="test.Test",
-    ext_modules=[lib],
-    classifiers=[
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Developers",
-        "Intended Audience :: Information Technology",
-        "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
-        "Programming Language :: C",
-        "Programming Language :: Python :: 3",
-        "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Topic :: Scientific/Engineering :: Mathematics",
-    ],
-)
