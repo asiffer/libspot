@@ -7,6 +7,7 @@ jobs:
     name: Generate public api
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
       - name: Define spot.h
         run: make api
       - uses: actions/upload-artifact@v4
