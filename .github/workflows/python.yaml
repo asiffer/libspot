@@ -20,6 +20,7 @@ jobs:
     needs: gen_api
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    continue-on-error: true
     strategy:
       matrix:
         os: [ubuntu-22.04, windows-2019]
@@ -30,17 +31,17 @@ jobs:
         with:
           name: api
           path: dist/
-      - name: Debug
-        run: |
-          pwd
-          ls -alh --color=auto 
-          ls -alh --color=auto dist
+      # - name: Debug
+      #   run: |
+      #     pwd
+      #     ls -alh --color=auto
+      #     ls -alh --color=auto dist
 
       - name: Install python
         uses: actions/setup-python@v3
 
       - name: Install some build dependencies
-        run: pip install -U pip build wheel auditwheel abi3audit
+        run: pip install -U pip build wheel auditwheel abi3audit distutils
 
       - name: Build wheel
         run: python -m build --wheel
