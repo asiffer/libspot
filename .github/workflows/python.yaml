@@ -44,7 +44,7 @@ jobs:
         run: python -m pip install -U pip setuptools build wheel abi3audit
 
       - name: Build wheel
-        run: python -m build --wheel
+        run: python -m build --wheel --outdir dist
         working-directory: ./python
 
       - if: runner.os == 'Linux'
@@ -57,6 +57,8 @@ jobs:
       - if: runner.os == 'Windows'
         name: Repair wheel (windows)
         run: |
+          dir
+          dir dist
           pip install -U delvewheel
           delvewheel repair -w wheel --strip dist/*.whl
         working-directory: ./python
