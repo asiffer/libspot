@@ -47,15 +47,15 @@ jobs:
         run: python -m build --wheel
         working-directory: ./python
 
-      - if: ${{ matrix.os }} == 'ubuntu-latest'
-        name: Repair wheel
+      - if: runner.os == 'Linux'
+        name: Repair wheel (linux)
         run: |
           pip install -U auditwheel patchelf
           auditwheel repair -w wheel --strip dist/*.whl
         working-directory: ./python
 
-      - if: ${{ matrix.os }} == 'windows-latest'
-        name: Repair wheel
+      - if: runner.os == 'Windows'
+        name: Repair wheel (windows)
         run: |
           pip install -U delvewheel
           delvewheel repair -w wheel --strip dist/*.whl
