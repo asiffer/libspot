@@ -72,10 +72,6 @@ jobs:
         run: abi3audit --strict --report dist/$((dir wheel|Select-Object -First 1).Name)
         working-directory: ./python
 
-      - name: Check abi3
-        run: abi3audit --strict --report wheel/$
-        working-directory: ./python
-
       - uses: actions/upload-artifact@v3
         with:
           path: ./python/wheel/*.whl
