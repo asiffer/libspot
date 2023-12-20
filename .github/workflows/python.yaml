@@ -55,18 +55,25 @@ jobs:
           auditwheel repair -w wheel --strip dist/*.whl
         working-directory: ./python
 
+      - if: runner.os == 'Linux'
+        name: Check abi3 (Linux)
+        run: abi3audit --strict --report wheel/*.whl
+        working-directory: ./python
+
       - if: runner.os == 'Windows'
         name: Repair wheel (windows)
         run: |
-          dir
-          dir dist
-          echo "$((dir dist|Select-Object -First 1).Name)"
           pip install -U delvewheel
           delvewheel repair -w wheel --strip dist/$((dir dist|Select-Object -First 1).Name)
         working-directory: ./python
 
+      - if: runner.os == 'Windows'
+        name: Check abi3 (Windows)
+        run: abi3audit --strict --report dist/$((dir wheel|Select-Object -First 1).Name)
+        working-directory: ./python
+
       - name: Check abi3
-        run: abi3audit --strict --report wheel/*.whl
+        run: abi3audit --strict --report wheel/$
         working-directory: ./python
 
       - uses: actions/upload-artifact@v3
