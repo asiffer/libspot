@@ -32,6 +32,13 @@ jobs:
       - name: Build final js library
         run: bun build:types && bun build:lib
         working-directory: ./wasm
+      - name: Build npm package
+        run: npm pack
+        working-directory: ./wasm
+      - name: Upload npm package
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./wasm/asiffer-libspot*.tgz
       - name: Upload libspot.js
         uses: actions/upload-artifact@v4
         with:

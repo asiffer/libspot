@@ -15,7 +15,8 @@
   },
   "type": "module",
   "files": [
-    "./libspot.js"
+    "./dist/libspot.js",
+    "./types/index.d.ts"
   ],
   "main": "./dist/libspot.js",
   "types": "./types/index.d.ts",

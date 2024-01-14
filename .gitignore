@@ -18,6 +18,9 @@ python/*.so
 python/__pycache__
 wasm/types 
 wasm/libspot.core.js
+wasm/*.tgz
+wasm/node_modules
+wasm/dist
 *.gcov
 *.gcda
 *.gcno
