@@ -32,6 +32,10 @@ jobs:
       - name: Build final js library
         run: bun build:types && bun build:lib
         working-directory: ./wasm
+      - name: Upload libspot.js
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./wasm/dist/libspot.js
       # - name: Generate package-lock.json
       #   run: npm install
       #   working-directory: ./wasm
