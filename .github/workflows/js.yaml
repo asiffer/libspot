@@ -39,10 +39,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: ./wasm/asiffer-libspot*.tgz
+          name: libspot.tgz
       - name: Upload libspot.js
         uses: actions/upload-artifact@v4
         with:
           path: ./wasm/dist/libspot.js
+          name: libspot.js
       # - name: Generate package-lock.json
       #   run: npm install
       #   working-directory: ./wasm
