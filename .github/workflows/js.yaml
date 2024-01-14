@@ -28,7 +28,7 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
       - uses: oven-sh/setup-bun@v1
       - name: Build core libspot.js
-        run: make api && make js
+        run: make api && make js EMCC=emcc
       - name: Build final js library
         run: bun build:types && bun build:lib
         working-directory: ./wasm

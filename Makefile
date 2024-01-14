@@ -59,7 +59,7 @@ PYTHON_DIST_DIR = $(PYTHON_DIR)/dist
 PYTHON_VERSION = $(shell python -V|awk '{print $2}'|awk -F '.' '{print $1$2}')
 WHEEL_TAG = $(shell python -c 'from wheel import bdist_wheel as bw; abi=bw.get_abi_tag(); print("-".join([abi, abi, bw.get_platform(None)]))')
 # emscripten compiler
-EMCC = $(shell command -pv emcc)
+EMCC ?= $(shell command -pv emcc)
 ifndef $(EMCC)
 	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.51 emcc
 endif
