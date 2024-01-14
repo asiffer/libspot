@@ -15,7 +15,8 @@
  * @brief \`malloc_fn\` is a pointer to a malloc-type function
  * i.e. with prototype:
  * \`void * malloc(size_t)\`
- * @details __SIZE_TYPE__ define the size_t type. This type is notably used
+ *
+ * \`__SIZE_TYPE__\` define the size_t type. This type is notably used
  * for malloc but it depends on the architecture. As we assume we receive
  * malloc-like functions we have to be compliant with their prototypes.
  */
@@ -32,7 +33,8 @@ typedef void (*free_fn)(void *);
  * @brief \`frexp_fn\` is a pointer to a frexp-type function
  * i.e. with prototype:
  * \`double frexp_fn(double, int*)\`
- * @details This function decomposes a floating point value
+ *
+ * This function decomposes a floating point value
  * into a normalized fraction and an integral power of 2.
  * See https://en.cppreference.com/w/c/numeric/math/frexp
  */
@@ -42,7 +44,8 @@ typedef double (*frexp_fn)(double, int *);
  * @brief \`ldexp_fn\` is a pointer to a ldexp-type function
  * i.e. with prototype:
  * \`double ldexp_fn(double, int*)\`
- * @details This function multiplies a floating point value
+ *
+ * This function multiplies a floating point value
  * by the number 2 raised to the exp power.
  * See https://en.cppreference.com/w/c/numeric/math/ldexp
  */
@@ -88,10 +91,10 @@ enum SpotResult {
 
 /**
  *  @brief This container is a kind of circular vector.
- *  @details First it is empty.
- *  Then we feed it with data until its max capacity is reached (transitory
- * state). When it is full, the earlier data erase the older one (cruise
- * state).
+ *
+ * First it is empty. Then we feed it with data until its max capacity is
+ * reached (transitory state). When it is full, the earlier data erase the
+ * older one (cruise state).
  */
 struct Ubend {
     /// @brief Current position inside the container

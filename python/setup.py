@@ -2,8 +2,8 @@ import ctypes
 import os
 import sys
 
-from setuptools import Extension, setup
-from wheel.bdist_wheel import bdist_wheel
+from setuptools import Extension, setup  # type: ignore
+from wheel.bdist_wheel import bdist_wheel  # type: ignore
 
 ROOT = "../"
 
@@ -76,29 +76,10 @@ lib = Extension(
     py_limited_api=True,
 )
 
-
+# other parameters are defined in pyproject.toml
 setup(
     version=get_version(),
     test_suite="test.Test",
     ext_modules=[lib],
     cmdclass={"bdist_wheel": bdist_wheel_abi3},
 )
-
-
-# def modified_cflags() -> str:
-#     """Provide custom CFLAGS"""
-#     initial = set(sysconfig.get_config_var("CFLAGS").split())
-#     initial.discard("-O2")
-#     initial.discard("-g")
-#     initial.discard("-D_GNU_SOURCE")
-#     initial.discard("-Wp,-D_GLIBCXX_ASSERTIONS")
-#     initial.add("-O3")
-#     initial.add("-Wall")
-#     initial.add("-Werror")
-#     initial.add("-pedantic")
-#     initial.add("-std=c99")
-#     return " ".join(initial)
-
-
-# modify CFLAGS (see above)
-# sysconfig._CONFIG_VARS["CFLAGS"] = modified_cflags()  #  type: ignore

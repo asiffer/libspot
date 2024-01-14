@@ -1,5 +1,7 @@
 # libspot.js
 
+`libspot` in the browser.
+
 This sub-project ports `libspot` into javascript through webassembly (emscripten).
 It uses `bun` to build and test the final package.
 

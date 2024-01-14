@@ -3,7 +3,7 @@ import struct
 import tempfile
 from unittest import TestCase
 
-import libspot
+import libspot  # type:ignore
 import matplotlib.pyplot as plt
 import numpy as np
 from libspot import Spot  # pylint: disable=E0611

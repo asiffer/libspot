@@ -17,7 +17,7 @@ The impact of `q` defines the trade-off between the detection rate and the false
 
 ## Bias/variance tradeoff
 
-The parameters `level` and `size` (from the [`spot_fit`](API/spot.md#fun_spot_fit) function) are involved in the fit step of the algorithm.
+The parameters `level` and `size` (from the [`spot_fit`](70_API.md#spot_fit) function) are involved in the fit step of the algorithm.
 
 The `size` is the number of data used for calibration while `1-level` represents the proportion of these initial data that belong to the tail of the distribution (`level` is then a high quantile in practice). For example, let us use `size = 1000` and `level = 0.99`. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first tail fit.
 

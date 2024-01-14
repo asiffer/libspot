@@ -116,6 +116,8 @@ title: API
     
     This container is a kind of circular vector.
     
+    First it is empty. Then we feed it with data until its max capacity is reached (transitory state). When it is full, the earlier data erase the older one (cruise state). 
+    
     | Member | Description |
     |--------|-------------|
     | `cursor` | Current position inside the container. |
@@ -202,7 +204,7 @@ title: API
 
 ## Functions
 
-<div id="spot_8h_1afe0033fc0d2a9089e4ca79c61537af94"></div>
+<div id="spot_init"></div>
 ??? fun "spot_init"
     ```c
     int spot_init(struct [Spot](#structSpot) * spot, double q, int low, int discard_anomalies, double level, unsigned long max_excess)
@@ -220,7 +222,7 @@ title: API
     | `max_excess` | Maximum number of data that are kept to analyze the tail |
 
 
-<div id="spot_8h_1abbfb21d5bb94f98e29b28b0f8b1d104e"></div>
+<div id="spot_free"></div>
 ??? fun "spot_free"
     ```c
     void spot_free(struct [Spot](#structSpot) * spot)
@@ -233,7 +235,7 @@ title: API
     | `spot` | [Spot](#structSpot) instance |
 
 
-<div id="spot_8h_1adea9c7c9ca253236f3ef7b7bc8989f75"></div>
+<div id="spot_fit"></div>
 ??? fun "spot_fit"
     ```c
     int spot_fit(struct [Spot](#structSpot) * spot, double const * data, unsigned long size)
@@ -248,7 +250,7 @@ title: API
     | `size` | Size of the buffer |
 
 
-<div id="spot_8h_1a36a27273bcb885b26e6642b05b974d55"></div>
+<div id="spot_step"></div>
 ??? fun "spot_step"
     ```c
     int spot_step(struct [Spot](#structSpot) * spot, double x)
@@ -262,7 +264,7 @@ title: API
     | `x` | new value |
 
 
-<div id="spot_8h_1ac4d40e7cecabcb54ddef63c12698a214"></div>
+<div id="spot_quantile"></div>
 ??? fun "spot_quantile"
     ```c
     double spot_quantile(struct [Spot](#structSpot) const * spot, double q)
@@ -276,7 +278,7 @@ title: API
     | `q` | Low probability (it must be within the tail) |
 
 
-<div id="spot_8h_1a5ab632a45e410fc333ea5553b26a315e"></div>
+<div id="spot_probability"></div>
 ??? fun "spot_probability"
     ```c
     double spot_probability(struct [Spot](#structSpot) const * spot, double z)
@@ -290,7 +292,7 @@ title: API
     | `z` | High quantile (it must be within the tail) |
 
 
-<div id="spot_8h_1a3f0314da2c0eca019cd9af6bdb465b12"></div>
+<div id="set_allocators"></div>
 ??? fun "set_allocators"
     ```c
     void set_allocators(malloc_fn m, free_fn f)
@@ -304,7 +306,23 @@ title: API
     | `f` | pointer to a "free" function |
 
 
-<div id="spot_8h_1ade83e5b02c26bcd8aeca25ba39b3be56"></div>
+<div id="set_float_utils"></div>
+??? fun "set_float_utils"
+    ```c
+    void set_float_utils(ldexp_fn l, frexp_fn f)
+    ```
+    
+    Set the ldexp/frexp functions.
+    
+    By default these functions are provided but the API allows to change them.
+    
+    | Parameter | Description |
+    |-----------|-------------|
+    | `l` | pointer to a "ldexp" function |
+    | `f` | pointer to a "frexp" function |
+
+
+<div id="libspot_version"></div>
 ??? fun "libspot_version"
     ```c
     void libspot_version(char * buffer, unsigned long size)
@@ -318,7 +336,7 @@ title: API
     | `size` | size of the input buffer |
 
 
-<div id="spot_8h_1a72ccd22bfc5bf72474897bd41be8f43f"></div>
+<div id="libspot_license"></div>
 ??? fun "libspot_license"
     ```c
     void libspot_license(char * buffer, unsigned long size)
@@ -332,7 +350,7 @@ title: API
     | `size` | size of the input buffer |
 
 
-<div id="spot_8h_1a500d781bdda02582941f75b5dd95213f"></div>
+<div id="libspot_error"></div>
 ??? fun "libspot_error"
     ```c
     void libspot_error(enum LibspotError err, char * buffer, unsigned long size)

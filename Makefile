@@ -61,7 +61,7 @@ WHEEL_TAG = $(shell python -c 'from wheel import bdist_wheel as bw; abi=bw.get_a
 # emscripten compiler
 EMCC = $(shell command -pv emcc)
 ifndef $(EMCC)
-	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.46 emcc
+	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.51 emcc
 endif
 
 # wasm folder

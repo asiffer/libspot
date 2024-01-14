@@ -1,5 +1,11 @@
 import { expect, test } from "bun:test";
-import { Spot, libspotVersion, spotSize, libspotError } from "./index.ts";
+import {
+  Spot,
+  libspotVersion,
+  spotSize,
+  libspotError,
+  EXCESS,
+} from "./index.ts";
 import * as fs from "fs";
 
 test("sizeof(Spot)", () => {
@@ -39,7 +45,7 @@ test("Spot.fit", () => {
   for (let i = 0; i < 1000; i++) {
     const x = Math.random();
     let r = s.step(x);
-    if (r == 1) {
+    if (r === EXCESS) {
       // this test may fail since the interpretation of
       // can change along time
       expect(s.probability(x)).toBeLessThanOrEqual(1 - level);

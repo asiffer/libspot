@@ -97,8 +97,10 @@ void set_allocators(malloc_fn m, free_fn f);
 
 /**
  * @brief Set the ldexp/frexp functions
- * @details By default these functions are provided but the API
- * allows to change them
+ *
+ * By default these functions are provided but the API
+ * allows to change them.
+ *
  * @param l pointer to a "ldexp" function
  * @param f pointer to a "frexp" function
  */
