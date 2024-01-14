@@ -2,6 +2,11 @@ import loadWASM from "./libspot.core.js";
 
 const libspot = await loadWASM();
 
+// need to declare manually
+export const NORMAL = 0;
+export const EXCESS = 1;
+export const ANOMALY = 2;
+
 /**
  * The size in bytes of the underlying Spot structure (C -> compiled to WASM)
  */
