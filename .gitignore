@@ -11,10 +11,13 @@ debian/libspot/
 debian/tmp/
 python/build
 python/dist
+python/wheel
 python/*.egg-info
 python/.coverage
 python/*.so
 python/__pycache__
+wasm/types 
+wasm/libspot.core.js
 *.gcov
 *.gcda
 *.gcno

@@ -3,7 +3,7 @@
 `libspot` in the browser.
 
 This sub-project ports `libspot` into javascript through webassembly (emscripten).
-It uses `bun` to build and test the final package.
+It uses [`bun`](https://bun.sh/) to build and test the final package.
 
 ## Core library
 
@@ -11,7 +11,6 @@ The core library, namely `libspot.core.js`, is generated from the root project.
 
 ```
 # from project root directory
-# it generates ./wasm/libspot.core.js
 make ./wasm/libspot.core.js
 ```
 
