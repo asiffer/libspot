@@ -71,5 +71,5 @@ jobs:
 
       - name: Test simple program
         run: |
-          gcc -O3 -std=c99 -Iinclude/ -Wall -Wextra -Werror -pedantic -o basic examples/basic.c -lspot
+          gcc -O3 -std=c99 -Iinclude/ -Wall -Wextra -Werror -pedantic -o basic examples/basic.c -lspot -lm
           ./basic

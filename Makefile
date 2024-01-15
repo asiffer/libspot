@@ -103,7 +103,7 @@ CMOREFLAGS         :=
 CBASEFLAGS         := -O3 -std=c99 -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
 CFLAGS             ?= $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic $(CMOREFLAGS)
 LDFLAGS            ?= -static -nostdlib
-CTESTFLAGS         := $(CBASEFLAGS) -I$(UNITY_DIR) -I$(TEST_DIR) -DTESTING -DUNITY_INCLUDE_DOUBLE -lm -fprofile-arcs -ftest-coverage -g
+CTESTFLAGS         := $(CBASEFLAGS) -I$(UNITY_DIR) -I$(TEST_DIR) -DTESTING -DUNITY_INCLUDE_DOUBLE -fprofile-arcs -ftest-coverage -g
 
 # ========================================================================== #
 # Other constants
