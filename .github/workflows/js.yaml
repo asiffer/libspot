@@ -45,11 +45,23 @@ jobs:
         with:
           path: ./wasm/dist/libspot.js
           name: libspot.js
-      # - name: Generate package-lock.json
-      #   run: npm install
-      #   working-directory: ./wasm
+
+  upload:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+          registry-url: "https://npm.pkg.github.com"
+      - uses: actions/download-artifact@v3
+        with:
+          name: libspot.tgz
+          path: wasm
       - name: Publish to Github
-        run: npm publish
+        run: npm publish ./asiffer*.tgz
         working-directory: ./wasm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
