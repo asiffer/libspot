@@ -17,7 +17,7 @@ double runif() { return (double)rand() / (double)RAND_MAX; }
 // Exp(1)
 double rexp() { return -log(runif()); }
 
-int main(int argc, const char *argv[]) {
+int main() {
     // set random seed
     srand(1);
     // provide allocators to libspot

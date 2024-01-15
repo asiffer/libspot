@@ -130,6 +130,7 @@ PASS   = $(shell printf "\033[92mPASS\033[0m")
 FAIL   = $(shell printf "\033[91mFAIL\033[0m")
 IGNORE = $(shell printf "\033[93mIGNORE\033[0m")
 
+PRINT_OK = @printf "\t\033[32m%s\033[0m\n" "OK"
 # custom functions
 
 # apify removes the file header of C source code, 
@@ -200,13 +201,13 @@ $(DYNAMIC): $(OBJS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "LINK $(@F)"
 	@$(CC) $(CFLAGS) -shared $^ -o $@ -fPIC $(LDFLAGS)
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 $(STATIC): $(OBJS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "AR   $(@F)"
 	@ar rcs $@ $^
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 $(DIST_DIR)/spot.h: $(HEADERS)
 	@mkdir -p $(@D)
@@ -225,7 +226,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/%.h
 	@mkdir -p $(@D)
 	@printf "%-25s" "CC   $(@F)"
 	@$(CC) $(CFLAGS) $(EXT_INC_DIR) -c $< -o $@ -fPIC 
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 
 # ========================================================================== #
@@ -270,17 +271,17 @@ dev/doxygen/generated: doxygen
 inject-version: $(HEADERS) $(SRCS)
 	@printf "%-55s" "Setting version to '$(VERSION)'"
 	@sed -i -e 's,@version.*,@version $(VERSION),' $^
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 inject-date: $(HEADERS) $(SRCS)
 	@printf "%-55s" "Setting date to '$(DATE)'"
 	@sed -i -e 's,@date.*,@date $(DATE),' $^
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 inject-copyright: $(HEADERS) $(SRCS)
 	@printf "%-55s" "Setting license to '$(LICENSE)'"
 	@sed -i -e 's,@copyright.*,@copyright $(LICENSE),' $^
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 docs/70_API.md: dev/doxygen/generated
 	@mkdir -p $(@D)
@@ -398,7 +399,7 @@ $(TEST_BIN_DIR)/%_test:
 	@printf "%-32s" "Building $@"
 	@$(CC) $(CTESTFLAGS) -o $@ $^
 	@mv $@-*.gcno $(TEST_COVERAGE_DIR)
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 # run a test
 $(TEST_RESULTS_DIR)/%_test.txt: $(TEST_BIN_DIR)/%_test
@@ -406,7 +407,7 @@ $(TEST_RESULTS_DIR)/%_test.txt: $(TEST_BIN_DIR)/%_test
 	@printf "%-32s" "Running  $^"
 	@$< > "$@"
 	@mv $<-*.gcda $(TEST_COVERAGE_DIR)
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 # concat coverage files
 $(TEST_COVERAGE_DIR)/coverage.info: $(TEST_RESULTS)
@@ -434,7 +435,7 @@ $(BENCHMARK_DIR)/bin/%: $(BENCHMARK_DIR)/%.c $(SRCS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "CC   $(@F)"
 	@$(CC) $(CBASEFLAGS) -o "$@" $^ -lm
-	@echo -e "$(OK)"
+	$(PRINT_OK)
 
 benchmark_%: $(BENCHMARK_DIR)/bin/%
 	@printf "%-25s\n" "RUN  $(@F)"

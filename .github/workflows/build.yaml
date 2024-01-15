@@ -1,7 +1,13 @@
-name: build
+name: C
 
 on:
   pull_request:
+    paths:
+      - "src/*.c"
+      - "include/*.h"
+      - "Makefile"
+      - .github/workflows/build.yaml
+      - test/src/*.c
 
 jobs:
   build:
