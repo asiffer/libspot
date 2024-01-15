@@ -397,7 +397,7 @@ deps: $(DEPS)
 $(TEST_BIN_DIR)/%_test: 
 	@mkdir -p $(TEST_COVERAGE_DIR) $(TEST_BIN_DIR)
 	@printf "%-32s" "Building $@"
-	@$(CC) $(CTESTFLAGS) -o $@ $^
+	@$(CC) $(CTESTFLAGS) -o $@ $^ -lm
 	@mv $@-*.gcno $(TEST_COVERAGE_DIR)
 	$(PRINT_OK)
 
