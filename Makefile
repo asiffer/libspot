@@ -65,7 +65,8 @@ ifndef $(EMCC)
 endif
 
 # wasm folder
-WASM_DIR = $(CURDIR)/wasm
+WASM_DIR 		  		= $(CURDIR)/wasm
+WASM_EXPORTED_FUNCTIONS = _spot_size,_spot_new,_spot_init,_spot_fit,_spot_step,_spot_quantile,_spot_probability,_spot_free,_libspot_error,_libspot_version,_malloc,_free,_set_allocators,_main
 # arduino lib
 ARDUINO_DIR = $(CURDIR)/arduino
 ARDUINO_LIB = spot
@@ -356,9 +357,28 @@ $(WASM_DIR)/libspot.core.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c
 		-s EXPORTED_RUNTIME_METHODS=cwrap,ccall \
 		-s EXPORT_NAME=loadWASM \
 		-s NO_EXIT_RUNTIME=1 \
-		-s EXPORTED_FUNCTIONS=_spot_size,_spot_new,_spot_init,_spot_fit,_spot_step,_spot_quantile,_spot_probability,_spot_free,_libspot_error,_libspot_version,_malloc,_free,_set_allocators,_main \
+		-s EXPORTED_FUNCTIONS=$(WASM_EXPORTED_FUNCTIONS) \
 		-o $@ $^
 
+
+# we currently use emscripten to compile code to wasm because it
+# automatically provides the js boilerplate.
+# however it can be done with clang, and then zig (that ships clang) with a command like:
+# zig cc $(CFLAGS) --target=wasm32-wasi-musl -Wl,--no-entry -Wl,--export=$(WASM_EXPORTED_FUNCTIONS) -o $@ $^
+# See https://depth-first.com/articles/2019/10/16/compiling-c-to-webassembly-and-running-it-without-emscripten/
+# But it seems that other tools are required but should be installed manually.
+$(WASM_DIR)/libspot.wasm: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
+	$(EMCC) $(CFLAGS) \
+		--no-entry \
+		-s WASM=1 \
+		-s ALLOW_MEMORY_GROWTH=1 \
+		-s FILESYSTEM=0 \
+		-s EXPORTED_FUNCTIONS=$(WASM_EXPORTED_FUNCTIONS) \
+		-o $@ $^
+
+# need to install wabt (webassembly toolkit)
+$(WASM_DIR)/libspot.wat: $(WASM_DIR)/libspot.wasm
+	wams2wat -o $@ $^ 
 
 # ========================================================================== #
 # Arduino
