@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link rel="stylesheet" href="css/pico.min.css" /> -->
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        color: #eceff4;
+        background-color: #2e3440;
+        font-family: "IBM Plex Sans", sans-serif;
+      }
+
+      body > main {
+        padding: 0;
+      }
+
+      h1 {
+        /* font-family: "Gilroy-Bold", sans-serif; */
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 8em;
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 1.5em;
+        /* margin: 0;
+        margin-top: -0.5em;
+        margin-bottom: 0.5em;
+        display: inline-block; */
+        /* text-align: right; */
+      }
+
+      span {
+        margin: 1em 0;
+        width: 100%;
+        display: block;
+      }
+
+      .hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        z-index: 10;
+      }
+
+      .hero > div {
+        position: relative;
+        /* align-self: center; */
+        margin: 0 auto;
+        top: -10%;
+      }
+
+      .button {
+        background-color: #eceff4;
+        color: #2e3440;
+        border-radius: 3px;
+        padding: 0.75em 0;
+        width: 35%;
+        transition: all 100ms ease-in-out;
+        font-size: 1.25em;
+      }
+
+      .button:hover {
+        background-color: #88c0d0;
+      }
+
+      a {
+        text-decoration: none;
+        /* display: block; */
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .block {
+        display: flex;
+        width: 100%;
+        margin-top: -1em;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        z-index: 0;
+      }
+
+      #plot-circle {
+        opacity: 0.6;
+        transition: opacity 150ms ease-in-out;
+      }
+      #plot-circle:hover {
+        opacity: 1;
+      }
+
+      #plot-bound {
+        opacity: 0;
+        stroke-dasharray: 3000;
+        stroke-dashoffset: 3000;
+        pointer-events: none;
+      }
+
+      #plot-circle:hover + #plot-bound {
+        animation: animateDash 1s linear forwards 1;
+      }
+
+      @keyframes animateDash {
+        0% {
+          opacity: 0;
+          stroke-dashoffset: 3000;
+        }
+        40% {
+          opacity: 1;
+        }
+        50% {
+          /* opacity: 1; */
+          stroke-dashoffset: 0;
+        }
+        100% {
+          opacity: 0;
+          stroke-dashoffset: 0;
+        }
+      }
+
+      #plot-circle:hover + #plot-bound {
+        opacity: 1;
+      }
+    </style>
+    <script>
+      const animatePlot = () => {
+        const plot = document.getElementById("plot-bound");
+        console.log("plot:", plot);
+        if (plot) {
+          plot.removeAttribute("style");
+          plot.setAttribute(
+            "style",
+            "animation: animateDash 1s linear forwards 1;"
+          );
+          setTimeout(() => {
+            plot.removeAttribute("style");
+          }, 1000);
+        }
+      };
+    </script>
+    <title>libspot</title>
+  </head>
+  <body>
+    <div class="background">
+      <svg
+        id="svg-plot"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100vh"
+        viewBox="0 -10 40 20"
+      >
+        <path id="plot" d="" stroke-width="0" fill="#3b4252"></path>
+        <circle
+          id="plot-circle"
+          r="20"
+          stroke-width="2"
+          fill="transparent"
+          stroke="#88c0d0"
+          cx="0"
+          cy="0"
+        />
+        <path
+          id="plot-bound"
+          d=""
+          stroke="#88c0d0"
+          stroke-width="2"
+          fill="transparent"
+        ></path>
+      </svg>
+    </div>
+    <div class="hero">
+      <div>
+        <h1>libspot</h1>
+
+        <div class="block">
+          <h2>Born to flag outliers</h2>
+          <a class="button" href="/10_overview/" onmouseenter="animatePlot()"
+            >Get started</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <script>
+      const nx = 20;
+      const yscale = 0.05;
+      let yshift = 0.0;
+      let width = 0;
+      let height = 0;
+
+      const drawPlot = () => {
+        const svg = document.getElementById("svg-plot");
+        if (svg) {
+          const rect = svg.getBoundingClientRect();
+          width = rect.width;
+          height = rect.height;
+          yshift = 0.15 * height;
+          // console.log("rect:", rect);
+          svg.setAttribute(
+            "viewBox",
+            `0 -${rect.height / 2} ${rect.width} ${rect.height}`
+          );
+        }
+
+        const circle = document.getElementById("plot-circle");
+        if (circle) {
+          circle.setAttribute("cx", 0.85 * width);
+          circle.setAttribute("cy", yshift - height / 3);
+        }
+        // Standard Normal variate using Box-Muller transform.
+        let gaussianRandom = (mean = 0, stdev = 1) => {
+          let u = 1 - Math.random(); //Converting [0,1) to (0,1)
+          let v = Math.random();
+          let z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+          // Transform to the desired mean and standard deviation:
+          return z * stdev + mean;
+        };
+
+        let gaussianPath = (
+          steps = nx,
+          argmax = Math.round(0.8 * nx),
+          value = height / 3
+        ) => {
+          const w = width / nx;
+          let x0 = 0;
+          let y0 = yshift;
+          let x1 = 0;
+          let y1 = 0;
+          // let path = `M0 ${height / 2} L0 ${y0}`;
+          let path = "";
+
+          for (let i = 0; i < steps; i++) {
+            x1 = x0 + w;
+            if (i === argmax) {
+              y1 = yshift - value;
+            } else {
+              y1 = gaussianRandom(yshift, height * yscale);
+            }
+
+            path += ` C ${x0 + w / 3},${y0} ${x1 - w / 3},${y1} ${x1},${y1}`;
+            x0 = x1;
+            y0 = y1;
+          }
+          return path; //+ ` L${width} ${height / 2} Z`;
+        };
+
+        const path = gaussianPath();
+
+        const plot = document.getElementById("plot");
+        if (plot) {
+          plot.setAttribute(
+            "d",
+            `M0 ${height / 2} L0 ${yshift} ${path} L${width} ${height / 2} Z`
+          );
+        }
+
+        const bound = document.getElementById("plot-bound");
+        if (bound) {
+          bound.setAttribute("d", `M0 ${yshift} ${path}`);
+        }
+
+        // const effect = document.getElementById("plot-effect");
+        // if (effect) {
+        //   effect.setAttribute("path", `M0 ${yshift} ${path}`);
+        // }
+      };
+      drawPlot();
+      window.addEventListener("resize", drawPlot);
+    </script>
+  </footer>
+</html>

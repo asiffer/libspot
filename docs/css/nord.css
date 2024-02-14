@@ -1,0 +1,493 @@
+/*
+ * Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
+ * Copyright (c) 2016-present Sven Greb <development@svengreb.de>
+ *
+ * Project:    Nord
+ * Version:    0.2.0
+ * Repository: https://github.com/arcticicestudio/nord
+ * License:    MIT
+ * References:
+ *   https://www.w3.org/TR/css-variables
+ *   https://www.w3.org/TR/selectors/#root-pseudo
+ *   https://drafts.csswg.org/css-variables
+ *   https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
+ *   http://warpspire.com/kss
+ *   https://github.com/kss-node/kss-node
+ */
+
+/*
+An arctic, north-bluish color palette.
+Created for the clean- and minimal flat design pattern to achieve a optimal focus and readability for code syntax
+highlighting and UI.
+It consists of a total of sixteen, carefully selected, dimmed pastel colors for a eye-comfortable, but yet colorful
+ambiance.
+
+Styleguide Nord
+*/
+
+:root {
+  /*
+    Base component color of "Polar Night".
+  
+    Used for texts, backgrounds, carets and structuring characters like curly- and square brackets.
+  
+    Markup:
+    <div style="background-color:#2e3440; width=60; height=60"></div>
+  
+    Styleguide Nord - Polar Night
+    */
+  --nord0: #2e3440;
+  /*
+    Lighter shade color of the base component color.
+  
+    Used as a lighter background color for UI elements like status bars.
+  
+    Markup:
+    <div style="background-color:#3b4252; width=60; height=60"></div>
+  
+    Styleguide Nord - Polar Night
+    */
+  --nord1: #3b4252;
+  /*
+    Lighter shade color of the base component color.
+  
+    Used as line highlighting in the editor.
+    In the UI scope it may be used as selection- and highlight color.
+  
+    Markup:
+    <div style="background-color:#434c5e; width=60; height=60"></div>
+  
+    Styleguide Nord - Polar Night
+    */
+  --nord2: #434c5e;
+  /*
+    Lighter shade color of the base component color.
+  
+    Used for comments, invisibles, indent- and wrap guide marker.
+    In the UI scope used as pseudoclass color for disabled elements.
+  
+    Markup:
+    <div style="background-color:#4c566a; width=60; height=60"></div>
+  
+    Styleguide Nord - Polar Night
+    */
+  --nord3: #4c566a;
+  /*
+    Base component color of "Snow Storm".
+  
+    Main color for text, variables, constants and attributes.
+    In the UI scope used as semi-light background depending on the theme shading design.
+  
+    Markup:
+    <div style="background-color:#d8dee9; width=60; height=60"></div>
+  
+    Styleguide Nord - Snow Storm
+    */
+  --nord4: #d8dee9;
+  /*
+    Lighter shade color of the base component color.
+  
+    Used as a lighter background color for UI elements like status bars.
+    Used as semi-light background depending on the theme shading design.
+  
+    Markup:
+    <div style="background-color:#e5e9f0; width=60; height=60"></div>
+  
+    Styleguide Nord - Snow Storm
+    */
+  --nord5: #e5e9f0;
+  /*
+    Lighter shade color of the base component color.
+  
+    Used for punctuations, carets and structuring characters like curly- and square brackets.
+    In the UI scope used as background, selection- and highlight color depending on the theme shading design.
+  
+    Markup:
+    <div style="background-color:#eceff4; width=60; height=60"></div>
+  
+    Styleguide Nord - Snow Storm
+    */
+  --nord6: #eceff4;
+  /*
+    Bluish core color.
+  
+    Used for classes, types and documentation tags.
+  
+    Markup:
+    <div style="background-color:#8fbcbb; width=60; height=60"></div>
+  
+    Styleguide Nord - Frost
+    */
+  --nord7: #8fbcbb;
+  /*
+    Bluish core accent color.
+  
+    Represents the accent color of the color palette.
+    Main color for primary UI elements and methods/functions.
+  
+    Can be used for
+      - Markup quotes
+      - Markup link URLs
+  
+    Markup:
+    <div style="background-color:#88c0d0; width=60; height=60"></div>
+  
+    Styleguide Nord - Frost
+    */
+  --nord8: #88c0d0;
+  /*
+    Bluish core color.
+  
+    Used for language-specific syntactic/reserved support characters and keywords, operators, tags, units and
+    punctuations like (semi)colons,commas and braces.
+  
+    Markup:
+    <div style="background-color:#81a1c1; width=60; height=60"></div>
+  
+    Styleguide Nord - Frost
+    */
+  --nord9: #81a1c1;
+  /*
+    Bluish core color.
+  
+    Used for markup doctypes, import/include/require statements, pre-processor statements and at-rules (`@`).
+  
+    Markup:
+    <div style="background-color:#5e81ac; width=60; height=60"></div>
+  
+    Styleguide Nord - Frost
+    */
+  --nord10: #5e81ac;
+  /*
+    Colorful component color.
+  
+    Used for errors, git/diff deletion and linter marker.
+  
+    Markup:
+    <div style="background-color:#bf616a; width=60; height=60"></div>
+  
+    Styleguide Nord - Aurora
+    */
+  --nord11: #bf616a;
+  /*
+    Colorful component color.
+  
+    Used for annotations.
+  
+    Markup:
+    <div style="background-color:#d08770; width=60; height=60"></div>
+  
+    Styleguide Nord - Aurora
+    */
+  --nord12: #d08770;
+  /*
+    Colorful component color.
+  
+    Used for escape characters, regular expressions and markup entities.
+    In the UI scope used for warnings and git/diff renamings.
+  
+    Markup:
+    <div style="background-color:#ebcb8b; width=60; height=60"></div>
+  
+    Styleguide Nord - Aurora
+    */
+  --nord13: #ebcb8b;
+  /*
+    Colorful component color.
+  
+    Main color for strings and attribute values.
+    In the UI scope used for git/diff additions and success visualizations.
+  
+    Markup:
+    <div style="background-color:#a3be8c; width=60; height=60"></div>
+  
+    Styleguide Nord - Aurora
+    */
+  --nord14: #a3be8c;
+  /*
+    Colorful component color.
+  
+    Used for numbers.
+  
+    Markup:
+    <div style="background-color:#b48ead; width=60; height=60"></div>
+  
+    Styleguide Nord - Aurora
+    */
+  --nord15: #b48ead;
+}
+
+/* see https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/_colors.scss */
+[data-md-color-scheme="nord-dark"] {
+  --md-primary-fg-color: #242933;
+  --md-primary-fg-color--light: var(--nord1);
+  --md-primary-fg-color--dark: #242933;
+  --md-default-bg-color: #242933;
+  --md-default-fg-color: var(--nord6);
+  --md-default-fg-color--light: var(--zendesk-kale-700);
+  --md-default-fg-color--lightest: var(--nord3);
+  --md-accent-fg-color: var(--nord4);
+  --md-typeset-a-color: var(--nord8);
+
+  --md-typeset-color: var(--nord6);
+
+  /* code */
+  --md-code-bg-color: var(--nord0);
+  --md-code-fg-color: var(--nord6);
+  --md-code-hl-comment-color: var(--nord3);
+  --md-code-hl-number-color: var(--nord15);
+  --md-code-hl-name-color: var(--nord4);
+  --md-code-hl-punctuation-color: var(--nord4);
+  --md-code-hl-keyword-color: var(--nord7);
+  --md-code-hl-operator-color: var(--nord9);
+  --md-code-hl-function-color: var(--nord8);
+  --md-code-hl-special-color: var(--nord10);
+  --md-code-hl-string-color: var(--nord14);
+  --md-code-hl-constant-color: var(--nord13);
+  --md-code-hl-variable-color: var(--nord13);
+
+  /* admonition */
+  --md-admonition-fg-color: var(--nord6);
+  --md-admonition-bg-color: var(--md-default-bg-color);
+  --md-admonition-icon--struct: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M20 9V4c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v5h16zM8 5h2v3H8V5zm-4 6v9c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-9H4zm6 6H8v-5h2v5z"/></g></g></svg>');
+  --md-admonition-icon--fun: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.6 5.29c-1.1-.1-2.07.71-2.17 1.82L13.18 10H16v2h-3l-.44 5.07a3.986 3.986 0 0 1-4.33 3.63 4.007 4.007 0 0 1-3.06-1.87l1.5-1.5c.24.74.9 1.31 1.73 1.38 1.1.1 2.07-.71 2.17-1.82L11 12H8v-2h3.17l.27-3.07c.19-2.2 2.13-3.83 4.33-3.63 1.31.11 2.41.84 3.06 1.87l-1.5 1.5c-.24-.74-.9-1.31-1.73-1.38Z"/></svg>');
+  --md-admonition-icon--typedef: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16H512zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM208 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H304c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H176zM376 144c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24H376z"/></svg>');
+  --md-admonition-icon--enum: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M48 24C48 10.7 37.3 0 24 0S0 10.7 0 24V64 350.5 400v88c0 13.3 10.7 24 24 24s24-10.7 24-24V388l80.3-20.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L48 52V24zm0 77.5l96.6-24.2c27-6.7 55.5-3.6 80.4 8.8c54.9 27.4 118.7 29.7 175 6.8V334.7l-24.4 9.1c-33.7 12.6-71.2 10.7-103.4-5.4c-48.2-24.1-103.3-30.1-155.6-17.1L48 338.5v-237z"/></svg>');
+}
+
+/* header shadow */
+.md-header--shadow {
+  box-shadow: none;
+}
+
+/* titles */
+.md-typeset h1 {
+  font-weight: 700;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+}
+
+/* <a> links */
+.md-typeset a:focus,
+.md-typeset a:hover {
+  color: var(--nord10);
+}
+
+/* nav links */
+ul.md-nav__list {
+  margin-top: 0.75em;
+}
+
+.md-nav--primary .md-nav__link {
+  padding: 0.4em;
+  border-radius: 5px;
+  margin-top: 0.2em;
+}
+
+.md-nav--primary .md-nav__link:is(:focus, :hover) {
+  background-color: rgba(76, 86, 106, 0.8);
+}
+
+.md-nav--secondary .md-nav__link:is(:focus, :hover) {
+  color: var(--nord12);
+}
+
+/* base admonition */
+.md-typeset :is(.admonition, details) {
+  font-size: 0.7rem;
+}
+
+/* warning admonition */
+.md-typeset :is(.admonition, details):is(.warning, .caution, .attention) {
+  border-color: var(--nord12);
+}
+
+.md-typeset
+  :is(.warning, .caution, .attention)
+  > :is(.admonition-title, summary)::before {
+  background-color: var(--nord0);
+}
+
+.md-typeset
+  :is(.warning, .caution, .attention)
+  > :is(.admonition-title, summary) {
+  background-color: var(--nord12);
+  color: var(--nord0);
+}
+
+.md-typeset
+  :is(.warning, .caution, .attention)
+  > :is(.admonition-title, summary)::after {
+  color: var(--nord0);
+}
+
+/* cite admonition */
+.md-typeset :is(.admonition, details):is(.cite, .quote) {
+  border-color: var(--nord13);
+}
+
+.md-typeset :is(.cite, .quote) > :is(.admonition-title, summary)::before {
+  background-color: var(--nord0);
+}
+
+.md-typeset :is(.cite, .quote) > :is(.admonition-title, summary) {
+  background-color: var(--nord13);
+  color: var(--nord0);
+}
+
+/* info admonition */
+.md-typeset :is(.admonition, details):is(.info, .note) {
+  border-color: var(--nord9);
+}
+
+.md-typeset :is(.info, .note) > :is(.admonition-title, summary)::before {
+  background-color: var(--nord0);
+}
+
+.md-typeset :is(.info, .note) > :is(.admonition-title, summary) {
+  background-color: var(--nord9);
+  color: var(--nord0);
+}
+
+.md-typeset :is(.info, .note) > :is(.admonition-title, summary)::after {
+  color: var(--nord0);
+}
+
+/* API */
+
+.md-typeset details:is(.fun, .struct, .typedef, .enum) summary {
+  font-family: monospace;
+}
+
+.md-typeset details:is(.fun, .struct, .typedef, .enum) summary::before {
+  background-color: var(--nord0);
+}
+
+.md-typeset details.fun {
+  border-color: var(--nord13);
+}
+
+.md-typeset details.fun summary {
+  background-color: var(--nord13);
+  color: var(--nord0);
+}
+
+.md-typeset details.fun summary::before {
+  mask-image: var(--md-admonition-icon--fun);
+}
+
+.md-typeset details.struct {
+  border-color: var(--nord8);
+}
+
+.md-typeset details.struct summary {
+  background-color: var(--nord8);
+  color: var(--nord0);
+}
+
+.md-typeset details.struct summary::before {
+  mask-image: var(--md-admonition-icon--struct);
+}
+
+.md-typeset details.typedef {
+  border-color: var(--nord15);
+}
+
+.md-typeset details.typedef summary {
+  background-color: var(--nord15);
+  color: var(--nord0);
+}
+
+.md-typeset details.typedef summary::before {
+  mask-image: var(--md-admonition-icon--typedef);
+}
+
+.md-typeset details.enum {
+  border-color: var(--nord9);
+}
+
+.md-typeset details.enum summary {
+  background-color: var(--nord9);
+  color: var(--nord0);
+}
+
+.md-typeset details.enum summary::before {
+  mask-image: var(--md-admonition-icon--enum);
+}
+
+li.md-nav__item--nested li.md-nav__item {
+  margin-left: 1em;
+}
+
+/* code size in nested block */
+.md-typeset details:is(.fun, .struct) code {
+  font-size: 1em;
+}
+
+/* code rounded corner */
+.md-typeset code {
+  border-radius: 4px;
+}
+
+/* table */
+
+.md-typeset .md-typeset__table {
+  /* float: left; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.md-typeset .md-typeset__table > table {
+  border-radius: 4px;
+  border-color: var(--nord7);
+  border-width: 1px;
+}
+
+/* .md-typeset__scrollwrap {
+  text-align: center;
+} */
+
+.md-typeset__table thead {
+  background-color: var(--nord7);
+  color: var(--nord0);
+}
+
+.md-typeset__table thead code {
+  background-color: var(--nord7);
+  color: var(--nord0);
+}
+
+.md-typeset__table code {
+  font-size: 1em;
+}
+
+/* header social */
+.md-header__social .md-social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.md-header__social .md-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.25em;
+  transition: opacity 0.25s;
+  height: 100%;
+}
+
+.md-header__social .md-social a:hover {
+  opacity: 0.7;
+}
+
+.md-header__social .md-social a svg {
+  max-height: 1.2rem;
+}
+
+.md-typeset h1 {
+  font-size: 3em;
+}

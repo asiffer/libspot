@@ -1,55 +1,181 @@
-### libspot makefile
-#
-# @author = asr
+# 
+#  ██╗     ██╗██████╗ ███████╗██████╗  ██████╗ ████████╗
+#  ██║     ██║██╔══██╗██╔════╝██╔══██╗██╔═══██╗╚══██╔══╝
+#  ██║     ██║██████╔╝███████╗██████╔╝██║   ██║   ██║   
+#  ██║     ██║██╔══██╗╚════██║██╔═══╝ ██║   ██║   ██║   
+#  ███████╗██║██████╔╝███████║██║     ╚██████╔╝   ██║   
+#  ╚══════╝╚═╝╚═════╝ ╚══════╝╚═╝      ╚═════╝    ╚═╝   
+#                                                       
 
-### INSTALL DIRECTORIES
-DESTDIR =
-###
 
-VERSION = 1.3.1
+LIB 		 = libspot
+VERSION 	 = 2.0b0
+LICENSE 	 = GNU Lesser General Public License v3.0
+DATE         = $(shell date -u)
 COMMIT_COUNT = $(shell git rev-list --count master)
 
-# Current directory
-CURDIR = $(realpath .)
+ARCH         = $(shell uname -m)
+
+# ========================================================================== #
+# Binaries
+# ========================================================================== #
+
+PODMAN = podman
+SHELL  = /bin/sh
+
+# ========================================================================== #
+# Sources
+# ========================================================================== #
+
+# current directory
+CURDIR = .
 # folder of the headers
 INC_DIR = $(CURDIR)/include
 # folder of the sources
 SRC_DIR = $(CURDIR)/src
 #folder of the built sources
-OBJ_DIR = $(CURDIR)/build
-#folder of the shared library
-LIB_DIR = $(CURDIR)/lib
-#folder for the testspot
-TEST_DIR = $(CURDIR)/test
+BUILD_DIR = $(CURDIR)/build
+# output folder
+DIST_DIR = $(CURDIR)/dist
+# docs output directory
+DOXYGEN_DIR = $(CURDIR)/$(shell grep OUTPUT_DIRECTORY doxyfile|awk -F '=' '{print $$2}')
+# test directories
+TEST_DIR          = $(CURDIR)/test
+TEST_SRC_DIR      = $(TEST_DIR)/src
+TEST_RESULTS_DIR  = $(TEST_DIR)/results
+TEST_BIN_DIR      = $(TEST_DIR)/bin
+TEST_BUILD_DIR    = $(TEST_DIR)/build
+TEST_DEPENDS_DIR  = $(TEST_DIR)/deps
+TEST_COVERAGE_DIR = $(TEST_DIR)/coverage
+# benchmark dir
+BENCHMARK_DIR = $(CURDIR)/benchmark
+# Unity directory
+UNITY_DIR = $(CURDIR)/unity
+# folder of python stuff
+PYTHON_DIR = $(CURDIR)/python
+# folder of python wheel
+PYTHON_DIST_DIR = $(PYTHON_DIR)/dist
+# local python version (like 311 or 312)
+PYTHON_VERSION = $(shell python -V|awk '{print $2}'|awk -F '.' '{print $1$2}')
+WHEEL_TAG = $(shell python -c 'from wheel import bdist_wheel as bw; abi=bw.get_abi_tag(); print("-".join([abi, abi, bw.get_platform(None)]))')
+# emscripten compiler
+EMCC ?= $(shell command -pv emcc)
+ifndef $(EMCC)
+	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.51 emcc
+endif
 
+# wasm folder
+WASM_DIR 		  		= $(CURDIR)/wasm
+WASM_EXPORTED_FUNCTIONS = _spot_size,_spot_new,_spot_init,_spot_fit,_spot_step,_spot_quantile,_spot_probability,_spot_free,_libspot_error,_libspot_version,_malloc,_free,_set_allocators,_main
+# arduino lib
+ARDUINO_DIR = $(CURDIR)/arduino
+ARDUINO_LIB = spot
+# header files
+HEADERS = $(wildcard $(INC_DIR)/*.h)
+SORTED_HEADERS = $(shell $(CC) -MM include/spot.h | grep -oE "include/.*.h" | tr '\n' ' ' | tac -s ' ')
+# source files
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+SORTED_SRCS = $(SORTED_HEADERS:include/%.h=src/%.c)
+# compiled files
+OBJS = $(SRCS:$(SRC_DIR)%.c=$(BUILD_DIR)%.o)
+# test files
+TEST_SRCS = $(wildcard $(TEST_SRC_DIR)/*.c)
+# deps to generate
+DEPS = $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_DEPENDS_DIR)%.d)
+TEST_RESULTS = $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_RESULTS_DIR)%.txt)
+
+
+# ========================================================================== #
+# Destinations
+# ========================================================================== #
+
+DESTDIR =
 PREFIX = /usr
-
-###
-INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/libspot
+INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/spot
 INSTALL_LIB_DIR = $(DESTDIR)$(PREFIX)/lib
-###
-
-EXPORT = @export LD_LIBRARY_PATH=$(LIB_DIR)
-
-# compiler & flags
-CC                   = c++
-CXXMOREFLAGS         =
-CXXFLAGS             = -std=c++11 -Wall -pedantic $(CXXMOREFLAGS) -D VERSION=\"$(VERSION)-$(COMMIT_COUNT)\"
-CXXFLAGS_WITH_OPENMP = $(CXXFLAGS) -fopenmp
+INSTALLED_HEADERS = $(HEADERS:$(INC_DIR)%.h=$(INSTALL_HEAD_DIR)%.h)
 
 
-# all the files (header, sources, build)
-FILES = bounds.h ubend.h brent.h gpdfit.h spot.h dspot.h interface.h
-DEPS = $(foreach n,$(FILES),$(INC_DIR)/$(n))
-SRCS = $(foreach n,$(FILES:.h=.cpp),$(SRC_DIR)/$(n))
-OBJS = $(FILES:.h=.o)
+# ========================================================================== #
+# Compiler stuff
+# ========================================================================== #
+CC                 ?= cc
+CMOREFLAGS         :=
+CBASEFLAGS         := -O3 -std=c99 -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
+CFLAGS             ?= $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic $(CMOREFLAGS)
+LDFLAGS            ?= -static -nostdlib
+CTESTFLAGS         := $(CBASEFLAGS) -I$(UNITY_DIR) -I$(TEST_DIR) -DTESTING -DUNITY_INCLUDE_DOUBLE -fprofile-arcs -ftest-coverage -g
 
+# ========================================================================== #
+# Other constants
+# ========================================================================== #
+# number of run to perform
+BENCHMARK_COUNT := 200
+# number of data for each run
+BENCHMARK_SIZE	:= 10000000
+
+rand = $(shell head -c 4 /dev/urandom|od -DAn|sed 's, ,,g')
+# ========================================================================== #
+# Targets
+# ========================================================================== #
 # library file
-DYNAMIC ?= libspot.so.$(VERSION)
-STATIC  ?= libspot.a.$(VERSION)
+DYNAMIC ?= $(DIST_DIR)/$(LIB).so.$(VERSION)
+STATIC  ?= $(DIST_DIR)/$(LIB).a.$(VERSION)
 
-### MAKEFILE TARGETS
-all: checkdir $(DYNAMIC)
+# ========================================================================== #
+# Misc
+# ========================================================================== #
+# fancyness (green OK)
+OK = \t\033[32mOK\033[0m
+PASS   = $(shell printf "\033[92mPASS\033[0m")
+FAIL   = $(shell printf "\033[91mFAIL\033[0m")
+IGNORE = $(shell printf "\033[93mIGNORE\033[0m")
+
+PRINT_OK = @printf "\t\033[32m%s\033[0m\n" "OK"
+# custom functions
+
+# apify removes the file header of C source code, 
+# line starting by '#' and empty lines
+define apify
+    tail -n $$(grep -nm1 '*/' $(1) | awk -F ':' '{print "+"$$1+1}') $(1) | sed -e 's,^#.*$$,,g' | sed '/^$$/N;/^\n$$/D'
+endef
+
+# when no command is specified, build all
+.DEFAULT_GOAL := all
+# we must keep the library with appended version
+# as final libraries point to them
+.PRECIOUS: $(INSTALL_LIB_DIR)/%.$(VERSION) 
+.PRECIOUS: $(BUILD_DIR)/%_test
+.PRECIOUS: $(TEST_DEPENDS_DIR)/%.d
+.PRECIOUS: $(TEST_OBJS_DIR)/%.o
+.PRECIOUS: $(TEST_RESULTS_DIR)/%.txt
+
+.PHONY: static
+.PHONY: dynamic
+.PHONY: clean
+.PHONY: deps
+.PHONY: test
+.PHONY: check
+.PHONY: doxygen
+.PHONY: wheel
+
+.DEFAULT:
+	@echo -e '\033[31mUnknown command "$@"\033[0m'
+	@echo 'Usage: make [command] [variable=]...'
+	@echo ''
+	@echo 'Commands:'
+	@echo '          static    build the static library'
+	@echo '         dynamic    build the dynamic library'
+	@echo '             all    build both the static and dynamic libs'
+	@echo '             api    build libspot API header dist/spot.h'
+	@echo '         install    install the headers and the libraries'
+	@echo '           clean    remove the build artifacts'
+	@echo '         version    print the library version'
+	@echo '    version_full    print the library version + commit count'
+	@echo ''
+	@echo 'Variables:'
+	@echo '         DESTDIR    installation root directory'
+	@echo '          PREFIX    installation prefix directory'
 
 version:
 	@echo $(VERSION)
@@ -57,102 +183,285 @@ version:
 version_full:
 	@echo "$(VERSION)-$(COMMIT_COUNT)"
 
-# create lib/ and build/ directories
-checkdir:
-	@echo
-	@echo "==== libspot" $(VERSION) "===="
-	@echo
-	@echo "Checking the library directory ("$(LIB_DIR)")"
-	@mkdir -p $(LIB_DIR)
-	@echo "Checking the object directory ("$(OBJ_DIR)")"
-	@mkdir -p $(OBJ_DIR)
-	@echo
-	@echo "[Building sources]"
-
-# create the shared library
-$(DYNAMIC): $(OBJS)
-	@echo
-	@echo "[Building library]"
-	@echo "Building" $@ "..."
-	@$(CC) $(CXXFLAGS) -shared $(foreach n,$^,$(OBJ_DIR)/$(n)) -o $(LIB_DIR)/$@ -fPIC;
-	@echo "[done]"
+all: static dynamic api
 
 static: $(STATIC)
 
+dynamic: $(DYNAMIC)
+
+install: $(INSTALL_LIB_DIR)/$(LIB).a $(INSTALL_LIB_DIR)/$(LIB).so $(INSTALLED_HEADERS)
+
+uninstall:
+	rm -rf $(INSTALL_LIB_DIR)/$(LIB).* $(INSTALLED_HEADERS)
+
+# ========================================================================== #
+# Distribute
+# ========================================================================== #
+
+$(DYNAMIC): $(OBJS)
+	@mkdir -p $(@D)
+	@printf "%-25s" "LINK $(@F)"
+	@$(CC) $(CFLAGS) -shared $^ -o $@ -fPIC $(LDFLAGS)
+	$(PRINT_OK)
+
 $(STATIC): $(OBJS)
-	@echo "[Building static library]"
-	@echo "Building" $@ "..."
-	@ar rcs $(LIB_DIR)/$@ $(foreach n,$^,$(OBJ_DIR)/$(n));
-	@echo "[done]"
-	
-# build source files
-%.o: $(SRC_DIR)/%.cpp
-	@echo "Building" $@ "..."
-	@$(CC) $(CXXFLAGS) $(EXT_INC_DIR) -I $(INC_DIR) -c $< -o $(OBJ_DIR)/$@ -fPIC
+	@mkdir -p $(@D)
+	@printf "%-25s" "AR   $(@F)"
+	@ar rcs $@ $^
+	$(PRINT_OK)
 
-## INSTALL
-install:
-	@echo "Checking the headers installation directory ("$(INSTALL_HEAD_DIR)")"
-	@mkdir -p $(INSTALL_HEAD_DIR)
-	@echo "Checking the library installation directory ("$(INSTALL_LIB_DIR)")"
-	@mkdir -p $(INSTALL_LIB_DIR)
-	
-	@echo "Installing the shared library ("$(DYNAMIC)")"
-	@install -t $(INSTALL_LIB_DIR) $(LIB_DIR)/$(DYNAMIC)
-	@echo "Copying library to "$(INSTALL_LIB_DIR)"/libspot.so"
-	@cp -f $(INSTALL_LIB_DIR)/$(DYNAMIC) $(INSTALL_LIB_DIR)/libspot.so
-	@echo "Installing the headers"
-	@install -t $(INSTALL_HEAD_DIR) $(INC_DIR)/*.h
-	@echo "[done]"
+$(DIST_DIR)/spot.h: $(HEADERS)
+	@mkdir -p $(@D)
+	@$(call apify,include/structs.h) > $@
+	@$(call apify,include/spot.h) >> $@
+	@clang-format --style=file -i $@
 
-## TEST
-test_prepare:
-	if [ ! -f "$(LIB_DIR)/libspot.so" ]; then cp $(LIB_DIR)/$(DYNAMIC) $(LIB_DIR)/libspot.so; fi
 
-# test spot on a gaussian white noise
-test_spot:
-	@echo
-	@echo "[Testing SPOT]"
-	@echo "Building test ..."
-	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_spot $(TEST_DIR)/test_spot.cpp -lspot 
-	@echo "Running test ..."
-	$(EXPORT); $(TEST_DIR)/test_spot
-	
-test_dspot:
-	@echo
-	@echo "[Testing DSPOT]"
-	@echo "Building test ..."
-	$(CC) $(CXXFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_dspot $(TEST_DIR)/test_dspot.cpp -lspot 
-	@echo "Running test ..."
-	$(EXPORT); $(TEST_DIR)/test_dspot
+api: $(DIST_DIR)/spot.h
 
-test_openmp_perf:
-	@echo
-	@echo "[Testing OPENMP performances]"
-	@echo "Building tests ..."
-	$(CC) $(CXXFLAGS_WITH_OPENMP) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_perf_with_openmp $(TEST_DIR)/test_openmp_perf.cpp -lspot 
-	$(CC) $(CXXFLAGS) $(CXXTESTFLAGS) -I$(INC_DIR) -L$(LIB_DIR) -o $(TEST_DIR)/test_perf_without_openmp $(TEST_DIR)/test_openmp_perf.cpp -lspot 
-	@echo "Running test ..."
-	$(EXPORT); $(TEST_DIR)/test_perf_without_openmp; $(TEST_DIR)/test_perf_with_openmp
+# ========================================================================== #
+# Build
+# ========================================================================== #
 
-test_post_install:
-	$(CC) -std=c++11 -Wall -I$(INC_DIR) $(TEST_DIR)/test_example.cpp -o $(TEST_DIR)/test_example -lspot && $(TEST_DIR)/test_example
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c $(INC_DIR)/%.h
+	@mkdir -p $(@D)
+	@printf "%-25s" "CC   $(@F)"
+	@$(CC) $(CFLAGS) $(EXT_INC_DIR) -c $< -o $@ -fPIC 
+	$(PRINT_OK)
 
-test: test_prepare test_spot test_dspot test_openmp_perf
 
-## HTML/XML docs
-docs:
-	@rm -rf $(CURDIR)/docs/xml $(CURDIR)/docs/html
-	@doxygen $(CURDIR)/docs/Doxygen 
+# ========================================================================== #
+# Install
+# ========================================================================== #
 
-## CLEAN
+$(INSTALL_HEAD_DIR)/%: $(INC_DIR)/%
+	@mkdir -p $(@D)
+	@printf "INSTALL %-25s %-30s" "$(@F)" "$@"
+	@install $< $@
+	@echo "$(OK)"
+
+$(INSTALL_LIB_DIR)/%.$(VERSION): $(DIST_DIR)/%.$(VERSION)
+	@mkdir -p $(@D)
+	@printf "INSTALL %-25s %-30s" "$(@F)" "$@"
+	@install $< $@
+	@echo "$(OK)"
+
+$(INSTALL_LIB_DIR)/%.so: $(INSTALL_LIB_DIR)/%.so.$(VERSION)
+	@printf "SYMLINK %-25s %-30s" "$<" "$@"
+	@ln -s $< $@
+	@echo "$(OK)"
+
+$(INSTALL_LIB_DIR)/%.a: $(INSTALL_LIB_DIR)/%.a.$(VERSION)
+	@printf "SYMLINK %-25s %-30s" "$<" "$@"
+	@ln -s $< $@
+	@echo "$(OK)"
+
+# ========================================================================== #
+# Docs
+# ========================================================================== #
+
+doxygen: $(DIST_DIR)/spot.h
+	@rm -rf $(DOXYGEN_DIR)
+	@doxygen
+
+dev/doxygen/generated: doxygen
+	@mkdir -p $(@D) && rm -rf $@
+	@xsdata generate doxygen/xml/
+	@mv -f generated $@
+
+inject-version: $(HEADERS) $(SRCS)
+	@printf "%-55s" "Setting version to '$(VERSION)'"
+	@sed -i -e 's,@version.*,@version $(VERSION),' $^
+	$(PRINT_OK)
+
+inject-date: $(HEADERS) $(SRCS)
+	@printf "%-55s" "Setting date to '$(DATE)'"
+	@sed -i -e 's,@date.*,@date $(DATE),' $^
+	$(PRINT_OK)
+
+inject-copyright: $(HEADERS) $(SRCS)
+	@printf "%-55s" "Setting license to '$(LICENSE)'"
+	@sed -i -e 's,@copyright.*,@copyright $(LICENSE),' $^
+	$(PRINT_OK)
+
+docs/70_API.md: dev/doxygen/generated
+	@mkdir -p $(@D)
+	python3 dev/doxygen/generate_api_docs.py -o "$@"
+
+docs/API: docs/70_API.md
+
+
+# ========================================================================== #
+# Misc
+# ========================================================================== #
+
+libspot.tar.gz:
+	@tar -cvf $@ src include Makefile benchmark/*.c 
+
+check:
+	@clang-tidy $(SRC_DIR)/*.c -- $(CFLAGS)
+
+fmt:
+	@clang-format -i $(SRC_DIR)/*.c $(INC_DIR)/*.h $(DIST_DIR)/spot.h
+
 clean:
-	@rm -rfd $(OBJ_DIR)
-	@rm -rfd $(LIB_DIR)
-	@cd $(TEST_DIR) && rm -f $$(ls -I "*.cpp" .)
-	@rm -rfd ./debian/*.log ./debian/*.substvars ./debian/tmp ./debian/.deb*
+	rm -f $(OBJS)
+	rm -f $(STATIC) $(DYNAMIC)
+	rm -rf $(TEST_COVERAGE_DIR) $(TEST_RESULTS_DIR) $(TEST_BIN_DIR)
+	rm -rf $(DOXYGEN_DIR)
+	rm -rf dev/doxygen/generated
+	rm -rf $(BENCHMARK_DIR)/bin
+	rm -rf docs/API
+	rm -rf $(PYTHON_DIR)/build $(PYTHON_DIR)/dist $(PYTHON_DIR)/$(LIB).egg-info
+	rm -rf $(PYTHON_DIR)/$(LIB)/interface.py
+	rm -rf $(WASM_DIR)/dist
+	rm -rf $(WASM_DIR)/libspot.js
+	
 
-## build/install test
+# ========================================================================== #
+# Python
+# ========================================================================== #
+
+
+$(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl: $(PYTHON_DIR)/setup.py $(PYTHON_DIR)/libspotmodule.c $(SRC_DIR)/*.c
+	@mkdir -p $(@D)
+	python -m build -w -o $(PYTHON_DIR)/dist $(PYTHON_DIR)
+
+python: $(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl
+
+wheel: python
+
+python3.%:
+	podman run --rm -it -v $(shell pwd):/libspot -w /libspot python:3.$* python -m build -w -o $(PYTHON_DIR)/dist $(PYTHON_DIR)
+
+python-all: $(foreach v,11 12,python3.$(v))
+
+# ========================================================================== #
+# WASM/JS
+# ========================================================================== #
+
+js: $(WASM_DIR)/dist/libspot.js
+
+$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.core.js 
+	cd $(WASM_DIR) && bun run build
+
+$(WASM_DIR)/libspot.core.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
+	$(EMCC) $(CFLAGS) \
+		-s WASM=1 \
+		-s FILESYSTEM=0 \
+		-s EXPORT_ES6=1 \
+		-s MODULARIZE=1 \
+		-s SINGLE_FILE \
+		-s ENVIRONMENT=web \
+		-s ALLOW_MEMORY_GROWTH=1 \
+		-s EXPORTED_RUNTIME_METHODS=cwrap,ccall \
+		-s EXPORT_NAME=loadWASM \
+		-s NO_EXIT_RUNTIME=1 \
+		-s EXPORTED_FUNCTIONS=$(WASM_EXPORTED_FUNCTIONS) \
+		-o $@ $^
+
+
+# we currently use emscripten to compile code to wasm because it
+# automatically provides the js boilerplate.
+# however it can be done with clang, and then zig (that ships clang) with a command like:
+# zig cc $(CFLAGS) --target=wasm32-wasi-musl -Wl,--no-entry -Wl,--export=$(WASM_EXPORTED_FUNCTIONS) -o $@ $^
+# See https://depth-first.com/articles/2019/10/16/compiling-c-to-webassembly-and-running-it-without-emscripten/
+# But it seems that other tools are required but should be installed manually.
+$(WASM_DIR)/libspot.wasm: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
+	$(EMCC) $(CFLAGS) \
+		--no-entry \
+		-s WASM=1 \
+		-s ALLOW_MEMORY_GROWTH=1 \
+		-s FILESYSTEM=0 \
+		-s EXPORTED_FUNCTIONS=$(WASM_EXPORTED_FUNCTIONS) \
+		-o $@ $^
+
+# need to install wabt (webassembly toolkit)
+$(WASM_DIR)/libspot.wat: $(WASM_DIR)/libspot.wasm
+	wams2wat -o $@ $^ 
+
+# ========================================================================== #
+# Arduino
+# ========================================================================== #
+
+
+$(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h: $(DIST_DIR)/spot.h
+	@mkdir -p $(@D)
+	@cp -u $< $@
+
+$(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).cpp: $(SORTED_SRCS)
+	@mkdir -p $(@D)
+	echo '#include "$(ARDUINO_LIB).h"' > $@
+	@for i in $^; do sed 's/^#include ".*h"//g' $$i | awk '/^[/][*][*]/{c++} c!=1; /^ [*][/]/{c++}' >> $@; done
+
+$(ARDUINO_DIR)/$(ARDUINO_LIB).zip: $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).cpp
+	cd $(ARDUINO_DIR) && zip -r $(ARDUINO_LIB).zip $(ARDUINO_LIB)/*
+
+arduino: $(ARDUINO_DIR)/$(ARDUINO_LIB).zip
+
+# ========================================================================== #
+# Test
+# ========================================================================== #
+
+# generate depends for test files
+$(TEST_DEPENDS_DIR)/%_test.d: $(TEST_SRC_DIR)/%_test.c $(UNITY_DIR)/unity.c $(SRC_DIR)/%.c $(INC_DIR)/%.h
+	@mkdir -p $(@D)
+	echo "$$($(CC) -MT $(TEST_BIN_DIR)/$*_test -MM -MG $(INC_DIR)/$*.h|sed -e 's,include/,src/,g' -e 's,[.]h,.c,g') $< $(UNITY_DIR)/unity.c" > "$@"
+
+deps: $(DEPS)
+
+# include that rules
+-include $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_DEPENDS_DIR)%.d)
+
+# create a generic rule that compile all the depends
+$(TEST_BIN_DIR)/%_test: 
+	@mkdir -p $(TEST_COVERAGE_DIR) $(TEST_BIN_DIR)
+	@printf "%-32s" "Building $@"
+	@$(CC) $(CTESTFLAGS) -o $@ $^ -lm
+	@mv $@-*.gcno $(TEST_COVERAGE_DIR)
+	$(PRINT_OK)
+
+# run a test
+$(TEST_RESULTS_DIR)/%_test.txt: $(TEST_BIN_DIR)/%_test
+	@mkdir -p $(@D)
+	@printf "%-32s" "Running  $^"
+	@$< > "$@"
+	@mv $<-*.gcda $(TEST_COVERAGE_DIR)
+	$(PRINT_OK)
+
+# concat coverage files
+$(TEST_COVERAGE_DIR)/coverage.info: $(TEST_RESULTS)
+	@lcov -q --capture --directory $(TEST_COVERAGE_DIR) --include '*src*' --exclude '*test*' --output-file $@
+	@lcov --list $@
+
+# html display
+$(TEST_COVERAGE_DIR)/html: $(TEST_COVERAGE_DIR)/coverage.info
+	@genhtml $< --output-directory $@
+
+test: $(TEST_RESULTS)
+	@cat $^ | \
+		grep -E 'PASS|FAIL|IGNORE' | \
+		awk -F ':' '{ printf "%6s %28s %s:%s\n",$$4,$$3,$$1,$$2 }' | \
+		sed -e 's,PASS,$(PASS),g' -e 's,FAIL,$(FAIL),g' -e 's,IGNORE,$(IGNORE),g'
+	
+coverage: $(TEST_COVERAGE_DIR)/html
+
+
+# ========================================================================== #
+# Benchmarks
+# ========================================================================== #
+
+$(BENCHMARK_DIR)/bin/%: $(BENCHMARK_DIR)/%.c $(SRCS)
+	@mkdir -p $(@D)
+	@printf "%-25s" "CC   $(@F)"
+	@$(CC) $(CBASEFLAGS) -o "$@" $^ -lm
+	$(PRINT_OK)
+
+benchmark_%: $(BENCHMARK_DIR)/bin/%
+	@printf "%-25s\n" "RUN  $(@F)"
+	@for i in $$(seq 1 $(BENCHMARK_COUNT)); do \
+		$^ $(BENCHMARK_SIZE) $$(date +%N|sed s/...$$//) >> $(BENCHMARK_DIR)/$*.json; \
+	done
 
 
 

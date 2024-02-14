@@ -1,0 +1,43 @@
+[project]
+name = "libspot"
+authors = [{ name = "Alban Siffer", email = "alban.siffer@irisa.fr" }]
+maintainers = [{ name = "Alban Siffer", email = "alban.siffer@irisa.fr" }]
+description = "Born to flag outliers (from python)"
+
+# readme = "../README.md"
+# license = { file = "../LICENSE.md" }
+license = { text = "LGPLv3" }
+requires-python = ">=3.8"
+dynamic = ["version"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Programming Language :: C",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[tool.setuptools]
+py-modules = []
+include-package-data = false
+
+[project.urls]
+Homepage = "https://asiffer.github.io/libspot"
+Repository = "https://github.com/asiffer/libspot.git"
+Issues = "https://github.com/asiffer/libspot/issues"
+
+[build-system]
+requires = ["setuptools>=59.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+container-engine = 'podman; create_args: -v "../:/project/libspot"'
+before-build = "rm -rf libspot.egg-info build"
+repair-wheel-command = "auditwheel repair -w {dest_dir} --strip {wheel} && pipx run abi3audit --strict --report {wheel}"
+build-frontend = "build"
+# Disable building PyPy wheels on all platforms
+skip = "pp*"

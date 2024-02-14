@@ -1,0 +1,67 @@
+name: JS
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup emsdk
+        uses: mymindstorm/setup-emsdk@v13
+        with:
+          # Make sure to set a version number!
+          version: 3.1.51
+          # This is the name of the cache folder.
+          # The cache folder will be placed in the build directory,
+          #  so make sure it doesn't conflict with anything!
+          actions-cache-folder: "emsdk-cache"
+      - name: Verify
+        run: emcc -v
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+          registry-url: "https://npm.pkg.github.com"
+      - uses: oven-sh/setup-bun@v1
+      - name: Build core libspot.js
+        run: make api && make js EMCC=emcc
+      - name: Build final js library
+        run: bun build:types && bun build:lib
+        working-directory: ./wasm
+      - name: Build npm package
+        run: npm pack
+        working-directory: ./wasm
+      - name: Upload npm package
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./wasm/asiffer-libspot*.tgz
+          name: libspot.tgz
+      - name: Upload libspot.js
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./wasm/dist/libspot.js
+          name: libspot.js
+
+  upload:
+    needs: [build]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+          registry-url: "https://npm.pkg.github.com"
+      - uses: actions/download-artifact@v3
+        with:
+          name: libspot.tgz
+          path: wasm
+      - name: Publish to Github
+        run: npm publish ./asiffer*.tgz
+        working-directory: ./wasm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

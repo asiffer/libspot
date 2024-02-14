@@ -1,65 +1,22 @@
-# libspot [![snap status](https://snapcraft.io/libspot/badge.svg)](https://snapcraft.io/libspot)
+<p align="center">
+    <img src="docs/img/logo.svg" style="max-width:50%" alt='libspot'/>
+</p>
 
-## Introduction
-**libspot** is a `C++` library which aims to detect anomalies in univariate streaming data. 
+<h1 align="center">libspot</h1>
+<p align="center">Born to flag outliers</p>
 
-Github pages : https://asiffer.github.io/libspot/
+<!-- <p align="center">
+<img src="https://img.shields.io/github/release/asiffer/libspot.svg" alt="release"/>
+<img src="https://img.shields.io/github/license/asiffer/libspot.svg" alt="license"/>
+</p> -->
 
-## Install
+[![Release](https://img.shields.io/github/release/asiffer/libspot.svg)](https://github.com/asiffer/libspot/releases)
+[![License](https://img.shields.io/github/license/asiffer/libspot.svg)](https://github.com/asiffer/libspot/blob/master/LICENSE)
+[![C](https://github.com/asiffer/libspot/actions/workflows/build.yaml/badge.svg)](https://github.com/asiffer/libspot/actions/workflows/build.yaml)
+[![Python](https://github.com/asiffer/libspot/actions/workflows/python.yaml/badge.svg)](https://github.com/asiffer/libspot/actions/workflows/python.yaml)
+[![JS](https://github.com/asiffer/libspot/actions/workflows/js.yaml/badge.svg)](https://github.com/asiffer/libspot/actions/workflows/js.yaml)
 
-### Latest release
+**libspot** is a `C` library to flag outliers in high-throughput streaming data.
+The current project also provides `Python` and `Javascript` bindings (through webassembly).
 
-Automatic releases provide compiled libraries for linux/amd64 platforms.
-Check the assets of the [latest version](https://github.com/asiffer/libspot/releases).
-
-### From source
-
-Otherwise, you can clone the repository and install it manually:
-```shell
-git clone https://github.com/asiffer/libspot.git
-make
-sudo make install
-```
-
-The default paths are `/usr/include/` for the headers and `/usr/lib/` for the library.
-You can change these paths in the installation step:
-
-```shell
-make install INSTALL_HEAD_DIR=... INSTALL_LIB_DIR=...
-```
-
-After that, you can test the `SPOT` algorithm with `make test`.
-
-### Snap package
-
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/libspot)
-
-Currently, you should use the **edge** version:
-```shell
-sudo snap install libspot --edge
-```
-
-### Debian package
-
-Basically, you need to add the ppa and download the packages you want 
-(`libspot` or `libspot-dev` if you want the headers)
-
-```shell
-add-apt-repository ppa:asiffer/libspot
-apt-get update
-apt-get install libspot libspot-dev
-```
-
-## Get started
-
-TODO
-
-## Python
-
-Yes, you could interact with the library with python bindings (see https://asiffer.github.io/libspot/python/).
-
-## About 
-
-This work is based on the following publication:
-
-*Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly Detection in Streams with Extreme Value Theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075). ACM.*
+Checkout the [docs](https://asiffer.github.io/libspot/)!

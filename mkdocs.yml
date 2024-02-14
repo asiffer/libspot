@@ -1,0 +1,71 @@
+site_name: libspot
+repo_url: https://github.com/asiffer/libspot
+repo_name: asiffer/libspot
+
+theme:
+  favicon: img/favicon.svg
+  name: material
+  custom_dir: docs/overrides
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      wtf: material/fan-alert
+  font:
+    text: "IBM Plex Sans"
+    code: "IBM Plex Mono"
+  logo: img/logo.svg
+  palette:
+    scheme: nord-dark
+  features:
+    - navigation.tracking
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+watch:
+  - benchmark
+  - src
+  - include
+
+plugins:
+  - search
+  # - charts
+
+extra_css:
+  - css/nord.css
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+extra_javascript:
+  - js/script.js
+  - https://cdn.jsdelivr.net/npm/vega@5
+  - https://cdn.jsdelivr.net/npm/vega-lite@5
+  - https://cdn.jsdelivr.net/npm/vega-embed@6
+  - js/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/xxb42rby
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        # - name: vegalite
+        #   class: vegalite
+        #   format: !!python/name:mkdocs_charts_plugin.fences.fence_vegalite
+        - name: onecompiler
+          class: onecompiler
+          format: !!python/name:mkdocs_onecompiler_plugin.main.formatter
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.inlinehilite
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
