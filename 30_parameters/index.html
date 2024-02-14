@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../20_get_started/">
       
       
-      <link rel="icon" href="/img/favicon.svg">
+        <link rel="next" href="../50_python/">
+      
+      
+      <link rel="icon" href="../img/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
-        <title>libspot</title>
+        <title>Parameters - libspot</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
   
@@ -50,11 +54,11 @@
       
     
     
-      <link rel="stylesheet" href="/css/nord.css">
+      <link rel="stylesheet" href="../css/nord.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,6 +81,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#detection" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -89,9 +98,9 @@
   
   <header class="md-header md-header--shadow" data-md-component="header">
     <nav class="md-header__inner md-grid" aria-label="Header">
-      <a href="/." title="libspot" class="md-header__button md-logo" aria-label="libspot" data-md-component="logo">
+      <a href=".." title="libspot" class="md-header__button md-logo" aria-label="libspot" data-md-component="logo">
         
-  <img src="/img/logo.svg" alt="logo">
+  <img src="../img/logo.svg" alt="logo">
 
       </a>
       <label class="md-header__button md-icon" for="__drawer">
@@ -107,7 +116,7 @@
           <div class="md-header__topic" data-md-component="header-topic">
             <span class="md-ellipsis">
               
-                
+                Parameters
               
             </span>
           </div>
@@ -208,9 +217,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="libspot" class="md-nav__button md-logo" aria-label="libspot" data-md-component="logo">
+    <a href=".." title="libspot" class="md-nav__button md-logo" aria-label="libspot" data-md-component="logo">
       
-  <img src="/img/logo.svg" alt="logo">
+  <img src="../img/logo.svg" alt="logo">
 
     </a>
     libspot
@@ -237,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/10_overview/" class="md-nav__link">
+      <a href="../10_overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -257,7 +266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/15_install/" class="md-nav__link">
+      <a href="../15_install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -277,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/20_get_started/" class="md-nav__link">
+      <a href="../20_get_started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -294,10 +303,28 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/30_parameters/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -306,6 +333,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#biasvariance-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias/variance tradeoff
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bounded-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounded memory
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -317,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/50_python/" class="md-nav__link">
+      <a href="../50_python/" class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5h1.18m-4.28 11.79c-.4 0-.72.3-.72.89 0 .59.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68H4.86M9.14 5.71c.4 0 .72-.3.72-.89 0-.59-.32-.71-.72-.71-.39 0-.71.12-.71.71s.32.89.71.89Z"/></svg>
@@ -339,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/51_javascript/" class="md-nav__link">
+      <a href="../51_javascript/" class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55 1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73 1.6 0 2.8-.83 2.8-2.36 0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02 0-.41.31-.73.81-.73.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33-1.51 0-2.48.96-2.48 2.23 0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13 0 .48-.45.83-1.15.83-.83 0-1.31-.43-1.67-1.03l-1.38.8Z"/></svg>
@@ -361,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/60_about/" class="md-nav__link">
+      <a href="../60_about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/70_API/" class="md-nav__link">
+      <a href="../70_API/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -438,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/internals/40_spot/" class="md-nav__link">
+      <a href="../internals/40_spot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -459,7 +531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/internals/50_math/" class="md-nav__link">
+      <a href="../internals/50_math/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -480,7 +552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/internals/60_fit/" class="md-nav__link">
+      <a href="../internals/60_fit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -519,6 +591,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#biasvariance-tradeoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias/variance tradeoff
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bounded-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounded memory
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -529,8 +636,101 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+  <h1>Parameters</h1>
+
+<p><strong>SPOT</strong> can be very powerful, once the parameters are coherent. This is not about precision mechanics but there is rule of thumbs you can follow.</p>
+<h2 id="detection">Detection</h2>
+<p>The main parameter is <strong><code>q</code></strong>. It defines the probability of an abnormal event. For example, if <code>q = 0.001</code>, it means that the algorithm will consider events with a probability lower than <code>0.1%</code> as anomalies.</p>
+<p>The impact of <code>q</code> defines the trade-off between the detection rate and the false positive rate. When <code>q</code> is low (e.g. <code>1e-8</code>), SPOT will flag only very extreme events so the false positive rate will be low (very extreme events are likely to be true anomalies) and so the detection rate (there will be more unflagged anomalies). The revert phenomenon occurs when <code>q</code> is "high".</p>
+<table>
+<thead>
+<tr>
+<th><code>q</code></th>
+<th>Example</th>
+<th>Detection rate</th>
+<th>False positive rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>low</td>
+<td><code>1e-8</code></td>
+<td>low</td>
+<td>low</td>
+</tr>
+<tr>
+<td>high</td>
+<td><code>1e-3</code></td>
+<td>high</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="biasvariance-tradeoff">Bias/variance tradeoff</h2>
+<p>The parameters <code>level</code> and <code>size</code> (from the <a href="../70_API/#spot_fit"><code>spot_fit</code></a> function) are involved in the fit step of the algorithm.</p>
+<p>The <code>size</code> is the number of data used for calibration while <code>1-level</code> represents the proportion of these initial data that belong to the tail of the distribution (<code>level</code> is then a high quantile in practice). For example, let us use <code>size = 1000</code> and <code>level = 0.99</code>. The algorithm will drop the 990 lowest data and will keep the 10 highest to make a first tail fit.</p>
+<!-- prettier-ignore -->
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In practice, the user must ensure that <code>n_init * (1 - level)</code> is high enough to perform the fit (at least few dozens of data). See the paragraph below.</p>
+</div>
+<p>When <code>size</code> is fixed, the parameter <code>level</code> tunes the <a href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff">bias/variance tradeoff</a>.
+We have explained that the number of data to perform the fit is <code>(1-level)*size</code>. If <code>level</code> is high (close to 1), we are more likely to shape the right tail (low bias) but as the number of fitting data is low, the latter will be more variable (high variance). Conversely if <code>level</code> is not too close to 1, we will have more data to fit the tail (low variance) but maybe our fit will involve data that do not belong to the tail (high bias).</p>
+<table>
+<thead>
+<tr>
+<th><code>level</code></th>
+<th>Example</th>
+<th>Bias</th>
+<th>Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>low</td>
+<td><code>0.95</code></td>
+<td>high</td>
+<td>low</td>
+</tr>
+<tr>
+<td>high</td>
+<td><code>0.999</code></td>
+<td>low</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<p>Ideally, if you have plenty of records, you can take a very high <code>level</code> without worrying about the variance.</p>
+<!-- prettier-ignore -->
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Remember also that <code>1-level</code> cannot be lower that <code>q</code> otherwise it leads to a contradiction between what should be flagged and what should be in the tail.</p>
+</div>
+<h2 id="bounded-memory">Bounded memory</h2>
+<p>In theory, the number of data in the tail can grow indifinetely while monitoring an infinite stream. Everyone knows that memory resources are limited so we cannot store all of the data to update the tail. Here comes the <code>max_excess</code> parameters: it defines the number of tail data we will keep.</p>
+<p>Moreover, it creates a memory vanishing effect since the model will keep only the last <code>max_excess</code> tail data to perform the fit. Thus, it must be high enough to perform a good fit in terms of bias and variance (see the paragraph above) but beware of the tail dynamics: if you need to quickly adapt to the "new" shape of the tail, <code>max_excess</code> should not be too high (one may advice few hundreds but it could be more if the monitored stream is stable).</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -581,12 +781,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tracking", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "/assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
       
-        <script src="/js/script.js"></script>
+        <script src="../js/script.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
       
@@ -594,7 +794,7 @@
       
         <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
       
-        <script src="/js/katex.js"></script>
+        <script src="../js/katex.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       

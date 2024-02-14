@@ -1,0 +1,1873 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../40_spot/">
+      
+      
+        <link rel="next" href="../60_fit/">
+      
+      
+      <link rel="icon" href="../../img/favicon.svg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Math functions - libspot</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--wtf:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 11c-.57 0-1 .45-1 1s.43 1 1 1c.54 0 1-.45 1-1s-.46-1-1-1m.5-9c4.5 0 4.59 3.57 2.23 4.75-.99.49-1.43 1.54-1.62 2.47.48.2.89.51 1.22.91 3.7-2 7.67-1.21 7.67 2.37 0 4.5-3.57 4.6-4.74 2.23-.5-.99-1.56-1.43-2.49-1.62-.2.48-.51.89-.91 1.23C13.85 18.03 13.06 22 9.5 22c-4.5 0-4.6-3.58-2.24-4.76.98-.49 1.42-1.53 1.62-2.45-.49-.2-.92-.52-1.24-.92C3.95 15.85 0 15.07 0 11.5 0 7 3.56 6.89 4.73 9.26c.5.99 1.55 1.42 2.48 1.61.19-.48.51-.9.92-1.22C6.14 5.96 6.93 2 10.5 2M22 13V7h2v6h-2m0 4v-2h2v2h-2Z"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/nord.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="nord-dark" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#natural-logarithm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+  
+    
+  
+  <header class="md-header md-header--shadow" data-md-component="header">
+    <nav class="md-header__inner md-grid" aria-label="Header">
+      <a href="../.." title="libspot" class="md-header__button md-logo" aria-label="libspot" data-md-component="logo">
+        
+  <img src="../../img/logo.svg" alt="logo">
+
+      </a>
+      <label class="md-header__button md-icon" for="__drawer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      </label>
+      <div class="md-header__title" data-md-component="header-title">
+        <div class="md-header__ellipsis">
+          <div class="md-header__topic">
+            <span class="md-ellipsis">
+              libspot
+            </span>
+          </div>
+          <div class="md-header__topic" data-md-component="header-topic">
+            <span class="md-ellipsis">
+              
+                Math functions
+              
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      
+        <div class="md-header__source">
+          <a href="https://github.com/asiffer/libspot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    asiffer/libspot
+  </div>
+</a>
+        </div>
+      
+      
+        <div class="md-header__social">
+          <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/xxb42rby" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+</div>
+        </div>
+      
+    </nav>
+    
+  </header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="libspot" class="md-nav__button md-logo" aria-label="libspot" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    libspot
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/asiffer/libspot" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    asiffer/libspot
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../15_install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20_get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30_parameters/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Parameters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50_python/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5h1.18m-4.28 11.79c-.4 0-.72.3-.72.89 0 .59.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68H4.86M9.14 5.71c.4 0 .72-.3.72-.89 0-.59-.32-.71-.72-.71-.39 0-.71.12-.71.71s.32.89.71.89Z"/></svg>
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../51_javascript/" class="md-nav__link">
+        
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55 1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73 1.6 0 2.8-.83 2.8-2.36 0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02 0-.41.31-.73.81-.73.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33-1.51 0-2.48.96-2.48 2.23 0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13 0 .48-.45.83-1.15.83-.83 0-1.31-.43-1.67-1.03l-1.38.8Z"/></svg>
+  
+  <span class="md-ellipsis">
+    Javascript
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60_about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70_API/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Internals
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Internals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../40_spot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SPOT algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Math functions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Math functions
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#natural-logarithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Natural logarithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Natural logarithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continued-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continued fraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Truncation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exponential" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exponential
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exponential">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continued-fraction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continued fraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Truncation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../60_fit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Initial fit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#natural-logarithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Natural logarithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Natural logarithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continued-fraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continued fraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Truncation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exponential" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exponential
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exponential">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#continued-fraction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continued fraction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Truncation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power" class="md-nav__link">
+    <span class="md-ellipsis">
+      Power
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Math functions</h1>
+
+<p><strong>libspot</strong> does not depend on the standard library, so its math. In particular, the SPOT algorithm needs both the exponential and the natural logarithm.</p>
+<h2 id="natural-logarithm">Natural logarithm</h2>
+<p>Several strategies exist to compute <code>log</code>. Currently we prefer accuracy against speed so we have compared different methods and parameters so as to be as close as possible as the standard library output (on my laptop <img alt="😁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f601.svg" title=":grin:" /> but you can also check it with online compiler). </p>
+<p>Our simple implementation is actually <strong>faster</strong> than the standard library while being <strong>as accurate</strong> as it.</p>
+<h3 id="continued-fraction">Continued fraction</h3>
+<p>We currently use the following continued fraction<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>:</p>
+<p>$$
+\log\left(1 + z\right) = \dfrac{2 z}{2 + z + \displaystyle\KK_{m = 1}^{\infty}\left(\frac{-m^2 z^2}{(2 m + 1) (2 + z)}\right)}
+$$</p>
+<p>where</p>
+<p>$$
+\KK_{m = 1}^{\infty}\left(\frac{-m^2 z^2}{(2 m + 1) (2 + z)}\right) = -\cfrac{z^2}{3 (2 + z) - \cfrac{4 z^2}{5 (2 + z) - \cfrac{9 z^2}{7 (2 + z) - \cfrac{16 z^2}{9 (2 + z) - ...}}}}
+$$</p>
+<p>In practice, we truncate this expansion to depth $d$. For instance, the following pyton script leverages <code>sympy</code> and the recursive behavior of the continued fraction to
+output a truncated version of the expansion.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="n">m</span> <span class="o">*</span> <span class="n">m</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">log_cf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">z</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">K</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">log_cf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">11</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="truncation">Truncation</h3>
+<p>The following code is used so as to find the "best" depth. We basically retrieve the max mantissa error and the relative error. Indeed we leverage the <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE754 representation</a> so as to turn the computation $\log(x),  x\in\RR$ into $\log(x),  x\in[1, 2]$.</p>
+<details class="info">
+<summary>benchmark/log_cf_accuracy.c</summary>
+<p>
+<iframe id="" referrerpolicy="no-referrer" name="" class="onecompiler" src="https://onecompiler.com/embed/c?availableLanguages=true&hideLanguageSelection=false&hideNew=true&hideNewFileOption=true&disableCopyPaste=false&hideStdin=true&hideResult=false&hideTitle=true&listenToEvents=true&theme=dark" height="450px" width="100%" onload='this.contentWindow.postMessage({
+        eventType: "populateCode",
+        language: "c",
+        files: [
+            {
+                "name": "log_cf_accuracy.c",
+                "content": String.raw`#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+double const _NAN = 0.0 / 0.0;
+
+double const LOG2 = 0x1.62e42fefa39efp-1;
+
+/*
+ * See en.wikipedia.org/wiki/Double-precision_floating-point_format
+ */
+typedef union {
+    double d;
+    struct {
+        unsigned long long significand : 52;
+        unsigned long long exponent : 11;
+        unsigned long long sign : 1;
+    } bits;
+} double_cast;
+
+struct accuracy_errors {
+    unsigned long long significand;
+    double x_significand;
+    double relative;
+    double x_relative;
+};
+
+void reset_errors(struct accuracy_errors *error) {
+    // clean the structure
+    error->significand = 0;
+    error->relative = 0.0;
+    error->x_relative = _NAN;
+    error->x_significand = _NAN;
+}
+
+double K(double x, unsigned int d, unsigned int m) {
+    if (m == d) {
+        return 0.;
+    }
+    double md = m;
+    double a = -md * md;
+    double b = md + md + 1.;
+    return a * x * x / (b * (2. + x) + K(x, d, m + 1));
+}
+
+double log_cf(double x, unsigned int d) {
+    double z = x - 1.;
+    return 2 * z / (2 + z + K(z, d, 1));
+}
+
+double _log(double x, unsigned int d) {
+    double_cast casted = {.d = x};
+    if (casted.bits.exponent == 1022 || casted.bits.exponent == 1023) {
+        // 1/2 < x < 1
+        // when x is close to 1 (but <1)., it is better
+        // to call the function directly instead of setting exponent to 1023
+        return log_cf(x, d);
+    }
+    double exponent = casted.bits.exponent;
+    casted.bits.exponent = 1023;
+    // when exponent is 1023, 1 <= casted.d <= 2
+    // return logd(casted.d, depth) + (exponent - 1023.0) * LOG2;
+    return log_cf(casted.d, d) + (exponent - 1023.0) * LOG2;
+}
+
+void accuracy(unsigned int d, unsigned int N, struct accuracy_errors *error) {
+    double_cast cast_log = {.d = 0.0};
+    double_cast cast_log_cf = {.d = 0.0};
+    double x;
+
+    // clean the errors
+    reset_errors(error);
+
+    // errors
+    unsigned long long significand_err = 0;
+    double relative_err = 0.0;
+
+    // linspace
+    double a = -8.;
+    double b = 8.;
+    double eps = (b - a) / (double)(N - 1);
+    double u = a;
+
+    for (unsigned int i = 0; i < N; i++) {
+        x = pow(10., u);
+        cast_log.d = log(x);
+        cast_log_cf.d = _log(x, d);
+
+        if (cast_log.bits.significand >= cast_log_cf.bits.significand) {
+            significand_err =
+                cast_log.bits.significand - cast_log_cf.bits.significand;
+        } else {
+            significand_err =
+                cast_log_cf.bits.significand - cast_log.bits.significand;
+        }
+
+        // significand error
+        if (significand_err > error->significand) {
+            error->significand = significand_err;
+            error->x_significand = x;
+        }
+
+        // relative error
+        if (cast_log.d != 0.0) {
+            relative_err = (cast_log_cf.d - cast_log.d) / cast_log.d;
+            if (relative_err > error->relative) {
+                error->relative = relative_err;
+                error->x_relative = x;
+            }
+        }
+
+        u += eps;
+    }
+}
+
+int main() {
+    unsigned int const N = 2000000;
+    struct accuracy_errors error;
+
+    printf("depth | max mantissa error | max relative error\n");
+    printf("------|--------------------|-------------------\n");
+    for (unsigned d = 5; d < 15; d++) {
+        accuracy(d, N, &error);
+        printf("%-6d|%20llu|%19E\n", d, error.significand, error.relative);
+    }
+}`
+            }
+        ]
+    }, "*");'>
+</iframe>
+</p>
+</details>
+<p>The results on my laptop are presented below. Depths 9, 10 or 11 may be good candidates depending on the accuracy need.</p>
+<table>
+<thead>
+<tr>
+<th>depth</th>
+<th>max mantissa error</th>
+<th>max relative error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>204513805</td>
+<td>3.275499E-08</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6065190</td>
+<td>9.713924E-10</td>
+</tr>
+<tr>
+<td>7</td>
+<td>179516</td>
+<td>2.875076E-11</td>
+</tr>
+<tr>
+<td>8</td>
+<td>5307</td>
+<td>8.500201E-13</td>
+</tr>
+<tr>
+<td>9</td>
+<td>157</td>
+<td>2.514663E-14</td>
+</tr>
+<tr>
+<td>10</td>
+<td>6</td>
+<td>8.008480E-16</td>
+</tr>
+<tr>
+<td>11</td>
+<td>2</td>
+<td>4.022239E-16</td>
+</tr>
+<tr>
+<td>12</td>
+<td>2</td>
+<td>4.022239E-16</td>
+</tr>
+<tr>
+<td>13</td>
+<td>2</td>
+<td>4.022239E-16</td>
+</tr>
+<tr>
+<td>14</td>
+<td>2</td>
+<td>4.022239E-16</td>
+</tr>
+</tbody>
+</table>
+<h3 id="speed">Speed</h3>
+<p>Let us present the speed of our implementation. In the following benchmark, we use an "inline" representation of the continued fraction with <code>depth = 11</code> (instead of the recursive definitions given above).</p>
+<p>We compare computation time of <strong>libspot</strong> vs the standard library (on 10M runs, $\scriptsize 10^{-8}&lt;x&lt;10^{8}$).</p>
+<details class="info">
+<summary>benchmark/log_cf_speed.c</summary>
+<p>
+<iframe id="" referrerpolicy="no-referrer" name="" class="onecompiler" src="https://onecompiler.com/embed/c?availableLanguages=true&hideLanguageSelection=false&hideNew=true&hideNewFileOption=true&disableCopyPaste=false&hideStdin=true&hideResult=false&hideTitle=true&listenToEvents=true&theme=dark" height="450px" width="100%" onload='this.contentWindow.postMessage({
+        eventType: "populateCode",
+        language: "c",
+        files: [
+            {
+                "name": "log_cf_speed.c",
+                "content": String.raw`#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SEED 0
+
+// we use -O2 optimization flag
+#pragma GCC optimize("O2")
+
+double const _NAN = 0.0 / 0.0;
+double const DMAX = RAND_MAX;
+double const LOG2 = 0x1.62e42fefa39efp-1;
+
+double const CPS = CLOCKS_PER_SEC;
+
+// U(0, 1)
+double runif() { return (double)rand() / DMAX; }
+
+/*
+ * See en.wikipedia.org/wiki/Double-precision_floating-point_format
+ */
+typedef union {
+    double d;
+    struct {
+        unsigned long long significand : 52;
+        unsigned long long exponent : 11;
+        unsigned long long sign : 1;
+    } bits;
+} double_cast;
+
+double _log_cf_11(double z) {
+    double x = z - 1;
+    double xx = x + 2;
+    double x2 = x * x;
+
+    double xx2 = xx + xx;
+    double xx3 = xx + xx2;
+    double xx5 = xx3 + xx2;
+    double xx7 = xx5 + xx2;
+    double xx9 = xx7 + xx2;
+    double xx11 = xx9 + xx2;
+    double xx13 = xx11 + xx2;
+    double xx15 = xx13 + xx2;
+    double xx17 = xx15 + xx2;
+    double xx19 = xx17 + xx2;
+    double xx21 = xx19 + xx2;
+
+    return 2 * x /
+           (-x2 / (-4 * x2 /
+                       (-9 * x2 /
+                            (-16 * x2 /
+                                 (-25 * x2 /
+                                      (-36 * x2 /
+                                           (-49 * x2 /
+                                                (-64 * x2 /
+                                                     (-81 * x2 /
+                                                          (-100 * x2 / xx21 +
+                                                           xx19) +
+                                                      xx17) +
+                                                 xx15) +
+                                            xx13) +
+                                       xx11) +
+                                  xx9) +
+                             xx7) +
+                        xx5) +
+                   xx3) +
+            xx);
+}
+
+double _log(double x) {
+    double_cast casted = {.d = x};
+    if (casted.bits.exponent == 1022 || casted.bits.exponent == 1023) {
+        // 1/2 < x < 1
+        // when x is close to 1 (but <1)., it is better
+        // to call the function directly instead of setting exponent to 1023
+        return _log_cf_11(x);
+    }
+    double exponent = casted.bits.exponent;
+    casted.bits.exponent = 1023;
+    // when exponent is 1023, 1 <= casted.d <= 2
+    // return logd(casted.d, depth) + (exponent - 1023.0) * LOG2;
+    return _log_cf_11(casted.d) + (exponent - 1023.0) * LOG2;
+}
+
+void speed(unsigned int N) {
+    unsigned long long reference = 0;
+    unsigned long long custom = 0;
+    double p = 0.0;
+    clock_t start;
+
+    srand(SEED);
+    start = clock();
+    for (unsigned int k = 0; k < N; k++) {
+        p = pow(10., 20. * (2. * runif() - 1.));
+        log(p);
+    }
+    reference = clock() - start;
+
+    // reference
+    srand(SEED);
+    start = clock();
+    for (unsigned int k = 0; k < N; k++) {
+        p = pow(10., 20. * (2. * runif() - 1.));
+        _log(p);
+    }
+    custom = clock() - start;
+
+    //     printf(" STDLIB: %llu\nLIBSPOT: %llu (x%.1f)\n", reference, custom,
+    //            (double)custom / (double)reference);
+    printf("LIBSPOT: %.3fs\n STDLIB: %.3fs (x%.1f)\n", (double)custom / CPS,
+           (double)reference / CPS, (double)reference / (double)custom);
+}
+
+int main() {
+    unsigned int const N = 10000000;
+    speed(N);
+}`
+            }
+        ]
+    }, "*");'>
+</iframe>
+</p>
+</details>
+<p>When we turn on optimization flags (like <code>-O2</code>) we see that the <strong>libspot implementation is faster</strong>.</p>
+<h2 id="exponential">Exponential</h2>
+<p>Once again we use a continued fraction to compute exponential. </p>
+<h3 id="continued-fraction_1">Continued fraction</h3>
+<p>We currently use the following continued fraction<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>:</p>
+<p>$$
+\exp\left(z\right) = 1 + \cfrac{2 z}{2 - z + 2 \displaystyle\KK_{m = 1}^{\infty}\left(\cfrac{a_m z^2}{1}\right)}
+$$</p>
+<p>with 
+$$
+a_m = \dfrac{1}{4 (2 m - 1) (2 m + 1)}
+$$
+so if we expand the continued fraction
+$$
+\KK_{m = 1}^{\infty}\left(\cfrac{a_m z^2}{1}\right) = \cfrac{z^2 / 12}{1 + \cfrac{z^2 / 60}{1 + \cfrac{z^2 / 140}{1 + \cfrac{z^2 / 252}{1 + \cfrac{z^2 / 396}{1 + ...}}}}}
+$$</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="k">def</span> <span class="nf">K</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="n">d</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="n">mm</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">m</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">mm</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">mm</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z2</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">K</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">exp_cf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="n">z2</span> <span class="o">=</span> <span class="n">z</span> <span class="o">*</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">z</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="n">z</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">K</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Symbol</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">exp_cf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="truncation_1">Truncation</h3>
+<p>The following benchmark leads us to choose <code>d = 6</code>.</p>
+<details class="info">
+<summary>benchmark/exp_cf_accuracy.c</summary>
+<p>
+<iframe id="" referrerpolicy="no-referrer" name="" class="onecompiler" src="https://onecompiler.com/embed/c?availableLanguages=true&hideLanguageSelection=false&hideNew=true&hideNewFileOption=true&disableCopyPaste=false&hideStdin=true&hideResult=false&hideTitle=true&listenToEvents=true&theme=dark" height="450px" width="100%" onload='this.contentWindow.postMessage({
+        eventType: "populateCode",
+        language: "c",
+        files: [
+            {
+                "name": "exp_cf_accuracy.c",
+                "content": String.raw`#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+double const _NAN = 0.0 / 0.0;
+double const LOG2 = 0x1.62e42fefa39efp-1;
+
+/*
+ * See en.wikipedia.org/wiki/Double-precision_floating-point_format
+ */
+typedef union {
+    double d;
+    struct {
+        unsigned long long significand : 52;
+        unsigned long long exponent : 11;
+        unsigned long long sign : 1;
+    } bits;
+} double_cast;
+
+struct accuracy_errors {
+    unsigned long long significand;
+    double x_significand;
+    double relative;
+    double x_relative;
+};
+
+void reset_errors(struct accuracy_errors *error) {
+    // clean the structure
+    error->significand = 0;
+    error->relative = 0.0;
+    error->x_relative = _NAN;
+    error->x_significand = _NAN;
+}
+
+double K(double z2, unsigned int d, unsigned int m) {
+    if (m == d) {
+        return 0.;
+    }
+    double mm = 2 * m;
+    double a = 1. / (4 * (mm - 1) * (mm + 1));
+    return z2 * a / (1 + K(z2, d, m + 1));
+}
+
+double exp_cf(double z, unsigned int d) {
+    double z2 = z * z;
+    return 1 + 2 * z / (2 - z + 2 * K(z2, d, 1));
+}
+
+double _exp(double x, unsigned int d) {
+    if (x < 0) {
+        return 1 / _exp(-x, d);
+    }
+    if (x > LOG2) {
+        unsigned long long k = x / LOG2;
+        double r = x - LOG2 * (double)k;
+        // significand, exponent, sign
+        // double_cast z = {.bits = {0, k + 1023, 0}};
+
+        double_cast w = {.d = _exp(r, d)};
+        w.bits.exponent += k;
+        return w.d;
+        // return _exp(r, d) * z.d;
+    }
+
+    return exp_cf(x, d);
+}
+
+void accuracy(unsigned int d, unsigned int N, struct accuracy_errors *error) {
+    double_cast cast_exp = {.d = 0.0};
+    double_cast cast_exp_cf = {.d = 0.0};
+    double x;
+
+    // clean the errors
+    reset_errors(error);
+
+    // errors
+    unsigned long long significand_err = 0;
+    double relative_err = 0.0;
+
+    // linspace
+    double a = -10;
+    double b = 2;
+    double eps = (b - a) / (double)(N - 1);
+    double u = a;
+
+    for (unsigned int i = 0; i < N; i++) {
+        x = pow(10.0, u);
+        cast_exp.d = exp(x);
+        cast_exp_cf.d = _exp(x, d);
+
+        if (cast_exp.bits.significand >= cast_exp_cf.bits.significand) {
+            significand_err =
+                cast_exp.bits.significand - cast_exp_cf.bits.significand;
+        } else {
+            significand_err =
+                cast_exp_cf.bits.significand - cast_exp.bits.significand;
+        }
+
+        // significand error
+        if (significand_err > error->significand) {
+            error->significand = significand_err;
+            error->x_significand = x;
+        }
+
+        // relative error
+        if (cast_exp.d != 0.0) {
+            relative_err = (cast_exp_cf.d - cast_exp.d) / cast_exp.d;
+            if (relative_err > error->relative) {
+                error->relative = relative_err;
+                error->x_relative = x;
+            }
+        }
+
+        u += eps;
+    }
+}
+
+int main() {
+    unsigned int const N = 2000000;
+    struct accuracy_errors error;
+
+    printf("depth | max mantissa error | max relative error\n");
+    printf("------|--------------------|-------------------\n");
+    for (unsigned d = 3; d < 10; d++) {
+        accuracy(d, N, &error);
+        printf("%-6d|%20llu|%19E\n", d, error.significand, error.relative);
+    }
+}`
+            }
+        ]
+    }, "*");'>
+</iframe>
+</p>
+</details>
+<table>
+<thead>
+<tr>
+<th>depth</th>
+<th>max mantissa error</th>
+<th>max relative error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>6998321454</td>
+<td>7.769708E-07</td>
+</tr>
+<tr>
+<td>4</td>
+<td>13281258</td>
+<td>1.014192E-14</td>
+</tr>
+<tr>
+<td>5</td>
+<td>16126</td>
+<td>1.790451E-12</td>
+</tr>
+<tr>
+<td>6</td>
+<td>81</td>
+<td>1.017038E-14</td>
+</tr>
+<tr>
+<td>7</td>
+<td>90</td>
+<td>1.017038E-14</td>
+</tr>
+<tr>
+<td>8</td>
+<td>90</td>
+<td>1.017038E-14</td>
+</tr>
+<tr>
+<td>9</td>
+<td>90</td>
+<td>1.017038E-14</td>
+</tr>
+</tbody>
+</table>
+<h3 id="speed_1">Speed</h3>
+<p>Like in the previous <code>log</code> benchmark, we use an "inline" representation of the continued fraction with <code>depth = 6</code>. We compare computation time of <strong>libspot</strong> vs the standard library (on 10M runs, $\scriptsize 10^{-8}&lt;x&lt;10^{2}$).</p>
+<details class="info">
+<summary>benchmark/exp_cf_speed.c</summary>
+<p>
+<iframe id="" referrerpolicy="no-referrer" name="" class="onecompiler" src="https://onecompiler.com/embed/c?availableLanguages=true&hideLanguageSelection=false&hideNew=true&hideNewFileOption=true&disableCopyPaste=false&hideStdin=true&hideResult=false&hideTitle=true&listenToEvents=true&theme=dark" height="450px" width="100%" onload='this.contentWindow.postMessage({
+        eventType: "populateCode",
+        language: "c",
+        files: [
+            {
+                "name": "exp_cf_speed.c",
+                "content": String.raw`#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SEED 0
+
+// we use -O2 optimization flag
+#pragma GCC optimize("O2")
+
+double const _NAN = 0.0 / 0.0;
+double const DMAX = RAND_MAX;
+double const LOG2 = 0x1.62e42fefa39efp-1;
+
+double const CPS = CLOCKS_PER_SEC;
+
+// U(0, 1)
+double runif() { return (double)rand() / DMAX; }
+
+/*
+ * See en.wikipedia.org/wiki/Double-precision_floating-point_format
+ */
+typedef union {
+    double d;
+    struct {
+        unsigned long long significand : 52;
+        unsigned long long exponent : 11;
+        unsigned long long sign : 1;
+    } bits;
+} double_cast;
+
+double _exp_cf_6(double z) {
+    double z2 = z * z;
+
+    return 2 * z /
+               (2 * z2 /
+                    (12 * z2 / (z2 * (z2 + 396) / (6 * (z2 + 154)) + 60) +
+                     12) -
+                z + 2) +
+           1;
+}
+
+double _exp(double x) {
+    if (x > LOG2) {
+        unsigned long long k = x / LOG2;
+        double r = x - LOG2 * (double)k;
+        double_cast w = {.d = _exp_cf_6(r)};
+        w.bits.exponent += k;
+        return w.d;
+    }
+
+    return _exp_cf_6(x);
+}
+
+void speed(unsigned int N) {
+    unsigned long long reference = 0;
+    unsigned long long custom = 0;
+    double p = 0.0;
+    clock_t start;
+
+    srand(SEED);
+    start = clock();
+    for (unsigned int k = 0; k < N; k++) {
+        p = pow(10., 10. * runif() - 8.);
+        exp(p);
+    }
+    reference = clock() - start;
+
+    // reference
+    srand(SEED);
+    start = clock();
+    for (unsigned int k = 0; k < N; k++) {
+        p = pow(10., 10. * runif() - 8.);
+        _exp(p);
+    }
+    custom = clock() - start;
+
+    printf("LIBSPOT: %.3fs\n STDLIB: %.3fs (x%.1f)\n", (double)custom / CPS,
+           (double)reference / CPS, (double)reference / (double)custom);
+}
+
+int main() {
+    unsigned int const N = 10000000;
+    speed(N);
+}`
+            }
+        ]
+    }, "*");'>
+</iframe>
+</p>
+</details>
+<p>Once again, <strong>libspot implementation is faster</strong> when optimization flags are set.</p>
+<h2 id="power">Power</h2>
+<p>Finally, we need to compute $x^\alpha$ when $x \ge 0$ and $\alpha \in\RR$. Currently we basically use our implementation of <code>exp</code> and <code>log</code> as $x^\alpha = \exp\left(\alpha \log x\right)$.</p>
+<details class="info">
+<summary>benchmark/pow_accuracy_speed.c</summary>
+<p>
+<iframe id="" referrerpolicy="no-referrer" name="" class="onecompiler" src="https://onecompiler.com/embed/c?availableLanguages=true&hideLanguageSelection=false&hideNew=true&hideNewFileOption=true&disableCopyPaste=false&hideStdin=true&hideResult=false&hideTitle=true&listenToEvents=true&theme=dark" height="450px" width="100%" onload='this.contentWindow.postMessage({
+        eventType: "populateCode",
+        language: "c",
+        files: [
+            {
+                "name": "pow_accuracy_speed.c",
+                "content": String.raw`#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SEED 0
+
+double const _NAN = 0.0 / 0.0;
+double const DMAX = RAND_MAX;
+double const LOG2 = 0x1.62e42fefa39efp-1;
+double const CPS = CLOCKS_PER_SEC;
+
+/*
+ * See en.wikipedia.org/wiki/Double-precision_floating-point_format
+ */
+typedef union {
+    double d;
+    struct {
+        unsigned long long significand : 52;
+        unsigned long long exponent : 11;
+        unsigned long long sign : 1;
+    } bits;
+} double_cast;
+
+double runif() { return (double)rand() / DMAX; }
+
+struct accuracy_errors {
+    unsigned long long significand;
+    double x_significand;
+    double relative;
+    double x_relative;
+};
+
+struct speeds {
+    double stdlib;
+    double libspot;
+};
+
+void reset_errors(struct accuracy_errors *error) {
+    // clean the structure
+    error->significand = 0;
+    error->relative = 0.0;
+    error->x_relative = _NAN;
+    error->x_significand = _NAN;
+}
+
+void reset_speeds(struct speeds *s) {
+    s->libspot = 0.0;
+    s->stdlib = 0.0;
+};
+
+double _log_cf_11(double z) {
+    double x = z - 1;
+    double xx = x + 2;
+    double x2 = x * x;
+
+    double xx2 = xx + xx;
+    double xx3 = xx + xx2;
+    double xx5 = xx3 + xx2;
+    double xx7 = xx5 + xx2;
+    double xx9 = xx7 + xx2;
+    double xx11 = xx9 + xx2;
+    double xx13 = xx11 + xx2;
+    double xx15 = xx13 + xx2;
+    double xx17 = xx15 + xx2;
+    double xx19 = xx17 + xx2;
+    double xx21 = xx19 + xx2;
+
+    return 2 * x /
+           (-x2 / (-4 * x2 /
+                       (-9 * x2 /
+                            (-16 * x2 /
+                                 (-25 * x2 /
+                                      (-36 * x2 /
+                                           (-49 * x2 /
+                                                (-64 * x2 /
+                                                     (-81 * x2 /
+                                                          (-100 * x2 / xx21 +
+                                                           xx19) +
+                                                      xx17) +
+                                                 xx15) +
+                                            xx13) +
+                                       xx11) +
+                                  xx9) +
+                             xx7) +
+                        xx5) +
+                   xx3) +
+            xx);
+}
+
+double _exp_cf_6(double z) {
+    double z2 = z * z;
+
+    return 2 * z /
+               (2 * z2 /
+                    (12 * z2 /
+                         (60 * z2 / (140 * z2 / (7 * z2 / 11 + 252) + 140) +
+                          60) +
+                     12) -
+                z + 2) +
+           1;
+}
+
+double _exp(double x) {
+    if (x < 0) {
+        return 1.0 / _exp(-x);
+    }
+    if (x > LOG2) {
+        unsigned long long k = x / LOG2;
+        double r = x - LOG2 * (double)k;
+        double_cast w = {.d = _exp_cf_6(r)};
+        w.bits.exponent += k;
+        return w.d;
+    }
+
+    return _exp_cf_6(x);
+}
+
+double _log(double x) {
+    double_cast casted = {.d = x};
+    if (casted.bits.exponent == 1022 || casted.bits.exponent == 1023) {
+        // 1/2 < x < 1
+        // when x is close to 1 (but <1)., it is better
+        // to call the function directly instead of setting exponent to 1023
+        return _log_cf_11(x);
+    }
+    double exponent = casted.bits.exponent;
+    casted.bits.exponent = 1023;
+    // when exponent is 1023, 1 <= casted.d <= 2
+    // return logd(casted.d, depth) + (exponent - 1023.0) * LOG2;
+    return _log_cf_11(casted.d) + (exponent - 1023.0) * LOG2;
+}
+
+double _pow(double x, double alpha) { return _exp(alpha * _log(x)); }
+
+double _powbis(double x, double alpha) {
+    double_cast casted = {.d = x};
+    double p = alpha * (casted.bits.exponent - 1023);
+    long long k = p;
+    double beta = p - (double)k;
+    casted.bits.exponent = 1023;
+    double_cast t = {.d = _pow(casted.d, alpha) * _pow(2, beta)};
+    t.bits.exponent += k;
+    return t.d;
+}
+
+void accuracy(double alpha, unsigned int N, struct accuracy_errors *error) {
+    double_cast cast_pow = {.d = 0.0};
+    double_cast cast_pow_cf = {.d = 0.0};
+    double x;
+
+    // clean the errors
+    reset_errors(error);
+
+    // errors
+    unsigned long long significand_err = 0;
+    double relative_err = 0.0;
+
+    // linspace
+    double a = -1.;
+    double b = 1.;
+    double eps = (b - a) / (double)(N - 1);
+    double u = a;
+
+    for (unsigned int i = 0; i < N; i++) {
+        x = pow(10., u);
+        cast_pow.d = pow(x, alpha);
+        cast_pow_cf.d = _pow(x, alpha);
+
+        if (cast_pow.bits.significand >= cast_pow_cf.bits.significand) {
+            significand_err =
+                cast_pow.bits.significand - cast_pow_cf.bits.significand;
+        } else {
+            significand_err =
+                cast_pow_cf.bits.significand - cast_pow.bits.significand;
+        }
+
+        // significand error
+        if (significand_err > error->significand) {
+            error->significand = significand_err;
+            error->x_significand = x;
+        }
+
+        // relative error
+        if (cast_pow.d != 0.0) {
+            relative_err = (cast_pow_cf.d - cast_pow.d) / cast_pow.d;
+            if (relative_err > error->relative) {
+                error->relative = relative_err;
+                error->x_relative = x;
+            }
+        }
+
+        u += eps;
+    }
+}
+
+void speed(double alpha, unsigned int N, struct speeds *s) {
+    unsigned long long reference = 0;
+    unsigned long long custom = 0;
+    double p = 0.0;
+    clock_t start;
+
+    reset_speeds(s);
+
+    srand(SEED);
+    start = clock();
+    for (unsigned int k = 0; k < N; k++) {
+        p = pow(10., 10. * runif() - 8.);
+        pow(p, alpha);
+    }
+    reference = clock() - start;
+
+    // reference
+    srand(SEED);
+    start = clock();
+    for (unsigned int k = 0; k < N; k++) {
+        p = pow(10., 10. * runif() - 8.);
+        _pow(p, alpha);
+    }
+    custom = clock() - start;
+
+    s->libspot = (double)custom / CPS;
+    s->stdlib = (double)reference / CPS;
+}
+
+int main() {
+    unsigned int const N = 1000000;
+    struct accuracy_errors error;
+    struct speeds s;
+
+    srand(SEED);
+
+    double alpha[] = {
+        pow(10., -3. + runif()), pow(10., -2. + runif()),
+        pow(10., -1. + runif()), pow(10., runif()),
+        pow(10., 1. + runif()),
+    };
+
+    const size_t A = sizeof(alpha) / sizeof(double);
+
+    printf("ACCURACY ===\n");
+    printf("  alpha  | max mantissa error | max relative error\n");
+    printf("---------|--------------------|-------------------\n");
+
+    for (size_t i = 0; i < A; i++) {
+        accuracy(alpha[i], N, &error);
+        printf("%-9.5f|%20llu|%19E\n", alpha[i], error.significand,
+               error.relative);
+    }
+
+    printf("\nSPEED ===\n");
+    printf("  alpha  | libspot |  stdlib | stdlib/libspot \n");
+    printf("---------|---------|---------|----------------\n");
+    for (size_t i = 0; i < A; i++) {
+        speed(alpha[i], N, &s);
+        printf("%-9.5f|%9.4f|%9.4f|%16.2f\n", alpha[i], s.libspot, s.stdlib,
+               s.stdlib / s.libspot);
+    }
+}`
+            }
+        ]
+    }, "*");'>
+</iframe>
+</p>
+</details>
+<p>This current choice leads to worse performances than the standard library. This function is then likely to be improved in the future.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Formula (4.5) p.111</p>
+<blockquote>
+<p>Khovanskii, A. N. (1963). The application of continued fractions and their generalizations to problems in approximation theory (p. 144). Groningen: Noordhoff.</p>
+</blockquote>
+<p><a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Formula (11.2.3) p.196</p>
+<blockquote>
+<p>Cuyt, A. A., Petersen, V., Verdonk, B., Waadeland, H., &amp; Jones, W. B. (2008). Handbook of continued fractions for special functions. Springer Science &amp; Business Media.</p>
+</blockquote>
+<p><a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Formula (11.1.2) p.194</p>
+<blockquote>
+<p>Cuyt, A. A., Petersen, V., Verdonk, B., Waadeland, H., &amp; Jones, W. B. (2008). Handbook of continued fractions for special functions. Springer Science &amp; Business Media.</p>
+</blockquote>
+<p><a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.gg/xxb42rby" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+        <script src="../../js/script.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      
+        <script src="../../js/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

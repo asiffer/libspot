@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../30_parameters/">
       
       
-      <link rel="icon" href="/img/favicon.svg">
+        <link rel="next" href="../51_javascript/">
+      
+      
+      <link rel="icon" href="../img/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
-        <title>libspot</title>
+        <title>Python - libspot</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
   
@@ -50,11 +54,11 @@
       
     
     
-      <link rel="stylesheet" href="/css/nord.css">
+      <link rel="stylesheet" href="../css/nord.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -77,6 +81,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#install" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -89,9 +98,9 @@
   
   <header class="md-header md-header--shadow" data-md-component="header">
     <nav class="md-header__inner md-grid" aria-label="Header">
-      <a href="/." title="libspot" class="md-header__button md-logo" aria-label="libspot" data-md-component="logo">
+      <a href=".." title="libspot" class="md-header__button md-logo" aria-label="libspot" data-md-component="logo">
         
-  <img src="/img/logo.svg" alt="logo">
+  <img src="../img/logo.svg" alt="logo">
 
       </a>
       <label class="md-header__button md-icon" for="__drawer">
@@ -107,7 +116,7 @@
           <div class="md-header__topic" data-md-component="header-topic">
             <span class="md-ellipsis">
               
-                
+                Python
               
             </span>
           </div>
@@ -208,9 +217,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="libspot" class="md-nav__button md-logo" aria-label="libspot" data-md-component="logo">
+    <a href=".." title="libspot" class="md-nav__button md-logo" aria-label="libspot" data-md-component="logo">
       
-  <img src="/img/logo.svg" alt="logo">
+  <img src="../img/logo.svg" alt="logo">
 
     </a>
     libspot
@@ -237,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/10_overview/" class="md-nav__link">
+      <a href="../10_overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -257,7 +266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/15_install/" class="md-nav__link">
+      <a href="../15_install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -277,7 +286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/20_get_started/" class="md-nav__link">
+      <a href="../20_get_started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -297,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/30_parameters/" class="md-nav__link">
+      <a href="../30_parameters/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -314,10 +323,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/50_python/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5h1.18m-4.28 11.79c-.4 0-.72.3-.72.89 0 .59.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68H4.86M9.14 5.71c.4 0 .72-.3.72-.89 0-.59-.32-.71-.72-.71-.39 0-.71.12-.71.71s.32.89.71.89Z"/></svg>
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.14 7.5A2.86 2.86 0 0 1 22 10.36v3.78A2.86 2.86 0 0 1 19.14 17H12c0 .39.32.96.71.96H17v1.68a2.86 2.86 0 0 1-2.86 2.86H9.86A2.86 2.86 0 0 1 7 19.64v-3.75a2.85 2.85 0 0 1 2.86-2.85h5.25a2.85 2.85 0 0 0 2.85-2.86V7.5h1.18m-4.28 11.79c-.4 0-.72.3-.72.89 0 .59.32.71.72.71a.71.71 0 0 0 .71-.71c0-.59-.32-.89-.71-.89m-10-1.79A2.86 2.86 0 0 1 2 14.64v-3.78A2.86 2.86 0 0 1 4.86 8H12c0-.39-.32-.96-.71-.96H7V5.36A2.86 2.86 0 0 1 9.86 2.5h4.28A2.86 2.86 0 0 1 17 5.36v3.75a2.85 2.85 0 0 1-2.86 2.85H8.89a2.85 2.85 0 0 0-2.85 2.86v2.68H4.86M9.14 5.71c.4 0 .72-.3.72-.89 0-.59-.32-.71-.72-.71-.39 0-.71.12-.71.71s.32.89.71.89Z"/></svg>
@@ -328,6 +357,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get started
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -339,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/51_javascript/" class="md-nav__link">
+      <a href="../51_javascript/" class="md-nav__link">
         
   
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3m4.73 15.04c.4.85 1.19 1.55 2.54 1.55 1.5 0 2.53-.8 2.53-2.55v-5.78h-1.7V17c0 .86-.35 1.08-.9 1.08-.58 0-.82-.4-1.09-.87l-1.38.83m5.98-.18c.5.98 1.51 1.73 3.09 1.73 1.6 0 2.8-.83 2.8-2.36 0-1.41-.81-2.04-2.25-2.66l-.42-.18c-.73-.31-1.04-.52-1.04-1.02 0-.41.31-.73.81-.73.48 0 .8.21 1.09.73l1.31-.87c-.55-.96-1.33-1.33-2.4-1.33-1.51 0-2.48.96-2.48 2.23 0 1.38.81 2.03 2.03 2.55l.42.18c.78.34 1.24.55 1.24 1.13 0 .48-.45.83-1.15.83-.83 0-1.31-.43-1.67-1.03l-1.38.8Z"/></svg>
@@ -361,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/60_about/" class="md-nav__link">
+      <a href="../60_about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,7 +446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/70_API/" class="md-nav__link">
+      <a href="../70_API/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -438,7 +503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/internals/40_spot/" class="md-nav__link">
+      <a href="../internals/40_spot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -459,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/internals/50_math/" class="md-nav__link">
+      <a href="../internals/50_math/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -480,7 +545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/internals/60_fit/" class="md-nav__link">
+      <a href="../internals/60_fit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -519,6 +584,32 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get started
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -529,8 +620,96 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+  
+  
+
+
+  <h1>Python</h1>
+
+<h2 id="install">Install</h2>
+<p>You can install the python bindings through <code>pip</code>. It ships the whole library (so you don't have to install it beforehand).</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>libspot
+</code></pre></div>
+<p>The bindings are implemented as a CPython <code>C</code> extension (i.e. directly using the CPython API). So the overhead is low (but it deserves to be evaluated).</p>
+<!-- prettier-ignore -->
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This <code>C</code> extension uses the <a href="https://docs.python.org/3/c-api/stable.html#limited-c-api">CPython Limited API</a>. It makes the built wheels compatible with multiple versions of Python. So in practice, a single wheel is built for each OS et can be installed along with any <code>CPython&gt;=3.6</code>.</p>
+</div>
+<h2 id="get-started">Get started</h2>
+<!-- prettier-ignore -->
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">libspot</span> <span class="kn">import</span> <span class="n">ANOMALY</span><span class="p">,</span> <span class="n">Spot</span>
+
+<span class="c1"># Fancyness ---------------------------------------------------------------- #</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;bg&quot;</span><span class="p">:</span> <span class="s2">&quot;#242933&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;stream&quot;</span><span class="p">:</span> <span class="s2">&quot;#88c0d0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;threshold&quot;</span><span class="p">:</span> <span class="s2">&quot;#ebcb8b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;anomaly&quot;</span><span class="p">:</span> <span class="s2">&quot;#bf616a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;axes&quot;</span><span class="p">:</span> <span class="s2">&quot;#eceff4&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">style</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;figure.facecolor&quot;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;bg&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;bg&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;axes.edgecolor&quot;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;axes&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;xtick.color&quot;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;axes&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;ytick.color&quot;</span><span class="p">:</span> <span class="n">colors</span><span class="p">[</span><span class="s2">&quot;axes&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;font.family&quot;</span><span class="p">:</span> <span class="s2">&quot;monospace&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;font.monospace&quot;</span><span class="p">:</span> <span class="s2">&quot;IBM Plex Mono&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;svg.fonttype&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lines.markersize&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1"># -------------------------------------------------------------------------- #</span>
+
+
+<span class="n">TRAIN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">STREAM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100_000</span><span class="p">)</span>
+<span class="n">THRESHOLD</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">STREAM</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">spot</span> <span class="o">=</span> <span class="n">Spot</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="mf">5e-6</span><span class="p">,</span> <span class="n">max_excess</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mf">0.99</span><span class="p">)</span>
+<span class="n">spot</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">TRAIN</span><span class="p">)</span>
+
+<span class="n">Ax</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Ay</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">STREAM</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="n">ANOMALY</span><span class="p">:</span>
+        <span class="n">Ax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">Ay</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">THRESHOLD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">spot</span><span class="o">.</span><span class="n">anomaly_threshold</span>
+
+
+<span class="k">with</span> <span class="n">plt</span><span class="o">.</span><span class="n">rc_context</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">STREAM</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s2">&quot;stream&quot;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">THRESHOLD</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s2">&quot;threshold&quot;</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Ax</span><span class="p">,</span> <span class="n">Ay</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="s2">&quot;anomaly&quot;</span><span class="p">])</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;../docs/img/basic.svg&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../img/basic.svg" /></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -581,12 +760,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tracking", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "/assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.d7c377c4.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
       
-        <script src="/js/script.js"></script>
+        <script src="../js/script.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
       
@@ -594,7 +773,7 @@
       
         <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
       
-        <script src="/js/katex.js"></script>
+        <script src="../js/katex.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
