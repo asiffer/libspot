@@ -1,6 +1,6 @@
 name: JS
 
-on: [push, pull_request]
+on: [push, pull_request, release]
 
 jobs:
   build:
@@ -49,7 +49,7 @@ jobs:
   upload:
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3

@@ -1,6 +1,6 @@
 name: Python
 
-on: [push, pull_request]
+on: [push, pull_request, release]
 
 jobs:
   gen_api:
@@ -79,7 +79,7 @@ jobs:
   upload:
     needs: [build_wheels]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.event_name == 'release'
     steps:
       - uses: actions/download-artifact@v3
         with:
