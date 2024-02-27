@@ -79,7 +79,7 @@ jobs:
   upload:
     needs: [build_wheels]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.ref_name == 'master'
     steps:
       - uses: actions/download-artifact@v3
         with:

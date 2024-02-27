@@ -38,7 +38,7 @@ jobs:
       - name: Upload npm package
         uses: actions/upload-artifact@v4
         with:
-          path: ./wasm/asiffer-libspot*.tgz
+          path: ./wasm/libspot*.tgz
           name: libspot.tgz
       - name: Upload libspot.js
         uses: actions/upload-artifact@v4
@@ -49,7 +49,7 @@ jobs:
   upload:
     needs: [build]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.ref_name == 'master'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -61,7 +61,7 @@ jobs:
           name: libspot.tgz
           path: wasm
       - name: Publish to Github
-        run: npm publish ./asiffer*.tgz
+        run: npm publish ./libspot*.tgz
         working-directory: ./wasm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
