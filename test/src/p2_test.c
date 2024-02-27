@@ -69,6 +69,15 @@ void test_sort5(void) {
     double expected[] = {1.0, 2.0, 3.0, 4.0, 5.0};
     sort5(actual);
     TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected, actual, 5);
+
+    fill_rgauss();
+    for (int i = 0; i < 5; i++) {
+        actual[i] = DATA[i];
+        expected[i] = DATA[i];
+    }
+    qsort(expected, 5, sizeof(double), cmp);
+    sort5(actual);
+    TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected, actual, 5);
 }
 
 void test_p2_unif(void) {
