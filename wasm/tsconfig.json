@@ -9,7 +9,7 @@
     ],
     "declaration": true,
     "outDir": "./types",
-    "moduleResolution": "classic",
+    "moduleResolution": "Bundler",
     "emitDeclarationOnly": true,
     "moduleDetection": "force",
     "allowJs": true,

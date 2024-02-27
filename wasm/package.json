@@ -1,11 +1,10 @@
 {
-  "name": "@asiffer/libspot",
+  "name": "libspot",
   "homepage": "https://asiffer.github.io/libspot/",
-  "version": "2.0.0-beta1",
+  "version": "2.0.0-beta2",
   "license": "LGPL-3.0-only",
   "author": {
     "name": "Alban Siffer",
-    "email": "alban.siffer@irisa.fr",
     "url": "https://asiffer.github.io/"
   },
   "repository": {
@@ -20,20 +19,20 @@
   ],
   "main": "./dist/libspot.js",
   "types": "./types/index.d.ts",
-  "module": "index.ts",
+  "module": "./dist/libspot.js",
   "scripts": {
-    "build:wasm": "rm -f libspot.js && make -C .. wasm/libspot.js",
-    "build:types": "rm -rf ./types && tsc",
+    "prebuild:wasm": "rm -f libspot.core.js",
+    "build:wasm": "make -C .. ./wasm/libspot.core.js",
+    "build:types": "tsc",
     "build:lib": "bun build --minify ./index.ts --outfile dist/libspot.js --target browser --tsconfig-override ./tsconfig.json",
-    "build": "bun build:types && bun build:lib"
+    "prebuild": "rm -rf types dist",
+    "build": "bun build:types && bun build:lib",
+    "build:full": "bun run build:wasm && bun run build"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "devDependencies": {
     "bun-types": "latest"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }

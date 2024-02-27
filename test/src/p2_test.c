@@ -7,6 +7,9 @@
 
 static char buffer[256];
 
+// declaration of sort5
+void sort5(double arr[5]);
+
 double const PI = 0x1.921fb54442d18p+1;
 double const _NAN = 0.0 / 0.0;
 double const DMAX = RAND_MAX;
@@ -59,6 +62,22 @@ void fill_rgauss() {
         SORTED_DATA[i] = DATA[i];
     }
     qsort(SORTED_DATA, SIZE, sizeof(double), cmp);
+}
+
+void test_sort5(void) {
+    double actual[] = {5.0, 3.0, 4.0, 1.0, 2.0};
+    double expected[] = {1.0, 2.0, 3.0, 4.0, 5.0};
+    sort5(actual);
+    TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected, actual, 5);
+
+    fill_rgauss();
+    for (int i = 0; i < 5; i++) {
+        actual[i] = DATA[i];
+        expected[i] = DATA[i];
+    }
+    qsort(expected, 5, sizeof(double), cmp);
+    sort5(actual);
+    TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected, actual, 5);
 }
 
 void test_p2_unif(void) {
@@ -151,6 +170,7 @@ void tearDown(void) {}
 
 int main(void) {
     UNITY_BEGIN();
+    RUN_TEST(test_sort5);
     RUN_TEST(test_p2_unif);
     RUN_TEST(test_p2_gauss);
     return UNITY_END();

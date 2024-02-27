@@ -15,13 +15,13 @@ static void swap(double *a, double *b) {
     *b = temp;
 }
 
-static void sort5(double a[5]) {
-    if (a[1] > a[0]) // Compare 1st and 2nd element #1
+void sort5(double a[5]) {
+    if (a[1] < a[0]) // Compare 1st and 2nd element #1
         swap(&a[0], &a[1]);
-    if (a[3] > a[2]) // Compare 3rd and 4th element #2
+    if (a[3] < a[2]) // Compare 3rd and 4th element #2
         swap(&a[3], &a[2]);
-    if (a[0] > a[2]) { // Compare 1st and 3rd element #3
-        // run this if 1st element > 3rd element
+    if (a[0] < a[2]) { // Compare 1st and 3rd element #3
+        // run this if 1st element < 3rd element
         swap(&a[1], &a[2]);
         swap(&a[2], &a[3]);
     } else {
@@ -30,8 +30,8 @@ static void sort5(double a[5]) {
     }
     // Now 1st, 2nd and 3rd elements are sorted
     // Sort 5th element into 1st, 2nd and 3rd elements
-    if (a[4] > a[1]) {     // #4
-        if (a[4] > a[0]) { // #5
+    if (a[4] < a[1]) {     // #4
+        if (a[4] < a[0]) { // #5
             swap(&a[4], &a[3]);
             swap(&a[3], &a[2]);
             swap(&a[2], &a[1]);
@@ -42,7 +42,7 @@ static void sort5(double a[5]) {
             swap(&a[2], &a[1]);
         }
     } else {
-        if (a[4] > a[2]) { // #5
+        if (a[4] < a[2]) { // #5
             swap(&a[4], &a[3]);
             swap(&a[3], &a[2]);
         } else {
@@ -50,8 +50,8 @@ static void sort5(double a[5]) {
         }
     }
     // Sort new 5th element into 2nd, 3rd and 4th
-    if (a[4] > a[2]) {     // #6
-        if (a[4] > a[1]) { // #7
+    if (a[4] < a[2]) {     // #6
+        if (a[4] < a[1]) { // #7
             swap(&a[4], &a[3]);
             swap(&a[3], &a[2]);
             swap(&a[2], &a[1]);
@@ -60,7 +60,7 @@ static void sort5(double a[5]) {
             swap(&a[3], &a[2]);
         }
     } else {
-        if (a[4] > a[3]) { // #7
+        if (a[4] < a[3]) { // #7
             swap(&a[4], &a[3]);
         }
     }
