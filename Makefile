@@ -9,7 +9,7 @@
 
 
 LIB 		 = libspot
-VERSION 	 = 2.0b0
+VERSION 	 = 2.0b1
 LICENSE 	 = GNU Lesser General Public License v3.0
 DATE         = $(shell date -u)
 COMMIT_COUNT = $(shell git rev-list --count master)
