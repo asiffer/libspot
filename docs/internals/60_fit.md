@@ -8,7 +8,7 @@ To compute this _extreme_ threshold, we first need a _high_ threshold, that is b
 
 A simple way to estimate this quantile is to compute it emirically from the initial batch. For that we need to sort the data... This method gives the right empirical quantile but it requires to implement a sort algorithm (remember `-nostdlib` :sweat_smile:).
 
-Actually, we do not need the highest precision quantile given `level`. We roughly want a _high_ value. So, **libspot** uses an approximate quantile algorithm, a.k.a. **P**<sup><b>2</b></sup> (see [https://aakinshin.net/posts/p2-quantile-estimator/](https://aakinshin.net/posts/p2-quantile-estimator/) for a very good description).
+Actually, we do not need the highest precision quantile given `level`. We roughly want a _high_ value. So, **libspot** uses an approximate quantile algorithm, a.k.a. **P**<sup><b>2</b></sup> (see [https://aakinshin.net/p2-quantile-estimator/](https://aakinshin.net/p2-quantile-estimator/) for a very good description).
 
 The benchmark below shows that it is faster and also that it is quite accurate even with a small initial batch.
 
