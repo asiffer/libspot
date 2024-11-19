@@ -70,6 +70,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: ./python/wheel/*.whl
+          name: libspot-python-${{ matrix.os }}
 
   upload:
     needs: [build_wheels]
@@ -81,8 +82,9 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: artifact
+          pattern: libspot-python-
           path: dist
+          merge-multiple: true
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
 
