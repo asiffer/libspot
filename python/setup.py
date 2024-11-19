@@ -16,6 +16,8 @@ SOURCES = [
     if f.endswith(".c")
 ] + ["libspotmodule.c"]
 
+C99_ARG = r"/std:c99" if sys.platform == "win32" else r"-std=c99"
+
 
 def get_version() -> str:
     """Return libspot version from the Makefile"""
@@ -71,7 +73,7 @@ lib = Extension(
     language="c",
     include_dirs=INCLUDE_DIRS,
     sources=SOURCES,
-    extra_compile_args=["-std=c99"],
+    extra_compile_args=[C99_ARG],
     define_macros=define_macros,
     py_limited_api=True,
 )
