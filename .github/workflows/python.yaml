@@ -75,6 +75,9 @@ jobs:
     needs: [build_wheels]
     runs-on: ubuntu-latest
     if: github.ref_name == 'master'
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
     steps:
       - uses: actions/download-artifact@v4
         with:
