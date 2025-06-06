@@ -3,8 +3,7 @@ name = "libspot"
 authors = [{ name = "Alban Siffer", email = "alban.siffer@irisa.fr" }]
 maintainers = [{ name = "Alban Siffer", email = "alban.siffer@irisa.fr" }]
 description = "Born to flag outliers (from python)"
-
-# readme = "../README.md"
+readme = "README.md"
 # license = { file = "../LICENSE.md" }
 license = { text = "LGPLv3" }
 requires-python = ">=3.8"

@@ -31,14 +31,11 @@ jobs:
         with:
           name: api
           path: dist/
-      # - name: Debug
-      #   run: |
-      #     pwd
-      #     ls -alh --color=auto
-      #     ls -alh --color=auto dist
 
       - name: Install python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
       - name: Install some build dependencies
         run: python -m pip install -U pip setuptools build wheel abi3audit
@@ -72,21 +69,28 @@ jobs:
         run: abi3audit --strict --report dist/$((dir wheel|Select-Object -First 1).Name)
         working-directory: ./python
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ./python/wheel/*.whl
+          name: libspot-python-${{ matrix.os }}
 
   upload:
     needs: [build_wheels]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release'
+    if: github.ref_name == 'master'
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: artifact
+          pattern: libspot-python-
           path: dist
+          merge-multiple: true
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
-      - uses: pypa/gh-action-pypi-publish@v1.4.2
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_KEY }}
+      # - uses: pypa/gh-action-pypi-publish@v1.4.2
+      #   with:
+      #     user: __token__
+      #     password: ${{ secrets.PYPI_API_KEY }}
