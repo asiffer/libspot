@@ -11,8 +11,8 @@ theme:
     admonition:
       wtf: material/fan-alert
   font:
-    text: "IBM Plex Sans"
-    code: "IBM Plex Mono"
+    text: "Geist"
+    code: "Geist Mono"
   logo: img/logo.svg
   palette:
     scheme: nord-dark
