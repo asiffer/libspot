@@ -1,15 +1,13 @@
 name: release
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-    paths-ignore:
-      - "README.md"
-      - "docs/**"
-      - ".gitignore"
-      - "debian/**"
-      - "snap/**"
+    paths:
+      - "src/*.c"
+      - "include/*.h"
 
 jobs:
   release:
@@ -33,13 +31,22 @@ jobs:
       - name: Put full version in env
         run: echo "VERSION_FULL=$(make version_full)" >> $GITHUB_ENV
 
-      - name: Release now
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
-          automatic_release_tag: "v${{ env.VERSION_FULL }}"
-          title: "v${{ env.VERSION_FULL }}"
-          files: |
-            dist/libspot.so*
-            dist/libspot.a*
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create
+          "$GITHUB_REF_NAME"
+          --repo "$GITHUB_REPOSITORY"
+          --notes ""
+          --draft
+      - name: Upload artifact to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        # Upload to GitHub Release using the `gh` CLI.
+        # `dist/` contains the built packages, and the
+        # sigstore-produced signatures and certificates.
+        run: >-
+          gh release upload
+          "$GITHUB_REF_NAME" dist/libspot**
+          --repo "$GITHUB_REPOSITORY"
