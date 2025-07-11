@@ -20,6 +20,7 @@ The bindings are implemented as a CPython `C` extension (i.e. directly using the
 First install dependencies
 ```shell
 uv sync --all-extras
+uv pip install abi3audit
 ```
 
 Then you can build the wheel.
