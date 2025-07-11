@@ -1,34 +1,21 @@
 import ctypes
 import os
 import sys
+from pathlib import Path
 
-from setuptools import Extension, setup  # type: ignore
-from wheel.bdist_wheel import bdist_wheel  # type: ignore
+from setuptools import Extension, setup
+from setuptools.command.bdist_wheel import bdist_wheel
 
-ROOT = "../"
+ROOT = Path("../")
 
 
-INCLUDE_DIRS = [os.path.join(ROOT, "include"), os.path.join(ROOT, "dist")]
-SRC_DIR = os.path.join(ROOT, "src")
-SOURCES = [
-    os.path.join(ROOT, "src", f)
-    for f in os.listdir(os.path.join(ROOT, "src"))
-    if f.endswith(".c")
-] + ["libspotmodule.c"]
+INCLUDE_DIRS = [ROOT / "include", ROOT / "dist"]
+SRC_DIR = ROOT / "src"
+SOURCES = [SRC_DIR / f for f in os.listdir(SRC_DIR) if f.endswith(".c")] + [
+    "libspotmodule.c"
+]
 
 C99_ARG = r"/std:c99" if sys.platform == "win32" else r"-std=c99"
-
-
-def get_version() -> str:
-    """Return libspot version from the Makefile"""
-    makefile = open(
-        os.path.join(ROOT, "Makefile"),
-        "r",
-        encoding="utf-8",
-    ).read()
-    i = makefile.find("VERSION")
-    j = makefile.find("\n", i)
-    return makefile[i:j].replace("VERSION", "").replace("=", "").strip()
 
 
 class bdist_wheel_abi3(bdist_wheel):
@@ -40,6 +27,21 @@ class bdist_wheel_abi3(bdist_wheel):
             return "cp36", "abi3", plat
 
         return python, abi, plat
+
+
+print(ROOT, SRC_DIR, INCLUDE_DIRS, SOURCES)
+
+
+def get_version() -> str:
+    """Return libspot version from the Makefile"""
+    makefile = open(
+        ROOT / "Makefile",
+        "r",
+        encoding="utf-8",
+    ).read()
+    i = makefile.find("VERSION")
+    j = makefile.find("\n", i)
+    return makefile[i:j].replace("VERSION", "").replace("=", "").strip()
 
 
 define_macros = [
@@ -71,10 +73,10 @@ if sys.platform == "win32":
 lib = Extension(
     "libspot",
     language="c",
-    include_dirs=INCLUDE_DIRS,
-    sources=SOURCES,
+    include_dirs=list(map(str, INCLUDE_DIRS)),
+    sources=list(map(str, SOURCES)),
     extra_compile_args=[C99_ARG],
-    define_macros=define_macros,
+    define_macros=define_macros,  # type: ignore
     py_limited_api=True,
 )
 

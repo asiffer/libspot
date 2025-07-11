@@ -51,13 +51,7 @@ TEST_COVERAGE_DIR = $(TEST_DIR)/coverage
 BENCHMARK_DIR = $(CURDIR)/benchmark
 # Unity directory
 UNITY_DIR = $(CURDIR)/unity
-# folder of python stuff
-PYTHON_DIR = $(CURDIR)/python
-# folder of python wheel
-PYTHON_DIST_DIR = $(PYTHON_DIR)/dist
-# local python version (like 311 or 312)
-PYTHON_VERSION = $(shell python -V|awk '{print $2}'|awk -F '.' '{print $1$2}')
-WHEEL_TAG = $(shell python -c 'from wheel import bdist_wheel as bw; abi=bw.get_abi_tag(); print("-".join([abi, abi, bw.get_platform(None)]))')
+
 # emscripten compiler
 EMCC ?= $(shell command -pv emcc)
 ifndef $(EMCC)
@@ -157,7 +151,6 @@ endef
 .PHONY: test
 .PHONY: check
 .PHONY: doxygen
-.PHONY: wheel
 
 .DEFAULT:
 	@echo -e '\033[31mUnknown command "$@"\033[0m'
@@ -312,29 +305,9 @@ clean:
 	rm -rf dev/doxygen/generated
 	rm -rf $(BENCHMARK_DIR)/bin
 	rm -rf docs/API
-	rm -rf $(PYTHON_DIR)/build $(PYTHON_DIR)/dist $(PYTHON_DIR)/$(LIB).egg-info
-	rm -rf $(PYTHON_DIR)/$(LIB)/interface.py
 	rm -rf $(WASM_DIR)/dist
 	rm -rf $(WASM_DIR)/libspot.js
 	
-
-# ========================================================================== #
-# Python
-# ========================================================================== #
-
-
-$(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl: $(PYTHON_DIR)/setup.py $(PYTHON_DIR)/libspotmodule.c $(SRC_DIR)/*.c
-	@mkdir -p $(@D)
-	python -m build -w -o $(PYTHON_DIR)/dist $(PYTHON_DIR)
-
-python: $(PYTHON_DIR)/dist/libspot-$(VERSION)-$(WHEEL_TAG).whl
-
-wheel: python
-
-python3.%:
-	podman run --rm -it -v $(shell pwd):/libspot -w /libspot python:3.$* python -m build -w -o $(PYTHON_DIR)/dist $(PYTHON_DIR)
-
-python-all: $(foreach v,11 12,python3.$(v))
 
 # ========================================================================== #
 # WASM/JS

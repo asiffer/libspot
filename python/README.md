@@ -13,3 +13,26 @@ The bindings are implemented as a CPython `C` extension (i.e. directly using the
 
 > [!IMPORTANT]  
 > This `C` extension uses the [CPython Limited API](https://docs.python.org/3/c-api/stable.html#limited-c-api). It makes the built wheels compatible with multiple versions of Python. So in practice, a single wheel is built for each OS et can be installed along with any `CPython>=3.6`.
+
+
+## Building
+
+First install dependencies
+```shell
+uv sync --all-extras
+```
+
+Then you can build the wheel.
+```shell
+uv run python -m build --wheel --installer uv
+```
+
+Ensure abi3 compatibility
+```shell
+uv run auditwheel repair -w wheel --strip dist/*.whl
+```
+
+Check
+```shell
+uv run abi3audit --strict --report wheel/*.whl
+```
