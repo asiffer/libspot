@@ -53,7 +53,8 @@ markdown_extensions:
   - admonition
   - footnotes
   - pymdownx.details
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      url_download: true
   - pymdownx.superfences:
       custom_fences:
         # - name: vegalite
