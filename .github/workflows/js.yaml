@@ -1,6 +1,7 @@
 name: JS
 
-on: [push, pull_request, release]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
