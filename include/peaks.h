@@ -2,8 +2,8 @@
  * @file peaks.h
  * @author Alban Siffer (alban.siffer@irisa.fr)
  * @brief Declares Peaks structure and methods
- * @version 2.0b
- * @date mar. 21 mars 2023 10:23:09 UTC
+ * @version 2.0b4
+ * @date jeu. 17 juil. 2025 08:08:51 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */

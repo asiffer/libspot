@@ -2,8 +2,8 @@
  * @file ubend.h
  * @brief Declares Ubend structure and methods
  * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b
- * @date mar. 21 mars 2023 10:23:09 UTC
+ * @version 2.0b4
+ * @date jeu. 17 juil. 2025 08:08:51 UTC
  * @copyright GNU Lesser General Public License v3.0
  */
 
@@ -12,21 +12,6 @@
 
 #ifndef UBEND_H
 #define UBEND_H
-
-/**
- *  @brief This container is a kind of circular vector.
- *  @details First it is empty.
- *  Then we feed it with data until its max capacity is reached (transitory
- * state). When it is full, the earlier data erase the older one (cruise
- * state).
- */
-// PUBLIC_API struct Ubend {
-//     unsigned long cursor;    /* current position inside the container */
-//     unsigned long capacity;  /* max storage */
-//     double last_erased_data; /* last erased value (replaced by a new one) */
-//     int filled;              /* container fill status */
-//     double *data;            /* data storage */
-// };
 
 /**
  * @brief Ubend structure initializer
