@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install clang-19
         run: |
-          apt update -y
-          apt install -y clang-19
+          sudo apt update -y
+          sudo apt install -y clang-19
       - name: Install bun
         uses: oven-sh/setup-bun@v2
         with:
