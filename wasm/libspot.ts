@@ -1,63 +1,55 @@
-import loadWASM from "./libspot.core.js";
+import {
+  libspot_error,
+  malloc as _malloc,
+  free,
+  spot_fit,
+  spot_free,
+  spot_init,
+  spot_probability,
+  spot_quantile,
+  spot_size,
+  spot_step,
+  libspot_version,
+  memory,
+} from "./libspot.core.ts";
 
-const libspot = await loadWASM();
-
-// need to declare manually
 export const NORMAL = 0;
 export const EXCESS = 1;
 export const ANOMALY = 2;
 
+let heap8 = new Uint8Array(memory.buffer);
+
 /**
- * The size in bytes of the underlying Spot structure (C -> compiled to WASM)
+ * Wrapper around malloc to check if the requested memory fits the webassembly memory
+ * @param size Size in bytes to allocate
+ * @returns
  */
-export const spotSize: { (): number } = libspot.cwrap(
-  "spot_size",
-  "number",
-  null
-);
+const malloc = (size: number): number => {
+  const ptr = _malloc(size);
+  if (ptr <= 0) {
+    return ptr;
+  }
+  if (ptr + size > memory.buffer.byteLength) {
+    // grow memory if needed
+    const pages = Math.ceil(size / 65536); // 64 KiB per page
+    memory.grow(pages);
+    heap8 = new Uint8Array(memory.buffer); // reinitialize the view
+  }
+  return ptr;
+};
 
-const spotNew: { (): number } = libspot.cwrap("spot_new", "number", null);
-
-const spotFree: {
-  (ptr: number): void;
-} = libspot.cwrap("spot_free", null, ["number"]);
-
-const spotInit: {
-  (
-    ptr: number,
-    q: number,
-    low: number,
-    discardAnomalies: number,
-    level: number,
-    maxExcess: number
-  ): number;
-} = libspot.cwrap("spot_init", "number", [
-  "number",
-  "number",
-  "number",
-  "number",
-  "number",
-  "number",
-]);
-
-const spotFit: {
-  (ptr: number, arrayPtr: number, size: number): number;
-} = libspot.cwrap("spot_fit", "number", ["number", "number", "number"]);
-
-const spotStep: {
-  (ptr: number, x: number): number;
-} = libspot.cwrap("spot_step", "number", ["number", "number"]);
-
-const spotQuantile: {
-  (ptr: number, q: number): number;
-} = libspot.cwrap("spot_quantile", "number", ["number", "number"]);
-
-const spotProbability: {
-  (ptr: number, z: number): number;
-} = libspot.cwrap("spot_probability", "number", ["number", "number"]);
-
-const stringify = (raw: Uint8Array) => {
+const stringify = (raw: ArrayBuffer) => {
   return new TextDecoder("utf-8").decode(raw).replace(/\0/g, "");
+};
+
+export const libspotError = (code: number): string => {
+  const size = 256;
+  const ptr = malloc(size);
+  heap8.fill(0, ptr, ptr + size); // fill with zeros
+  libspot_error(code, ptr, size);
+  const msg = stringify(heap8.slice(ptr, ptr + size).buffer as ArrayBuffer);
+  free(ptr);
+  return msg;
 };
 
 /**
@@ -66,32 +58,11 @@ const stringify = (raw: Uint8Array) => {
  */
 export const libspotVersion = (): string => {
   const size = 24;
-  let ptr = libspot._malloc(size);
-  libspot.ccall("libspot_version", null, ["number", "number"], [ptr, size]);
-  const version = stringify(libspot.HEAPU8.slice(ptr, ptr + size).buffer);
-  libspot._free(ptr);
+  let ptr = malloc(size);
+  libspot_version(ptr, size);
+  const version = stringify(heap8.slice(ptr, ptr + size).buffer as ArrayBuffer);
+  free(ptr);
   return version;
-};
-
-/**
- *
- * @param code error code
- * @returns the message related to the error code
- */
-export const libspotError = (code: number): string => {
-  const size = 256;
-  let ptr = libspot._malloc(size);
-  // fill with zeros
-  libspot.HEAPU8.fill(0, ptr, ptr + size);
-  libspot.ccall(
-    "libspot_error",
-    null,
-    ["number", "number", "number"],
-    [code, ptr, size]
-  );
-  const msg = stringify(libspot.HEAPU8.slice(ptr, ptr + size));
-  libspot._free(ptr);
-  return msg;
 };
 
 /**
@@ -123,8 +94,8 @@ export interface SpotConfig {
 
 const freg = new FinalizationRegistry((ptr: number) => {
   // this function is called when the registered object is garbage collected
-  spotFree(ptr); // release internal memory (created by spotInit)
-  libspot._free(ptr); // release heap allocated object (created by spotNew)
+  spot_free(ptr); // release heap allocated object (created by spot_init)
+  free(ptr); // release internal memory (created by malloc)
 });
 
 /**
@@ -158,33 +129,36 @@ export class Spot {
 */
 
   constructor({
-    q,
+    q = 5e-4,
     low = 0,
     discardAnomalies = 1,
     level = 0.98,
     maxExcess = 500,
   }: SpotConfig) {
-    this.ptr = spotNew();
+    this.ptr = malloc(spot_size());
     freg.register(this, this.ptr); // kind of destructor
-    const code = spotInit(this.ptr, q, low, discardAnomalies, level, maxExcess);
+    const code = spot_init(
+      this.ptr,
+      q,
+      low,
+      discardAnomalies,
+      level,
+      maxExcess
+    );
     if (code < 0) {
       throw new Error(libspotError(-code));
     }
   }
 
   anomaly_threshold() {
-    const buffer = libspot.HEAPU8.slice(this.ptr + 32, this.ptr + 40).reverse()
-      .buffer;
+    const buffer = heap8.slice(this.ptr + 32, this.ptr + 40).reverse().buffer;
     const view = new DataView(buffer);
-    // console.log(this.ptr, libspot.HEAPU8[this.ptr + 4]);
     return view.getFloat64(0);
   }
 
   excess_threshold() {
-    const buffer = libspot.HEAPU8.slice(this.ptr + 40, this.ptr + 48).reverse()
-      .buffer;
+    const buffer = heap8.slice(this.ptr + 40, this.ptr + 48).reverse().buffer;
     const view = new DataView(buffer);
-    // console.log(this.ptr, libspot.HEAPU8[this.ptr + 4]);
     return view.getFloat64(0);
   }
 
@@ -196,16 +170,17 @@ export class Spot {
    */
   fit(data: Float64Array) {
     // reserve heap
-    const arrayPtr = libspot._malloc(data.length * data.BYTES_PER_ELEMENT);
+    const arrayPtr = malloc(data.length * data.BYTES_PER_ELEMENT);
     // copy array (converted to bytes) to the heap
-    libspot.HEAPU8.set(new Uint8Array(data.buffer), arrayPtr);
+    heap8.set(new Uint8Array(data.buffer), arrayPtr);
+
     // call the function
-    const code = spotFit(this.ptr, arrayPtr, data.length);
+    const code = spot_fit(this.ptr, arrayPtr, data.length);
     if (code < 0) {
       throw new Error(libspotError(-code));
     }
     // release heap
-    libspot._free(arrayPtr);
+    free(arrayPtr);
     return code;
   }
 
@@ -216,7 +191,7 @@ export class Spot {
    * @returns {number} 0: NORMAL, 1: EXCESS, 2: ANOMALY
    */
   step(x: number) {
-    const code = spotStep(this.ptr, x);
+    const code = spot_step(this.ptr, x);
     if (code < 0) {
       throw new Error(libspotError(-code));
     }
@@ -230,7 +205,7 @@ export class Spot {
    * @returns the value z such that P(X>z) = q
    */
   quantile(q: number) {
-    return spotQuantile(this.ptr, q);
+    return spot_quantile(this.ptr, q);
   }
 
   /**
@@ -240,8 +215,11 @@ export class Spot {
    * @returns the probability p such that p = P(X>z)
    */
   probability(z: number) {
-    return spotProbability(this.ptr, z);
+    return spot_probability(this.ptr, z);
   }
 }
 
+// console.log("HEAP8", heap8);
+
 export default Spot;
+export { spot_size } from "./libspot.core.ts";

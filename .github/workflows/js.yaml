@@ -3,66 +3,59 @@ name: JS
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
-      - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v13
+      - name: Install clang-19
+        run: |
+          apt update -y
+          apt install -y clang-19
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
         with:
-          # Make sure to set a version number!
-          version: 3.1.51
-          # This is the name of the cache folder.
-          # The cache folder will be placed in the build directory,
-          #  so make sure it doesn't conflict with anything!
-          actions-cache-folder: "emsdk-cache"
-      - name: Verify
-        run: emcc -v
-      # Setup .npmrc file to publish to GitHub Packages
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "20.x"
-          registry-url: "https://npm.pkg.github.com"
-      - uses: oven-sh/setup-bun@v1
-      - name: Build core libspot.js
-        run: make api && make js EMCC=emcc
-      - name: Build final js library
-        run: bun build:types && bun build:lib
+          bun-version: latest
+      - name: Generate libspot API
+        run: make api
+      - name: Build js library (+types)
+        run: make
         working-directory: ./wasm
       - name: Build npm package
-        run: npm pack
+        run: make tgz
         working-directory: ./wasm
       - name: Upload npm package
         uses: actions/upload-artifact@v4
         with:
           path: ./wasm/libspot*.tgz
           name: libspot.tgz
-      - name: Upload libspot.js
+      - name: Upload library files
         uses: actions/upload-artifact@v4
         with:
-          path: ./wasm/dist/libspot.js
-          name: libspot.js
+          path: ./wasm/dist
+          name: libspot
 
   upload:
-    needs: [build]
     runs-on: ubuntu-latest
+    needs:
+      - build
     if: github.ref_name == 'master'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: "20.x"
-          registry-url: "https://npm.pkg.github.com"
-      - uses: actions/download-artifact@v3
+          bun-version: latest
+      - uses: actions/download-artifact@v4
         with:
           name: libspot.tgz
           path: wasm
       - name: Publish to Github
-        run: npm publish ./libspot*.tgz
+        run: bun publish ./libspot*.tgz
         working-directory: ./wasm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

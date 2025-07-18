@@ -58,9 +58,6 @@ ifndef $(EMCC)
 	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.51 emcc
 endif
 
-# wasm folder
-WASM_DIR 		  		= $(CURDIR)/wasm
-WASM_EXPORTED_FUNCTIONS = _spot_size,_spot_new,_spot_init,_spot_fit,_spot_step,_spot_quantile,_spot_probability,_spot_free,_libspot_error,_libspot_version,_malloc,_free,_set_allocators,_main
 # arduino lib
 ARDUINO_DIR = $(CURDIR)/arduino
 ARDUINO_LIB = spot
@@ -144,13 +141,8 @@ endef
 .PRECIOUS: $(TEST_OBJS_DIR)/%.o
 .PRECIOUS: $(TEST_RESULTS_DIR)/%.txt
 
-.PHONY: static
-.PHONY: dynamic
-.PHONY: clean
-.PHONY: deps
-.PHONY: test
-.PHONY: check
-.PHONY: doxygen
+.PHONY: static dynamic clean test doxygen fmt deps check coverage
+
 
 .DEFAULT:
 	@echo -e '\033[31mUnknown command "$@"\033[0m'
@@ -162,9 +154,11 @@ endef
 	@echo '             all    build both the static and dynamic libs'
 	@echo '             api    build libspot API header dist/spot.h'
 	@echo '         install    install the headers and the libraries'
+	@echo '       uninstall    uninstall the headers and the libraries'
 	@echo '           clean    remove the build artifacts'
 	@echo '         version    print the library version'
 	@echo '    version_full    print the library version + commit count'
+	@echo '  update_headers    update code headers (date, version, license)'
 	@echo ''
 	@echo 'Variables:'
 	@echo '         DESTDIR    installation root directory'
@@ -262,6 +256,8 @@ dev/doxygen/generated: doxygen
 	@xsdata generate doxygen/xml/
 	@mv -f generated $@
 
+update-headers: inject-version inject-date inject-copyright
+
 inject-version: $(HEADERS) $(SRCS)
 	@printf "%-55s" "Setting version to '$(VERSION)'"
 	@sed -i -e 's,@version.*,@version $(VERSION),' $^
@@ -305,58 +301,11 @@ clean:
 	rm -rf dev/doxygen/generated
 	rm -rf $(BENCHMARK_DIR)/bin
 	rm -rf docs/API
-	rm -rf $(WASM_DIR)/dist
-	rm -rf $(WASM_DIR)/libspot.js
 	
-
-# ========================================================================== #
-# WASM/JS
-# ========================================================================== #
-
-js: $(WASM_DIR)/dist/libspot.js
-
-$(WASM_DIR)/dist/libspot.js: $(WASM_DIR)/libspot.core.js 
-	cd $(WASM_DIR) && bun run build
-
-$(WASM_DIR)/libspot.core.js: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
-	$(EMCC) $(CFLAGS) \
-		-s WASM=1 \
-		-s FILESYSTEM=0 \
-		-s EXPORT_ES6=1 \
-		-s MODULARIZE=1 \
-		-s SINGLE_FILE \
-		-s ENVIRONMENT=web \
-		-s ALLOW_MEMORY_GROWTH=1 \
-		-s EXPORTED_RUNTIME_METHODS=cwrap,ccall \
-		-s EXPORT_NAME=loadWASM \
-		-s NO_EXIT_RUNTIME=1 \
-		-s EXPORTED_FUNCTIONS=$(WASM_EXPORTED_FUNCTIONS) \
-		-o $@ $^
-
-
-# we currently use emscripten to compile code to wasm because it
-# automatically provides the js boilerplate.
-# however it can be done with clang, and then zig (that ships clang) with a command like:
-# zig cc $(CFLAGS) --target=wasm32-wasi-musl -Wl,--no-entry -Wl,--export=$(WASM_EXPORTED_FUNCTIONS) -o $@ $^
-# See https://depth-first.com/articles/2019/10/16/compiling-c-to-webassembly-and-running-it-without-emscripten/
-# But it seems that other tools are required but should be installed manually.
-$(WASM_DIR)/libspot.wasm: $(SRC_DIR)/*.c $(WASM_DIR)/main.c 
-	$(EMCC) $(CFLAGS) \
-		--no-entry \
-		-s WASM=1 \
-		-s ALLOW_MEMORY_GROWTH=1 \
-		-s FILESYSTEM=0 \
-		-s EXPORTED_FUNCTIONS=$(WASM_EXPORTED_FUNCTIONS) \
-		-o $@ $^
-
-# need to install wabt (webassembly toolkit)
-$(WASM_DIR)/libspot.wat: $(WASM_DIR)/libspot.wasm
-	wams2wat -o $@ $^ 
 
 # ========================================================================== #
 # Arduino
 # ========================================================================== #
-
 
 $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h: $(DIST_DIR)/spot.h
 	@mkdir -p $(@D)
