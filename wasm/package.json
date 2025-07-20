@@ -8,20 +8,17 @@
   },
   "type": "module",
   "main": "./dist/libspot.js",
-  "types": "./types/index.d.ts",
   "module": "./dist/libspot.js",
+  "types": "./types/index.d.ts",
   "files": [
     "./dist/libspot.js",
     "./types/index.d.ts"
   ],
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "prettier": "^3.6.2"
   },
   "peerDependencies": {
     "typescript": "^5"
-  },
-  "dependencies": {
-    "dev": "^0.1.3",
-    "prettier": "^3.6.2"
   }
 }

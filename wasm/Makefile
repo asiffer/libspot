@@ -27,12 +27,12 @@ LDFLAGS 		   := -nostdlib -Wl,--no-entry -Wl,--export-all
 js: dist/libspot.js types/index.d.ts
 
 types/index.d.ts: dist/libspot.js
-	@tsc 
+	@bun run tsc 
 	@cd types && find . -maxdepth 1 -type f ! -name 'libspot.d.ts' -delete
 	@mv types/libspot.d.ts types/index.d.ts
 
 dist/libspot.js: libspot.ts libspot.core.ts binary.ts
-	@bun build --production $< --outdir dist
+	@bun build --production $< --outdir $(@D)
 
 libspot.wasm: $(SRC_DIR)/*.c main.c 
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ 
