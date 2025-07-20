@@ -14,13 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install llvm-20
-        run: |
-          sudo apt update -y
-          sudo apt install -y curl unzip make lsb-release wget software-properties-common gnupg
-          wget https://apt.llvm.org/llvm.sh
-          chmod +x llvm.sh
-          sudo ./llvm.sh 20 all
+      - name: Install LLVM & Clang 20
+        uses: KyleMayes/install-llvm-action@v2
+        with:
+          version: "20"
 
       - name: Generate libspot API (spot.h)
         run: make api
@@ -60,17 +57,23 @@ jobs:
       - build
     if: github.ref_name == 'master'
     steps:
-      - uses: actions/checkout@v4
-      - name: Install bun
-        uses: oven-sh/setup-bun@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          bun-version: latest
-      - uses: actions/download-artifact@v4
+          node-version: "20.x"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Download npm package
+        uses: actions/download-artifact@v4
         with:
           name: libspot.tgz
           path: wasm
+
       - name: Publish to Github
-        run: bun publish ./libspot*.tgz
+        run: npm publish libspot*.tgz
         working-directory: ./wasm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
