@@ -71,7 +71,7 @@ jobs:
       - name: Debug
         run: |
           ls -alh --color=auto
-          cat .npmrc
+          cat ${NPM_CONFIG_USERCONFIG}
 
       - name: Publish to Github
         run: npm publish libspot*.tgz
