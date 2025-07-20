@@ -11,7 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Install llvm-20
         run: |
           sudo apt update -y
@@ -19,23 +21,33 @@ jobs:
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 20 all
+
+      - name: Generate libspot API (spot.h)
+        run: make api
+
       - name: Install bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - name: Generate libspot API
-        run: make api
+
+      - name: Install dependencies
+        run: bun install
+        working-directory: ./wasm
+
       - name: Build js library (+types)
         run: make CC=clang-20
         working-directory: ./wasm
+
       - name: Build npm package
         run: make tgz
         working-directory: ./wasm
+
       - name: Upload npm package
         uses: actions/upload-artifact@v4
         with:
           path: ./wasm/libspot*.tgz
           name: libspot.tgz
+
       - name: Upload library files
         uses: actions/upload-artifact@v4
         with:
