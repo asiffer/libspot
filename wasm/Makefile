@@ -57,3 +57,4 @@ clean:
 	rm -f binary.ts
 	rm -rf dist/
 	rm -rf types/
+	rm -f libspot-*.tgz

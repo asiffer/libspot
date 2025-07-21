@@ -72,8 +72,9 @@ jobs:
         run: |
           ls -alh --color=auto
           cat ${NPM_CONFIG_USERCONFIG}
+          cp ${NPM_CONFIG_USERCONFIG} .npmrc
 
       - name: Publish to Github
-        run: npm publish libspot*.tgz --registry=https://npm.pkg.github.com
+        run: npm publish libspot*.tgz --scope=@asiffer
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
