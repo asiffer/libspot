@@ -53,13 +53,26 @@ jobs:
           path: ./wasm/dist
           name: libspot
       
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Copy .npmrc
+        run: |
+          ls -alh --color=auto
+          cat ${NPM_CONFIG_USERCONFIG}
+          cp ${NPM_CONFIG_USERCONFIG} .npmrc
+        working-directory: ./wasm
+  
       - name: Publish to Github Packages
         run: |
           sed -i 's,"libspot","@asiffer/libspot",g' package.json
-          bun publish --registry=https://npm.pkg.github.com
+          npm publish 
         working-directory: ./wasm
         env:
-          BUN_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # upload:
   #   runs-on: ubuntu-latest
