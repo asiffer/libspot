@@ -57,6 +57,7 @@ jobs:
         run: |
           sed -i 's,"libspot","@asiffer/libspot",g' package.json
           bun publish --registry=https://npm.pkg.github.com
+        working-directory: ./wasm
         env:
           BUN_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
