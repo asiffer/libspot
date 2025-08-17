@@ -42,7 +42,7 @@ static unsigned long peaks_update_stats(struct Peaks *peaks) {
         // value = *iterator;
         double value = peaks->container.data[i];
         peaks->e += value;
-        peaks->e2 = value * value;
+        peaks->e2 += value * value;
         if (is_nan(peaks->min) || (value < peaks->min)) {
             peaks->min = value;
         }
