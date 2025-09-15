@@ -1,7 +1,7 @@
 // basic.c
 // BUILD:
 // $ make
-// $ cc -o /tmp/basic examples/basic.c -Idist/ -Ldist/ -l:libspot.so.2.0b0 -lm
+// $ cc -o /tmp/basic examples/basic.c -Idist/ -Ldist/ -l:libspot.so.2.0b4 -lm
 // RUN:
 // $ LD_LIBRARY_PATH=dist /tmp/basic
 

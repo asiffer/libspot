@@ -1,6 +1,8 @@
 ---
 title: Math functions
+summary: "Functions re-implemented in libspot"
 ---
+
 
 **libspot** does not depend on the standard library, so its math. In particular, the SPOT algorithm needs both the exponential and the natural logarithm.
 
@@ -18,6 +20,7 @@ We currently use the following continued fraction[^1][^2]:
 $$
 \log\left(1 + z\right) = \dfrac{2 z}{2 + z + \displaystyle\KK_{m = 1}^{\infty}\left(\frac{-m^2 z^2}{(2 m + 1) (2 + z)}\right)}
 $$
+
 
 where
 
@@ -54,24 +57,24 @@ The following code is used so as to find the "best" depth. We basically retrieve
 
 ??? info "benchmark/log_cf_accuracy.c"
     ```{.onecompiler lang="c" filename="log_cf_accuracy.c" theme="dark" hideTitle=true hideNew=true hideStdin=true hideNewFileOption=true}
-    --8<-- "benchmark/log_cf_accuracy.c"
+        --8<-- "benchmark/log_cf_accuracy.c"
     ```
 
 
 The results on my laptop are presented below. Depths 9, 10 or 11 may be good candidates depending on the accuracy need.
 
-depth | max mantissa error | max relative error
-------|--------------------|-------------------
-5     |           204513805|       3.275499E-08
-6     |             6065190|       9.713924E-10
-7     |              179516|       2.875076E-11
-8     |                5307|       8.500201E-13
-9     |                 157|       2.514663E-14
-10    |                   6|       8.008480E-16
-11    |                   2|       4.022239E-16
-12    |                   2|       4.022239E-16
-13    |                   2|       4.022239E-16
-14    |                   2|       4.022239E-16
+| depth | max mantissa error | max relative error |
+| ----- | ------------------ | ------------------ |
+| 5     | 204513805          | 3.275499E-08       |
+| 6     | 6065190            | 9.713924E-10       |
+| 7     | 179516             | 2.875076E-11       |
+| 8     | 5307               | 8.500201E-13       |
+| 9     | 157                | 2.514663E-14       |
+| 10    | 6                  | 8.008480E-16       |
+| 11    | 2                  | 4.022239E-16       |
+| 12    | 2                  | 4.022239E-16       |
+| 13    | 2                  | 4.022239E-16       |
+| 14    | 2                  | 4.022239E-16       |
 
 
 ### Speed
@@ -98,7 +101,7 @@ We currently use the following continued fraction[^3]:
 
 
 $$
-\exp\left(z\right) = 1 + \cfrac{2 z}{2 - z + 2 \displaystyle\KK_{m = 1}^{\infty}\left(\cfrac{a_m z^2}{1}\right)}
+\exp\left(z\right) = 1 + \cfrac{2 z}{2 - z + 2 \displaystyle\KK\limits_{m = 1}^{\infty}\left(\cfrac{a_m z^2}{1}\right)}
 $$
 
 with 
@@ -107,7 +110,7 @@ a_m = \dfrac{1}{4 (2 m - 1) (2 m + 1)}
 $$
 so if we expand the continued fraction
 $$
-\KK_{m = 1}^{\infty}\left(\cfrac{a_m z^2}{1}\right) = \cfrac{z^2 / 12}{1 + \cfrac{z^2 / 60}{1 + \cfrac{z^2 / 140}{1 + \cfrac{z^2 / 252}{1 + \cfrac{z^2 / 396}{1 + ...}}}}}
+\KK\limits_{m = 1}^{\infty}\left(\cfrac{a_m z^2}{1}\right) = \cfrac{z^2 / 12}{1 + \cfrac{z^2 / 60}{1 + \cfrac{z^2 / 140}{1 + \cfrac{z^2 / 252}{1 + \cfrac{z^2 / 396}{1 + ...}}}}}
 $$
 
 ```python
@@ -138,15 +141,15 @@ The following benchmark leads us to choose `d = 6`.
     --8<-- "benchmark/exp_cf_accuracy.c"
     ```
 
-depth | max mantissa error | max relative error
-------|--------------------|-------------------
-3     |          6998321454|       7.769708E-07
-4     |            13281258|       1.014192E-14
-5     |               16126|       1.790451E-12
-6     |                  81|       1.017038E-14
-7     |                  90|       1.017038E-14
-8     |                  90|       1.017038E-14
-9     |                  90|       1.017038E-14
+| depth | max mantissa error | max relative error |
+| ----- | ------------------ | ------------------ |
+| 3     | 6998321454         | 7.769708E-07       |
+| 4     | 13281258           | 1.014192E-14       |
+| 5     | 16126              | 1.790451E-12       |
+| 6     | 81                 | 1.017038E-14       |
+| 7     | 90                 | 1.017038E-14       |
+| 8     | 90                 | 1.017038E-14       |
+| 9     | 90                 | 1.017038E-14       |
 
 
 ### Speed
@@ -179,3 +182,7 @@ This current choice leads to worse performances than the standard library. This 
     > Cuyt, A. A., Petersen, V., Verdonk, B., Waadeland, H., & Jones, W. B. (2008). Handbook of continued fractions for special functions. Springer Science & Business Media.
 [^3]: Formula (11.1.2) p.194
     > Cuyt, A. A., Petersen, V., Verdonk, B., Waadeland, H., & Jones, W. B. (2008). Handbook of continued fractions for special functions. Springer Science & Business Media.
+
+<script>
+   console.log("KATEX:", katex);
+</script>

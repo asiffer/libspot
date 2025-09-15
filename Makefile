@@ -253,7 +253,7 @@ doxygen: $(DIST_DIR)/spot.h
 
 dev/doxygen/generated: doxygen
 	@mkdir -p $(@D) && rm -rf $@
-	@xsdata generate doxygen/xml/
+	@uvx --with 'xsdata[cli,lxml]' xsdata generate doxygen/xml/
 	@mv -f generated $@
 
 update-headers: inject-version inject-date inject-copyright
@@ -275,7 +275,7 @@ inject-copyright: $(HEADERS) $(SRCS)
 
 docs/70_API.md: dev/doxygen/generated
 	@mkdir -p $(@D)
-	python3 dev/doxygen/generate_api_docs.py -o "$@"
+	dev/doxygen/generate_api_docs.py -o "$@"
 
 docs/API: docs/70_API.md
 

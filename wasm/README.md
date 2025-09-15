@@ -2,34 +2,47 @@
 
 `libspot` in the browser.
 
-This sub-project ports `libspot` into javascript through webassembly (emscripten).
-It uses [`bun`](https://bun.sh/) to build and test the final package.
+This sub-project ports `libspot` into javascript through webassembly (using `llvm`).
 
-## Core library
+## Getting Started
 
-The core library, namely `libspot.core.js`, is generated from the root project.
-
-```
-# from project root directory
-make ./wasm/libspot.core.js
+```shell
+npm install libspot
 ```
 
-## Interface
+Here is a minimal example.
 
-The `index.ts` interface wraps the generated library and provides a OO-like and more dev-friendly API.
+```ts
+import { Spot, ANOMALY } from "libspot";
 
-## Test
+const gaussianRandom = () => {
+  // N(0, 1)
+  const u = 1 - Math.random(); 
+  const v = Math.random();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+};
 
-Tests are rather minimal for the moment. See `libspot.test.ts`.
 
-```bash
-bun test
-```
+// Spot job ------------------------------------------------------------------
+const trainSize = 10000;
+const level = 0.98;
+const maxExcess = (1-level) * trainSize;
 
-## Building
+const spot = new Spot({ q: 1e-4, level: level, maxExcess: maxExcess });
+console.log("Spot initialized");
 
-See `package.json` for the script definition.
+// fit to input data
+const train = Float64Array.from({ length: trainSize }, () => gaussianRandom());
+spot.fit(train);
+console.log("Spot fitted");
 
-```bash
-bun run build
+// run
+for (let i = 0; i < 100000; i++) {
+  const x = gaussianRandom();
+  let r = spot.step(x);
+
+  if (r === ANOMALY) {
+    console.warn(`ANOMALY DETECTED! value=${x.toFixed(3)} probability=${spot.probability(x).toExponential(3)}`)
+  }
+}
 ```
