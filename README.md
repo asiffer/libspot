@@ -17,6 +17,7 @@
 [![JS](https://github.com/asiffer/libspot/actions/workflows/js.yaml/badge.svg)](https://github.com/asiffer/libspot/actions/workflows/js.yaml)
 
 **libspot** is a `C` library to flag outliers in high-throughput streaming data.
-The current project also provides `Python` and `Javascript` bindings (through webassembly).
+The current project provides `Python` and `Javascript` bindings (through webassembly). 
+You may also find [`Rust`](https://github.com/shenxiangzhuang/libspot-rs) and [`Go`](https://github.com/asiffer/gospot).
 
 Checkout the [docs](https://asiffer.github.io/libspot/)!
