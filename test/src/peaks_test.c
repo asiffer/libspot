@@ -80,6 +80,28 @@ void test_peaks_var(void) {
     }
 }
 
+void test_peaks_update_stats(void) {
+    double const data[] = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+    unsigned long const size = sizeof(data) / sizeof(double);
+    struct Peaks Peaks;
+    peaks_init(&Peaks, size);
+
+    for (unsigned long i = 0; i < size; i++) {
+        peaks_push(&Peaks, data[i]);
+        TEST_ASSERT_EQUAL_DOUBLE((double)(i * (i + 2)) / 12.0,
+                                 peaks_var(&Peaks));
+    }
+
+    double new_max = data[size - 1] + 1.0;
+    peaks_push(&Peaks,
+               new_max); // we erease the 0.0 (stats are updated)
+    TEST_ASSERT_EQUAL_DOUBLE(Peaks.min, data[1]);
+    TEST_ASSERT_EQUAL_DOUBLE(Peaks.max, new_max);
+    TEST_ASSERT_EQUAL_UINT64(size * (size + 1) / 2, Peaks.e);
+    TEST_ASSERT_EQUAL_UINT64((size * (size + 1) * (2 * size + 1)) / 6,
+                             Peaks.e2);
+}
+
 void test_peaks_size(void) {
     unsigned long const size = 30;
     double value = 1.0;
@@ -280,6 +302,7 @@ int main(void) {
     RUN_TEST(test_peaks_push);
     RUN_TEST(test_peaks_mean);
     RUN_TEST(test_peaks_var);
+    RUN_TEST(test_peaks_update_stats);
     RUN_TEST(test_peaks_size);
     RUN_TEST(test_peaks_log_likelihood);
     RUN_TEST(test_peaks_free);
