@@ -347,7 +347,7 @@ $(TEST_BIN_DIR)/%_test:
 $(TEST_RESULTS_DIR)/%_test.txt: $(TEST_BIN_DIR)/%_test
 	@mkdir -p $(@D)
 	@printf "%-32s" "Running  $^"
-	@$< > "$@"
+	@$< > "$@" || cat "$@"
 	@mv $<-*.gcda $(TEST_COVERAGE_DIR)
 	$(PRINT_OK)
 
