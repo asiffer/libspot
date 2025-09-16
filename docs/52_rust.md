@@ -3,20 +3,6 @@ title: Rust
 icon: material/language-rust
 ---
 
-[libspot-rs](https://github.com/shenxiangzhuang/libspot-rs) is a Rust wrapper for libspot.
+[libspot-rs](https://github.com/shenxiangzhuang/libspot-rs) is a Rust version of libspot. 
+Two versions of the library are provided: a pure Rust implementation and a binding to this C library.
 
-
-## Install
-
-You can install it by `cargo`:
-
-```shell
-cargo add libspot
-```
-
-## Get started
-
-<!-- prettier-ignore -->
-```python
---8<-- "https://raw.githubusercontent.com/shenxiangzhuang/libspot-rs/refs/heads/master/examples/simple.rs"
-```

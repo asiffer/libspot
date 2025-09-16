@@ -31,6 +31,7 @@ $$
 In practice, we truncate this expansion to depth $d$. For instance, the following pyton script leverages `sympy` and the recursive behavior of the continued fraction to
 output a truncated version of the expansion.
 
+
 ```python
 import sympy as sp
 
@@ -56,9 +57,13 @@ The following code is used so as to find the "best" depth. We basically retrieve
 
 
 ??? info "benchmark/log_cf_accuracy.c"
-    ```{.onecompiler lang="c" filename="log_cf_accuracy.c" theme="dark" hideTitle=true hideNew=true hideStdin=true hideNewFileOption=true}
+     
+    /// codexec
+
+        :::c
         --8<-- "benchmark/log_cf_accuracy.c"
-    ```
+        
+    ///
 
 
 The results on my laptop are presented below. Depths 9, 10 or 11 may be good candidates depending on the accuracy need.
@@ -83,10 +88,15 @@ Let us present the speed of our implementation. In the following benchmark, we u
 
 We compare computation time of **libspot** vs the standard library (on 10M runs, $\scriptsize 10^{-8}<x<10^{8}$).
 
+
 ??? info "benchmark/log_cf_speed.c"
-    ```{.onecompiler lang="c" filename="log_cf_speed.c" theme="dark" hideTitle=true hideNew=true hideStdin=true hideNewFileOption=true}
-    --8<-- "benchmark/log_cf_speed.c"
-    ```
+     
+    /// codexec
+
+        :::c
+        --8<-- "benchmark/log_cf_speed.c"
+        
+    ///
 
 When we turn on optimization flags (like `-O2`) we see that the **libspot implementation is faster**.
 
@@ -137,9 +147,13 @@ print(exp_cf(z, d=6))
 The following benchmark leads us to choose `d = 6`.
 
 ??? info "benchmark/exp_cf_accuracy.c"
-    ```{.onecompiler lang="c" filename="exp_cf_accuracy.c" theme="dark" hideTitle=true hideNew=true hideStdin=true hideNewFileOption=true}
-    --8<-- "benchmark/exp_cf_accuracy.c"
-    ```
+     
+    /// codexec
+
+        :::c
+        --8<-- "benchmark/exp_cf_accuracy.c"
+        
+    ///
 
 | depth | max mantissa error | max relative error |
 | ----- | ------------------ | ------------------ |
@@ -156,10 +170,16 @@ The following benchmark leads us to choose `d = 6`.
 
 Like in the previous `log` benchmark, we use an "inline" representation of the continued fraction with `depth = 6`. We compare computation time of **libspot** vs the standard library (on 10M runs, $\scriptsize 10^{-8}<x<10^{2}$).
 
+
 ??? info "benchmark/exp_cf_speed.c"
-    ```{.onecompiler lang="c" filename="exp_cf_speed.c" theme="dark" hideTitle=true hideNew=true hideStdin=true hideNewFileOption=true}
-    --8<-- "benchmark/exp_cf_speed.c"
-    ```
+     
+    /// codexec
+
+        :::c
+        --8<-- "benchmark/exp_cf_speed.c"
+        
+    ///
+
 
 Once again, **libspot implementation is faster** when optimization flags are set.
 
@@ -168,10 +188,17 @@ Once again, **libspot implementation is faster** when optimization flags are set
 
 Finally, we need to compute $x^\alpha$ when $x \ge 0$ and $\alpha \in\RR$. Currently we basically use our implementation of `exp` and `log` as $x^\alpha = \exp\left(\alpha \log x\right)$.
 
+
 ??? info "benchmark/pow_accuracy_speed.c"
-    ```{.onecompiler lang="c" filename="pow_accuracy_speed.c" theme="dark" hideTitle=true hideNew=true hideStdin=true hideNewFileOption=true}
-    --8<-- "benchmark/pow_accuracy_speed.c"
-    ```
+     
+    /// codexec
+
+        :::c
+        --8<-- "benchmark/pow_accuracy_speed.c"
+        
+    ///
+
+
 
 This current choice leads to worse performances than the standard library. This function is then likely to be improved in the future.
 

@@ -4,6 +4,7 @@ repo_name: asiffer/libspot
 
 theme:
   name: shadcn
+  icon: https://raw.githubusercontent.com/asiffer/libspot/refs/heads/master/docs/img/logo.svg
   katex_options:
     macros:
       "\\KK": "\\mathop{\\mathrm{K}}"
@@ -28,3 +29,5 @@ markdown_extensions:
   - pymdownx.blocks.tab
   - pymdownx.snippets:
       url_download: true
+  - shadcn.extensions.iconify
+  - shadcn.extensions.codexec

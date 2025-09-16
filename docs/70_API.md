@@ -87,14 +87,14 @@ enum LibspotError {
 
 Constants to store libspot errors.
 
-| Name | Description |
-|------|-------------|
-| `ERR_MEMORY_ALLOCATION_FAILED` | Allocation of the backing array failed. |
-| `ERR_LEVEL_OUT_OF_BOUNDS` | The level parameter must between 0 and 1. |
-| `ERR_Q_OUT_OF_BOUNDS` | The q parameter must be between 0 and 1-level. |
-| `ERR_EXCESS_THRESHOLD_IS_NAN` | The excess threshold has not been initialized. |
+| Name                           | Description                                     |
+| ------------------------------ | ----------------------------------------------- |
+| `ERR_MEMORY_ALLOCATION_FAILED` | Allocation of the backing array failed.         |
+| `ERR_LEVEL_OUT_OF_BOUNDS`      | The level parameter must between 0 and 1.       |
+| `ERR_Q_OUT_OF_BOUNDS`          | The q parameter must be between 0 and 1-level.  |
+| `ERR_EXCESS_THRESHOLD_IS_NAN`  | The excess threshold has not been initialized.  |
 | `ERR_ANOMALY_THRESHOLD_IS_NAN` | The anomaly threshold has not been initialized. |
-| `ERR_DATA_IS_NAN` | The input data is NaN. |
+| `ERR_DATA_IS_NAN`              | The input data is NaN.                          |
 
 
 
@@ -112,11 +112,11 @@ enum SpotResult {
 
 Possible outputs of a [Spot](#structSpot) step.
 
-| Name | Description |
-|------|-------------|
-| `NORMAL` | Data is normal. |
-| `EXCESS` | Data is in the tail (so the model has been updated) |
-| `ANOMALY` | Data is beyond the anomaly threshold. |
+| Name      | Description                                         |
+| --------- | --------------------------------------------------- |
+| `NORMAL`  | Data is normal.                                     |
+| `EXCESS`  | Data is in the tail (so the model has been updated) |
+| `ANOMALY` | Data is beyond the anomaly threshold.               |
 
 
 
@@ -140,13 +140,13 @@ This container is a kind of circular vector.
 
 First it is empty. Then we feed it with data until its max capacity is reached (transitory state). When it is full, the earlier data erase the older one (cruise state). 
 
-| Member | Description |
-|--------|-------------|
-| `cursor` | Current position inside the container. |
-| `capacity` | Max storage. |
-| `last_erased_data` | Last erased value (i.e. replaced by a new one) |
-| `filled` | Container fill status (1 = filled, 0 = not filled) |
-| `data` | Data container. |
+| Member             | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| `cursor`           | Current position inside the container.             |
+| `capacity`         | Max storage.                                       |
+| `last_erased_data` | Last erased value (i.e. replaced by a new one)     |
+| `filled`           | Container fill status (1 = filled, 0 = not filled) |
+| `data`             | Data container.                                    |
 
 
 
@@ -166,13 +166,13 @@ struct Peaks {
 
 Stucture that computes stats about the peaks.
 
-| Member | Description |
-|--------|-------------|
-| `e` | Sum of the elements. |
-| `e2` | Sum of the square of the elements. |
-| `min` | Minimum of the elements. |
-| `max` | Maximum of the elements. |
-| `container` | Underlying data container. |
+| Member      | Description                        |
+| ----------- | ---------------------------------- |
+| `e`         | Sum of the elements.               |
+| `e2`        | Sum of the square of the elements. |
+| `min`       | Minimum of the elements.           |
+| `max`       | Maximum of the elements.           |
+| `container` | Underlying data container.         |
 
 
 
@@ -190,10 +190,10 @@ struct Tail {
 
 Stucture that embeds GPD parameter (GPD tail actually)
 
-| Member | Description |
-|--------|-------------|
-| `gamma` | GPD gamma parameter. |
-| `sigma` | GPD sigma parameter. |
+| Member  | Description                                  |
+| ------- | -------------------------------------------- |
+| `gamma` | GPD gamma parameter.                         |
+| `sigma` | GPD sigma parameter.                         |
 | `peaks` | Underlyning [Peaks](#structPeaks) structure. |
 
 
@@ -219,18 +219,18 @@ struct Spot {
 
 Main structure to run the SPOT algorithm.
 
-| Member | Description |
-|--------|-------------|
-| `q` | Probability of an anomaly. |
-| `level` | Location of the tail (high quantile) |
-| `discard_anomalies` | Flag anomalies (1 = flag, 0 = don't flag) |
-| `low` | Upper/Lower tail choice (1 = lower tail, 0 = upper tail) |
-| `__up_down` | Internal constant (+/- 1.0) |
-| `anomaly_threshold` | Normal/abnormal threshold. |
-| `excess_threshold` | [Tail](#structTail) threshold. |
-| `Nt` | Total number of excesses. |
-| `n` | Total number of seen data. |
-| `tail` | GPD [Tail](#structTail). |
+| Member              | Description                                              |
+| ------------------- | -------------------------------------------------------- |
+| `q`                 | Probability of an anomaly.                               |
+| `level`             | Location of the tail (high quantile)                     |
+| `discard_anomalies` | Flag anomalies (1 = flag, 0 = don't flag)                |
+| `low`               | Upper/Lower tail choice (1 = lower tail, 0 = upper tail) |
+| `__up_down`         | Internal constant (+/- 1.0)                              |
+| `anomaly_threshold` | Normal/abnormal threshold.                               |
+| `excess_threshold`  | [Tail](#structTail) threshold.                           |
+| `Nt`                | Total number of excesses.                                |
+| `n`                 | Total number of seen data.                               |
+| `tail`              | GPD [Tail](#structTail).                                 |
 
 
 
@@ -241,19 +241,19 @@ Main structure to run the SPOT algorithm.
 ### spot_init
 
 ```c
-int spot_init(struct [Spot](#structSpot) * spot, double q, int low, int discard_anomalies, double level, unsigned long max_excess)
+int spot_init(struct Spot * spot, double q, int low, int discard_anomalies, double level, unsigned long max_excess)
 ```
 
 Initialize the [Spot](#structSpot) structure.
 
-| Parameter | Description |
-|-----------|-------------|
-| `spot` | [Spot](#structSpot) instance |
-| `q` | Decision probability ([Spot](#structSpot) will flag extreme events that will have a probability lower than q) |
-| `low` | Lower tail mode (0 by defaut for upper tail and 1 for lower tail) |
-| `discard_anomalies` | Do not include anomalies in the model (default: 1, 0 otherwise) |
-| `level` | Excess level (it is a high quantile that delimits the tail) |
-| `max_excess` | Maximum number of data that are kept to analyze the tail |
+| Parameter           | Description                                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `spot`              | [Spot](#structSpot) instance                                                                                  |
+| `q`                 | Decision probability ([Spot](#structSpot) will flag extreme events that will have a probability lower than q) |
+| `low`               | Lower tail mode (0 by defaut for upper tail and 1 for lower tail)                                             |
+| `discard_anomalies` | Do not include anomalies in the model (default: 1, 0 otherwise)                                               |
+| `level`             | Excess level (it is a high quantile that delimits the tail)                                                   |
+| `max_excess`        | Maximum number of data that are kept to analyze the tail                                                      |
 
 
 
@@ -262,14 +262,14 @@ Initialize the [Spot](#structSpot) structure.
 ### spot_free
 
 ```c
-void spot_free(struct [Spot](#structSpot) * spot)
+void spot_free(struct Spot * spot)
 ```
 
 Free the tail data.
 
-| Parameter | Description |
-|-----------|-------------|
-| `spot` | [Spot](#structSpot) instance |
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| `spot`    | [Spot](#structSpot) instance |
 
 
 
@@ -278,16 +278,16 @@ Free the tail data.
 ### spot_fit
 
 ```c
-int spot_fit(struct [Spot](#structSpot) * spot, double const * data, unsigned long size)
+int spot_fit(struct Spot * spot, double const * data, unsigned long size)
 ```
 
 Compute the first excess and anomaly thresholds based on training data.
 
-| Parameter | Description |
-|-----------|-------------|
-| `spot` | [Spot](#structSpot) instance |
-| `data` | Buffer of input data |
-| `size` | Size of the buffer |
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| `spot`    | [Spot](#structSpot) instance |
+| `data`    | Buffer of input data         |
+| `size`    | Size of the buffer           |
 
 
 
@@ -296,15 +296,15 @@ Compute the first excess and anomaly thresholds based on training data.
 ### spot_step
 
 ```c
-int spot_step(struct [Spot](#structSpot) * spot, double x)
+int spot_step(struct Spot * spot, double x)
 ```
 
 fit-predict step
 
-| Parameter | Description |
-|-----------|-------------|
-| `spot` | [Spot](#structSpot) instance |
-| `x` | new value |
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| `spot`    | [Spot](#structSpot) instance |
+| `x`       | new value                    |
 
 
 
@@ -313,15 +313,15 @@ fit-predict step
 ### spot_quantile
 
 ```c
-double spot_quantile(struct [Spot](#structSpot) const * spot, double q)
+double spot_quantile(struct Spot const * spot, double q)
 ```
 
 Compute the value zq such that P(X>zq) = q.
 
-| Parameter | Description |
-|-----------|-------------|
-| `spot` | [Spot](#structSpot) instance |
-| `q` | Low probability (it must be within the tail) |
+| Parameter | Description                                  |
+| --------- | -------------------------------------------- |
+| `spot`    | [Spot](#structSpot) instance                 |
+| `q`       | Low probability (it must be within the tail) |
 
 
 
@@ -330,15 +330,15 @@ Compute the value zq such that P(X>zq) = q.
 ### spot_probability
 
 ```c
-double spot_probability(struct [Spot](#structSpot) const * spot, double z)
+double spot_probability(struct Spot const * spot, double z)
 ```
 
 Compute the probability p such that P(X>z) = p.
 
-| Parameter | Description |
-|-----------|-------------|
-| `spot` | [Spot](#structSpot) instance |
-| `z` | High quantile (it must be within the tail) |
+| Parameter | Description                                |
+| --------- | ------------------------------------------ |
+| `spot`    | [Spot](#structSpot) instance               |
+| `z`       | High quantile (it must be within the tail) |
 
 
 
@@ -352,10 +352,10 @@ void set_allocators(malloc_fn m, free_fn f)
 
 Set the allocators object (malloc and free)
 
-| Parameter | Description |
-|-----------|-------------|
-| `m` | pointer to a "malloc" function |
-| `f` | pointer to a "free" function |
+| Parameter | Description                    |
+| --------- | ------------------------------ |
+| `m`       | pointer to a "malloc" function |
+| `f`       | pointer to a "free" function   |
 
 
 
@@ -371,10 +371,10 @@ Set the ldexp/frexp functions.
 
 By default these functions are provided but the API allows to change them.
 
-| Parameter | Description |
-|-----------|-------------|
-| `l` | pointer to a "ldexp" function |
-| `f` | pointer to a "frexp" function |
+| Parameter | Description                   |
+| --------- | ----------------------------- |
+| `l`       | pointer to a "ldexp" function |
+| `f`       | pointer to a "frexp" function |
 
 
 
@@ -388,10 +388,10 @@ void libspot_version(char * buffer, unsigned long size)
 
 Return the version of libspot.
 
-| Parameter | Description |
-|-----------|-------------|
-| `buffer` | input buffer to fill with |
-| `size` | size of the input buffer |
+| Parameter | Description               |
+| --------- | ------------------------- |
+| `buffer`  | input buffer to fill with |
+| `size`    | size of the input buffer  |
 
 
 
@@ -405,10 +405,10 @@ void libspot_license(char * buffer, unsigned long size)
 
 Return the license of the library.
 
-| Parameter | Description |
-|-----------|-------------|
-| `buffer` | input buffer to fill with |
-| `size` | size of the input buffer |
+| Parameter | Description               |
+| --------- | ------------------------- |
+| `buffer`  | input buffer to fill with |
+| `size`    | size of the input buffer  |
 
 
 
@@ -422,11 +422,11 @@ void libspot_error(enum LibspotError err, char * buffer, unsigned long size)
 
 Return a string related to an error code.
 
-| Parameter | Description |
-|-----------|-------------|
-| `err` | error code |
-| `buffer` | input buffer to fill with |
-| `size` | size of the input buffer |
+| Parameter | Description               |
+| --------- | ------------------------- |
+| `err`     | error code                |
+| `buffer`  | input buffer to fill with |
+| `size`    | size of the input buffer  |
 
 
 
