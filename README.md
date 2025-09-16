@@ -1,14 +1,10 @@
 <p align="center">
-    <img src="docs/img/logo.svg" style="max-width:50%" alt='libspot'/>
+    <img src="docs/img/logo.svg" width="300" alt='libspot'/>
 </p>
 
 <h1 align="center">libspot</h1>
 <p align="center">Born to flag outliers</p>
 
-<!-- <p align="center">
-<img src="https://img.shields.io/github/release/asiffer/libspot.svg" alt="release"/>
-<img src="https://img.shields.io/github/license/asiffer/libspot.svg" alt="license"/>
-</p> -->
 
 [![Release](https://img.shields.io/github/release/asiffer/libspot.svg)](https://github.com/asiffer/libspot/releases)
 [![License](https://img.shields.io/github/license/asiffer/libspot.svg)](https://github.com/asiffer/libspot/blob/master/LICENSE)
