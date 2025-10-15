@@ -10,6 +10,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: npmjs
+    env:
+      NPM_CONFIG_TOKEN: ${{ secrets.NPMJS_GRANULAR_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,63 +45,18 @@ jobs:
         run: make tgz
         working-directory: ./wasm
 
-      - name: Upload npm package
+      - name: Upload npm package as artifact
         uses: actions/upload-artifact@v4
         with:
           path: ./wasm/libspot*.tgz
           name: libspot.tgz
 
-      - name: Upload library files
+      - name: Upload library files as artifact
         uses: actions/upload-artifact@v4
         with:
           path: ./wasm/dist
           name: libspot
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-          registry-url: "https://npm.pkg.github.com"
 
-      - name: Copy .npmrc
-        run: |
-          ls -alh --color=auto
-          cat ${NPM_CONFIG_USERCONFIG}
-          cp ${NPM_CONFIG_USERCONFIG} .npmrc
+      - name: Publish to npmjs
+        run: bun publish
         working-directory: ./wasm
-  
-      - name: Publish to Github Packages
-        run: |
-          sed -i 's,"libspot","@asiffer/libspot",g' package.json
-          npm publish 
-        working-directory: ./wasm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  # upload:
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - build
-  #   if : github.ref_name == 'master'
-  #   steps:
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: "20.x"
-  #         registry-url: "https://npm.pkg.github.com"
-
-  #     - name: Download npm package
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: libspot.tgz
-
-  #     - name: Debug
-  #       run: |
-  #         ls -alh --color=auto
-  #         cat ${NPM_CONFIG_USERCONFIG}
-  #         cp ${NPM_CONFIG_USERCONFIG} .npmrc
-
-  #     - name: Publish to Github
-  #       run: npm publish libspot*.tgz --scope=@asiffer
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
