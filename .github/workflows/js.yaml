@@ -28,10 +28,6 @@ jobs:
 
       - name: Install bun
         uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-          registry-url: "https://npm.pkg.github.com/"
-          scope: "@asiffer"
 
       - name: Install dependencies
         run: bun install
