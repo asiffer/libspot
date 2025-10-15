@@ -273,11 +273,11 @@ inject-copyright: $(HEADERS) $(SRCS)
 	@sed -i -e 's,@copyright.*,@copyright $(LICENSE),' $^
 	$(PRINT_OK)
 
-docs/70_API.md: dev/doxygen/generated
+docs/api.md: dev/doxygen/generated
 	@mkdir -p $(@D)
 	dev/doxygen/generate_api_docs.py -o "$@"
 
-docs/API: docs/70_API.md
+docs/API: docs/api.md
 
 
 # ========================================================================== #

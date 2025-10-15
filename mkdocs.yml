@@ -4,7 +4,8 @@ repo_name: asiffer/libspot
 
 theme:
   name: shadcn
-  icon: https://raw.githubusercontent.com/asiffer/libspot/refs/heads/master/docs/img/logo.svg
+  icon: img/logo.svg
+  favicon: img/favicon.ico
   katex_options:
     macros:
       "\\KK": "\\mathop{\\mathrm{K}}"
@@ -17,7 +18,6 @@ watch:
 plugins:
   - search
   
-
 
 markdown_extensions:
   - attr_list
