@@ -16,6 +16,8 @@ watch:
 
 plugins:
   - search
+  
+
 
 markdown_extensions:
   - attr_list
@@ -31,3 +33,4 @@ markdown_extensions:
       url_download: true
   - shadcn.extensions.iconify
   - shadcn.extensions.codexec
+  - shadcn.extensions.echarts.alpha
