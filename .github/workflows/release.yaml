@@ -3,11 +3,8 @@ name: Release
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
-    paths:
-      - "src/*.c"
-      - "include/*.h"
+    tags:
+      - "v*"
 
 jobs:
   release:
