@@ -9,7 +9,7 @@
 
 
 LIB 		 = libspot
-VERSION 	 = 2.0b5
+VERSION 	 = 2.0b6
 LICENSE 	 = GNU Lesser General Public License v3.0
 DATE         = $(shell date -u)
 COMMIT_COUNT = $(shell git rev-list --count master)
@@ -253,7 +253,7 @@ doxygen: $(DIST_DIR)/spot.h
 
 dev/doxygen/generated: doxygen
 	@mkdir -p $(@D) && rm -rf $@
-	@xsdata generate doxygen/xml/
+	@uvx --with 'xsdata[cli,lxml]' xsdata generate doxygen/xml/
 	@mv -f generated $@
 
 update-headers: inject-version inject-date inject-copyright
@@ -273,11 +273,11 @@ inject-copyright: $(HEADERS) $(SRCS)
 	@sed -i -e 's,@copyright.*,@copyright $(LICENSE),' $^
 	$(PRINT_OK)
 
-docs/70_API.md: dev/doxygen/generated
+docs/api.md: dev/doxygen/generated
 	@mkdir -p $(@D)
-	python3 dev/doxygen/generate_api_docs.py -o "$@"
+	dev/doxygen/generate_api_docs.py -o "$@"
 
-docs/API: docs/70_API.md
+docs/API: docs/api.md
 
 
 # ========================================================================== #

@@ -41,6 +41,18 @@ typedef void (*free_fn)(void *);
 typedef double (*frexp_fn)(double, int *);
 
 /**
+ * @brief math_fn is a pointer to a generic real math function
+ * like log, exp...
+ */
+typedef double (*math_fn)(double);
+
+/**
+ * @brief math_fn is a pointer to a generic two parameters
+ * math function like pow
+ */
+typedef double (*math2_fn)(double, double);
+
+/**
  * @brief \`ldexp_fn\` is a pointer to a ldexp-type function
  * i.e. with prototype:
  * \`double ldexp_fn(double, int*)\`

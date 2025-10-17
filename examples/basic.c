@@ -1,25 +1,38 @@
 // basic.c
 // BUILD:
 // $ make
-// $ cc -o /tmp/basic examples/basic.c -Idist/ -Ldist/ -l:libspot.so.2.0b0 -lm
+// $ cc -o /tmp/basic examples/basic.c dist/libspot.a* -Idist/ -lm
 // RUN:
-// $ LD_LIBRARY_PATH=dist /tmp/basic
+// $ /tmp/basic [--stdlib]
 
 #include "spot.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
-// U(0, 1)
-double runif() { return (double)rand() / (double)RAND_MAX; }
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
-// Exp(1)
-double rexp() { return -log(runif()); }
+unsigned long const TRAIN_SIZE = 20000;
+unsigned long const TEST_SIZE = 500000;
 
-int main() {
+// N(0, 1) - Box-Muller transform
+double gaussian_random() {
+    double u = 1.0 - ((double)rand() / (double)RAND_MAX);
+    double v = (double)rand() / (double)RAND_MAX;
+    return sqrt(-2.0 * log(u)) * cos(2.0 * M_PI * v);
+}
+
+int main(int argc, const char *argv[]) {
+    if (argc > 1 && strcmp(argv[1], "--stdlib") == 0) {
+        set_math_functions(log, exp, pow);
+    }
+
     // set random seed
-    srand(1);
+    srand(time(NULL));
     // provide allocators to libspot
     set_allocators(malloc, free);
     // stack allocation
@@ -28,40 +41,41 @@ int main() {
     // init the structure with some parameters
     status = spot_init(
         &spot,
-        1e-4,  // q: anomaly probability
-        0,     // low: observe upper tail
-        1,     // discard_anomalies: flag anomalies
-        0.998, // level: tail quantile (the 1% higher values shapes the tail)
-        200    // max_excess: number of data to keep to summarize the tail
+        1e-4, // q: anomaly probability
+        0,    // low: observe upper tail
+        1,    // discard_anomalies: flag anomalies
+        0.99, // level: tail quantile (the 1% higher values shapes the tail)
+        200   // max_excess: number of data to keep to summarize the tail
     );
 
     if (status < 0) {
         return -status;
     }
 
-    // initial data (for the fit)
-    unsigned long const N = 20000;
-    double initial_data[N];
-    for (unsigned long i = 0; i < N; i++) {
-        initial_data[i] = rexp();
+    // initial data
+    double train[TRAIN_SIZE];
+    for (unsigned long i = 0; i < TRAIN_SIZE; i++) {
+        train[i] = gaussian_random();
     }
 
     // fit
-    status = spot_fit(&spot, initial_data, N);
+    status = spot_fit(&spot, train, TRAIN_SIZE);
     if (status < 0) {
         return -status;
     }
 
-    // now we can run the algorithm
-    int K = 50000000;
+    // run
+    double test[TEST_SIZE];
+    for (unsigned long i = 0; i < TEST_SIZE; i++) {
+        test[i] = gaussian_random();
+    }
     int normal = 0;
     int excess = 0;
     int anomaly = 0;
 
     clock_t start = clock();
-    for (int k = 0; k < K; k++) {
-        // rexp();
-        switch (spot_step(&spot, rexp())) {
+    for (unsigned long k = 0; k < TEST_SIZE; k++) {
+        switch (spot_step(&spot, test[k])) {
         case ANOMALY:
             anomaly++;
             break;
@@ -75,8 +89,10 @@ int main() {
     }
     clock_t end = clock();
 
-    printf("%lf\n", (double)(end - start) / (double)(CLOCKS_PER_SEC));
-    printf("ANOMALY=%d EXCESS=%d NORMAL=%d\n", anomaly, excess, normal);
-    printf("Z=%.6f T=%.6f\n", spot.anomaly_threshold, spot.excess_threshold);
+    double elapsed = (double)(end - start) / (double)CLOCKS_PER_SEC;
+
+    printf("Time: %.2f ms\n", 1000.0 * elapsed);
+    printf("Throughput: %.2f value/s\n", (double)TEST_SIZE / elapsed);
+    printf("ANOMALY: %d, EXCESS: %d, NORMAL: %d\n", anomaly, excess, normal);
     return 0;
 }

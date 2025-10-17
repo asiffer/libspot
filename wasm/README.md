@@ -2,34 +2,61 @@
 
 `libspot` in the browser.
 
-This sub-project ports `libspot` into javascript through webassembly (emscripten).
-It uses [`bun`](https://bun.sh/) to build and test the final package.
+This sub-project ports `libspot` into javascript through webassembly (using `llvm`).
 
-## Core library
+## Getting Started
 
-The core library, namely `libspot.core.js`, is generated from the root project.
-
-```
-# from project root directory
-make ./wasm/libspot.core.js
+```shell
+npm install libspot
 ```
 
-## Interface
+Here is a simple example.
 
-The `index.ts` interface wraps the generated library and provides a OO-like and more dev-friendly API.
+```ts
+import { Spot, ANOMALY, EXCESS, NORMAL } from "libspot";
 
-## Test
+const gaussianRandom = () => {
+  // N(0, 1)
+  const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+  const v = Math.random();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+};
 
-Tests are rather minimal for the moment. See `libspot.test.ts`.
+const trainSize = 20000;
+const testSize = 500000;
 
-```bash
-bun test
-```
+// Spot job ------------------------------------------------------------------
+const s = new Spot({ q: 1e-4, level: 0.99, maxExcess: 200 });
 
-## Building
+// fit to input data
+const train = Float64Array.from({ length: trainSize }, () => gaussianRandom());
+s.fit(train);
 
-See `package.json` for the script definition.
+// run
+let anomaly = 0;
+let excess = 0;
+let normal = 0;
 
-```bash
-bun run build
+// measured in milliseconds
+const start = performance.now();
+
+for (let i = 0; i < testSize; i++) {
+  switch (s.step(gaussianRandom())) {
+    case ANOMALY:
+      anomaly++;
+      break;
+    case EXCESS:
+      excess++;
+      break;
+    case NORMAL:
+      normal++;
+      break;
+  }
+}
+
+const end = performance.now();
+
+console.log(`Time: ${(end - start).toFixed(2)} ms`);
+console.log(`Throughput: ${(1000*testSize/(end - start)).toFixed(2)} value/s`);
+console.log(`ANOMALY: ${anomaly}, EXCESS: ${excess}, NORMAL: ${normal}`);
 ```

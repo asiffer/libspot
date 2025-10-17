@@ -1,5 +1,6 @@
 ---
 title: Get started
+order: 4
 ---
 
 Inside your code, you just have to add the `spot.h` header file.
@@ -57,7 +58,7 @@ The `level` should be a high quantile (a value close to `1`). It is useful to de
 
 Finally `max_excess` is the number of data that will be kept to model the tail of the distribution.
 
-You can read more about the parameters in the [dedicated section](30_parameters.md).
+You can read more about the parameters in the [dedicated section](parameters.md).
 
 Before prediction, we commonly need to fit the algorithm with first data. In practice you must provide a buffer of `double` (pointer + size of the buffer). How many records are needed? Briefly, few thousands (like 2000) but it depends on the parameters passed to SPOT (and also whether you have enough data).
 

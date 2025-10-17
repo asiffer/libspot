@@ -99,12 +99,23 @@ void set_allocators(malloc_fn m, free_fn f);
  * @brief Set the ldexp/frexp functions
  *
  * By default these functions are provided but the API
- * allows to change them.
+ * allows to change them. It is low level, you might rather
+ * use set_math_functions to provide optimized math functions.
  *
- * @param l pointer to a "ldexp" function
- * @param f pointer to a "frexp" function
+ * @param l pointer to a "ldexp" function (nil if you do not want to change it)
+ * @param f pointer to a "frexp" function (nil if you do not want to change it)
  */
 void set_float_utils(ldexp_fn l, frexp_fn f);
+
+/**
+ * @brief Set the log, exp and pow functions. It is recommended when you have
+ * access to optimized versions (e.g., from the standard library).
+ *
+ * @param lo pointer to a "log" function (nil if you do not want to change it)
+ * @param ex pointer to an "exp" function (nil if you do not want to change it)
+ * @param po pointer to a "pow" function (nil if you do not want to change it)
+ */
+void set_math_functions(math_fn lo, math_fn ex, math2_fn po);
 
 /**
  * @brief Return the version of libspot

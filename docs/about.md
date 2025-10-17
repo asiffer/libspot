@@ -1,5 +1,6 @@
 ---
 title: About
+order: 2
 ---
 
 This library is an extension of research work previously published at KDD'17 conference. If **libspot** contributes to a project that leads to a scientific publication, please acknowledge this fact by citing the publication:
