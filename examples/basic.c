@@ -12,6 +12,10 @@
 #include <string.h>
 #include <time.h>
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 unsigned long const TRAIN_SIZE = 20000;
 unsigned long const TEST_SIZE = 500000;
 
