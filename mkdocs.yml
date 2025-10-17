@@ -10,6 +10,26 @@ theme:
     macros:
       "\\KK": "\\mathop{\\mathrm{K}}"
 
+nav:
+  - index.md
+  - about.md
+  - install.md
+  - get_started.md
+  - parameters.md
+  - api.md
+  - Foreign languages:
+      - foreign/python.md
+      - foreign/javascript.md
+      - foreign/golang.md
+      - foreign/rust.md
+      - foreign/performances.md
+  - Internals:
+      - internals/spot.md
+      - internals/fit.md
+      - internals/math.md
+
+
+
 watch:
   - benchmark
   - src
