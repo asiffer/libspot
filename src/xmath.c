@@ -13,68 +13,6 @@ static double const LOG2 = 0x1.62e42fefa39efp-1;
 double const _NAN = 0.0 / 0.0;
 double const _INFINITY = +1.0 / 0.0;
 
-// static const double pow2[] = {
-//     0x1.0p+0,  0x1.0p+1,  0x1.0p+2,  0x1.0p+3,  0x1.0p+4,  0x1.0p+5,
-//     0x1.0p+6,  0x1.0p+7,  0x1.0p+8,  0x1.0p+9,  0x1.0p+10, 0x1.0p+11,
-//     0x1.0p+12, 0x1.0p+13, 0x1.0p+14, 0x1.0p+15, 0x1.0p+16, 0x1.0p+17,
-//     0x1.0p+18, 0x1.0p+19, 0x1.0p+20, 0x1.0p+21, 0x1.0p+22, 0x1.0p+23,
-//     0x1.0p+24, 0x1.0p+25, 0x1.0p+26, 0x1.0p+27, 0x1.0p+28, 0x1.0p+29,
-//     0x1.0p+30, 0x1.0p+31, 0x1.0p+32, 0x1.0p+33, 0x1.0p+34, 0x1.0p+35,
-//     0x1.0p+36, 0x1.0p+37, 0x1.0p+38, 0x1.0p+39, 0x1.0p+40, 0x1.0p+41,
-//     0x1.0p+42, 0x1.0p+43, 0x1.0p+44, 0x1.0p+45, 0x1.0p+46, 0x1.0p+47,
-//     0x1.0p+48, 0x1.0p+49, 0x1.0p+50, 0x1.0p+51, 0x1.0p+52, 0x1.0p+53,
-//     0x1.0p+54, 0x1.0p+55, 0x1.0p+56, 0x1.0p+57, 0x1.0p+58, 0x1.0p+59,
-//     0x1.0p+60, 0x1.0p+61, 0x1.0p+62, 0x1.0p+63, 0x1.0p+64};
-
-// static const int EXP_MAX = sizeof(pow2) / sizeof(double);
-
-// int find_log2_positive_double(double target) {
-//     int i = 0;
-//     int j = EXP_MAX - 1;
-
-//     if (target < pow2[i] || target > pow2[j]) {
-//         // out of bounds
-//         return -1;
-//     }
-
-//     int m = (i + j) / 2;
-
-//     while ((j - i) > 1) {
-//         if (target < pow2[m]) {
-//             j = m;
-//         } else {
-//             i = m;
-//         }
-//         m = (i + j) / 2;
-//     }
-
-//     return i;
-// }
-
-// static double _frexp(double x, int *e) {
-//     if (x < 0) {
-//         return -_frexp(-x, e);
-//     }
-//     if (x < 1) {
-//         int inv_exp = find_log2_positive_double(1.0 / x);
-//         *e = -inv_exp + 1;
-//         return x * pow2[inv_exp];
-//     }
-//     int exp = find_log2_positive_double(x);
-//     *e = exp;
-//     return x / pow2[exp];
-// }
-
-// static double ldexp(double x, int n) {
-//     if (n < 0 && n > -EXP_MAX) {
-//         return x / pow2[-n];
-//     }
-//     if (n >= 0 && n < EXP_MAX) {
-//         return x * pow2[n];
-//     }
-//     return _NAN;
-// }
-
 #if __SIZEOF_DOUBLE__ == 8
 
 typedef union {
@@ -250,23 +188,10 @@ void internal_set_float_utils(ldexp_fn l, frexp_fn f) {
     }
 }
 
-/*
- * See https://en.wikipedia.org/wiki/Double-precision_floating-point_format
- */
-// typedef union {
-//     double d;
-
-//     struct {
-//         unsigned int : 32; // mantissa1
-//         unsigned int : 20; // mantissa0
-//         unsigned int exponent : 11;
-//         unsigned int : 1; // sign
-//     } bits;
-// } double_cast;
-
 int is_nan(double x) { return x != x; }
 
 static double _log_cf_11(double z) {
+    // could be 4x slower
     double x = z - 1;
     double xx = x + 2;
     double x2 = x * x;
@@ -318,7 +243,7 @@ double _exp_cf_6(double z) {
            1;
 }
 
-double xexp(double x) {
+static double nostdlib_exp(double x) {
     if (is_nan(x)) {
         return _NAN;
     }
@@ -337,7 +262,7 @@ double xexp(double x) {
     return _exp_cf_6(x);
 }
 
-double xlog(double x) {
+static double nostdlib_log(double x) {
     if (x < 0 || is_nan(x)) {
         return _NAN;
     }
@@ -366,7 +291,41 @@ double xlog(double x) {
     // return _log_cf_11(casted.d) + (exponent - 1023.0) * LOG2;
 }
 
-double xpow(double a, double x) { return xexp(x * xlog(a)); }
+/**
+ * @brief Default to nostdlib
+ */
+static math_fn libspot_log = nostdlib_log;
+
+/**
+ * @brief Default to nostdlib
+ */
+static math_fn libspot_exp = nostdlib_exp;
+
+double xlog(double x) { return libspot_log(x); }
+
+double xexp(double x) { return libspot_exp(x); }
+
+// uses xlog and xexp by default
+static double nostdlib_pow(double a, double x) { return xexp(x * xlog(a)); }
+
+/**
+ * @brief Default to nostdlib
+ */
+static math2_fn libspot_pow = nostdlib_pow;
+
+void internal_set_math_functions(math_fn lo, math_fn ex, math2_fn po) {
+    if (lo) {
+        libspot_log = lo;
+    }
+    if (ex) {
+        libspot_exp = ex;
+    }
+    if (po) {
+        libspot_pow = po;
+    }
+}
+
+double xpow(double a, double x) { return libspot_pow(a, x); }
 
 double xmin(double a, double b) {
     if (is_nan(a) || is_nan(b)) {

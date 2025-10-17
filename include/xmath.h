@@ -26,6 +26,17 @@ extern double const _INFINITY;
 void internal_set_float_utils(ldexp_fn l, frexp_fn f);
 
 /**
+ * @brief Internal function to provide custom log and exp functions.
+ * By default, libspot provides its own implementations but depending
+ * on your target you are likely to use stdlib functions (better performances).
+ *
+ * @param lo pointer to a "log" function
+ * @param ex pointer to an "exp" function
+ * @param po pointer to a "pow" function
+ */
+void internal_set_math_functions(math_fn lo, math_fn ex, math2_fn po);
+
+/**
  * @brief Compute natural logarithm with Shank's algorithm
  * @details It returns -oo for x=0 and NaN for x<0
  * @param x input value
@@ -35,7 +46,7 @@ double xlog(double x);
 
 /**
  * @brief Compute exponential with continuous fraction
- * @details It uses the formula of Khovanskii:
+ * @details By default, it uses the formula of Khovanskii:
  * Khovanskii, A. N. (1963). The application of continued fractions and their
  * generalizations to problems in approximation theory (p. 144). Groningen:
  * Noordhoff.

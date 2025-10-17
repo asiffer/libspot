@@ -189,6 +189,10 @@ void set_float_utils(ldexp_fn l, frexp_fn f) {
     internal_set_float_utils(l, f);
 }
 
+void set_math_functions(math_fn lo, math_fn ex, math2_fn po) {
+    internal_set_math_functions(lo, ex, po);
+}
+
 // clang-format off
 static const char *errors[] = {
     "Memory allocation failed", // ERR_MEMORY_ALLOCATION_FAILED
