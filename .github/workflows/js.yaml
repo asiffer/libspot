@@ -13,6 +13,7 @@ jobs:
     environment:
       name: npmjs
     env:
+      # bun publish respects the NPM_CONFIG_TOKEN
       NPM_CONFIG_TOKEN: ${{ secrets.NPMJS_GRANULAR_TOKEN }}
     steps:
       - name: Checkout repository
