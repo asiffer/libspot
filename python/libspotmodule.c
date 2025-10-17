@@ -359,5 +359,7 @@ PyMODINIT_FUNC PyInit_libspot(void) {
     // set default allocators
     // libspot API call
     set_allocators(malloc, free);
+    // set builtin math functions
+    set_math_functions(log, exp, pow);
     return m;
 }
