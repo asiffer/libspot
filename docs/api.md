@@ -44,6 +44,32 @@ typedef double(* frexp_fn) (double, int *)
 
 
 
+<div id="spot_8h_1a7a7bc08c51f8950e4d8d54880d49c8bd"></div>
+### math_fn 
+
+```c
+typedef double(* math_fn) (double)
+```
+
+math_fn is a pointer to a generic real math function like log, exp...
+
+
+
+
+
+<div id="spot_8h_1afe1c6222ddcea97d4e57965355f0af51"></div>
+### math2_fn 
+
+```c
+typedef double(* math2_fn) (double, double)
+```
+
+math_fn is a pointer to a generic two parameters math function like pow
+
+
+
+
+
 <div id="spot_8h_1afe19bf670d7dd3934150c80e165c3441"></div>
 ### ldexp_fn 
 
@@ -370,12 +396,30 @@ void set_float_utils(ldexp_fn l, frexp_fn f)
 
 Set the ldexp/frexp functions.
 
-By default these functions are provided but the API allows to change them.
+By default these functions are provided but the API allows to change them. It is low level, you might rather use set_math_functions to provide optimized math functions.
 
 | Parameter | Description |
 |-----------|-------------|
-| `l` | pointer to a "ldexp" function |
-| `f` | pointer to a "frexp" function |
+| `l` | pointer to a "ldexp" function (nil if you do not want to change it) |
+| `f` | pointer to a "frexp" function (nil if you do not want to change it) |
+
+
+
+
+<div id="set_math_functions"></div>
+### set_math_functions
+
+```c
+void set_math_functions(math_fn lo, math_fn ex, math2_fn po)
+```
+
+Set the log, exp and pow functions. It is recommended when you have access to optimized versions (e.g., from the standard library).
+
+| Parameter | Description |
+|-----------|-------------|
+| `lo` | pointer to a "log" function (nil if you do not want to change it) |
+| `ex` | pointer to an "exp" function (nil if you do not want to change it) |
+| `po` | pointer to a "pow" function (nil if you do not want to change it) |
 
 
 
