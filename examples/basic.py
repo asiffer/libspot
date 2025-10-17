@@ -1,52 +1,50 @@
-import matplotlib.pyplot as plt
-import numpy as np
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# dependencies = ["libspot"]
+# ///
 
-from libspot import ANOMALY, Spot
+import math, random
+from time import perf_counter
 
-# Fancyness ---------------------------------------------------------------- #
-colors = {
-    "bg": "#242933",
-    "stream": "#88c0d0",
-    "threshold": "#ebcb8b",
-    "anomaly": "#bf616a",
-    "axes": "#eceff4",
-}
-style = {
-    "figure.facecolor": colors["bg"],
-    "axes.facecolor": colors["bg"],
-    "axes.edgecolor": colors["axes"],
-    "xtick.color": colors["axes"],
-    "ytick.color": colors["axes"],
-    "font.family": "monospace",
-    "font.monospace": "IBM Plex Mono",
-    "font.size": 20,
-    "svg.fonttype": "none",
-    "lines.markersize": 10.0,
-}
-# -------------------------------------------------------------------------- #
+from libspot import Spot, ANOMALY, EXCESS, NORMAL
 
 
-TRAIN = np.random.standard_normal(size=10_000)
-STREAM = np.random.standard_normal(size=100_000)
-THRESHOLD = np.zeros(STREAM.size)
+def gaussian_random() -> float:
+    # N(0, 1)
+    u: float = 1.0 - random.random()  # map [0,1) -> (0,1]
+    v: float = random.random()
+    return math.sqrt(-2.0 * math.log(u)) * math.cos(2.0 * math.pi * v)
 
-spot = Spot(q=5e-6, max_excess=2000, level=0.99)
-spot.fit(TRAIN)
 
-Ax = []
-Ay = []
-for i, x in enumerate(STREAM):
+TRAIN_SIZE = 20_000
+TEST_SIZE = 500_000
+
+spot = Spot(q=1e-4, level=0.99, max_excess=200)
+
+train = [gaussian_random() for _ in range(TRAIN_SIZE)]
+spot.fit(train)
+
+# run
+test = [gaussian_random() for _ in range(TEST_SIZE)]
+anomaly: int = 0
+excess: int = 0
+normal: int = 0
+
+# measured in seconds
+start: float = perf_counter()
+
+for x in test:
     r = spot.step(x)
     if r == ANOMALY:
-        Ax.append(i)
-        Ay.append(x)
-    THRESHOLD[i] = spot.anomaly_threshold
+        anomaly += 1
+    elif r == EXCESS:
+        excess += 1
+    elif r == NORMAL:
+        normal += 1
 
+end: float = perf_counter()
 
-with plt.rc_context(style):
-    fig, ax = plt.subplots(figsize=(14, 6))
-    ax.plot(STREAM, color=colors["stream"])
-    ax.plot(THRESHOLD, ls="--", lw=2, color=colors["threshold"])
-    ax.scatter(Ax, Ay, color=colors["anomaly"])
-    fig.tight_layout()
-    fig.savefig("../docs/img/basic.svg")
+print(f"Time: {1000.0*(end - start):.2f} ms")
+print(f"Throughput: {(TEST_SIZE/(end - start)):.2f} value/s")
+print(f"ANOMALY: {anomaly}, EXCESS: {excess}, NORMAL: {normal}")
