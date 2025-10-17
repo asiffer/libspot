@@ -12,7 +12,7 @@ permissions:
     id-token: write # to verify the deployment originates from an appropriate source
 
 jobs:
-    deploy:
+    build:
         runs-on: ubuntu-latest
         environment:
             name: github-pages
@@ -26,6 +26,20 @@ jobs:
               run: pip install mkdocs mkdocs-shadcn
             - name: Build site
               run: mkdocs build
+            # Upload the built site as an artifact, this will be used by the deploy job.
+            - name: Upload artifacts
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: site
+
+    # Deployment job
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
