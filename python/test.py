@@ -104,6 +104,6 @@ class Test(TestCase):
         plt.plot(T, ls="--", lw=2)
         plt.scatter(Ax, Ay, color="red")
 
-        file = tempfile.mktemp(suffix=".png")
+        _, file = tempfile.mkstemp(suffix=".png")
         plt.savefig(file)
         print("Saving to", file)
