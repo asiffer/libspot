@@ -1,0 +1,31 @@
+name: Docs
+
+on:
+    workflow_dispatch:
+    push:
+        branches:
+            - master
+
+# Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+permissions:
+    pages: write # to deploy to Pages
+    id-token: write # to verify the deployment originates from an appropriate source
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Set up Python
+              uses: actions/setup-python@v5
+            - name: Install dependencies
+              run: pip install mkdocs mkdocs-shadcn
+            - name: Build site
+              run: mkdocs build
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
