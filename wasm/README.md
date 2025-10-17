@@ -10,39 +10,53 @@ This sub-project ports `libspot` into javascript through webassembly (using `llv
 npm install libspot
 ```
 
-Here is a minimal example.
+Here is a simple example.
 
 ```ts
-import { Spot, ANOMALY } from "libspot";
+import { Spot, ANOMALY, EXCESS, NORMAL } from "libspot";
 
 const gaussianRandom = () => {
   // N(0, 1)
-  const u = 1 - Math.random(); 
+  const u = 1 - Math.random(); // Converting [0,1) to (0,1]
   const v = Math.random();
   return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 };
 
+const trainSize = 20000;
+const testSize = 500000;
 
 // Spot job ------------------------------------------------------------------
-const trainSize = 10000;
-const level = 0.98;
-const maxExcess = (1-level) * trainSize;
-
-const spot = new Spot({ q: 1e-4, level: level, maxExcess: maxExcess });
-console.log("Spot initialized");
+const s = new Spot({ q: 1e-4, level: 0.99, maxExcess: 200 });
 
 // fit to input data
 const train = Float64Array.from({ length: trainSize }, () => gaussianRandom());
-spot.fit(train);
-console.log("Spot fitted");
+s.fit(train);
 
 // run
-for (let i = 0; i < 100000; i++) {
-  const x = gaussianRandom();
-  let r = spot.step(x);
+let anomaly = 0;
+let excess = 0;
+let normal = 0;
 
-  if (r === ANOMALY) {
-    console.warn(`ANOMALY DETECTED! value=${x.toFixed(3)} probability=${spot.probability(x).toExponential(3)}`)
+// measured in milliseconds
+const start = performance.now();
+
+for (let i = 0; i < testSize; i++) {
+  switch (s.step(gaussianRandom())) {
+    case ANOMALY:
+      anomaly++;
+      break;
+    case EXCESS:
+      excess++;
+      break;
+    case NORMAL:
+      normal++;
+      break;
   }
 }
+
+const end = performance.now();
+
+console.log(`Time: ${(end - start).toFixed(2)} ms`);
+console.log(`Throughput: ${(1000*testSize/(end - start)).toFixed(2)} value/s`);
+console.log(`ANOMALY: ${anomaly}, EXCESS: ${excess}, NORMAL: ${normal}`);
 ```
