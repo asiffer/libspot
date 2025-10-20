@@ -50,8 +50,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.blocks.tab
-  - pymdownx.snippets:
-      url_download: true
+  - pymdownx.snippets
   - shadcn.extensions.iconify
   - shadcn.extensions.codexec
   - shadcn.extensions.echarts.alpha

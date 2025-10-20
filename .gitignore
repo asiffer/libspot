@@ -37,3 +37,4 @@ docs/doxygen/_*
 dist/
 wasm/libspot.js
 *.lua
+site/

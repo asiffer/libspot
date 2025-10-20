@@ -24,4 +24,4 @@ The bindings are implemented as a CPython `C` extension (i.e. directly using the
 --8<-- "examples/basic.py"
 ```
 
-![](img/basic.svg)
+
