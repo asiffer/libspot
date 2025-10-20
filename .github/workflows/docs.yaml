@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: "3.13"
       - name: Install dependencies
-        run: pip install -U mkdocs mkdocs-shadcn pymdown-extensions
+        run: pip install -U mkdocs mkdocs-shadcn pymdown-extensions Pygments
       - name: Build site
         run: mkdocs build
       # Upload the built site as an artifact, this will be used by the deploy job.
