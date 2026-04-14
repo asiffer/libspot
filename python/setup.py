@@ -8,7 +8,6 @@ from setuptools.command.bdist_wheel import bdist_wheel
 
 ROOT = Path("../")
 
-
 INCLUDE_DIRS = [ROOT / "include", ROOT / "dist"]
 SRC_DIR = ROOT / "src"
 SOURCES = [SRC_DIR / f for f in os.listdir(SRC_DIR) if f.endswith(".c")] + [
@@ -76,7 +75,7 @@ lib = Extension(
     include_dirs=list(map(str, INCLUDE_DIRS)),
     sources=list(map(str, SOURCES)),
     extra_compile_args=[C99_ARG],
-    define_macros=define_macros,  # type: ignore
+    define_macros=define_macros,
     py_limited_api=True,
 )
 

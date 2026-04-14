@@ -3,7 +3,7 @@ name = "libspot"
 authors = [
     { name = "Alban Siffer", email = "31479857+asiffer@users.noreply.github.com" },
 ]
-license = { text = "LGPLv3" }
+license = "LGPL-3.0-or-later"
 dynamic = ["version"]
 description = "Born to flag outliers (from python)"
 readme = "README.md"
@@ -14,7 +14,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Intended Audience :: Information Technology",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
     "Programming Language :: C",
     "Programming Language :: Python :: 3",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",

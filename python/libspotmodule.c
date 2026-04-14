@@ -111,13 +111,20 @@ static int Spot_init(Spot *self, PyObject *args, PyObject *kwds) {
                                      &discard_anomalies, &level, &max_excess))
         return -1;
 
+    // allocate buffer for excesses
+    double *buffer = malloc(max_excess * sizeof(double));
+    if (!buffer) {
+        PyErr_SetString(PyExc_MemoryError, "Unable to allocate buffer");
+        return -1;
+    }
     // libspot API call
     int result = spot_init(&(self->_spot), q, low, discard_anomalies, level,
-                           max_excess);
+                           buffer, max_excess);
     if (result < 0) {
-        char buffer[256];
-        libspot_error(-result, buffer, 256);
-        PyErr_SetString(PyExc_RuntimeError, buffer);
+        free(buffer); // clean the buffer if initialization failed
+        char msg[256];
+        libspot_error(-result, msg, 256);
+        PyErr_SetString(PyExc_RuntimeError, msg);
     }
     return result;
 }
@@ -240,10 +247,8 @@ static PyObject *Spot_as_dict(Spot *self) {
 }
 
 static void Spot_dealloc(Spot *self) {
-    // free internal structure
-    // libspot API call
-    spot_free(&(self->_spot));
-    // Py_TYPE(self)->tp_free((PyObject *)self);
+    // free allocated buffer
+    free(self->_spot.tail.peaks.container.data);
 }
 
 static const PyMemberDef Spot_members[] = {
@@ -356,9 +361,6 @@ PyMODINIT_FUNC PyInit_libspot(void) {
     // add Spot object
     PyModule_AddObject(m, "Spot", SpotType);
 
-    // set default allocators
-    // libspot API call
-    set_allocators(malloc, free);
     // set builtin math functions
     set_math_functions(log, exp, pow);
     return m;
