@@ -26,21 +26,23 @@
  * @param discard_anomalies Do not include anomalies in the model (default: 1,
  * 0 otherwise)
  * @param level Excess level (it is a high quantile that delimits the tail)
- * @param max_excess Maximum number of data that are kept to analyze the tail
+ * @param buffer Buffer to store all the excesses (tail data)
+ * @param max_excess Size of the buffer (number of elements)
  * @retval 0 OK
  * @retval -ERR_LEVEL_OUT_OF_BOUNDS the level parameter is not between 0 and 1
  * @retval -ERR_Q_OUT_OF_BOUNDS the q parameter is not between 0 and 1-level
  * @retval -ERR_MEMORY_ALLOCATION_FAILED the tail data allocation failed
  */
 int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,
-              double level, unsigned long max_excess);
+              double level, double *buffer, unsigned long max_excess);
 
 /**
- * @brief Free the tail data
+ * @brief Reset the internal structure of the Spot instance. It reuses the same
+ * backing buffer.
  *
  * @param spot Spot instance
  */
-void spot_free(struct Spot *spot);
+void spot_reset(struct Spot *spot);
 
 /**
  * @brief Compute the first excess and anomaly thresholds based on training
@@ -88,22 +90,16 @@ double spot_probability(struct Spot const *spot, double z);
 /* Extra functions */
 
 /**
- * @brief Set the allocators object (malloc and free)
- *
- * @param m pointer to a "malloc" function
- * @param f pointer to a "free" function
- */
-void set_allocators(malloc_fn m, free_fn f);
-
-/**
  * @brief Set the ldexp/frexp functions
  *
  * By default these functions are provided but the API
  * allows to change them. It is low level, you might rather
  * use set_math_functions to provide optimized math functions.
  *
- * @param l pointer to a "ldexp" function (nil if you do not want to change it)
- * @param f pointer to a "frexp" function (nil if you do not want to change it)
+ * @param l pointer to a `ldexp` function (`NULL` if you do not want to change
+ * it)
+ * @param f pointer to a `frexp` function (`NULL` if you do not want to change
+ * it)
  */
 void set_float_utils(ldexp_fn l, frexp_fn f);
 
@@ -111,9 +107,12 @@ void set_float_utils(ldexp_fn l, frexp_fn f);
  * @brief Set the log, exp and pow functions. It is recommended when you have
  * access to optimized versions (e.g., from the standard library).
  *
- * @param lo pointer to a "log" function (nil if you do not want to change it)
- * @param ex pointer to an "exp" function (nil if you do not want to change it)
- * @param po pointer to a "pow" function (nil if you do not want to change it)
+ * @param lo pointer to a `log` function (`NULL` if you do not want to change
+ * it)
+ * @param ex pointer to a `exp` function (`NULL` if you do not want to change
+ * it)
+ * @param po pointer to a `pow` function (`NULL` if you do not want to change
+ * it)
  */
 void set_math_functions(math_fn lo, math_fn ex, math2_fn po);
 

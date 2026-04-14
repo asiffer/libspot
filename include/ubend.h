@@ -7,7 +7,6 @@
  * @copyright GNU Lesser General Public License v3.0
  */
 
-#include "allocator.h"
 #include "xmath.h"
 
 #ifndef UBEND_H
@@ -17,15 +16,11 @@
  * @brief Ubend structure initializer
  *
  * @param ubend structure to init
- * @param capacity number of double to allocate
- * @return 0 is allocation is successful
+ * @param buffer buffer to store the data
+ * @param capacity size of the buffer (number of elements)
+ * @return 0 always returns 0
  */
-int ubend_init(struct Ubend *ubend, unsigned long capacity);
-
-/**
- * @param ubend
- */
-void ubend_free(struct Ubend *ubend);
+int ubend_init(struct Ubend *ubend, double *buffer, unsigned long capacity);
 
 /**
  * @brief Return the current size of the container

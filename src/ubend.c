@@ -9,26 +9,13 @@
  */
 #include "ubend.h"
 
-int ubend_init(struct Ubend *ubend, unsigned long capacity) {
+int ubend_init(struct Ubend *ubend, double *buffer, unsigned long capacity) {
     ubend->cursor = 0;
     ubend->filled = 0;
     ubend->capacity = capacity;
     ubend->last_erased_data = _NAN;
-    ubend->data = (double *)xmalloc(capacity * __SIZEOF_DOUBLE__);
-    if (ubend->data) {
-        return 0;
-    }
-    return -ERR_MEMORY_ALLOCATION_FAILED;
-}
-
-void ubend_free(struct Ubend *ubend) {
-    ubend->cursor = 0;
-    ubend->capacity = 0;
-    ubend->filled = -1;
-    ubend->last_erased_data = _NAN;
-    if (ubend->data) {
-        xfree(ubend->data);
-    }
+    ubend->data = buffer;
+    return 0;
 }
 
 unsigned long ubend_size(struct Ubend const *ubend) {

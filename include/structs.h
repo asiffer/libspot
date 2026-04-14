@@ -12,24 +12,6 @@
 #define STRUCTS_H
 
 /**
- * @brief \`malloc_fn\` is a pointer to a malloc-type function
- * i.e. with prototype:
- * \`void * malloc(size_t)\`
- *
- * \`__SIZE_TYPE__\` define the size_t type. This type is notably used
- * for malloc but it depends on the architecture. As we assume we receive
- * malloc-like functions we have to be compliant with their prototypes.
- */
-typedef void *(*malloc_fn)(__SIZE_TYPE__);
-
-/**
- * @brief \`free_fn\` is a pointer to a free-type function
- * i.e. with prototype:
- * \`void free(void*)\`
- */
-typedef void (*free_fn)(void *);
-
-/**
  * @brief \`frexp_fn\` is a pointer to a frexp-type function
  * i.e. with prototype:
  * \`double frexp_fn(double, int*)\`

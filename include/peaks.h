@@ -19,16 +19,10 @@
  * @brief Initialize the Peaks structure
  *
  * @param peaks Peaks instance
+ * @param buffer Buffer to store the peaks
  * @param size Maximum number of peaks to store
  */
-int peaks_init(struct Peaks *peaks, unsigned long size);
-
-/**
- * @brief Free the peaks structure
- *
- * @param peaks Peaks instance
- */
-void peaks_free(struct Peaks *peaks);
+int peaks_init(struct Peaks *peaks, double *buffer, unsigned long size);
 
 /**
  * @brief Insert a new peak

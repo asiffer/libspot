@@ -7,8 +7,9 @@ static char buffer[256];
 
 void test_tail_init(void) {
     struct Tail Tail;
+    double buffer[10];
     unsigned long size = 10;
-    tail_init(&Tail, size);
+    tail_init(&Tail, buffer, size);
 
     TEST_ASSERT_DOUBLE_IS_NAN(Tail.gamma);
     TEST_ASSERT_DOUBLE_IS_NAN(Tail.sigma);
@@ -16,8 +17,9 @@ void test_tail_init(void) {
 
 void test_tail_push(void) {
     struct Tail Tail;
+    double buffer[10];
     unsigned long const size = 10;
-    tail_init(&Tail, size);
+    tail_init(&Tail, buffer, size);
 
     double const x = 0.0;
 
@@ -33,9 +35,10 @@ void test_tail_fit(void) {
     for (unsigned long k = 0; k < N; ++k) {
         R = &results[k];
         struct Tail Tail;
+        double *data = (double *)malloc(R->size * sizeof(double));
         // size = sizeof(*R.data) / sizeof(double);
         // printf("R.data: %u\n", size);
-        tail_init(&Tail, R->size);
+        tail_init(&Tail, data, R->size);
 
         for (unsigned long i = 0; i < R->size; ++i) {
             tail_push(&Tail, R->data[i]);
@@ -54,6 +57,7 @@ void test_tail_fit(void) {
                                           Tail.sigma, buffer);
         // either we have a greater likelihood or we are not 5% lower
         TEST_ASSERT_MESSAGE((R->llhood - llhood) / R->llhood < 0.05, buffer);
+        free(data);
     }
 }
 
@@ -70,17 +74,6 @@ void push_and_sort(double const *array) {
     qsort(tmp_storage, Nt, sizeof(double), cmp_double);
 }
 
-// void test_tail_probability(void) {
-//     struct Point *point;
-//     struct Tail Tail;
-//     double p = 0.0;
-//     for (unsigned long k = 0; k < npoints; ++k) {
-//         point = &points[k];
-//         tail.sigma = point->sigma;
-//         tail.gamma = point->gamma;
-//         p = tail_probability(&Tail, point->q, point->z);
-//     }
-// }
 void test_tail_probability(void) {
     struct Result *R;
     unsigned long const step = 5;
@@ -191,17 +184,18 @@ void test_tail_quantile(void) {
 
 void test_tail_free(void) {
     struct Tail Tail;
+    double data[10];
     unsigned long size = 10;
-    tail_init(&Tail, size);
+    tail_init(&Tail, data, size);
     Tail.gamma = 0.0;
     Tail.sigma = 1.0;
 
-    tail_free(&Tail);
+    tail_init(&Tail, data, size);
     TEST_ASSERT_DOUBLE_IS_NAN(Tail.gamma);
     TEST_ASSERT_DOUBLE_IS_NAN(Tail.sigma);
 }
 
-void setUp(void) { internal_set_allocators(malloc, free); }
+void setUp(void) {}
 
 void tearDown(void) {}
 

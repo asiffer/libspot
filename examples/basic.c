@@ -12,6 +12,8 @@
 #include <string.h>
 #include <time.h>
 
+#define MAX_EXCESS 200
+
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -31,21 +33,23 @@ int main(int argc, const char *argv[]) {
         set_math_functions(log, exp, pow);
     }
 
+    double buffer[MAX_EXCESS];
+
     // set random seed
     srand(time(NULL));
-    // provide allocators to libspot
-    set_allocators(malloc, free);
     // stack allocation
     struct Spot spot;
     int status = 0;
     // init the structure with some parameters
     status = spot_init(
         &spot,
-        1e-4, // q: anomaly probability
-        0,    // low: observe upper tail
-        1,    // discard_anomalies: flag anomalies
-        0.99, // level: tail quantile (the 1% higher values shapes the tail)
-        200   // max_excess: number of data to keep to summarize the tail
+        1e-4,   // q: anomaly probability
+        0,      // low: observe upper tail
+        1,      // discard_anomalies: flag anomalies
+        0.99,   // level: tail quantile (the 1% higher values shapes the tail)
+        buffer, // backing array to store the excesses (tail data)
+        MAX_EXCESS // max_excess: size of the backing array (number of
+                   // elements)
     );
 
     if (status < 0) {

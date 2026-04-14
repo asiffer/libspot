@@ -9,21 +9,12 @@
  */
 #include "peaks.h"
 
-int peaks_init(struct Peaks *peaks, unsigned long size) {
+int peaks_init(struct Peaks *peaks, double *buffer, unsigned long size) {
     peaks->e = 0.0;
     peaks->e2 = 0.0;
     peaks->min = _NAN;
     peaks->max = _NAN;
-    return ubend_init(&peaks->container, size);
-}
-
-void peaks_free(struct Peaks *peaks) {
-    peaks->e = _NAN;
-    peaks->e2 = _NAN;
-    peaks->min = _NAN;
-    peaks->max = _NAN;
-    // free container
-    ubend_free(&(peaks->container));
+    return ubend_init(&peaks->container, buffer, size);
 }
 
 static unsigned long peaks_update_stats(struct Peaks *peaks) {

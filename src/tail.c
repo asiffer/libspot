@@ -15,17 +15,10 @@ estimator ESTIMATORS[] = {mom_estimator, grimshaw_estimator};
 
 unsigned int const NB_ESTIMATORS = sizeof(ESTIMATORS) / sizeof(estimator);
 
-int tail_init(struct Tail *tail, unsigned long size) {
+int tail_init(struct Tail *tail, double *buffer, unsigned long size) {
     tail->gamma = _NAN;
     tail->sigma = _NAN;
-    return peaks_init(&(tail->peaks), size);
-}
-
-void tail_free(struct Tail *tail) {
-    tail->gamma = _NAN;
-    tail->sigma = _NAN;
-    // free peaks
-    peaks_free(&(tail->peaks));
+    return peaks_init(&(tail->peaks), buffer, size);
 }
 
 void tail_push(struct Tail *tail, double x) {
