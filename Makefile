@@ -10,6 +10,10 @@
 
 LIB 		 = libspot
 VERSION 	 = 3.0a0
+# revision should be incremented when releasing an updated package 
+# of the same upstream version, and it should reset to 1 when 
+# bumping the version.
+REVISION     = 1
 LICENSE 	 = GNU Lesser General Public License v3.0
 DATE         = $(shell date -u)
 COMMIT_COUNT = $(shell git rev-list --count master)
@@ -159,6 +163,7 @@ endef
 	@echo '         version    print the library version'
 	@echo '    version_full    print the library version + commit count'
 	@echo '  update_headers    update code headers (date, version, license)'
+	@echo '        packages    generate linux packages (deb, rpm)'
 	@echo ''
 	@echo 'Variables:'
 	@echo '         DESTDIR    installation root directory'
@@ -253,7 +258,7 @@ doxygen: $(DIST_DIR)/spot.h
 
 dev/doxygen/generated: doxygen
 	@mkdir -p $(@D) && rm -rf $@
-	@uvx --with 'xsdata[cli,lxml]' xsdata generate doxygen/xml/
+	@uv run xsdata generate doxygen/xml/
 	@mv -f generated $@
 
 update-headers: inject-version inject-date inject-copyright
@@ -275,7 +280,7 @@ inject-copyright: $(HEADERS) $(SRCS)
 
 docs/api.md: dev/doxygen/generated
 	@mkdir -p $(@D)
-	dev/doxygen/generate_api_docs.py -o "$@"
+	@uv run dev/doxygen/generate_api_docs.py -o "$@"
 
 docs/API: docs/api.md
 
@@ -301,6 +306,7 @@ clean:
 	rm -rf dev/doxygen/generated
 	rm -rf $(BENCHMARK_DIR)/bin
 	rm -rf docs/API
+	rm -rf dist/*.rpm dist/*.deb
 	
 
 # ========================================================================== #
@@ -387,4 +393,39 @@ benchmark_%: $(BENCHMARK_DIR)/bin/%
 
 
 
+# ========================================================================== #
+# Packaging
+# ========================================================================== #
 
+# see https://github.com/goreleaser/nfpm/blob/main/deb/deb.go
+DEB_ARCH_386      := i386
+DEB_ARCH_arm64    := arm64
+DEB_ARCH_arm5     := armel
+DEB_ARCH_arm6     := armhf
+DEB_ARCH_arm7     := armhf
+DEB_ARCH_x86_64   := amd64
+DEB_ARCH_aarch64  := arm64
+
+# Lookup
+DEBIAN_ARCH := $(or $(DEB_ARCH_$(ARCH)), $(ARCH))
+
+dist/libspot_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb: $(STATIC) $(DYNAMIC) $(DIST_DIR)/spot.h nfpm.yaml
+	@mkdir -p $(@D)
+	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) nfpm pkg --packager deb --target "$(@D)"
+
+# see https://github.com/goreleaser/nfpm/blob/main/rpm/rpm.go
+RPM_ARCH_amd64    := x86_64
+RPM_ARCH_386      := i386
+RPM_ARCH_arm64    := aarch64
+RPM_ARCH_arm5     := armv5tel
+RPM_ARCH_arm6     := armv6hl
+RPM_ARCH_arm7     := armv7hl
+
+# Lookup
+RPM_ARCH := $(or $(RPM_ARCH_$(ARCH)),$(ARCH))
+
+dist/libspot-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm: $(STATIC) $(DYNAMIC) $(DIST_DIR)/spot.h nfpm.yaml
+	@mkdir -p $(@D)
+	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) nfpm pkg --packager rpm --target "$(@D)"
+
+packages: dist/libspot_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb dist/libspot-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm

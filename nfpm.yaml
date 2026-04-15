@@ -1,0 +1,40 @@
+# nfpm configuration file to package the libspot C library
+# 
+# docs: https://nfpm.goreleaser.com/docs/configuration/
+# 
+# yaml-language-server: $schema=https://nfpm.goreleaser.com/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+name: libspot
+arch: ${ARCH}
+platform: linux
+version: ${VERSION} # provided by environment variable
+maintainer: Alban Siffer <31479857+asiffer@users.noreply.github.com>
+description: |
+  libspot is a C99 library to flag outliers in streaming data.
+  It implements the SPOT algorithm.
+homepage: https://asiffer.github.io/libspot/
+license: LGPL-3.0-or-later
+release: ${REVISION} # provided by environment variable, e.g. "1" for "3.0.1"
+
+contents:
+  - src: ./dist/spot.h
+    dst: /usr/include/spot.h
+  - src: ./dist/libspot.a.${VERSION}
+    dst: /usr/lib/libspot.a.${VERSION}
+    expand: true
+  - src: ./dist/libspot.so.${VERSION}
+    dst: /usr/lib/libspot.so.${VERSION}
+    expand: true
+  - src: /usr/lib/libspot.so.${VERSION}
+    dst: /usr/lib/libspot.so
+    expand: true
+    type: symlink
+  - src: /usr/lib/libspot.a.${VERSION}
+    dst: /usr/lib/libspot.a
+    expand: true
+    type: symlink
+
+
+
+
