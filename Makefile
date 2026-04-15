@@ -17,7 +17,7 @@ REVISION     = 1
 LICENSE 	 = GNU Lesser General Public License v3.0
 DATE         = $(shell date -u)
 COMMIT_COUNT = $(shell git rev-list --count master)
-
+MAJOR		 = $(shell echo $(VERSION) | cut -d. -f1)
 ARCH         = $(shell uname -m)
 
 # ========================================================================== #
@@ -96,7 +96,7 @@ INSTALLED_HEADERS = $(HEADERS:$(INC_DIR)%.h=$(INSTALL_HEAD_DIR)%.h)
 # ========================================================================== #
 CC                 ?= cc
 CMOREFLAGS         :=
-CBASEFLAGS         := -O3 -std=c99 -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
+CBASEFLAGS         := -O3 -std=c99 -g -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
 CFLAGS             ?= $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic $(CMOREFLAGS)
 LDFLAGS            ?= -static -nostdlib
 CTESTFLAGS         := $(CBASEFLAGS) -I$(UNITY_DIR) -I$(TEST_DIR) -DTESTING -DUNITY_INCLUDE_DOUBLE -fprofile-arcs -ftest-coverage -g
@@ -193,7 +193,7 @@ uninstall:
 $(DYNAMIC): $(OBJS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "LINK $(@F)"
-	@$(CC) $(CFLAGS) -shared $^ -o $@ -fPIC $(LDFLAGS)
+	@$(CC) $(CFLAGS) -Wl,-soname,libspot.so.$(MAJOR) -shared $^ -o $@ -fPIC $(LDFLAGS) -s 
 	$(PRINT_OK)
 
 $(STATIC): $(OBJS)
@@ -409,9 +409,14 @@ DEB_ARCH_aarch64  := arm64
 # Lookup
 DEBIAN_ARCH := $(or $(DEB_ARCH_$(ARCH)), $(ARCH))
 
-dist/libspot_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb: $(STATIC) $(DYNAMIC) $(DIST_DIR)/spot.h nfpm.yaml
+dist/libspot-$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb: $(DYNAMIC) linux/nfpm.yml
 	@mkdir -p $(@D)
-	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) nfpm pkg --packager deb --target "$(@D)"
+	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) MAJOR=$(MAJOR) nfpm pkg --packager deb --target "$(@D)" --config linux/nfpm.yml
+
+dist/libspot-dev-$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb: $(STATIC) $(DIST_DIR)/spot.h linux/deb-dev.nfpm.yml
+	@mkdir -p $(@D)
+	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) MAJOR=$(MAJOR) nfpm pkg --packager deb --target "$(@D)" --config linux/deb-dev.nfpm.yml
+
 
 # see https://github.com/goreleaser/nfpm/blob/main/rpm/rpm.go
 RPM_ARCH_amd64    := x86_64
@@ -424,8 +429,15 @@ RPM_ARCH_arm7     := armv7hl
 # Lookup
 RPM_ARCH := $(or $(RPM_ARCH_$(ARCH)),$(ARCH))
 
-dist/libspot-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm: $(STATIC) $(DYNAMIC) $(DIST_DIR)/spot.h nfpm.yaml
+dist/libspot-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm: $(DYNAMIC) linux/nfpm.yml
 	@mkdir -p $(@D)
-	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) nfpm pkg --packager rpm --target "$(@D)"
+	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) MAJOR=$(MAJOR) nfpm pkg --packager rpm --target "$(@D)" --config linux/nfpm.yml
 
-packages: dist/libspot_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb dist/libspot-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm
+dist/libspot-devel-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm: $(STATIC) $(DIST_DIR)/spot.h linux/rpm-devel.nfpm.yml
+	@mkdir -p $(@D)
+	@VERSION=$(VERSION) REVISION=$(REVISION) ARCH=$(ARCH) MAJOR=$(MAJOR) nfpm pkg --packager rpm --target "$(@D)" --config linux/rpm-devel.nfpm.yml
+
+packages: dist/libspot-dev-$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb \
+	dist/libspot-$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb \
+	dist/libspot-devel-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm \
+	dist/libspot-$(VERSION)-$(REVISION).$(RPM_ARCH).rpm

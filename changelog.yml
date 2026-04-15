@@ -1,0 +1,13 @@
+# this file is for rpm packaging
+- semver: 3.0a0-1
+  changes:
+  - note: |-
+      New libspot API! No more allocator API. The major change is on `spot_init` that now requires
+      the user to provide a backing array for the excesses.
+
+      ```c
+      int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,
+              double level, double *excesses, unsigned long max_excess);
+      ```
+  date: 2026-04-15T00:00:00Z
+  packager: Alban Siffer <31479857+asiffer@users.noreply.github.com>
