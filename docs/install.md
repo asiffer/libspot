@@ -4,6 +4,15 @@ summary: How the get the original C library
 order: 3
 ---
 
+## Releases
+
+The github repo exposes some [releases](https://github.com/asiffer/libspot/releases/latest) where you can download artifacts.
+
+!!! warning "Important"
+    Currently only `amd64` artifacts are built. If you target a different architecture, you must build from sources.
+
+## Build from sources
+
 The classical way is to build from sources.
 
 ```shell
@@ -19,7 +28,7 @@ sudo make install
 ```
 
 !!! info
-    By default it install the libraries to `/usr/lib` and headers to `/usr/include/spot`. You can change it through `INSTALL_HEAD_DIR` and `INSTALL_LIB_DIR` variables:
+    By default it install the libraries to `/usr/lib` and header to `/usr/include/spot.h`. You can change it through `INSTALL_HEAD_DIR` and `INSTALL_LIB_DIR` variables:
 
         :::shell
         sudo make install INSTALL_HEAD_DIR=/tmp/spot INSTALL_LIB_DIR=/tmp
@@ -29,7 +38,7 @@ sudo make install
         :::makefile
         DESTDIR =
         PREFIX = /usr
-        INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/spot
+        INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include
         INSTALL_LIB_DIR = $(DESTDIR)$(PREFIX)/lib
     
 

@@ -86,7 +86,7 @@ TEST_RESULTS = $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_RESULTS_DIR)%.txt)
 
 DESTDIR =
 PREFIX = /usr
-INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/spot
+INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include
 INSTALL_LIB_DIR = $(DESTDIR)$(PREFIX)/lib
 INSTALLED_HEADERS = $(HEADERS:$(INC_DIR)%.h=$(INSTALL_HEAD_DIR)%.h)
 
@@ -181,10 +181,10 @@ static: $(STATIC)
 
 dynamic: $(DYNAMIC)
 
-install: $(INSTALL_LIB_DIR)/$(LIB).a $(INSTALL_LIB_DIR)/$(LIB).so $(INSTALLED_HEADERS)
+install: $(INSTALL_LIB_DIR)/$(LIB).a $(INSTALL_LIB_DIR)/$(LIB).so $(INSTALL_HEAD_DIR)/spot.h
 
 uninstall:
-	rm -rf $(INSTALL_LIB_DIR)/$(LIB).* $(INSTALLED_HEADERS)
+	rm -rf $(INSTALL_LIB_DIR)/$(LIB).* $(INSTALL_HEAD_DIR)/spot.h
 
 # ========================================================================== #
 # Distribute
@@ -230,23 +230,23 @@ $(INSTALL_HEAD_DIR)/%: $(INC_DIR)/%
 	@mkdir -p $(@D)
 	@printf "INSTALL %-25s %-30s" "$(@F)" "$@"
 	@install $< $@
-	@echo "$(OK)"
+	$(PRINT_OK)
 
 $(INSTALL_LIB_DIR)/%.$(VERSION): $(DIST_DIR)/%.$(VERSION)
 	@mkdir -p $(@D)
 	@printf "INSTALL %-25s %-30s" "$(@F)" "$@"
 	@install $< $@
-	@echo "$(OK)"
+	$(PRINT_OK)
 
 $(INSTALL_LIB_DIR)/%.so: $(INSTALL_LIB_DIR)/%.so.$(VERSION)
 	@printf "SYMLINK %-25s %-30s" "$<" "$@"
 	@ln -s $< $@
-	@echo "$(OK)"
+	$(PRINT_OK)
 
 $(INSTALL_LIB_DIR)/%.a: $(INSTALL_LIB_DIR)/%.a.$(VERSION)
 	@printf "SYMLINK %-25s %-30s" "$<" "$@"
 	@ln -s $< $@
-	@echo "$(OK)"
+	$(PRINT_OK)
 
 # ========================================================================== #
 # Docs
