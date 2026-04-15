@@ -7,8 +7,8 @@ on:
       - "v*"
 
 jobs:
-  release:
-    name: Release
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -16,8 +16,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Add goreleaser repo
+        run: |
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+
       - name: Install build dependencies
-        run: sudo apt update -y && sudo apt install -y build-essential
+        run: sudo apt update -y && sudo apt install -y build-essential nfpm
 
       - name: Build shared library
         run: make
@@ -25,8 +29,24 @@ jobs:
       - name: Build static library
         run: make static
 
-      - name: Put full version in env
-        run: echo "VERSION_FULL=$(make version_full)" >> $GITHUB_ENV
+      # - name: Put full version in env
+      #   run: echo "VERSION_FULL=$(make version_full)" >> $GITHUB_ENV
+      - name: Build packages
+        run: make packages
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist/*
+
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
 
       - name: Create GitHub Release
         env:
