@@ -9,6 +9,9 @@ on:
       - .github/workflows/build.yaml
       - test/src/*.c
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build
