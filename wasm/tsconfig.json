@@ -1,13 +1,9 @@
 {
-  "files": [
-    "libspot.ts",
-  ],
+  "files": ["libspot.ts"],
   "compilerOptions": {
     // Environment setup & latest features
-    "lib": [
-      "esnext",
-      "DOM"
-    ],
+    "lib": ["esnext", "DOM"],
+    "types": ["bun"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",

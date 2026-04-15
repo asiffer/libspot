@@ -5,8 +5,15 @@ import {
   spot_size,
   libspotError,
   EXCESS,
+  ANOMALY,
 } from "./libspot.ts";
 import * as fs from "fs";
+
+const stdNormal = () => {
+  const u = Math.random();
+  const v = Math.random();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+};
 
 test("sizeof(Spot)", () => {
   // WASM (size in bytes)
@@ -39,17 +46,38 @@ test("libspotVersion()", () => {
 
 test("Spot.fit", () => {
   const level = 0.99;
-  const s = new Spot({ q: 1e-6, level: level, maxExcess: 1000 });
-  const train = Float64Array.from({ length: 20000 }, () => Math.random());
+  const q = 1e-6;
+  const s = new Spot({ q: q, level: level, maxExcess: 1000 });
+  const train = Float64Array.from({ length: 30000 }, () => Math.random());
   expect(s.fit(train)).toBe(0);
-  console.log(`z = ${s.anomaly_threshold().toExponential()}`);
-  for (let i = 0; i < 1000; i++) {
-    const x = Math.random();
+  expect(s.anomaly_threshold()).toBeCloseTo(1.0, 0.05);
+  expect(s.excess_threshold()).toBeCloseTo(level, 0.005);
+});
+
+test("Spot.step", () => {
+  const level = 0.99;
+  const q = 1e-6;
+  const s = new Spot({ q: q, level: level, maxExcess: 200 });
+  const train = Float64Array.from({ length: 30000 }, stdNormal);
+  expect(s.fit(train)).toBe(0);
+
+  for (let i = 0; i < 100000; i++) {
+    const x = stdNormal();
     let r = s.step(x);
     if (r === EXCESS) {
       // this test may fail since the interpretation of
       // can change along time
-      expect(s.probability(x)).toBeLessThanOrEqual(1 - level);
+      expect(1 - level - s.probability(x)).toBeGreaterThanOrEqual(-0.001);
+    } else if (r === ANOMALY) {
+      const p = s.probability(x);
+      if (Number.isNaN(p)) {
+        // it returns NaN when the value is above the maximum quantile,
+        // which is the quantile of the smallest possible probability (MIN_VALUE)
+        const bound = s.quantile(Number.MIN_VALUE);
+        expect(x).toBeGreaterThan(bound);
+      } else {
+        expect(p).toBeLessThanOrEqual(q);
+      }
     }
   }
 });

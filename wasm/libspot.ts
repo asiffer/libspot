@@ -1,9 +1,7 @@
 import {
   libspot_error,
-  malloc as _malloc,
-  free,
   spot_fit,
-  spot_free,
+  spot_reset,
   spot_init,
   spot_probability,
   spot_quantile,
@@ -11,44 +9,51 @@ import {
   spot_step,
   libspot_version,
   memory,
+  heapBase,
 } from "./libspot.core.ts";
 
 export const NORMAL = 0;
 export const EXCESS = 1;
 export const ANOMALY = 2;
 
-let heap8 = new Uint8Array(memory.buffer);
+let offset = heapBase;
 
-/**
- * Wrapper around malloc to check if the requested memory fits the webassembly memory
- * @param size Size in bytes to allocate
- * @returns
- */
 const malloc = (size: number): number => {
-  const ptr = _malloc(size);
-  if (ptr <= 0) {
-    return ptr;
+  // Align to 8 bytes for safe access to any typed array
+  const aligned = (offset + 7) & ~7;
+  const ptr = aligned;
+  const needed = aligned + size;
+
+  // Grow memory if we'd exceed current size
+  const currentBytes = memory.buffer.byteLength;
+  if (needed > currentBytes) {
+    const pagesToGrow = Math.ceil((needed - currentBytes) / 65536);
+    memory.grow(pagesToGrow);
   }
-  if (ptr + size > memory.buffer.byteLength) {
-    // grow memory if needed
-    const pages = Math.ceil(size / 65536); // 64 KiB per page
-    memory.grow(pages);
-    heap8 = new Uint8Array(memory.buffer); // reinitialize the view
-  }
+
+  offset = needed;
   return ptr;
 };
 
-const stringify = (raw: ArrayBuffer) => {
+const free = (ptr: number, size: number): void => {
+  if (ptr + size === offset) {
+    offset -= size;
+  }
+};
+
+const stringify = (raw: ArrayBufferView) => {
   return new TextDecoder("utf-8").decode(raw).replace(/\0/g, "");
 };
 
 export const libspotError = (code: number): string => {
   const size = 256;
   const ptr = malloc(size);
-  heap8.fill(0, ptr, ptr + size); // fill with zeros
+  const msgBuffer = new Uint8Array(memory.buffer, ptr, size);
+  msgBuffer.fill(0);
+
   libspot_error(code, ptr, size);
-  const msg = stringify(heap8.slice(ptr, ptr + size).buffer as ArrayBuffer);
-  free(ptr);
+  const msg = stringify(msgBuffer);
+  free(ptr, size);
   return msg;
 };
 
@@ -59,9 +64,11 @@ export const libspotError = (code: number): string => {
 export const libspotVersion = (): string => {
   const size = 24;
   let ptr = malloc(size);
+  const versionBuffer = new Uint8Array(memory.buffer, ptr, size);
+  versionBuffer.fill(0);
   libspot_version(ptr, size);
-  const version = stringify(heap8.slice(ptr, ptr + size).buffer as ArrayBuffer);
-  free(ptr);
+  const version = stringify(versionBuffer);
+  free(ptr, size);
   return version;
 };
 
@@ -91,12 +98,6 @@ export interface SpotConfig {
    */
   maxExcess?: number;
 }
-
-const freg = new FinalizationRegistry((ptr: number) => {
-  // this function is called when the registered object is garbage collected
-  spot_free(ptr); // release heap allocated object (created by spot_init)
-  free(ptr); // release internal memory (created by malloc)
-});
 
 /**
  * Main structure to run the SPOT algorithm
@@ -136,43 +137,57 @@ export class Spot {
     maxExcess = 500,
   }: SpotConfig) {
     this.ptr = malloc(spot_size());
-    freg.register(this, this.ptr); // kind of destructor
+    const bufferPtr = malloc(maxExcess * 8); // 8 bytes per double
     const code = spot_init(
       this.ptr,
       q,
       low,
       discardAnomalies,
       level,
-      maxExcess
+      bufferPtr,
+      maxExcess,
     );
     if (code < 0) {
       throw new Error(libspotError(-code));
     }
   }
 
-  anomaly_threshold() {
-    const buffer = heap8.slice(this.ptr + 32, this.ptr + 40).reverse().buffer;
-    const view = new DataView(buffer);
-    return view.getFloat64(0);
-  }
-
-  excess_threshold() {
-    const buffer = heap8.slice(this.ptr + 40, this.ptr + 48).reverse().buffer;
-    const view = new DataView(buffer);
-    return view.getFloat64(0);
+  /**
+   * Reset the model to its initial state (keep the same config)
+   */
+  reset() {
+    spot_reset(this.ptr);
   }
 
   /**
-   *
+   * @returns the anomaly threshold
+   */
+  anomaly_threshold() {
+    const view = new DataView(memory.buffer, this.ptr + 32, 8);
+    return view.getFloat64(0, true);
+  }
+
+  /**
+   * @returns the excess threshold (tail delimiter)
+   */
+  excess_threshold() {
+    const view = new DataView(memory.buffer, this.ptr + 40, 8);
+    return view.getFloat64(0, true);
+  }
+
+  /**
+   * Fit the model to the input data
    * @param data Input data
    * @returns 0 if everything is ok
    * @throws {Error} When the fit has failed. It generally happens when either the anomaly or excess threshold is NaN.
    */
   fit(data: Float64Array) {
+    const size = data.length * data.BYTES_PER_ELEMENT;
     // reserve heap
-    const arrayPtr = malloc(data.length * data.BYTES_PER_ELEMENT);
+    const arrayPtr = malloc(size);
     // copy array (converted to bytes) to the heap
-    heap8.set(new Uint8Array(data.buffer), arrayPtr);
+    const view = new Float64Array(memory.buffer, arrayPtr, data.length);
+    view.set(data);
 
     // call the function
     const code = spot_fit(this.ptr, arrayPtr, data.length);
@@ -180,7 +195,7 @@ export class Spot {
       throw new Error(libspotError(-code));
     }
     // release heap
-    free(arrayPtr);
+    free(arrayPtr, size);
     return code;
   }
 
@@ -218,8 +233,6 @@ export class Spot {
     return spot_probability(this.ptr, z);
   }
 }
-
-// console.log("HEAP8", heap8);
 
 export default Spot;
 export { spot_size } from "./libspot.core.ts";
