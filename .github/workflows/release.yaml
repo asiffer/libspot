@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-slim
     steps:
       - name: Checkout repo
@@ -20,7 +21,7 @@ jobs:
           echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
 
       - name: Install build dependencies
-        run: sudo apt update -y && sudo apt install -y build-essential nfpm
+        run: sudo apt update -y && sudo apt install -y build-essential nfpm clang-format
 
       - name: Build shared library
         run: make
