@@ -40,7 +40,9 @@ def get_version() -> str:
     ).read()
     i = makefile.find("VERSION")
     j = makefile.find("\n", i)
-    return makefile[i:j].replace("VERSION", "").replace("=", "").strip()
+    return (
+        makefile[i:j].replace("VERSION", "").replace("=", "").replace(":", "").strip()
+    )
 
 
 define_macros = [
