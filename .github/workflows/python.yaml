@@ -2,6 +2,9 @@ name: Python
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "v*"
 
 jobs:
   gen_api:
@@ -43,7 +46,7 @@ jobs:
       - name: "Set up Python"
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.14"
 
       - name: Install some build dependencies
         run: |
@@ -85,7 +88,7 @@ jobs:
     needs:
       - build_wheels
     runs-on: ubuntu-latest
-    if: github.ref_name == 'master'
+    if: github.ref_name == 'tag'
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write

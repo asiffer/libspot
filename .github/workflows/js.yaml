@@ -2,11 +2,14 @@ name: JS
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "v*"
 
 permissions:
   contents: read
   packages: write
-  id-token: write  # Required for OIDC
+  id-token: write  # Required for OIDC (bun does not support it yet)
 
 jobs:
   build:
@@ -56,5 +59,6 @@ jobs:
           name: libspot
 
       - name: Publish to npmjs
+        if: github.ref_name == 'tag'
         run: bun publish
         working-directory: ./wasm
