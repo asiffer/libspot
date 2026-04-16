@@ -126,6 +126,7 @@ endef
 # we must keep the library with appended version
 # as final libraries point to them
 .PRECIOUS: $(INSTALL_LIB_DIR)/%.$(VERSION) 
+.PRECIOUS: $(INSTALL_LIB_DIR)/%.so.$(MAJOR) 
 .PRECIOUS: $(BUILD_DIR)/%_test
 .PRECIOUS: $(TEST_DEPENDS_DIR)/%.d
 .PRECIOUS: $(TEST_OBJS_DIR)/%.o
@@ -226,14 +227,19 @@ $(INSTALL_LIB_DIR)/%.$(VERSION): $(DIST_DIR)/%.$(VERSION)
 	@install $< $@
 	$(PRINT_OK)
 
-$(INSTALL_LIB_DIR)/%.so: $(INSTALL_LIB_DIR)/%.so.$(VERSION)
+$(INSTALL_LIB_DIR)/%.so.$(MAJOR): $(INSTALL_LIB_DIR)/%.so.$(VERSION)
 	@printf "SYMLINK %-25s %-30s" "$<" "$@"
-	@ln -s $< $@
+	@ln -fs $< $@
+	$(PRINT_OK)
+
+$(INSTALL_LIB_DIR)/%.so: $(INSTALL_LIB_DIR)/%.so.$(MAJOR)
+	@printf "SYMLINK %-25s %-30s" "$<" "$@"
+	@ln -fs $< $@
 	$(PRINT_OK)
 
 $(INSTALL_LIB_DIR)/%.a: $(INSTALL_LIB_DIR)/%.a.$(VERSION)
 	@printf "SYMLINK %-25s %-30s" "$<" "$@"
-	@ln -s $< $@
+	@ln -fs $< $@
 	$(PRINT_OK)
 
 # ========================================================================== #
