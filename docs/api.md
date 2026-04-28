@@ -1,6 +1,6 @@
 ---
 title: API
-order: 6
+order: 20
 ---
 
 ## Typedefs
@@ -242,7 +242,15 @@ Main structure to run the SPOT algorithm.
 ### spot_init
 
 ```c
-int spot_init(struct Spot * spot, double q, int low, int discard_anomalies, double level, double * buffer, unsigned long max_excess)
+int spot_init(
+    struct Spot * spot,
+    double q,
+    int low,
+    int discard_anomalies,
+    double level,
+    double * buffer,
+    unsigned long max_excess
+)
 ```
 
 Initialize the [Spot](#structSpot) structure.
@@ -420,7 +428,11 @@ Return the license of the library.
 ### libspot_error
 
 ```c
-void libspot_error(enum LibspotError err, char * buffer, unsigned long size)
+void libspot_error(
+    enum LibspotError err,
+    char * buffer,
+    unsigned long size
+)
 ```
 
 Return a string related to an error code.
