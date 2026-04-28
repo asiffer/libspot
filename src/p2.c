@@ -2,7 +2,7 @@
  * @file p2.c
  * @brief Implements P² quantile estimator
  * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
- * @version 3.0a0
+ * @version 3.0.0
  * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
