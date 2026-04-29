@@ -8,10 +8,10 @@
  *
  */
 
-#include "peaks.h"
-
 #ifndef ESTIMATOR_H
 #define ESTIMATOR_H
+
+#include "peaks.h"
 
 /**
  * @brief

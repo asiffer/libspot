@@ -8,10 +8,10 @@
  *
  */
 
-#include "structs.h"
-
 #ifndef XMATH_H
 #define XMATH_H
+
+#include "structs.h"
 
 extern double const _NAN;
 extern double const _INFINITY;
