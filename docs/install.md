@@ -1,7 +1,6 @@
 ---
 title: Install
 summary: How the get the original C library
-order: 3
 ---
 
 ## Releases

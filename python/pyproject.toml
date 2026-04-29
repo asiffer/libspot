@@ -25,7 +25,6 @@ Homepage = "https://asiffer.github.io/libspot"
 Repository = "https://github.com/asiffer/libspot.git"
 Issues = "https://github.com/asiffer/libspot/issues"
 
-
 [dependency-groups]
 dev = ["types-setuptools"]
 testing = ["matplotlib", "numpy"]

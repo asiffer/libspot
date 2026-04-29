@@ -1,6 +1,6 @@
 ---
 title: Parameters
-order: 5
+summary: Understand and configure SPOT
 ---
 
 **SPOT** can be very powerful, once the parameters are coherent. This is not about precision mechanics but there is rule of thumbs you can follow.

@@ -1,6 +1,6 @@
 ---
 title: Get started
-order: 4
+summary: Run Spot for the first time
 ---
 
 Inside your code, you just have to add the `spot.h` header file.
