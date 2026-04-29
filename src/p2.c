@@ -120,11 +120,10 @@ static double parabolic(struct P2 *p2, unsigned int i, int d) {
 static double quantile(struct P2 *p2, double const *x, unsigned long size) {
     unsigned int k;
     unsigned int i;
-    // double d = 0.0;
     double qp;
 
     if (size < 5) {
-        return 0.0;
+        return _NAN;
     }
     // init q with the 5 first values
     for (i = 0; i < 5; i++) {

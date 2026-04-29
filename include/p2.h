@@ -11,6 +11,8 @@
 #ifndef P2_H
 #define P2_H
 
+#include "xmath.h"
+
 double p2_quantile(double p, double const *data, unsigned long size);
 
 #endif // P2_H
