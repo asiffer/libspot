@@ -14,7 +14,7 @@
 #include "peaks.h"
 
 /**
- * @brief
+ * @brief Method of moments estimator for GPD parameters
  *
  * @param peaks Peaks instance
  * @param[out] gamma computed GPD gamma parameter
@@ -24,7 +24,7 @@
 double mom_estimator(struct Peaks const *peaks, double *gamma, double *sigma);
 
 /**
- * @brief
+ * @brief Grimshaw estimator for GPD parameters
  *
  * @param peaks Peaks instance
  * @param[out] gamma computed GPD gamma parameter

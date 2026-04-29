@@ -53,7 +53,7 @@ void spot_reset(struct Spot *spot);
  * @param size Size of the buffer
  * @retval 0 OK
  * @retval -ERR_EXCESS_THRESHOLD_IS_NAN the excess threshold is nan
- * @retval -ERR_ANOMALY_THRESHOLD_IS_NA the anomaly threshold is nan
+ * @retval -ERR_ANOMALY_THRESHOLD_IS_NAN the anomaly threshold is nan
  */
 int spot_fit(struct Spot *spot, double const *data, unsigned long size);
 
