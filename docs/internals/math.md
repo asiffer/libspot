@@ -53,7 +53,7 @@ print(log_cf(x, d=11))
 
 ### Truncation
 
-The following code is used so as to find the "best" depth. We basically retrieve the max mantissa error and the relative error. Indeed we leverage the [IEEE754 representation](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) so as to turn the computation $\log(x),  x\in\RR$ into $\log(x),  x\in[1, 2]$.
+The following code is used so as to find the "best" depth. We basically retrieve the max mantissa error and the relative error. Indeed we leverage the [IEEE754 representation](https://en.wikipedia.org/wiki/Double-precision_floating-point_format) so as to turn the computation $\log(x),x\in\mathbb{R}$ into $\log(x),  x\in[1, 2]$.
 
 
 ??? info "benchmark/log_cf_accuracy.c"
