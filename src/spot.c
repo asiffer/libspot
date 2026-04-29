@@ -166,6 +166,9 @@ double spot_probability(struct Spot const *spot, double z) {
  * @return char* pointer to the output buffer
  */
 static char *strncpy(char *dst, const char *src, unsigned long size) {
+    if (size == 0) {
+        return dst;
+    }
     if (dst) {
         unsigned long i = 0;
         for (; (i < size) && (src[i] != '\0'); i++) {

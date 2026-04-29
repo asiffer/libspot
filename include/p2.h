@@ -13,6 +13,15 @@
 
 #include "xmath.h"
 
+/**
+ * @brief Compute the p-quantile of the data using the P² algorithm
+ *
+ * @param p Quantile to compute (0 < p < 1)
+ * @param data Array of data points
+ * @param size Number of data points
+ * @return double The computed p-quantile
+ * @retval _NAN if size < 5
+ */
 double p2_quantile(double p, double const *data, unsigned long size);
 
 #endif // P2_H
