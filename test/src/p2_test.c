@@ -11,7 +11,6 @@ static char buffer[256];
 void sort5(double arr[5]);
 
 double const PI = 0x1.921fb54442d18p+1;
-double const _NAN = 0.0 / 0.0;
 double const DMAX = RAND_MAX;
 
 static double DATA[SIZE];
