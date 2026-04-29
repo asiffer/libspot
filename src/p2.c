@@ -23,7 +23,7 @@ static void swap(double *a, double *b) {
     *b = temp;
 }
 
-void sort5(double a[5]) {
+static void sort5(double a[5]) {
     if (a[1] < a[0]) // Compare 1st and 2nd element #1
         swap(&a[0], &a[1]);
     if (a[3] < a[2]) // Compare 3rd and 4th element #2
