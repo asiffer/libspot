@@ -51,11 +51,12 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v8
+        with:
+          path: dist
       
       - name: Debug
         run: |
           ls -alh --color=auto . 
-          ls -alh --color=auto dist/
 
       - name: Create GitHub Release
         env:
