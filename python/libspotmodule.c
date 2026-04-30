@@ -97,18 +97,12 @@ PyDoc_STRVAR(
     ", low = " STR(SPOT_INIT_LOW) ", discard_anomalies = " STR(SPOT_INIT_DISCARD_ANOMALIES) ", level = " STR(
         SPOT_INIT_LEVEL) ", max_excess = " STR(SPOT_INIT_MAX_EXCESS) ")\n--"
                                                                      "\n\n"
-                                                                     "Compute "
-                                                                     "the "
-                                                                     "first "
-                                                                     "excess "
-                                                                     "and "
-                                                                     "anomaly "
-                                                                     "threshol"
-                                                                     "ds "
-                                                                     "based "
-                                                                     "on "
-                                                                     "training"
-                                                                     " data");
+                                                                     "Initiali"
+                                                                     "ze a "
+                                                                     "new "
+                                                                     "Spot "
+                                                                     "instanc"
+                                                                     "e");
 
 static int Spot_init(Spot *self, PyObject *args, PyObject *kwds) {
     static char *kwlist[] = {"q",     "low",        "discard_anomalies",
