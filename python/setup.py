@@ -1,3 +1,4 @@
+from typing import Optional
 import ctypes
 import os
 import sys
@@ -45,9 +46,8 @@ def get_version() -> str:
     )
 
 
-define_macros = [
+define_macros: list[tuple[str, Optional[str]]] = [
     ("VERSION", f'"{get_version()}"'),
-    ("Py_LIMITED_API", "0x03060000"),  # macro to use Python Limited API (here >=cp36)
 ]
 
 # windows specific
