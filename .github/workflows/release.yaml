@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
         with:
-          path: dist/*
+          path: dist
 
 
   release:
@@ -51,6 +51,11 @@ jobs:
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v8
+      
+      - name: Debug
+        run: |
+          ls -alh --color=auto . 
+          ls -alh --color=auto dist/
 
       - name: Create GitHub Release
         env:
@@ -69,5 +74,5 @@ jobs:
         # sigstore-produced signatures and certificates.
         run: >-
           gh release upload
-          "$GITHUB_REF_NAME" dist/libspot**
+          "$GITHUB_REF_NAME" dist/**
           --repo "$GITHUB_REPOSITORY"

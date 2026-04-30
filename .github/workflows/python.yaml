@@ -88,7 +88,7 @@ jobs:
     needs:
       - build_wheels
     runs-on: ubuntu-latest
-    if: github.ref_name == 'tag'
+    if: github.ref_type == 'tag'
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
