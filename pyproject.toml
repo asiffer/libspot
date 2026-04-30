@@ -22,4 +22,10 @@ dependencies = [
 members = ["python", "dev/doxygen"]
 
 [dependency-groups]
-dev = ["ipython>=9.12.0", "matplotlib>=3.10.8", "numpy>=2.4.4", "scipy>=1.17.1"]
+dev = [
+    "ipython>=9.12.0",
+    "isort>=8.0.1",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.4",
+    "scipy>=1.17.1",
+]
