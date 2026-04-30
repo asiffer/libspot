@@ -1,6 +1,6 @@
 ---
 title: Parameters
-order: 5
+summary: Understand and configure SPOT
 ---
 
 **SPOT** can be very powerful, once the parameters are coherent. This is not about precision mechanics but there is rule of thumbs you can follow.
@@ -42,6 +42,6 @@ Ideally, if you have plenty of records, you can take a very high `level` without
 
 ## Bounded memory
 
-In theory, the number of data in the tail can grow indifinetely while monitoring an infinite stream. Everyone knows that memory resources are limited so we cannot store all of the data to update the tail. Here comes the `max_excess` parameters: it defines the number of tail data we will keep.
+In theory, the number of data in the tail can grow indifinetely while monitoring an infinite stream. Everyone knows that memory resources are limited so we cannot store all of the data to update the tail. Here comes the `buffer/max_excess` parameters: they define the number of tail data we will keep.
 
 Moreover, it creates a memory vanishing effect since the model will keep only the last `max_excess` tail data to perform the fit. Thus, it must be high enough to perform a good fit in terms of bias and variance (see the paragraph above) but beware of the tail dynamics: if you need to quickly adapt to the "new" shape of the tail, `max_excess` should not be too high (one may advice few hundreds but it could be more if the monitored stream is stable).

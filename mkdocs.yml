@@ -17,6 +17,7 @@ nav:
   - install.md
   - get_started.md
   - parameters.md
+  - migrating_from_v2.md
   - api.md
   - Foreign languages:
       - foreign/python.md
@@ -24,9 +25,10 @@ nav:
       - foreign/golang.md
       - foreign/rust.md
       - foreign/performances.md
+  - Guides:
+      - "Drifting data": guides/drifting.md
   - Internals:
       - internals/spot.md
-      - internals/fit.md
       - internals/math.md
 
 
@@ -38,6 +40,7 @@ watch:
 
 plugins:
   - search
+  - excalidraw
   
 
 markdown_extensions:

@@ -1,9 +1,9 @@
 /**
  * @file tail.h
  * @brief Declares Tail structure and methods
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
@@ -14,30 +14,14 @@
 #define TAIL_H
 
 /**
- * @brief Stucture that embeds GPD parameter (GPD tail actually)
- *
- */
-// PUBLIC_API struct Tail {
-//     double gamma;       /**< GPD gamma parameter */
-//     double sigma;       /**< GPD sigma parameter */
-//     struct Peaks peaks; /**< underlying Peaks structure */
-// };
-
-/**
  * @brief Initialize the tail structure
  *
  * @param tail Tail instance
- * @param size Tail size
- * @return 0 if the initialization is ok
+ * @param buffer Buffer to store the tail data
+ * @param size Size of the buffer (number of elements)
+ * @return 0 always returns 0
  */
-int tail_init(struct Tail *tail, unsigned long size);
-
-/**
- * @brief Free the tail structure
- *
- * @param tail Tail instance
- */
-void tail_free(struct Tail *tail);
+int tail_init(struct Tail *tail, double *buffer, unsigned long size);
 
 /**
  * @brief Add a new data into the tail

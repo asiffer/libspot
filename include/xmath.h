@@ -1,17 +1,17 @@
 /**
  * @file xmath.h
  * @brief Declares math functions
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
 
-#include "structs.h"
-
 #ifndef XMATH_H
 #define XMATH_H
+
+#include "structs.h"
 
 extern double const _NAN;
 extern double const _INFINITY;
@@ -20,8 +20,8 @@ extern double const _INFINITY;
  * @brief Internal function to set the frexp/ldexp functions
  * @details By default these functions are provided but the API
  * allows to change them
- * @param l pointer to a "ldexp" function
- * @param f pointer to a "frexp" function
+ * @param l pointer to a `ldexp` function
+ * @param f pointer to a `frexp` function
  */
 void internal_set_float_utils(ldexp_fn l, frexp_fn f);
 
@@ -30,9 +30,9 @@ void internal_set_float_utils(ldexp_fn l, frexp_fn f);
  * By default, libspot provides its own implementations but depending
  * on your target you are likely to use stdlib functions (better performances).
  *
- * @param lo pointer to a "log" function
- * @param ex pointer to an "exp" function
- * @param po pointer to a "pow" function
+ * @param lo pointer to a `log` function
+ * @param ex pointer to an `exp` function
+ * @param po pointer to a `pow` function
  */
 void internal_set_math_functions(math_fn lo, math_fn ex, math2_fn po);
 

@@ -2,16 +2,21 @@ name: Python
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "v*"
 
 jobs:
   gen_api:
     name: Generate public api
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Define spot.h
         run: make api
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: api
           path: dist/spot.h
@@ -28,20 +33,20 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: api
           path: dist/
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8.0.0
 
       - name: "Set up Python"
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.14"
 
       - name: Install some build dependencies
         run: |
@@ -73,7 +78,7 @@ jobs:
         run: uv run abi3audit --strict --report dist/$((dir wheel|Select-Object -First 1).Name)
         working-directory: ./python
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           path: ./python/wheel/*.whl
           name: libspot-python-${{ matrix.os }}
@@ -83,12 +88,12 @@ jobs:
     needs:
       - build_wheels
     runs-on: ubuntu-latest
-    if: github.ref_name == 'master'
+    if: github.ref_name == 'tag'
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: libspot-python-*
           path: dist
@@ -97,4 +102,4 @@ jobs:
         run: |
           ls -alh --color=auto .
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: pypa/gh-action-pypi-publish@v1.14.0

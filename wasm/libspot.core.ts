@@ -8,8 +8,10 @@ export interface Libspot {
     low: number,
     discardAnomalies: number,
     level: number,
-    maxExcess: number
+    buffer: number,
+    maxExcess: number,
   ) => number;
+  spot_reset(ptr: number): void;
   spot_fit: (ptr: number, arrayPtr: number, size: number) => number;
   spot_step: (ptr: number, x: number) => number;
   spot_quantile: (ptr: number, q: number) => number;
@@ -21,13 +23,14 @@ export interface Libspot {
   //   malloc: (size: number) => number,
   //   free: (ptr: number) => void
   // ) => void;
-  malloc: (size: number) => number;
-  free: (ptr: number) => void;
-  start: () => void;
+  // malloc: (size: number) => number;
+  // free: (ptr: number) => void;
+  // start: () => void;
 }
 
 type LibspotExports = Libspot & {
   memory: WebAssembly.Memory;
+  __heap_base: WebAssembly.Global;
 };
 
 const loadWASM = async (imports = {}): Promise<LibspotExports> => {
@@ -35,7 +38,7 @@ const loadWASM = async (imports = {}): Promise<LibspotExports> => {
     ...imports,
   });
   // @ts-ignore
-  instance.exports.libspot_init();
+  // instance.exports.libspot_init();
 
   // @ts-ignore
   return {
@@ -44,17 +47,19 @@ const loadWASM = async (imports = {}): Promise<LibspotExports> => {
   } as LibspotExports;
 };
 
+const _wasm = await loadWASM();
+
 export const {
   memory,
   spot_fit,
   spot_init,
-  spot_free,
+  spot_reset,
   spot_probability,
   spot_quantile,
   spot_size,
   spot_step,
   libspot_error,
-  malloc,
-  free,
   libspot_version,
-} = await loadWASM();
+} = _wasm;
+
+export const heapBase: number = _wasm.__heap_base.value as number;

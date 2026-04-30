@@ -5,9 +5,10 @@
 // static char buffer[256];
 
 void test_peaks_init(void) {
+    double buffer[10];
     unsigned long const size = 10;
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     // TEST_ASSERT_DOUBLE_IS_NAN(Peaks.gamma);
     // TEST_ASSERT_DOUBLE_IS_NAN(Peaks.sigma);
@@ -18,10 +19,12 @@ void test_peaks_init(void) {
 }
 
 void test_peaks_push(void) {
+    double buffer[10];
     unsigned long const size = 10;
     double value = 1.0;
+
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     for (unsigned long i = 0; 2 * i < size; i++, value++) {
         peaks_push(&Peaks, value);
@@ -48,10 +51,11 @@ void test_peaks_push(void) {
 }
 
 void test_peaks_mean(void) {
+    double buffer[50];
     unsigned long const size = 50;
     // double value = 1.0;
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     for (unsigned long i = 1; i <= size; i++) {
         peaks_push(&Peaks, (double)i);
@@ -69,8 +73,9 @@ void test_peaks_mean(void) {
 
 void test_peaks_var(void) {
     unsigned long const size = 50;
+    double buffer[50];
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     for (double i = 1.0; (2 * i) <= (double)size; i++) {
         peaks_push(&Peaks, i);
@@ -83,8 +88,9 @@ void test_peaks_var(void) {
 void test_peaks_update_stats(void) {
     double const data[] = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
     unsigned long const size = sizeof(data) / sizeof(double);
+    double buffer[10];
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     for (unsigned long i = 0; i < size; i++) {
         peaks_push(&Peaks, data[i]);
@@ -103,10 +109,11 @@ void test_peaks_update_stats(void) {
 }
 
 void test_peaks_size(void) {
+    double buffer[30];
     unsigned long const size = 30;
     double value = 1.0;
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     for (unsigned long i = 0; i < size; i++) {
         peaks_push(&Peaks, value);
@@ -183,7 +190,8 @@ void test_peaks_log_likelihood(void) {
 
     unsigned long const size = sizeof(data) / sizeof(double);
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    double buffer[size];
+    peaks_init(&Peaks, buffer, size);
 
     for (unsigned long i = 0; i < size; i++) {
         peaks_push(&Peaks, data[i]);
@@ -275,24 +283,25 @@ void test_peaks_log_likelihood(void) {
 }
 
 void test_peaks_free(void) {
+    double buffer[10];
     unsigned long const size = 10;
     struct Peaks Peaks;
-    peaks_init(&Peaks, size);
+    peaks_init(&Peaks, buffer, size);
 
     Peaks.e = 10.0;
     Peaks.e2 = 5.0;
     Peaks.min = -5.0;
     Peaks.max = 17.2;
 
-    peaks_free(&Peaks);
+    peaks_init(&Peaks, Peaks.container.data, Peaks.container.capacity);
 
-    TEST_ASSERT_DOUBLE_IS_NAN(Peaks.e);
-    TEST_ASSERT_DOUBLE_IS_NAN(Peaks.e2);
+    TEST_ASSERT_EQUAL_DOUBLE(Peaks.e, 0.0);
+    TEST_ASSERT_EQUAL_DOUBLE(Peaks.e2, 0.0);
     TEST_ASSERT_DOUBLE_IS_NAN(Peaks.min);
     TEST_ASSERT_DOUBLE_IS_NAN(Peaks.max);
 }
 
-void setUp(void) { internal_set_allocators(malloc, free); }
+void setUp(void) {}
 
 void tearDown(void) {}
 

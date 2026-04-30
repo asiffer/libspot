@@ -20,6 +20,11 @@ sidebar_title: Home
 
 It should be used when we have either no information (and no strong assumption) about the data you want to monitor (a kind of _blind_ monitoring).
 
+Two usecases raise:
+
+- **anomaly detection** on an input stream: just flag extreme events on your incoming data;
+- **automatic thresholding**: just plug SPOT in the end of your data pipeline to build smart decision threshold with probabilistic meaning (instead of hardcoded thresholds).
+
 ## What's new?
 
 While the first implementation of **libspot** was in `C++`, this new version has been entirely re-implemented in `C`. Actually OOP is a bit overkill for this task and using `C` may ease integrations (target systems and language interoperability). You can also have a look to [Why Is SQLite Coded In C](https://sqlite.org/whyc.html). In addition, some boilerplate code has been removed to keep only the core algorithm. Here are the project specs:
@@ -27,7 +32,7 @@ While the first implementation of **libspot** was in `C++`, this new version has
 - **`c99` standard**: modern `C` but not too much
 - **clean API**: few meaningful functions to run the algorithm
 - **`-nostdlib`**: **libspot** does not depend on the standard library
-- **decent testing**: remember that there is statistics behind :sweat_smile:
+- **decent testing**: remember that there is statistics behind +twemoji:grinning-face-with-sweat+
 
 The development of **libspot** tries to follow some principles:
 

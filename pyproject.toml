@@ -1,0 +1,31 @@
+[project]
+name = "libspot-docs"
+version = "3.0.0"
+description = "Born to flag outliers"
+authors = [
+    { name = "Alban Siffer", email = "31479857+asiffer@users.noreply.github.com" },
+]
+license = "LGPL-3.0-or-later"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ipykernel>=7.2.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-shadcn>=0.10.4",
+    "nbconvert>=7.17.1",
+    "pandas>=3.0.2",
+    "pip>=26.1",
+    "pygments>=2.20.0",
+]
+
+[tool.uv.workspace]
+members = ["python", "dev/doxygen"]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.12.0",
+    "isort>=8.0.1",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.4",
+    "scipy>=1.17.1",
+]

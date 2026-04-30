@@ -1,34 +1,21 @@
 /**
  * @file ubend.c
  * @brief Implements Ubend methods
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
 #include "ubend.h"
 
-int ubend_init(struct Ubend *ubend, unsigned long capacity) {
+int ubend_init(struct Ubend *ubend, double *buffer, unsigned long capacity) {
     ubend->cursor = 0;
     ubend->filled = 0;
     ubend->capacity = capacity;
     ubend->last_erased_data = _NAN;
-    ubend->data = (double *)xmalloc(capacity * __SIZEOF_DOUBLE__);
-    if (ubend->data) {
-        return 0;
-    }
-    return -ERR_MEMORY_ALLOCATION_FAILED;
-}
-
-void ubend_free(struct Ubend *ubend) {
-    ubend->cursor = 0;
-    ubend->capacity = 0;
-    ubend->filled = -1;
-    ubend->last_erased_data = _NAN;
-    if (ubend->data) {
-        xfree(ubend->data);
-    }
+    ubend->data = buffer;
+    return 0;
 }
 
 unsigned long ubend_size(struct Ubend const *ubend) {

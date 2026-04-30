@@ -1,35 +1,9 @@
 ---
 title: API
-order: 6
+order: 20
 ---
 
 ## Typedefs
-
-<div id="spot_8h_1af34cbecc36e51f2981fc6a4f2ccaaa12"></div>
-### malloc_fn 
-
-```c
-typedef void *(* malloc_fn) (__SIZE_TYPE__)
-```
-
-`malloc_fn` is a pointer to a malloc-type function i.e. with prototype: `void * malloc(size_t)`
-
-
-
-
-
-<div id="spot_8h_1ac728a1a879612a5ebb351581594841eb"></div>
-### free_fn 
-
-```c
-typedef void(* free_fn) (void *)
-```
-
-`free_fn` is a pointer to a free-type function i.e. with prototype: `void free(void*)`
-
-
-
-
 
 <div id="spot_8h_1ad948bdfab02151949931ddd4cbb4c9d8"></div>
 ### frexp_fn 
@@ -268,7 +242,15 @@ Main structure to run the SPOT algorithm.
 ### spot_init
 
 ```c
-int spot_init(struct Spot * spot, double q, int low, int discard_anomalies, double level, unsigned long max_excess)
+int spot_init(
+    struct Spot * spot,
+    double q,
+    int low,
+    int discard_anomalies,
+    double level,
+    double * buffer,
+    unsigned long max_excess
+)
 ```
 
 Initialize the [Spot](#structSpot) structure.
@@ -280,19 +262,20 @@ Initialize the [Spot](#structSpot) structure.
 | `low` | Lower tail mode (0 by defaut for upper tail and 1 for lower tail) |
 | `discard_anomalies` | Do not include anomalies in the model (default: 1, 0 otherwise) |
 | `level` | Excess level (it is a high quantile that delimits the tail) |
-| `max_excess` | Maximum number of data that are kept to analyze the tail |
+| `buffer` | Buffer to store all the excesses (tail data) |
+| `max_excess` | Size of the buffer (number of elements) |
 
 
 
 
-<div id="spot_free"></div>
-### spot_free
+<div id="spot_reset"></div>
+### spot_reset
 
 ```c
-void spot_free(struct Spot * spot)
+void spot_reset(struct Spot * spot)
 ```
 
-Free the tail data.
+Reset the internal structure of the [Spot](#structSpot) instance. It reuses the same backing buffer.
 
 | Parameter | Description |
 |-----------|-------------|
@@ -370,23 +353,6 @@ Compute the probability p such that P(X>z) = p.
 
 
 
-<div id="set_allocators"></div>
-### set_allocators
-
-```c
-void set_allocators(malloc_fn m, free_fn f)
-```
-
-Set the allocators object (malloc and free)
-
-| Parameter | Description |
-|-----------|-------------|
-| `m` | pointer to a "malloc" function |
-| `f` | pointer to a "free" function |
-
-
-
-
 <div id="set_float_utils"></div>
 ### set_float_utils
 
@@ -400,8 +366,8 @@ By default these functions are provided but the API allows to change them. It is
 
 | Parameter | Description |
 |-----------|-------------|
-| `l` | pointer to a "ldexp" function (nil if you do not want to change it) |
-| `f` | pointer to a "frexp" function (nil if you do not want to change it) |
+| `l` | pointer to a ldexp function (NULL if you do not want to change it) |
+| `f` | pointer to a frexp function (NULL if you do not want to change it) |
 
 
 
@@ -417,9 +383,9 @@ Set the log, exp and pow functions. It is recommended when you have access to op
 
 | Parameter | Description |
 |-----------|-------------|
-| `lo` | pointer to a "log" function (nil if you do not want to change it) |
-| `ex` | pointer to an "exp" function (nil if you do not want to change it) |
-| `po` | pointer to a "pow" function (nil if you do not want to change it) |
+| `lo` | pointer to a log function (NULL if you do not want to change it) |
+| `ex` | pointer to a exp function (NULL if you do not want to change it) |
+| `po` | pointer to a pow function (NULL if you do not want to change it) |
 
 
 
@@ -462,7 +428,11 @@ Return the license of the library.
 ### libspot_error
 
 ```c
-void libspot_error(enum LibspotError err, char * buffer, unsigned long size)
+void libspot_error(
+    enum LibspotError err,
+    char * buffer,
+    unsigned long size
+)
 ```
 
 Return a string related to an error code.

@@ -1,3 +1,4 @@
+from typing import Optional
 import ctypes
 import os
 import sys
@@ -7,7 +8,6 @@ from setuptools import Extension, setup
 from setuptools.command.bdist_wheel import bdist_wheel
 
 ROOT = Path("../")
-
 
 INCLUDE_DIRS = [ROOT / "include", ROOT / "dist"]
 SRC_DIR = ROOT / "src"
@@ -41,12 +41,13 @@ def get_version() -> str:
     ).read()
     i = makefile.find("VERSION")
     j = makefile.find("\n", i)
-    return makefile[i:j].replace("VERSION", "").replace("=", "").strip()
+    return (
+        makefile[i:j].replace("VERSION", "").replace("=", "").replace(":", "").strip()
+    )
 
 
-define_macros = [
+define_macros: list[tuple[str, Optional[str]]] = [
     ("VERSION", f'"{get_version()}"'),
-    ("Py_LIMITED_API", "0x03060000"),  # macro to use Python Limited API (here >=cp36)
 ]
 
 # windows specific
@@ -76,7 +77,7 @@ lib = Extension(
     include_dirs=list(map(str, INCLUDE_DIRS)),
     sources=list(map(str, SOURCES)),
     extra_compile_args=[C99_ARG],
-    define_macros=define_macros,  # type: ignore
+    define_macros=define_macros,
     py_limited_api=True,
 )
 

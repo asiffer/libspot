@@ -1,33 +1,15 @@
 /**
  * @file structs.h
  * @brief Declare all the base objects
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
 
 #ifndef STRUCTS_H
 #define STRUCTS_H
-
-/**
- * @brief \`malloc_fn\` is a pointer to a malloc-type function
- * i.e. with prototype:
- * \`void * malloc(size_t)\`
- *
- * \`__SIZE_TYPE__\` define the size_t type. This type is notably used
- * for malloc but it depends on the architecture. As we assume we receive
- * malloc-like functions we have to be compliant with their prototypes.
- */
-typedef void *(*malloc_fn)(__SIZE_TYPE__);
-
-/**
- * @brief \`free_fn\` is a pointer to a free-type function
- * i.e. with prototype:
- * \`void free(void*)\`
- */
-typedef void (*free_fn)(void *);
 
 /**
  * @brief \`frexp_fn\` is a pointer to a frexp-type function

@@ -1,20 +1,20 @@
 /**
  * @file estimator.h
  * @brief Declares GPD parameters estimators
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
 
-#include "peaks.h"
-
 #ifndef ESTIMATOR_H
 #define ESTIMATOR_H
 
+#include "peaks.h"
+
 /**
- * @brief
+ * @brief Method of moments estimator for GPD parameters
  *
  * @param peaks Peaks instance
  * @param[out] gamma computed GPD gamma parameter
@@ -24,7 +24,7 @@
 double mom_estimator(struct Peaks const *peaks, double *gamma, double *sigma);
 
 /**
- * @brief
+ * @brief Grimshaw estimator for GPD parameters
  *
  * @param peaks Peaks instance
  * @param[out] gamma computed GPD gamma parameter

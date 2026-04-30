@@ -1,12 +1,12 @@
 import inspect
 import struct
 import tempfile
-from unittest import TestCase
+from unittest import TestCase, main
 
 import libspot  # type:ignore
 import matplotlib.pyplot as plt
 import numpy as np
-from libspot import Spot  # pylint: disable=E0611
+from libspot import Spot  # type: ignore
 
 
 class Test(TestCase):
@@ -35,7 +35,7 @@ class Test(TestCase):
         print(out)
 
     def test_members(self):
-        s = Spot(1e-6, max_excess=1_000)
+        s = Spot(q=1e-6, max_excess=1_000)
         X = np.random.standard_normal(100_000)
         s.fit(X)
         s.step(0.0)
@@ -47,6 +47,8 @@ class Test(TestCase):
         print("n:", s.n)
         print("gamma:", s.gamma)
         print("sigma:", s.sigma)
+
+        print(s.as_dict())
 
     # def test_dump(self):
     #     s = Spot(1e-6, max_excess=1_000)
@@ -107,3 +109,7 @@ class Test(TestCase):
         _, file = tempfile.mkstemp(suffix=".png")
         plt.savefig(file)
         print("Saving to", file)
+
+
+if __name__ == "__main__":
+    main()

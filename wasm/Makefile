@@ -34,7 +34,7 @@ types/index.d.ts: dist/libspot.js
 dist/libspot.js: libspot.ts libspot.core.ts binary.ts
 	@bun build --production $< --outdir $(@D)
 
-libspot.wasm: $(SRC_DIR)/*.c main.c 
+libspot.wasm: $(SRC_DIR)/*.c main.c
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ 
 
 binary.ts: libspot.wasm

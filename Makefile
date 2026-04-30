@@ -8,93 +8,84 @@
 #                                                       
 
 
-LIB 		 = libspot
-VERSION 	 = 2.0b6
-LICENSE 	 = GNU Lesser General Public License v3.0
-DATE         = $(shell date -u)
-COMMIT_COUNT = $(shell git rev-list --count master)
-
-ARCH         = $(shell uname -m)
+LIB 		 := libspot
+VERSION 	 := 3.0.0
+# revision should be incremented when releasing an updated package 
+# of the same upstream version, and it should reset to 1 when 
+# bumping the version.
+REVISION     := 1
+LICENSE 	 := GNU Lesser General Public License v3.0
+DATE         := $(shell date -u)
+COMMIT_COUNT := $(shell git rev-list --count HEAD)
+MAJOR		 := $(shell echo $(VERSION) | cut -d. -f1)
+ARCH         := $(shell uname -m)
 
 # ========================================================================== #
 # Binaries
 # ========================================================================== #
 
-PODMAN = podman
-SHELL  = /bin/sh
+SHELL  := /bin/sh
 
 # ========================================================================== #
 # Sources
 # ========================================================================== #
 
-# current directory
-CURDIR = .
 # folder of the headers
-INC_DIR = $(CURDIR)/include
+INC_DIR 	:= $(CURDIR)/include
 # folder of the sources
-SRC_DIR = $(CURDIR)/src
+SRC_DIR 	:= $(CURDIR)/src
 #folder of the built sources
-BUILD_DIR = $(CURDIR)/build
+BUILD_DIR 	:= $(CURDIR)/build
 # output folder
-DIST_DIR = $(CURDIR)/dist
+DIST_DIR	:= $(CURDIR)/dist
 # docs output directory
-DOXYGEN_DIR = $(CURDIR)/$(shell grep OUTPUT_DIRECTORY doxyfile|awk -F '=' '{print $$2}')
+DOXYGEN_DIR := $(CURDIR)/$(shell grep OUTPUT_DIRECTORY doxyfile|awk -F '=' '{print $$2}')
 # test directories
-TEST_DIR          = $(CURDIR)/test
-TEST_SRC_DIR      = $(TEST_DIR)/src
-TEST_RESULTS_DIR  = $(TEST_DIR)/results
-TEST_BIN_DIR      = $(TEST_DIR)/bin
-TEST_BUILD_DIR    = $(TEST_DIR)/build
-TEST_DEPENDS_DIR  = $(TEST_DIR)/deps
-TEST_COVERAGE_DIR = $(TEST_DIR)/coverage
-# benchmark dir
-BENCHMARK_DIR = $(CURDIR)/benchmark
+TEST_DIR          := $(CURDIR)/test
+TEST_SRC_DIR      := $(TEST_DIR)/src
+TEST_RESULTS_DIR  := $(TEST_DIR)/results
+TEST_BIN_DIR      := $(TEST_DIR)/bin
+TEST_BUILD_DIR    := $(TEST_DIR)/build
+TEST_DEPENDS_DIR  := $(TEST_DIR)/deps
+TEST_COVERAGE_DIR := $(TEST_DIR)/coverage
+
 # Unity directory
 UNITY_DIR = $(CURDIR)/unity
 
-# emscripten compiler
-EMCC ?= $(shell command -pv emcc)
-ifndef $(EMCC)
-	EMCC=podman run --rm -v $(shell pwd):/src emscripten/emsdk:3.1.51 emcc
-endif
-
-# arduino lib
-ARDUINO_DIR = $(CURDIR)/arduino
-ARDUINO_LIB = spot
 # header files
-HEADERS = $(wildcard $(INC_DIR)/*.h)
-SORTED_HEADERS = $(shell $(CC) -MM include/spot.h | grep -oE "include/.*.h" | tr '\n' ' ' | tac -s ' ')
+HEADERS 		:= $(wildcard $(INC_DIR)/*.h)
+SORTED_HEADERS 	:= $(shell $(CC) -MM include/spot.h | grep -oE "include/.*.h" | tr '\n' ' ' | tac -s ' ')
 # source files
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-SORTED_SRCS = $(SORTED_HEADERS:include/%.h=src/%.c)
+SRCS 			:= $(wildcard $(SRC_DIR)/*.c)
+SORTED_SRCS 	= $(SORTED_HEADERS:include/%.h=src/%.c)
 # compiled files
-OBJS = $(SRCS:$(SRC_DIR)%.c=$(BUILD_DIR)%.o)
+OBJS 			:= $(SRCS:$(SRC_DIR)%.c=$(BUILD_DIR)%.o)
 # test files
-TEST_SRCS = $(wildcard $(TEST_SRC_DIR)/*.c)
+TEST_SRCS 		:= $(wildcard $(TEST_SRC_DIR)/*.c)
 # deps to generate
-DEPS = $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_DEPENDS_DIR)%.d)
-TEST_RESULTS = $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_RESULTS_DIR)%.txt)
+TEST_DEPS 		:= $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_DEPENDS_DIR)%.d)
+TEST_RESULTS 	:= $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_RESULTS_DIR)%.txt)
 
 
 # ========================================================================== #
 # Destinations
 # ========================================================================== #
 
-DESTDIR =
-PREFIX = /usr
-INSTALL_HEAD_DIR = $(DESTDIR)$(PREFIX)/include/spot
-INSTALL_LIB_DIR = $(DESTDIR)$(PREFIX)/lib
-INSTALLED_HEADERS = $(HEADERS:$(INC_DIR)%.h=$(INSTALL_HEAD_DIR)%.h)
+DESTDIR 			?=
+PREFIX 				?= /usr
+INSTALL_HEAD_DIR 	:= $(DESTDIR)$(PREFIX)/include
+INSTALL_LIB_DIR 	:= $(DESTDIR)$(PREFIX)/lib
+INSTALLED_HEADERS 	:= $(HEADERS:$(INC_DIR)%.h=$(INSTALL_HEAD_DIR)%.h)
 
 
 # ========================================================================== #
 # Compiler stuff
 # ========================================================================== #
 CC                 ?= cc
-CMOREFLAGS         :=
-CBASEFLAGS         := -O3 -std=c99 -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
-CFLAGS             ?= $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic $(CMOREFLAGS)
-LDFLAGS            ?= -static -nostdlib
+CMOREFLAGS         ?=
+CBASEFLAGS         := -O3 -std=c99 -g -I$(INC_DIR) -D 'VERSION="$(VERSION)"'
+CFLAGS             += $(CBASEFLAGS) -Wall -Wextra -Werror -pedantic $(CMOREFLAGS)
+LDFLAGS            += -nostdlib
 CTESTFLAGS         := $(CBASEFLAGS) -I$(UNITY_DIR) -I$(TEST_DIR) -DTESTING -DUNITY_INCLUDE_DOUBLE -fprofile-arcs -ftest-coverage -g
 
 # ========================================================================== #
@@ -105,7 +96,6 @@ BENCHMARK_COUNT := 200
 # number of data for each run
 BENCHMARK_SIZE	:= 10000000
 
-rand = $(shell head -c 4 /dev/urandom|od -DAn|sed 's, ,,g')
 # ========================================================================== #
 # Targets
 # ========================================================================== #
@@ -117,10 +107,10 @@ STATIC  ?= $(DIST_DIR)/$(LIB).a.$(VERSION)
 # Misc
 # ========================================================================== #
 # fancyness (green OK)
-OK = \t\033[32mOK\033[0m
-PASS   = $(shell printf "\033[92mPASS\033[0m")
-FAIL   = $(shell printf "\033[91mFAIL\033[0m")
-IGNORE = $(shell printf "\033[93mIGNORE\033[0m")
+OK 		:= \t\033[32mOK\033[0m
+PASS   	:= $(shell printf "\033[92mPASS\033[0m")
+FAIL   	:= $(shell printf "\033[91mFAIL\033[0m")
+IGNORE 	:= $(shell printf "\033[93mIGNORE\033[0m")
 
 PRINT_OK = @printf "\t\033[32m%s\033[0m\n" "OK"
 # custom functions
@@ -136,16 +126,19 @@ endef
 # we must keep the library with appended version
 # as final libraries point to them
 .PRECIOUS: $(INSTALL_LIB_DIR)/%.$(VERSION) 
+.PRECIOUS: $(INSTALL_LIB_DIR)/%.so.$(MAJOR) 
 .PRECIOUS: $(BUILD_DIR)/%_test
 .PRECIOUS: $(TEST_DEPENDS_DIR)/%.d
 .PRECIOUS: $(TEST_OBJS_DIR)/%.o
 .PRECIOUS: $(TEST_RESULTS_DIR)/%.txt
 
-.PHONY: static dynamic clean test doxygen fmt deps check coverage
-
+.PHONY: all static dynamic api install uninstall version version_full \
+        clean test doxygen fmt deps check coverage \
+        update-headers inject-version inject-date inject-copyright \
+        arduino packages
 
 .DEFAULT:
-	@echo -e '\033[31mUnknown command "$@"\033[0m'
+	@printf '\033[31mUnknown command "%s"\033[0m\n' "$@"
 	@echo 'Usage: make [command] [variable=]...'
 	@echo ''
 	@echo 'Commands:'
@@ -159,6 +152,7 @@ endef
 	@echo '         version    print the library version'
 	@echo '    version_full    print the library version + commit count'
 	@echo '  update_headers    update code headers (date, version, license)'
+	@echo '        packages    generate linux packages (deb, rpm)'
 	@echo ''
 	@echo 'Variables:'
 	@echo '         DESTDIR    installation root directory'
@@ -176,10 +170,10 @@ static: $(STATIC)
 
 dynamic: $(DYNAMIC)
 
-install: $(INSTALL_LIB_DIR)/$(LIB).a $(INSTALL_LIB_DIR)/$(LIB).so $(INSTALLED_HEADERS)
+install: $(INSTALL_LIB_DIR)/$(LIB).a $(INSTALL_LIB_DIR)/$(LIB).so $(INSTALL_HEAD_DIR)/spot.h
 
 uninstall:
-	rm -rf $(INSTALL_LIB_DIR)/$(LIB).* $(INSTALLED_HEADERS)
+	rm -rf $(INSTALL_LIB_DIR)/$(LIB).* $(INSTALL_HEAD_DIR)/spot.h
 
 # ========================================================================== #
 # Distribute
@@ -188,7 +182,7 @@ uninstall:
 $(DYNAMIC): $(OBJS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "LINK $(@F)"
-	@$(CC) $(CFLAGS) -shared $^ -o $@ -fPIC $(LDFLAGS)
+	@$(CC) $(CFLAGS) -Wl,-soname,libspot.so.$(MAJOR) -shared $^ -o $@ $(LDFLAGS) -s
 	$(PRINT_OK)
 
 $(STATIC): $(OBJS)
@@ -225,23 +219,28 @@ $(INSTALL_HEAD_DIR)/%: $(INC_DIR)/%
 	@mkdir -p $(@D)
 	@printf "INSTALL %-25s %-30s" "$(@F)" "$@"
 	@install $< $@
-	@echo "$(OK)"
+	$(PRINT_OK)
 
 $(INSTALL_LIB_DIR)/%.$(VERSION): $(DIST_DIR)/%.$(VERSION)
 	@mkdir -p $(@D)
 	@printf "INSTALL %-25s %-30s" "$(@F)" "$@"
 	@install $< $@
-	@echo "$(OK)"
+	$(PRINT_OK)
 
-$(INSTALL_LIB_DIR)/%.so: $(INSTALL_LIB_DIR)/%.so.$(VERSION)
+$(INSTALL_LIB_DIR)/%.so.$(MAJOR): $(INSTALL_LIB_DIR)/%.so.$(VERSION)
 	@printf "SYMLINK %-25s %-30s" "$<" "$@"
-	@ln -s $< $@
-	@echo "$(OK)"
+	@ln -fs $< $@
+	$(PRINT_OK)
+
+$(INSTALL_LIB_DIR)/%.so: $(INSTALL_LIB_DIR)/%.so.$(MAJOR)
+	@printf "SYMLINK %-25s %-30s" "$<" "$@"
+	@ln -fs $< $@
+	$(PRINT_OK)
 
 $(INSTALL_LIB_DIR)/%.a: $(INSTALL_LIB_DIR)/%.a.$(VERSION)
 	@printf "SYMLINK %-25s %-30s" "$<" "$@"
-	@ln -s $< $@
-	@echo "$(OK)"
+	@ln -fs $< $@
+	$(PRINT_OK)
 
 # ========================================================================== #
 # Docs
@@ -253,7 +252,7 @@ doxygen: $(DIST_DIR)/spot.h
 
 dev/doxygen/generated: doxygen
 	@mkdir -p $(@D) && rm -rf $@
-	@uvx --with 'xsdata[cli,lxml]' xsdata generate doxygen/xml/
+	@uv run xsdata generate doxygen/xml/
 	@mv -f generated $@
 
 update-headers: inject-version inject-date inject-copyright
@@ -275,7 +274,7 @@ inject-copyright: $(HEADERS) $(SRCS)
 
 docs/api.md: dev/doxygen/generated
 	@mkdir -p $(@D)
-	dev/doxygen/generate_api_docs.py -o "$@"
+	@uv run dev/doxygen/generate_api_docs.py -o "$@"
 
 docs/API: docs/api.md
 
@@ -285,7 +284,7 @@ docs/API: docs/api.md
 # ========================================================================== #
 
 libspot.tar.gz:
-	@tar -cvf $@ src include Makefile benchmark/*.c 
+	@tar -czf $@ src include Makefile benchmark/*.c 
 
 check:
 	@clang-tidy $(SRC_DIR)/*.c -- $(CFLAGS)
@@ -300,12 +299,16 @@ clean:
 	rm -rf $(DOXYGEN_DIR)
 	rm -rf dev/doxygen/generated
 	rm -rf $(BENCHMARK_DIR)/bin
-	rm -rf docs/API
+	rm -rf dist/*.rpm dist/*.deb
 	
 
 # ========================================================================== #
 # Arduino
 # ========================================================================== #
+
+# arduino lib
+ARDUINO_DIR = $(CURDIR)/arduino
+ARDUINO_LIB = spot
 
 $(ARDUINO_DIR)/$(ARDUINO_LIB)/$(ARDUINO_LIB).h: $(DIST_DIR)/spot.h
 	@mkdir -p $(@D)
@@ -330,7 +333,7 @@ $(TEST_DEPENDS_DIR)/%_test.d: $(TEST_SRC_DIR)/%_test.c $(UNITY_DIR)/unity.c $(SR
 	@mkdir -p $(@D)
 	echo "$$($(CC) -MT $(TEST_BIN_DIR)/$*_test -MM -MG $(INC_DIR)/$*.h|sed -e 's,include/,src/,g' -e 's,[.]h,.c,g') $< $(UNITY_DIR)/unity.c" > "$@"
 
-deps: $(DEPS)
+deps: $(TEST_DEPS)
 
 # include that rules
 -include $(TEST_SRCS:$(TEST_SRC_DIR)%.c=$(TEST_DEPENDS_DIR)%.d)
@@ -373,6 +376,9 @@ coverage: $(TEST_COVERAGE_DIR)/html
 # Benchmarks
 # ========================================================================== #
 
+# benchmark dir
+BENCHMARK_DIR = $(CURDIR)/benchmark
+
 $(BENCHMARK_DIR)/bin/%: $(BENCHMARK_DIR)/%.c $(SRCS)
 	@mkdir -p $(@D)
 	@printf "%-25s" "CC   $(@F)"
@@ -384,7 +390,5 @@ benchmark_%: $(BENCHMARK_DIR)/bin/%
 	@for i in $$(seq 1 $(BENCHMARK_COUNT)); do \
 		$^ $(BENCHMARK_SIZE) $$(date +%N|sed s/...$$//) >> $(BENCHMARK_DIR)/$*.json; \
 	done
-
-
 
 

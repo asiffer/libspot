@@ -1,29 +1,20 @@
 /**
  * @file peaks.c
  * @brief Implements Peaks methods
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
 #include "peaks.h"
 
-int peaks_init(struct Peaks *peaks, unsigned long size) {
+int peaks_init(struct Peaks *peaks, double *buffer, unsigned long size) {
     peaks->e = 0.0;
     peaks->e2 = 0.0;
     peaks->min = _NAN;
     peaks->max = _NAN;
-    return ubend_init(&peaks->container, size);
-}
-
-void peaks_free(struct Peaks *peaks) {
-    peaks->e = _NAN;
-    peaks->e2 = _NAN;
-    peaks->min = _NAN;
-    peaks->max = _NAN;
-    // free container
-    ubend_free(&(peaks->container));
+    return ubend_init(&peaks->container, buffer, size);
 }
 
 static unsigned long peaks_update_stats(struct Peaks *peaks) {

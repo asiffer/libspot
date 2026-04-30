@@ -1,9 +1,9 @@
 /**
  * @file peaks.h
- * @author Alban Siffer (alban.siffer@irisa.fr)
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
  * @brief Declares Peaks structure and methods
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
@@ -19,16 +19,10 @@
  * @brief Initialize the Peaks structure
  *
  * @param peaks Peaks instance
+ * @param buffer Buffer to store the peaks
  * @param size Maximum number of peaks to store
  */
-int peaks_init(struct Peaks *peaks, unsigned long size);
-
-/**
- * @brief Free the peaks structure
- *
- * @param peaks Peaks instance
- */
-void peaks_free(struct Peaks *peaks);
+int peaks_init(struct Peaks *peaks, double *buffer, unsigned long size);
 
 /**
  * @brief Insert a new peak

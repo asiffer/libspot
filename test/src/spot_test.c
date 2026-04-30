@@ -58,8 +58,10 @@ void test_spot_init(void) {
     int discard_anomalies = 1;
     double const level = 0.995;
     unsigned long const max_excess = Nt;
+    double buffer[max_excess];
 
-    int ko = spot_init(&Spot, q, low, discard_anomalies, level, max_excess);
+    int ko =
+        spot_init(&Spot, q, low, discard_anomalies, level, buffer, max_excess);
     TEST_ASSERT_EQUAL_INT(0, ko);
     TEST_ASSERT_EQUAL_INT(low, Spot.low);
     TEST_ASSERT_EQUAL_INT(discard_anomalies, Spot.discard_anomalies);
@@ -70,8 +72,8 @@ void test_spot_init(void) {
     TEST_ASSERT_EQUAL_UINT(0, Spot.Nt);
     TEST_ASSERT_EQUAL_UINT(0, Spot.n);
 
-    ko =
-        spot_init(&Spot, q, 1 - low, 1 - discard_anomalies, level, max_excess);
+    ko = spot_init(&Spot, q, 1 - low, 1 - discard_anomalies, level, buffer,
+                   max_excess);
     TEST_ASSERT_EQUAL_INT(0, ko);
     TEST_ASSERT_EQUAL_INT(1 - low, Spot.low);
     TEST_ASSERT_EQUAL_INT(1 - discard_anomalies, Spot.discard_anomalies);
@@ -82,11 +84,11 @@ void test_spot_init(void) {
     TEST_ASSERT_EQUAL_UINT(0, Spot.Nt);
     TEST_ASSERT_EQUAL_UINT(0, Spot.n);
 
-    ko = spot_init(&Spot, q, low, discard_anomalies, -0.5, max_excess);
+    ko = spot_init(&Spot, q, low, discard_anomalies, -0.5, buffer, max_excess);
     TEST_ASSERT_EQUAL_INT(-ERR_LEVEL_OUT_OF_BOUNDS, ko);
 
     ko = spot_init(&Spot, 1 - level + (1 + level) / 2., low, discard_anomalies,
-                   level, max_excess);
+                   level, buffer, max_excess);
     TEST_ASSERT_EQUAL_INT(-ERR_Q_OUT_OF_BOUNDS, ko);
 }
 
@@ -100,13 +102,16 @@ void test_spot_fit(void) {
     int discard_anomalies = 1;
     double const level = 0.995;
     unsigned long const max_excess = Nt;
+    double buffer[max_excess];
 
-    int ko = spot_init(&Spot, q, low, discard_anomalies, level, max_excess);
+    int ko =
+        spot_init(&Spot, q, low, discard_anomalies, level, buffer, max_excess);
     TEST_ASSERT_EQUAL_INT(0, ko);
     ko = spot_fit(&Spot, initial_data, SIZE);
     TEST_ASSERT_EQUAL_INT(0, ko);
 
-    ko = spot_init(&Spot, q, 1 - low, discard_anomalies, level, max_excess);
+    ko = spot_init(&Spot, q, 1 - low, discard_anomalies, level, buffer,
+                   max_excess);
     TEST_ASSERT_EQUAL_INT(0, ko);
     ko = spot_fit(&Spot, initial_data, SIZE);
     TEST_ASSERT_EQUAL_INT(0, ko);
@@ -122,7 +127,9 @@ void test_spot_step(void) {
     int discard_anomalies = 1;
     double const level = 0.995;
     unsigned long const max_excess = Nt;
-    int ko = spot_init(&Spot, q, low, discard_anomalies, level, max_excess);
+    double buffer[max_excess];
+    int ko =
+        spot_init(&Spot, q, low, discard_anomalies, level, buffer, max_excess);
     TEST_ASSERT_EQUAL_INT(0, ko);
 
     ko = spot_fit(&Spot, initial_data, SIZE);
@@ -219,6 +226,7 @@ void test_spot_quantile(void) {
     int discard_anomalies = 1;
     double const level = 0.995;
     unsigned long const max_excess = Nt;
+    double data[max_excess];
     int ko;
 
     double const *dataset[] = {gaussian_quantiles, uniform_quantiles,
@@ -230,7 +238,8 @@ void test_spot_quantile(void) {
     double const err = 0.1;
 
     for (int i = 0; i < k; ++i) {
-        ko = spot_init(&Spot, q, low, discard_anomalies, level, max_excess);
+        ko = spot_init(&Spot, q, low, discard_anomalies, level, data,
+                       max_excess);
         TEST_ASSERT_EQUAL_INT(0, ko);
 
         // fill data
@@ -263,6 +272,7 @@ void test_spot_probability(void) {
     int discard_anomalies = 1;
     double const level = 0.995;
     unsigned long const max_excess = Nt;
+    double data[max_excess];
     int ko;
 
     double const *dataset[] = {gaussian_quantiles, uniform_quantiles,
@@ -274,7 +284,8 @@ void test_spot_probability(void) {
     double const err = 0.5;
 
     for (int i = 0; i < k; ++i) {
-        ko = spot_init(&Spot, q, low, discard_anomalies, level, max_excess);
+        ko = spot_init(&Spot, q, low, discard_anomalies, level, data,
+                       max_excess);
         TEST_ASSERT_EQUAL_INT(0, ko);
 
         // fill data
@@ -304,7 +315,7 @@ void test_spot_probability(void) {
             // TEST_ASSERT_DOUBLE_WITHIN_MESSAGE(err, 0.0, e, buffer);
         }
 
-        spot_free(&Spot);
+        spot_reset(&Spot);
     }
 }
 
@@ -319,7 +330,9 @@ void benchmark_spot(void) {
     int ko;
 
     // init struct
-    ko = spot_init(&spot, q, low, discard_anomalies, level, max_excess);
+    double buffer[max_excess];
+    ko =
+        spot_init(&spot, q, low, discard_anomalies, level, buffer, max_excess);
     TEST_ASSERT_EQUAL_INT(0, ko);
     // fill data
     fill_gaussian();
@@ -391,7 +404,6 @@ void test_libspot_license(void) {
 void setUp(void) {
     srand(0);
     // srand(0xdeadbeef);
-    set_allocators(malloc, free);
 }
 
 void tearDown(void) {}

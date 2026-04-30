@@ -1,4 +1,12 @@
-
+/**
+ * @file p2.c
+ * @brief Implements P² quantile estimator
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
+ * @copyright GNU Lesser General Public License v3.0
+ *
+ */
 #include "p2.h"
 
 // See aakinshin.net/posts/p2-quantile-estimator/
@@ -15,6 +23,7 @@ static void swap(double *a, double *b) {
     *b = temp;
 }
 
+// sort5 is not made static since we test it in p2_test.c
 void sort5(double a[5]) {
     if (a[1] < a[0]) // Compare 1st and 2nd element #1
         swap(&a[0], &a[1]);
@@ -112,11 +121,10 @@ static double parabolic(struct P2 *p2, unsigned int i, int d) {
 static double quantile(struct P2 *p2, double const *x, unsigned long size) {
     unsigned int k;
     unsigned int i;
-    // double d = 0.0;
     double qp;
 
     if (size < 5) {
-        return 0.0;
+        return _NAN;
     }
     // init q with the 5 first values
     for (i = 0; i < 5; i++) {

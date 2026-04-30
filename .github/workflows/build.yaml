@@ -9,13 +9,16 @@ on:
       - .github/workflows/build.yaml
       - test/src/*.c
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install build dependencies
         run: sudo apt update -y && sudo apt install -y build-essential
@@ -26,7 +29,7 @@ jobs:
       - name: Build static library
         run: make static
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: libspot
           path: |
@@ -38,10 +41,10 @@ jobs:
     needs: build
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: libspot
           path: dist/
@@ -58,10 +61,10 @@ jobs:
     needs: build
     steps:
       - name: checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: libspot
           path: dist/

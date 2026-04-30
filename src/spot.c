@@ -1,9 +1,9 @@
 /**
  * @file spot.c
  * @brief Implements Spot methods
- * @author Alban Siffer (alban.siffer@irisa.fr)
- * @version 2.0b4
- * @date jeu. 17 juil. 2025 08:08:51 UTC
+ * @author Alban Siffer (31479857+asiffer@users.noreply.github.com)
+ * @version 3.0.0
+ * @date mar. 14 avril 2026 14:59:11 UTC
  * @copyright GNU Lesser General Public License v3.0
  *
  */
@@ -22,7 +22,7 @@ static const char *version = VERSION;
 static const char *license = LICENSE;
 
 int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,
-              double level, unsigned long max_excess) {
+              double level, double *buffer, unsigned long max_excess) {
     if ((level < 0.) || (level >= 1.)) {
         return -ERR_LEVEL_OUT_OF_BOUNDS;
     }
@@ -50,11 +50,8 @@ int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,
     spot->n = 0;
     spot->Nt = 0;
 
-    // in all cases, tail is init to
-    // ensure the struct is fully initialized
-    if (tail_init(&(spot->tail), max_excess) < 0) {
-        return -ERR_MEMORY_ALLOCATION_FAILED;
-    }
+    // always return 0
+    tail_init(&(spot->tail), buffer, max_excess);
 
     spot->anomaly_threshold = _NAN;
     spot->excess_threshold = _NAN;
@@ -62,19 +59,18 @@ int spot_init(struct Spot *spot, double q, int low, int discard_anomalies,
     return 0;
 }
 
-void spot_free(struct Spot *spot) {
-    // put everything to NAN or
-    spot->q = _NAN;
-    spot->level = _NAN;
-    spot->discard_anomalies = -1;
-    spot->low = -1;
-    spot->__up_down = _NAN;
-    spot->anomaly_threshold = _NAN;
-    spot->excess_threshold = _NAN;
+void spot_reset(struct Spot *spot) {
+    // reset counters
     spot->Nt = 0;
     spot->n = 0;
-    // free tail
-    tail_free(&(spot->tail));
+    // retrieve the buffer
+    double *buffer = spot->tail.peaks.container.data;
+    unsigned long size = spot->tail.peaks.container.capacity;
+    // reinitialize tail with the same buffer
+    tail_init(&(spot->tail), buffer, size);
+
+    spot->anomaly_threshold = _NAN;
+    spot->excess_threshold = _NAN;
 }
 
 int spot_fit(struct Spot *spot, double const *data, unsigned long size) {
@@ -160,8 +156,6 @@ double spot_probability(struct Spot const *spot, double z) {
 
 // Extra functions -----------------------------------------------------------
 
-void set_allocators(malloc_fn m, free_fn f) { internal_set_allocators(m, f); }
-
 /**
  * @brief Copy at most size-1 byte from src to dst (fill dst with zeros until
  * size-1)
@@ -172,6 +166,9 @@ void set_allocators(malloc_fn m, free_fn f) { internal_set_allocators(m, f); }
  * @return char* pointer to the output buffer
  */
 static char *strncpy(char *dst, const char *src, unsigned long size) {
+    if (size == 0) {
+        return dst;
+    }
     if (dst) {
         unsigned long i = 0;
         for (; (i < size) && (src[i] != '\0'); i++) {

@@ -1,6 +1,6 @@
 {
   "name": "libspot",
-  "version": "2.0.0-beta.6",
+  "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/asiffer/libspot.git",
@@ -16,9 +16,11 @@
   ],
   "devDependencies": {
     "@types/bun": "latest",
-    "prettier": "^3.6.2"
+    "@types/node": "^25.6.0",
+    "prettier": "^3.8.3"
   },
   "peerDependencies": {
-    "typescript": "^5.8.3"
-  }
+    "typescript": "^6.0.2"
+  },
+  "private": true
 }

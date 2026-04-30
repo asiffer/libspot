@@ -1,6 +1,6 @@
 ---
 title: About
-order: 2
+summary: Origins of libspot
 ---
 
 This library is an extension of research work previously published at KDD'17 conference. If **libspot** contributes to a project that leads to a scientific publication, please acknowledge this fact by citing the publication:
@@ -11,7 +11,7 @@ This library is an extension of research work previously published at KDD'17 con
 
 Here is the BibTeX record:
 
-```tex
+```bibtex
 @inproceedings{siffer2017anomaly,
   title={Anomaly detection in streams with extreme value theory},
   author={Siffer, Alban and Fouque, Pierre-Alain and Termier, Alexandre and Largouet, Christine},
