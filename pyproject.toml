@@ -14,7 +14,7 @@ dependencies = [
     "mkdocs-shadcn>=0.10.4",
     "nbconvert>=7.17.1",
     "pandas>=3.0.2",
-    "pip>=26.1",
+    "pip>=26.1.2",
     "pygments>=2.20.0",
 ]
 
