@@ -1,0 +1,33 @@
+name: Arduino
+
+on:
+  pull_request:
+    paths:
+      - "Makefile"
+      - "arduino/Makefile"
+      - "src/*"
+      - "include/*.h"
+      - .github/workflows/arduino.yaml
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: sudo apt update -y && sudo apt install -y build-essential zip
+
+      - name: Build Arduino library
+        run: make arduino
+        working-directory: arduino
+      
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Spot
+          path: arduino/Spot.zip
