@@ -20,9 +20,11 @@ arduino: $(ARDUINO_DIST_DIR)/$(ARDUINO_LIB).zip
 
 install: $(HOME)/Arduino/libraries/$(ARDUINO_LIB)
 
+$(LIBSPOT_DIST_DIR)/spot.h:
+	@make -C $(ROOT_DIR) api
+
 $(ARDUINO_LIB_DIR)/src/$(ARDUINO_LIB).h: $(LIBSPOT_DIST_DIR)/spot.h
 	@mkdir -p $(@D)
-	@make -C $(ROOT_DIR) api
 	@cp -u $< $@
 
 $(ARDUINO_LIB_DIR)/src/$(ARDUINO_LIB).cpp: $(SORTED_SRCS)
