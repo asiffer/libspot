@@ -23,16 +23,16 @@ jobs:
       - name: Install build dependencies
         run: sudo apt update -y && sudo apt install -y build-essential zip
 
-      - name: Lint
+      - name: Build Arduino library
+        run: make arduino
+        working-directory: arduino
+
+      - name: Lint # must be done after build to generate all the files
         uses: arduino/arduino-lint-action@v3.0.0
         with:
           path: arduino/Spot
           compliance: specification
           project-type: library
-
-      - name: Build Arduino library
-        run: make arduino
-        working-directory: arduino
       
       - uses: actions/upload-artifact@v7
         with:
