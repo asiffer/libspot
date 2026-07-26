@@ -1,0 +1,43 @@
+name: Arduino
+
+on:
+  pull_request:
+    paths:
+      - "Makefile"
+      - "arduino/Makefile"
+      - "src/*"
+      - "include/*.h"
+      - .github/workflows/arduino.yaml
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v6
+
+      - name: Install build dependencies
+        run: sudo apt update -y && sudo apt install -y build-essential zip
+
+      - name: Build Arduino library
+        run: make arduino
+        working-directory: arduino
+
+      - name: Lint # must be done after build to generate all the files
+        uses: arduino/arduino-lint-action@v3.0.0
+        with:
+          path: arduino/Spot
+          compliance: specification
+          project-type: library
+      
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Spot
+          path: arduino/Spot.zip

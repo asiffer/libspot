@@ -248,7 +248,7 @@ static double nostdlib_exp(double x) {
         return _NAN;
     }
     if (x < 0) {
-        return 1.0 / xexp(-x);
+        return 1.0 / nostdlib_exp(-x);
     }
     if (x > LOG2) {
         unsigned int k = x / LOG2;
