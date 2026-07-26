@@ -9,7 +9,7 @@
 
 
 LIB 		 := libspot
-VERSION 	 := 3.0.0
+VERSION 	 := 3.0.1
 # revision should be incremented when releasing an updated package 
 # of the same upstream version, and it should reset to 1 when 
 # bumping the version.
