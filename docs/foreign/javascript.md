@@ -1,6 +1,6 @@
 ---
 title: Javascript
-icon: material/language-javascript
+summary: libspot in the browser
 ---
 
 **libspot** has also been ported to the browser (and more generally to the `js` ecosystem) through [webassembly +simple-icons:webassembly+](https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts) thanks to `clang` & `wasm-ld` (see [this example](https://log.schemescape.com/posts/webassembly/trivial-example.html)).
@@ -44,7 +44,7 @@ You then get a typescript library that wraps the webassembly code.
 /// codexec
 
     :::typescript
-    import spot from "https://esm.sh/libspot@2.0.0-beta.5"
+    import spot from "https://esm.sh/libspot@latest"
 
     console.log(spot);
 
