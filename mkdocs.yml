@@ -24,6 +24,7 @@ nav:
       - foreign/javascript.md
       - foreign/golang.md
       - foreign/rust.md
+      - foreign/arduino.md
       - foreign/performances.md
   - Guides:
       - "Drifting data": guides/drifting.md
@@ -57,3 +58,4 @@ markdown_extensions:
   - shadcn.extensions.iconify
   - shadcn.extensions.codexec
   - shadcn.extensions.echarts.alpha
+
