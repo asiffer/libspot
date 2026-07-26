@@ -2,6 +2,14 @@ name: Python
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "Makefile"
+      - "python/*.py"
+      - "python/*.c"
+      - "src/*.c"
+      - "include/*.h"
+      - .github/workflows/python.yaml
   push:
     tags:
       - "v*"
