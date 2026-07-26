@@ -8,6 +8,9 @@ on:
       - "src/*"
       - "include/*.h"
       - .github/workflows/arduino.yaml
+  push:
+    tags:
+      - "v*"
 
 permissions:
   contents: read
