@@ -44,6 +44,9 @@ unzip -o /tmp/Spot.zip -d ~/Documents/Arduino/libraries/
 
 ## Example
 
+The following example roughly follows the **libspot** benchmark. 
+On `ESP32-C3` board, you can expect about **1500 values/s**.
+
 <!-- prettier-ignore -->
 ```arduino
 --8<-- "arduino/Spot/examples/Basic/Basic.ino"
