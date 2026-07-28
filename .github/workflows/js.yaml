@@ -60,6 +60,7 @@ jobs:
         with:
           path: ./wasm/libspot*.tgz
           name: libspot.tgz
+          archive: false
 
       - name: Upload library files as artifact
         uses: actions/upload-artifact@v7
@@ -90,4 +91,6 @@ jobs:
         with:
           name: libspot.tgz
       - name: Stage publish
-        run: npm stage publish libspot*.tgz
+        run: |
+          ls -alh --color=auto .
+          npm stage publish libspot*.tgz
