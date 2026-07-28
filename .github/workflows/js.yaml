@@ -52,16 +52,14 @@ jobs:
         working-directory: ./wasm
 
       - name: Build npm package
-        run: |
-          make tgz
-          mv libspot*.tgz libspot.tgz
+        run: make tgz
         working-directory: ./wasm
 
       - name: Upload npm package as artifact
         uses: actions/upload-artifact@v7
         with:
-          path: wasm/libspot.tgz
-          archive: false
+          name: libspot-tgz
+          path: wasm/libspot*.tgz
 
       - name: Upload library files as artifact
         uses: actions/upload-artifact@v7
@@ -90,8 +88,8 @@ jobs:
       - name: Download archive
         uses: actions/download-artifact@v8
         with:
-          name: wasm/libspot.tgz
+          name: libspot-tgz
       - name: Stage publish
         run: |
           ls -alh --color=auto wasm
-          npm stage publish wasm/libspot.tgz
+          npm stage publish wasm/libspot*.tgz
