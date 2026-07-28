@@ -165,7 +165,7 @@ double spot_probability(struct Spot const *spot, double z) {
  * @param size size of the output buffer
  * @return char* pointer to the output buffer
  */
-static char *strncpy(char *dst, const char *src, unsigned long size) {
+static char *copy(char *dst, const char *src, unsigned long size) {
     if (size == 0) {
         return dst;
     }
@@ -203,14 +203,14 @@ static const char *errors[] = {
 void libspot_error(enum LibspotError err, char *buffer, unsigned long size) {
     if ((err >= ERR_MEMORY_ALLOCATION_FAILED) && (err <= ERR_DATA_IS_NAN)) {
         int index = err - ERR_MEMORY_ALLOCATION_FAILED;
-        strncpy(buffer, errors[index], size);
+        copy(buffer, errors[index], size);
     }
 }
 
 void libspot_version(char *buffer, unsigned long size) {
-    strncpy(buffer, version, size);
+    copy(buffer, version, size);
 }
 
 void libspot_license(char *buffer, unsigned long size) {
-    strncpy(buffer, license, size);
+    copy(buffer, license, size);
 }
