@@ -67,10 +67,10 @@ jobs:
           path: ./wasm/dist
           name: libspot
 
-      - name: Publish to npmjs
-        if: github.ref_type == 'tag'
-        run: bun publish
-        working-directory: ./wasm
+      # - name: Publish to npmjs
+      #   if: github.ref_type == 'tag'
+      #   run: bun publish
+      #   working-directory: ./wasm
 
   publish:
     needs: build
@@ -90,6 +90,4 @@ jobs:
         with:
           name: libspot-tgz
       - name: Stage publish
-        run: |
-          ls -alh --color=auto .
-          npm stage publish libspot*.tgz
+        run: npm stage publish libspot*.tgz
