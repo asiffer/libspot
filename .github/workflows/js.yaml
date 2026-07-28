@@ -71,3 +71,23 @@ jobs:
         if: github.ref_type == 'tag'
         run: bun publish
         working-directory: ./wasm
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: npmjs
+    env:
+      # bun publish respects the NPM_CONFIG_TOKEN
+      NPM_CONFIG_TOKEN: ${{ secrets.NPMJS_GRANULAR_TOKEN }}
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Download archive
+        uses: actions/download-artifact@v7
+        with:
+          name: libspot.tgz
+      - name: Stage publish
+        run: npm stage publish libspot*.tgz
