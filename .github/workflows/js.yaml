@@ -88,7 +88,7 @@ jobs:
         with:
           node-version: 24
       - name: Download archive
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: wasm/libspot.tgz
       - name: Stage publish
