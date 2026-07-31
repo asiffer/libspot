@@ -2,6 +2,15 @@ name: JS
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "Makefile"
+      - "wasm/Makefile"
+      - "wasm/*.ts"
+      - "wasm/*.c"
+      - "src/*.c"
+      - "include/*.h"
+      - .github/workflows/js.yaml
   push:
     tags:
       - "v*"
@@ -49,8 +58,8 @@ jobs:
       - name: Upload npm package as artifact
         uses: actions/upload-artifact@v7
         with:
-          path: ./wasm/libspot*.tgz
-          name: libspot.tgz
+          name: libspot-tgz
+          path: wasm/libspot*.tgz
 
       - name: Upload library files as artifact
         uses: actions/upload-artifact@v7
@@ -58,7 +67,31 @@ jobs:
           path: ./wasm/dist
           name: libspot
 
-      - name: Publish to npmjs
+      # - name: Publish to npmjs
+      #   if: github.ref_type == 'tag'
+      #   run: bun publish
+      #   working-directory: ./wasm
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: npmjs
+    env:
+      # bun publish respects the NPM_CONFIG_TOKEN
+      NPM_CONFIG_TOKEN: ${{ secrets.NPMJS_GRANULAR_TOKEN }}
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Download archive
+        uses: actions/download-artifact@v8
+        with:
+          name: libspot-tgz
+      - name: Stage publish (dry-run)
+        if: github.ref_type != 'tag'
+        run: npm stage publish --dry-run libspot*.tgz
+      - name: Stage publish
         if: github.ref_type == 'tag'
-        run: bun publish
-        working-directory: ./wasm
+        run: npm stage publish libspot*.tgz

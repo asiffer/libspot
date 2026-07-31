@@ -47,6 +47,7 @@ binary.ts: libspot.wasm
 tgz: libspot-$(VERSION).tgz
 
 libspot-$(VERSION).tgz: dist/libspot.js types/index.d.ts
+	@sed -i 's/"version": *"[^"]*"/"version": "$(VERSION)"/' package.json
 	@bun pm pack
 
 test:
