@@ -89,5 +89,9 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: libspot-tgz
+      - name: Stage publish (dry-run)
+        if: github.ref_type != 'tag'
+        run: npm stage publish --dry-run libspot*.tgz
       - name: Stage publish
+        if: github.ref_type == 'tag'
         run: npm stage publish libspot*.tgz
