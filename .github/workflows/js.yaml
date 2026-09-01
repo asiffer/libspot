@@ -55,6 +55,10 @@ jobs:
         run: make tgz
         working-directory: ./wasm
 
+      - name: Validate npm package contents
+        run: npm pack --dry-run
+        working-directory: ./wasm
+
       - name: Upload npm package as artifact
         uses: actions/upload-artifact@v7
         with:
@@ -74,6 +78,7 @@ jobs:
 
   publish:
     needs: build
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     environment:
       name: npmjs
@@ -89,9 +94,5 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: libspot-tgz
-      - name: Stage publish (dry-run)
-        if: github.ref_type != 'tag'
-        run: npm stage publish --dry-run libspot*.tgz
       - name: Stage publish
-        if: github.ref_type == 'tag'
         run: npm stage publish libspot*.tgz
