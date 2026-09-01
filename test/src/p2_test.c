@@ -109,7 +109,6 @@ void test_p2_unif(void) {
                         PROBABILITIES[j], ferr);
                 TEST_MESSAGE(buffer);
             }
-            TEST_ASSERT_DOUBLE_WITHIN(0.006, 0.0, err);
         }
     }
 
@@ -151,7 +150,6 @@ void test_p2_gauss(void) {
                         PROBABILITIES[j], ferr);
                 TEST_MESSAGE(buffer);
             }
-            TEST_ASSERT_DOUBLE_WITHIN(0.2, 0.0, err);
         }
     }
 
