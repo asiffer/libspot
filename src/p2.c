@@ -136,10 +136,10 @@ static double quantile(struct P2 *p2, double const *x, unsigned long size) {
     for (unsigned long j = 5; j < size; j++) {
         double xj = x[j];
         if (xj < p2->q[0]) {
-            // k = 0;
+            k = 0;
             p2->q[0] = xj;
         } else if (xj > p2->q[4]) {
-            // k = 3;
+            k = 3;
             p2->q[4] = xj;
         } else {
             k = 0;
@@ -148,26 +148,26 @@ static double quantile(struct P2 *p2, double const *x, unsigned long size) {
             }
             k--;
             // here q[k] < x < q[k + 1]
-            for (i = k + 1; i < 5; i++) {
-                p2->n[i] += 1.0;
-            }
-            for (i = 0; i < 5; i++) {
-                p2->np[i] += p2->dn[i];
-            }
+        }
+        for (i = k + 1; i < 5; i++) {
+            p2->n[i] += 1.0;
+        }
+        for (i = 0; i < 5; i++) {
+            p2->np[i] += p2->dn[i];
+        }
 
-            // update other markers
-            for (i = 1; i < 4; i++) {
-                double d = p2->np[i] - p2->n[i];
-                if ((d >= 1 && (p2->n[i + 1] - p2->n[i]) > 1) ||
-                    (d <= -1 && (p2->n[i - 1] - p2->n[i]) < -1)) {
-                    d = sign(d);
-                    qp = parabolic(p2, i, (int)d);
-                    if (!(p2->q[i - 1] < qp && qp < p2->q[i + 1])) {
-                        qp = linear(p2, i, (int)d);
-                    }
-                    p2->q[i] = qp;
-                    p2->n[i] += d;
+        // update other markers
+        for (i = 1; i < 4; i++) {
+            double d = p2->np[i] - p2->n[i];
+            if ((d >= 1 && (p2->n[i + 1] - p2->n[i]) > 1) ||
+                (d <= -1 && (p2->n[i - 1] - p2->n[i]) < -1)) {
+                d = sign(d);
+                qp = parabolic(p2, i, (int)d);
+                if (!(p2->q[i - 1] < qp && qp < p2->q[i + 1])) {
+                    qp = linear(p2, i, (int)d);
                 }
+                p2->q[i] = qp;
+                p2->n[i] += d;
             }
         }
     }
