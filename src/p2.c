@@ -128,6 +128,9 @@ static double quantile(struct P2 *p2, double const *x, unsigned long size) {
     }
     // init q with the 5 first values
     for (i = 0; i < 5; i++) {
+        if (is_nan(x[i])) {
+            return _NAN;
+        }
         p2->q[i] = x[i];
     }
 
@@ -135,7 +138,10 @@ static double quantile(struct P2 *p2, double const *x, unsigned long size) {
     // now treat the other values
     for (unsigned long j = 5; j < size; j++) {
         double xj = x[j];
-        if (xj < p2->q[0]) {
+        if (is_nan(xj)) {
+            return _NAN;
+        }
+        if (xj <= p2->q[0]) {
             k = 0;
             p2->q[0] = xj;
         } else if (xj > p2->q[4]) {
@@ -176,6 +182,9 @@ static double quantile(struct P2 *p2, double const *x, unsigned long size) {
 
 double p2_quantile(double p, double const *data, unsigned long size) {
     struct P2 p2;
+    if (!(p > 0.0 && p < 1.0) || data == 0x0) {
+        return _NAN;
+    }
     init_p2(&p2, p);
     return quantile(&p2, data, size);
 }
