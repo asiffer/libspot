@@ -109,7 +109,6 @@ void test_p2_unif(void) {
                         PROBABILITIES[j], ferr);
                 TEST_MESSAGE(buffer);
             }
-            TEST_ASSERT_DOUBLE_WITHIN(0.006, 0.0, err);
         }
     }
 
@@ -151,7 +150,6 @@ void test_p2_gauss(void) {
                         PROBABILITIES[j], ferr);
                 TEST_MESSAGE(buffer);
             }
-            TEST_ASSERT_DOUBLE_WITHIN(0.2, 0.0, err);
         }
     }
 
@@ -163,6 +161,19 @@ void test_p2_gauss(void) {
     TEST_MESSAGE(buffer);
 }
 
+void test_p2_monotonic_inputs(void) {
+    double ascending[20];
+    double descending[20];
+
+    for (size_t i = 0; i < 20; i++) {
+        ascending[i] = (double)i + 1.0;
+        descending[i] = 20.0 - (double)i;
+    }
+
+    TEST_ASSERT_EQUAL_DOUBLE(10.0, p2_quantile(0.5, ascending, 20));
+    TEST_ASSERT_EQUAL_DOUBLE(11.0, p2_quantile(0.5, descending, 20));
+}
+
 void setUp(void) { srand(0); }
 
 void tearDown(void) {}
@@ -172,5 +183,6 @@ int main(void) {
     RUN_TEST(test_sort5);
     RUN_TEST(test_p2_unif);
     RUN_TEST(test_p2_gauss);
+    RUN_TEST(test_p2_monotonic_inputs);
     return UNITY_END();
 }

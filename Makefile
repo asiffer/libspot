@@ -9,7 +9,7 @@
 
 
 LIB 		 := libspot
-VERSION 	 := 3.0.2
+VERSION 	 := 3.1.0
 # revision should be incremented when releasing an updated package 
 # of the same upstream version, and it should reset to 1 when 
 # bumping the version.
@@ -390,5 +390,4 @@ benchmark_%: $(BENCHMARK_DIR)/bin/%
 	@for i in $$(seq 1 $(BENCHMARK_COUNT)); do \
 		$^ $(BENCHMARK_SIZE) $$(date +%N|sed s/...$$//) >> $(BENCHMARK_DIR)/$*.json; \
 	done
-
 
