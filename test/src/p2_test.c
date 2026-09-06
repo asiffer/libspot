@@ -174,6 +174,22 @@ void test_p2_monotonic_inputs(void) {
     TEST_ASSERT_EQUAL_DOUBLE(11.0, p2_quantile(0.5, descending, 20));
 }
 
+void test_p2_duplicate_minimum(void) {
+    double data[] = {0.0, 0.0, 0.0, 1.0, 2.0, 3.0,
+                     4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+
+    TEST_ASSERT_EQUAL_DOUBLE(0.0, p2_quantile(0.1, data, 12));
+}
+
+void test_p2_rejects_invalid_inputs(void) {
+    double data[] = {0.0, 1.0, 2.0, 3.0, 4.0};
+
+    TEST_ASSERT_DOUBLE_IS_NAN(p2_quantile(0.0, data, 5));
+    TEST_ASSERT_DOUBLE_IS_NAN(p2_quantile(1.0, data, 5));
+    TEST_ASSERT_DOUBLE_IS_NAN(p2_quantile(-0.5, data, 5));
+    TEST_ASSERT_DOUBLE_IS_NAN(p2_quantile(0.5, 0x0, 5));
+}
+
 void setUp(void) { srand(0); }
 
 void tearDown(void) {}
@@ -184,5 +200,7 @@ int main(void) {
     RUN_TEST(test_p2_unif);
     RUN_TEST(test_p2_gauss);
     RUN_TEST(test_p2_monotonic_inputs);
+    RUN_TEST(test_p2_duplicate_minimum);
+    RUN_TEST(test_p2_rejects_invalid_inputs);
     return UNITY_END();
 }
